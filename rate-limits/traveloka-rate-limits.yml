@@ -1,0 +1,60 @@
+generated: '2026-08-05'
+method: searched
+source: https://developer.travelokapartnersnetwork.com/faq
+summary: >-
+  Published rate limits and throttling behaviour for the Traveloka Partners Network (LOKA) v2
+  Accommodation API. Traveloka enforces two layers: a technical per-key request rate, and a commercial
+  Look-to-Book (LTB) ratio written into the partner agreement.
+rate_limits:
+  - name: Per-API-key request rate
+    scope: api_key
+    limit_count: 100
+    limit_interval: minute
+    limit_unit: requests
+    exceeded_status: 429
+    exceeded_codes: [AFI030, AFI429]
+    exceeded_message: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+    guidance: Implement retry with exponential backoff; do not burst.
+    source: https://developer.travelokapartnersnetwork.com/faq
+  - name: Suspension threshold (API Suspended)
+    scope: api_key
+    limit_count: null
+    limit_interval: null
+    limit_unit: requests
+    penalty: Traffic blocked for 15 seconds.
+    trigger: Requests to the Traveloka Data Feed exceed the suspension limit.
+    guidance: Spread requests across the day rather than sending them in a single burst.
+    note: The numeric suspension threshold itself is not published.
+    source: https://developer.travelokapartnersnetwork.com/faq
+  - name: Look-to-Book (LTB) ratio
+    scope: partner_agreement
+    type: commercial
+    definition: Ratio of total search requests to total bookings.
+    penalty: Suspension and a fee for exceeding the agreed LTB limit.
+    guidance: >-
+      Cache aggressively (15-30 min dynamic, 7 days static), blacklist unproductive or closed hotels,
+      and avoid broad spec multipliers (length-of-stay x adults x rooms combinations).
+    note: The agreed LTB threshold is per-contract and is not published.
+    source: https://developer.travelokapartnersnetwork.com/faq
+request_shape_limits:
+  max_property_ids_per_getrates: 50
+  max_bulk_search_rooms: 10
+  max_rooms: 8
+  max_adults: 30
+  max_children_age: 17
+  max_length_of_stay_days: 15
+  max_booking_window_days: 365
+  refund_availability_max_range: 6 days 23 hours 59 minutes
+retry_guidance:
+  max_attempts: 3
+  backoff: exponential
+  initial_delay_seconds: 120
+headers:
+  published: false
+  note: >-
+    No RateLimit / X-RateLimit response headers are documented, and none are declared in the published
+    OpenAPI. Clients must infer remaining budget from their own accounting.
+cross_links:
+  conventions: conventions/traveloka-conventions.yml
+  errors: errors/traveloka-problem-types.yml
+  error_codes: errors/traveloka-error-codes.yml

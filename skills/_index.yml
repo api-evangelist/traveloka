@@ -1,0 +1,63 @@
+generated: '2026-08-05'
+method: generated
+source: >-
+  openapi/traveloka-loka-partner-api-openapi.yml +
+  https://developer.travelokapartnersnetwork.com/faq
+summary: >-
+  Packaged Agent Skills for the Traveloka Partners Network (LOKA) v2 Accommodation API. Every step is
+  grounded in a method+path that exists in the published OpenAPI, plus the rate-limit, caching,
+  idempotency and error rules Traveloka publishes in its FAQ. No operation, parameter or error code is
+  invented.
+provider_published_skills:
+  found: false
+  probed:
+    - {url: 'https://developer.travelokapartnersnetwork.com/llms.txt', status: 404}
+    - {url: 'https://developer.travelokapartnersnetwork.com/AGENTS.md', status: 404}
+    - {url: 'https://atlas.traveloka.com/llms.txt', status: 404}
+  note: >-
+    Traveloka publishes an llms.txt on its consumer host (www.traveloka.com) about how to cite and link
+    Traveloka pages, but nothing agent-facing on any developer host.
+grounding_caveat: >-
+  The published LOKA v2 spec assigns an operationId to only one of its eleven operations, so skills
+  reference operations by METHOD + PATH. overlays/traveloka-loka-partner-api-overlay.yaml proposes
+  stable operationIds without mutating the original spec.
+skills:
+  - name: traveloka-search-to-booking
+    file: traveloka-search-to-booking.md
+    api: Traveloka Partners Network (LOKA) v2 Accommodation API
+    summary: >-
+      Token, content sync, rate search, rate re-validation, booking creation with partnerBookingId
+      idempotency, and timeout recovery by polling rather than re-issuing.
+    operations:
+      - POST /oauth/accesstoken
+      - GET /properties/content/hotel
+      - GET /properties/content/room
+      - GET /properties/:getRates
+      - POST /properties/checkRate
+      - POST /bookings/booking/create
+      - GET /bookings/detail
+  - name: traveloka-booking-cancellation
+    file: traveloka-booking-cancellation.md
+    api: Traveloka Partners Network (LOKA) v2 Accommodation API
+    summary: >-
+      Booking lookup, refundability pre-check against the published error codes, cancellation submit,
+      and the SUBMITTED/COMPLETED/FAILED state machine.
+    operations:
+      - POST /oauth/accesstoken
+      - GET /bookings
+      - GET /bookings/detail
+      - POST /bookings/cancellation/submit
+not_covered:
+  - >-
+    Traveloka Connect (OTA 2017B XML) - no skill authored. The message set is public but the request and
+    response schemas sit behind developer.connect.traveloka.com/login, so any step-by-step would be
+    guesswork.
+  - >-
+    Traveloka Atlas - no skill authored. The integration is inverted (the supplier implements the
+    endpoints), so there is no client flow for an agent to run.
+cross_links:
+  openapi: openapi/traveloka-loka-partner-api-openapi.yml
+  conventions: conventions/traveloka-conventions.yml
+  errors: errors/traveloka-error-codes.yml
+  rate_limits: rate-limits/traveloka-rate-limits.yml
+  data_model: data-model/traveloka-data-model.yml

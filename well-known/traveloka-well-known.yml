@@ -1,0 +1,77 @@
+generated: '2026-08-05'
+method: probed
+source: live HTTP probes, 2026-08-05
+summary: >-
+  Traveloka publishes NO /.well-known/ resources on any of its web, docs or API hosts. This file records
+  the probe so a later run does not repeat it and so the absence is documented rather than assumed. No
+  WellKnown pointer is wired into apis.yml because there is nothing to point at.
+found: []
+probes:
+  - host: https://www.traveloka.com
+    results:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 200, file: ../llms/traveloka-llms.txt, note: present - captured verbatim}
+      - {path: /robots.txt, status: 200}
+  - host: https://developer.travelokapartnersnetwork.com
+    results:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+  - host: https://api.travelokapartnersnetwork.com
+    results:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/openid-configuration, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/oauth-protected-resource, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/ai-plugin.json, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://auth-api.afc.traveloka.com
+    results:
+      - {path: /.well-known/oauth-authorization-server, status: 403, note: 'AWS API Gateway: Missing Authentication Token'}
+      - {path: /.well-known/oauth-protected-resource, status: 403}
+      - {path: /.well-known/openid-configuration, status: 403}
+      - {path: /.well-known/agent-card.json, status: 403}
+      - {path: /.well-known/agent.json, status: 403}
+  - host: https://api.connect.traveloka.com
+    results:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/oauth-authorization-server, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+  - host: https://atlas.traveloka.com
+    results:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /.well-known/api-catalog, status: 404}
+      - {path: /.well-known/agent-card.json, status: 404}
+      - {path: /.well-known/agent.json, status: 404}
+      - {path: /llms.txt, status: 404}
+a2a_agent_card:
+  found: false
+  note: >-
+    No A2A Agent Card at either /.well-known/agent-card.json or the legacy /.well-known/agent.json on any
+    Traveloka host. Per the pipeline contract no a2a/ artifact is authored - an agent card can only ever
+    be published by the provider itself.
+gaps:
+  - >-
+    /.well-known/security.txt (RFC 9116) is absent even though a Vulnerability Disclosure Program and a
+    Bugcrowd bounty exist at https://www.traveloka.com/en-id/vulnerability-disclosure-program.
+  - >-
+    The LOKA API documents an OAuth 2.0 client-credentials flow but publishes no
+    /.well-known/oauth-authorization-server metadata document, so the token endpoint cannot be
+    machine-discovered.
+  - >-
+    No /.well-known/api-catalog (RFC 9727) linking the three partner API programs, which are currently
+    discoverable only across three unrelated hostnames.
+cross_links:
+  llms: llms/traveloka-llms.txt
+  security: security/traveloka-vulnerability-disclosure.yml
+  authentication: authentication/traveloka-authentication.yml

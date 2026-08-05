@@ -1,0 +1,102 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://developer.travelokapartnersnetwork.com/api-docs (LOKA API v2.4.8) +
+  https://developer.travelokapartnersnetwork.com/get-started +
+  https://developer.travelokapartnersnetwork.com/faq +
+  https://developer.connect.traveloka.com/
+summary: >-
+  Versioning, release and support posture across Traveloka's three partner API programs. Traveloka
+  versions by path major plus an internal build version, and gates every promotion to production behind
+  a certification step. It publishes no changelog, no deprecation policy, no Sunset/Deprecation header
+  behaviour, no SLA and no status page.
+
+versioning:
+  scheme: path-major + semantic build version
+  apis:
+    - api: Traveloka Partners Network (LOKA)
+      path_prefix: /v2
+      published_version: 2.4.8
+      version_source: info.version in the published OpenAPI
+      predecessor: >-
+        A v1 generation exists - the published error-code table still carries the older short-form AFI
+        codes (AFI14-AFI122) alongside the v2 long-form codes (AFI6xx/AFI7xx). No v1 reference or
+        migration guide is published.
+    - api: Traveloka Connect
+      standard_version: OpenTravel (OTA) Standard 2017B
+      path_prefix: /accom/v1/xml/opentravel/{providerId}
+    - api: Traveloka Atlas
+      published_version: '1.0'
+      operation_versioning: >-
+        In-path operation versioning - hotel-operation and hotel-operation-v2 coexist as separate
+        operations rather than being served under a version prefix.
+
+deprecation_policy:
+  published: false
+  sunset_header: not published
+  deprecation_header: not published
+  deprecated_operations_in_spec: []
+  note: >-
+    No operation in either published OpenAPI carries `deprecated: true`, and no deprecation, sunset or
+    breaking-change policy is published on any of the three developer surfaces. hotel-operation and
+    hotel-operation-v2 coexist in the Atlas spec with no statement of which is preferred or when the
+    older one retires.
+
+changelog:
+  published: false
+  note: >-
+    No dated changelog, release-notes page or version history is published for any of the three
+    programs. The only version signal available to a partner is the info.version string embedded in the
+    documentation bundle.
+
+status_page:
+  published: false
+  probed:
+    - url: https://status.traveloka.com/
+      status: 000
+      note: DNS does not resolve.
+  provider_statement: >-
+    The FAQ says "Use the API status monitoring tools provided by Traveloka to track system performance
+    and receive alerts for downtime or rate limit breaches" but names no tool and links to no page. Any
+    such tooling is delivered privately to contracted partners.
+
+sla:
+  published: false
+  note: >-
+    No uptime or response-time SLA is published. Commercial terms including the Look-to-Book ratio,
+    suspension and fee schedule are set per partnership agreement.
+
+release_process:
+  documented: true
+  phases:
+    - phase: 1
+      name: Feasibility study
+      detail: Technical, operational and commercial requirements assessed before project initiation.
+    - phase: 2
+      name: Development and certification
+      detail: >-
+        Partner integrates against the sandbox, self-tests, then Traveloka runs a certification pass to
+        verify integration quality.
+    - phase: 3
+      name: Launch
+      detail: >-
+        Finance account setup (signed contract plus vendor registration form) and joint resource
+        planning with the Traveloka connectivity team.
+  onboarding_time_claim: >-
+    Traveloka markets 4-8 weeks from first engagement to go-live for Atlas, and "as little as two weeks"
+    to onboard a new partner from first establishment.
+  credential_gates:
+    connect_staging: after NDA signing
+    connect_production: after certification
+    loka: after partnership formalization, then certification
+
+suspension:
+  technical: Traffic blocked for 15 seconds when the request rate trips the suspension threshold.
+  commercial: Suspension and a fee for exceeding the contractually agreed Look-to-Book ratio.
+  see: rate-limits/traveloka-rate-limits.yml
+
+cross_links:
+  conventions: conventions/traveloka-conventions.yml
+  rate_limits: rate-limits/traveloka-rate-limits.yml
+  sandbox: sandbox/traveloka-sandbox.yml
+  authentication: authentication/traveloka-authentication.yml

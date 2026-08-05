@@ -1,0 +1,177 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Traveloka Partners Network (LOKA) v2 API
+  version: 1.0.0
+x-provenance:
+  generated: '2026-08-05'
+  method: generated
+  source: openapi/traveloka-loka-partner-api-openapi.yml
+  extends: openapi/traveloka-loka-partner-api-openapi.yml
+  summary: >-
+    Non-destructive enhancements to the LOKA v2 OpenAPI as published. The original spec is never mutated.
+    Every value below is sourced from a Traveloka-published page (the docs, the FAQ, or the spec itself);
+    nothing is invented. The largest gaps this overlay closes: 10 of 11 operations ship with NO
+    operationId, the token endpoint is not modelled as an oauth2 securityScheme, and the two servers[]
+    entries are labelled Production and Staging but carry the SAME production URL.
+actions:
+  - target: $.info
+    description: Add contact and terms the provider publishes, plus the documentation link.
+    update:
+      contact:
+        name: Traveloka Partners Network
+        email: partnersnetwork@traveloka.com
+        url: https://developer.travelokapartnersnetwork.com/
+      termsOfService: https://www.traveloka.com/en-id/termsandconditions
+      x-documentation: https://developer.travelokapartnersnetwork.com/api-docs
+      x-getting-started: https://developer.travelokapartnersnetwork.com/get-started
+      x-error-reference: https://developer.travelokapartnersnetwork.com/faq
+
+  - target: $.servers
+    description: >-
+      Replace the duplicated production URL with the real environment pair. The staging host is the one
+      named in the OAuth service description ("Sandbox: auth-api.afc.staging-traveloka.com") and in the
+      per-service server block of the published documentation bundle.
+    update:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging / sandbox
+
+  - target: $.paths['/oauth/accesstoken'].post
+    description: >-
+      Give the token operation a stable operationId. The published value is the string "Generate Token",
+      which is not a valid identifier for code generators.
+    update:
+      operationId: generateAccessToken
+      summary: Generate an access token
+      x-token-lifetime-minutes: 60
+      x-token-reuse: Reuse until expiry; do not mint a token per request.
+
+  - target: $.paths['/properties/content/hotel'].get
+    description: Add the missing operationId and summary.
+    update:
+      operationId: getHotelContent
+      summary: Get hotel content
+      x-cache-ttl: 7 days (provider guidance)
+
+  - target: $.paths['/properties/content/room'].get
+    description: Add the missing operationId and summary.
+    update:
+      operationId: getRoomContent
+      summary: Get room content
+      x-cache-ttl: 7 days (provider guidance)
+
+  - target: $.paths['/properties/:getRates'].get
+    description: Add the missing operationId and the published request-shape limits.
+    update:
+      operationId: getRates
+      summary: Search rates and availability
+      x-cache-ttl: 15-30 minutes (high demand) / 6-12 hours (low demand)
+      x-request-limits:
+        max_property_ids: 50
+        max_rooms: 8
+        max_adults: 30
+        max_children_age: 17
+        max_length_of_stay_days: 15
+        max_booking_window_days: 365
+
+  - target: $.paths['/properties/checkRate'].post
+    description: Add the missing operationId and record its role in the booking flow.
+    update:
+      operationId: checkRate
+      summary: Re-validate a rate before booking
+      x-flow-role: >-
+        Call immediately before booking creation to avoid AFI735 MISMATCHED_RATE /
+        AFI101 MISMATCH_EXPECTED_RATE.
+
+  - target: $.paths['/bookings/booking/create'].post
+    description: Add the missing operationId and record the idempotency contract.
+    update:
+      operationId: createBooking
+      summary: Create a booking
+      x-idempotency:
+        field: partnerBookingId
+        mechanism: client-supplied business key
+        duplicate_errors: [AFI734 BOOKING_ALREADY_EXISTS, AFI102 DOUBLE_CONFIRMATION_ID, AFI104 ALREADY_ISSUED_BOOKING]
+        recovery: >-
+          On timeout, do NOT re-issue. Poll getBookingDetail with the bookingId or partnerBookingId.
+      x-amount-field: partnerNettAmount
+
+  - target: $.paths['/bookings'].get
+    description: Add the missing operationId.
+    update:
+      operationId: listBookings
+      summary: List bookings
+
+  - target: $.paths['/bookings/detail'].get
+    description: Add the missing operationId.
+    update:
+      operationId: getBookingDetail
+      summary: Get booking detail
+
+  - target: $.paths['/bookings/cancellation/submit'].post
+    description: Add the missing operationId and the documented cancellation states.
+    update:
+      operationId: submitBookingCancellation
+      summary: Submit a booking cancellation
+      x-cancellation-states: [SUBMITTED, COMPLETED, FAILED]
+
+  - target: $.paths['/discovery/getGeo'].get
+    description: Add the missing operationId.
+    update:
+      operationId: getGeo
+      summary: Get geographic nodes
+      x-optional: >-
+        Discovery is optional and intended for partners who do not have their own master data.
+
+  - target: $.paths['/discovery/getRates'].post
+    description: Add the missing operationId.
+    update:
+      operationId: discoveryGetRates
+      summary: Search rates by geo
+      x-optional: >-
+        Discovery is optional and intended for partners who do not have their own master data.
+
+  - target: $.components.securitySchemes
+    description: >-
+      Model the documented OAuth 2.0 client-credentials flow as a first-class securityScheme. The
+      published spec only declares the resulting bearer credential as an apiKey-in-header scheme, and its
+      root security requirement references an undefined scheme name ("OAuthStaging").
+    update:
+      oauth2ClientCredentials:
+        type: oauth2
+        description: >-
+          Documented client-credentials exchange. POST client_id and client_secret as
+          application/x-www-form-urlencoded to the token endpoint; the returned access_token is valid for
+          60 minutes and is sent in the Authorization header.
+        flows:
+          clientCredentials:
+            tokenUrl: https://auth-api.afc.traveloka.com/oauth/accesstoken
+            refreshUrl: https://auth-api.afc.traveloka.com/oauth/accesstoken
+            scopes: {}
+        x-staging-token-url: https://auth-api.afc.staging-traveloka.com/oauth/accesstoken
+
+  - target: $
+    description: Attach the rate-limit, error-registry and support facts published outside the spec.
+    update:
+      x-rate-limit:
+        limit: 100
+        interval: minute
+        scope: api_key
+        exceeded_status: 429
+        suspension: Traffic blocked for 15 seconds when the suspension threshold is tripped.
+        headers_published: false
+      x-retry-policy:
+        max_attempts: 3
+        backoff: exponential
+        initial_delay_seconds: 120
+      x-error-registry:
+        url: https://developer.travelokapartnersnetwork.com/faq
+        artifact: errors/traveloka-error-codes.yml
+        code_count: 142
+        envelope: '{ data, error: { code, message, requestId } }'
+        rfc9457: false
+      x-access-model:
+        onboarding: approval
+        self_serve: false
+        signup: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW

@@ -1,23 +1,225 @@
 aid: traveloka
 name: Traveloka
-description: 'Traveloka is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Traveloka (Traveloka Services Pte. Ltd.) is a Southeast Asian multi-product online travel agency
+  operating across Indonesia, Thailand, Vietnam, Malaysia, Singapore, the Philippines, Australia, Japan
+  and South Korea, selling flights, hotels and alternative stays, activities (Xperience), trains,
+  cruises, buses, car rental and airport transfers. Its API surface is entirely partner-facing and runs
+  in three distinct programs: the Traveloka Partners Network (LOKA) v2 REST API for distribution
+  partners reselling Traveloka accommodation inventory; Traveloka Connect, an OpenTravel (OTA) 2017B XML
+  connectivity API for channel managers and property-management systems pushing availability, rates and
+  content; and Traveloka Atlas, a published JSON specification that accommodation suppliers implement on
+  their own hosts so Traveloka can search and book against them. All three are approval-gated behind a
+  partnership agreement and certification; none offer self-serve signup.
+image: https://ik.imagekit.io/tvlk/image/imageResource/2024/08/09/1723192761223-35bd6fefad235fbb690b6d79b050343f.png?tr=q-75
 url: https://raw.githubusercontent.com/api-evangelist/traveloka/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
-specificationVersion: '0.20'
+specificationVersion: '0.21'
 created: '2026-08-05'
 modified: '2026-08-05'
+accessModel:
+  pricing: enterprise
+  onboarding: approval
+  trial: false
+  try_now: false
+  public: false
+  label: Partnership + certification required
+  confidence: high
+  source:
+  - authentication
+  - https://developer.travelokapartnersnetwork.com/get-started
+  generated: '2026-08-05'
+  method: derived
 tags:
-- Company
-apis: []
+- travel
+- online-travel-agency
+- accommodation
+- hotel-booking
+- flights
+- activities
+- hospitality
+- distribution
+- channel-manager
+- opentravel
+- southeast-asia
+- indonesia
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Traveloka Partners Network (LOKA) v2 Accommodation API
+  description: >-
+    REST API for distribution partners reselling Traveloka accommodation inventory. Covers hotel and
+    room content, rate search and rate re-validation, booking creation, booking retrieval and
+    cancellation submission, plus an optional discovery surface (geo and rate lookup) for partners
+    without their own master data. OAuth 2.0 client-credentials auth with 60-minute access tokens.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - travel
+  - accommodation
+  - hotel-booking
+  - distribution
+  - rest
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-loka-partner-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Overlay
+    url: overlays/traveloka-loka-partner-api-overlay.yaml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+- name: Traveloka Connect - Connectivity API
+  description: >-
+    OpenTravel (OTA) 2017B XML connectivity API for channel managers, property-management systems and
+    hotel technology partners. Traveloka hosts the ARI (availability, rates, inventory) and content push
+    endpoints; the partner hosts the reservation, availability-check and payment-notification callbacks.
+    Message set covers OTA_PingRQ, OTA_HotelAvailRQ, OTA_HotelAvailNotifRQ, OTA_HotelRateAmountNotifRQ,
+    OTA_HotelDescriptiveContentNotifRQ, OTA_HotelRatePlanNotifRQ and OTA_HotelResNotifRQ.
+  humanURL: https://developer.connect.traveloka.com/
+  baseURL: https://api.connect.traveloka.com/
+  tags:
+  - travel
+  - accommodation
+  - channel-manager
+  - opentravel
+  - xml
+  properties:
+  - type: DeveloperPortal
+    url: https://developer.connect.traveloka.com/
+  - type: Documentation
+    url: https://developer.connect.traveloka.com/
+  - type: Webhooks
+    url: asyncapi/traveloka-connect-webhooks.yml
+  - type: Conformance
+    url: conformance/traveloka-conformance.yml
+  - type: Support
+    url: mailto:tera-cm@traveloka.com
+  - type: Login
+    url: https://developer.connect.traveloka.com/login
+- name: Traveloka Atlas - Traveloka Specification API
+  description: >-
+    Published JSON contract that accommodation suppliers implement on their own infrastructure so
+    Traveloka can search and book against them - the direction of the integration is inverted, with
+    Traveloka acting as the client. Ten operations across content (hotelOperation, hotelOperationV2),
+    search (hotelList, roomList, bulkRoomList) and booking (book, issueCheck, issue, bookingSummary,
+    cancel). HTTP Basic auth over HTTPS port 443.
+  humanURL: https://atlas.traveloka.com/developers/docs/
+  baseURL: https://atlas.traveloka.com/
+  x-baseurl-note: >-
+    Traveloka publishes no runtime base URL for this API because the SUPPLIER hosts the endpoints. The
+    published spec ships a generated http://localhost:8080 server placeholder; the value recorded here is
+    the Atlas product host, not a callable API root.
+  tags:
+  - travel
+  - accommodation
+  - hospitality
+  - supplier-integration
+  - rest
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-atlas-supplier-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
 common:
 - type: Website
-  url: https://forgeglobal.com/traveloka_stock/
+  url: https://www.traveloka.com/
+- type: DeveloperPortal
+  url: https://developer.travelokapartnersnetwork.com/
+- type: Documentation
+  url: https://developer.travelokapartnersnetwork.com/api-docs
+- type: APIReference
+  url: https://developer.travelokapartnersnetwork.com/api-docs
+- type: GettingStarted
+  url: https://developer.travelokapartnersnetwork.com/get-started
+- type: Support
+  url: https://www.traveloka.com/en-id/help
+- type: HelpCenter
+  url: https://www.traveloka.com/en-id/help
+- type: Blog
+  url: https://www.traveloka.com/en-id/explore
+- type: GitHubOrganization
+  url: https://github.com/traveloka
+- type: SignUp
+  url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+- type: TermsOfService
+  url: https://www.traveloka.com/en-id/termsandconditions
+- type: PrivacyPolicy
+  url: https://www.traveloka.com/en-id/privacy-notice
+- type: Security
+  url: security/traveloka-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/traveloka-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/traveloka-domain-security.yml
+- type: Authentication
+  url: authentication/traveloka-authentication.yml
+- type: Conventions
+  url: conventions/traveloka-conventions.yml
+- type: Idempotency
+  url: conventions/traveloka-conventions.yml
+- type: ErrorCatalog
+  url: errors/traveloka-error-codes.yml
+- type: RateLimits
+  url: rate-limits/traveloka-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/traveloka-lifecycle.yml
+- type: Conformance
+  url: conformance/traveloka-conformance.yml
+- type: Sandbox
+  url: sandbox/traveloka-sandbox.yml
+- type: Packages
+  url: packages/traveloka-packages.yml
+- type: DataModel
+  url: data-model/traveloka-data-model.yml
+- type: Webhooks
+  url: asyncapi/traveloka-connect-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/traveloka-llms.txt
+- type: Overlay
+  url: overlays/traveloka-loka-partner-api-overlay.yaml
+x-enrichment:
+  date: '2026-08-05'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1

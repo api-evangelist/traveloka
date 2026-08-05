@@ -1,0 +1,181 @@
+generated: '2026-08-05'
+method: derived
+source: >-
+  openapi/traveloka-loka-partner-api-openapi.yml +
+  openapi/traveloka-atlas-supplier-api-openapi.yml +
+  https://developer.connect.traveloka.com/ +
+  https://developer.travelokapartnersnetwork.com/faq
+summary: >-
+  Industry and cross-cutting standards Traveloka's partner APIs conform to, each with the evidence that
+  supports the claim. Conforms:false entries are recorded deliberately - an absent standard is data, not
+  an omission. No security or privacy certification (SOC 2, ISO 27001, PCI DSS) is named on any public
+  Traveloka page, so no Compliance pointer is wired.
+
+standards:
+  - id: opentravel-ota-2017b
+    name: OpenTravel Alliance (OTA) Standard, version 2017B
+    conforms: true
+    scope: Traveloka Connect - Connectivity API
+    evidence: >-
+      developer.connect.traveloka.com states the Connectivity API is "based on OTA Standard Version
+      2017B". The published message set uses OTA envelopes and namespace http://www.opentravel.org/OTA/2003/05:
+      OTA_PingRQ/RS, OTA_HotelAvailRQ/RS, OTA_HotelAvailNotifRQ/RS, OTA_HotelRateAmountNotifRQ/RS,
+      OTA_HotelRatePlanRQ/RS, OTA_HotelRatePlanNotifRQ/RS, OTA_HotelDescriptiveInfoRQ/RS,
+      OTA_HotelDescriptiveContentNotifRQ/RS, OTA_HotelResNotifRQ/RS.
+    profile_note: >-
+      Traveloka applies its own path routing on top of the standard
+      (/accom/v1/xml/opentravel/{providerId}/ari|content with :verb suffixes), so this is an OTA profile,
+      not vanilla OTA.
+
+  - id: openapi-3.0
+    name: OpenAPI Specification 3.0.1
+    conforms: true
+    scope: LOKA v2, Atlas
+    evidence: >-
+      Both published documentation bundles declare openapi 3.0.1 with components.schemas,
+      securitySchemes and per-operation responses.
+    caveat: >-
+      Neither spec is served at a fetchable URL. Both are compiled into the docs site's JavaScript
+      bundle and rendered by Redoc; there is no /openapi.json on any Traveloka host.
+
+  - id: oauth2
+    name: OAuth 2.0 (client credentials)
+    conforms: partial
+    scope: LOKA v2
+    evidence: >-
+      Documented client_id/client_secret exchange at POST /oauth/accesstoken returning
+      token_type/access_token/expires_in with a 60-minute lifetime.
+    deviations:
+      - >-
+        The token endpoint is not declared as an oauth2 securityScheme with flows[]; it is modelled as a
+        plain POST operation, and the protected operations use an apiKey-in-header scheme instead.
+      - >-
+        The root security requirement references a scheme name ("OAuthStaging") that is not defined in
+        components.securitySchemes - a dangling reference in the published document.
+      - >-
+        No RFC 8414 /.well-known/oauth-authorization-server metadata is published.
+
+  - id: oidc
+    name: OpenID Connect
+    conforms: false
+    evidence: No /.well-known/openid-configuration on any host (all probes 404 or 403).
+
+  - id: rfc9457
+    name: RFC 9457 Problem Details for HTTP APIs
+    conforms: false
+    evidence: >-
+      Error responses use a proprietary { data, error: { code, message, requestId } } envelope with
+      content type application/json, not application/problem+json.
+    see: errors/traveloka-problem-types.yml
+
+  - id: rfc9116
+    name: RFC 9116 security.txt
+    conforms: false
+    evidence: >-
+      /.well-known/security.txt returns 404 on every Traveloka host, despite a live Vulnerability
+      Disclosure Program and a Bugcrowd bounty.
+    see: security/traveloka-vulnerability-disclosure.yml
+
+  - id: rfc8594
+    name: RFC 8594 Sunset HTTP Header
+    conforms: false
+    evidence: No deprecation or sunset policy or header behaviour is published.
+    see: lifecycle/traveloka-lifecycle.yml
+
+  - id: rfc9727
+    name: RFC 9727 api-catalog well-known URI
+    conforms: false
+    evidence: /.well-known/api-catalog returns 404 on every host.
+
+  - id: idempotency
+    name: Request idempotency
+    conforms: partial
+    evidence: >-
+      Booking creation requires a client-supplied unique partnerBookingId that Traveloka uses to detect
+      and reject duplicate submissions (AFI734 BOOKING_ALREADY_EXISTS, AFI102 DOUBLE_CONFIRMATION_ID).
+    deviations:
+      - Business-key idempotency rather than an Idempotency-Key request header.
+      - No published retention window for the key.
+      - No published semantics for replaying the same key with a different payload.
+    see: conventions/traveloka-conventions.yml
+
+  - id: pagination
+    name: Offset/limit pagination
+    conforms: true
+    evidence: >-
+      limit and offset query parameters on the search surface, with documented caps (50 property ids per
+      getRates, 10 bulk search rooms) and dedicated error codes for invalid limit/offset.
+    see: conventions/traveloka-conventions.yml
+
+  - id: iso-3166-1
+    name: ISO 3166-1 alpha-2 country codes
+    conforms: true
+    evidence: >-
+      countryISO parameter on the content operations; error codes AFI101 INVALID_COUNTRY_CODE ("not
+      compliant with ISO 316[6]") and AFI601 INVALID_LANGUAGE ("not compliant with ISO 3166-1 Alpha-2").
+
+  - id: iso-8601
+    name: ISO 8601 date/time
+    conforms: true
+    evidence: >-
+      lastUpdatedTime incremental-sync parameter; error code AFI102 INVALID_LAST_UPDATE_TIME ("not
+      compliant with ISO 8601").
+
+  - id: iso-4217
+    name: ISO 4217 currency codes
+    conforms: true
+    evidence: displayCurrency parameter; error code AFI061/AFI61 INVALID_CURRENCY_CODE.
+
+  - id: http-basic
+    name: RFC 7617 HTTP Basic authentication
+    conforms: true
+    scope: Traveloka Atlas
+    evidence: >-
+      securityScheme basicAuth (type http, scheme basic) with the documented base64(username:password)
+      construction and an HTTPS-on-443 transport requirement.
+
+  - id: asyncapi
+    name: AsyncAPI
+    conforms: false
+    evidence: >-
+      Traveloka has a real asynchronous surface (Connect booking and payment notifications, Atlas
+      supplier callbacks) but publishes no AsyncAPI document for it.
+    see: asyncapi/traveloka-connect-webhooks.yml
+
+  - id: graphql
+    name: GraphQL
+    conforms: false
+    evidence: No /graphql surface found on any partner or API host.
+
+  - id: mcp
+    name: Model Context Protocol
+    conforms: false
+    evidence: No hosted or remote MCP server is published or advertised.
+
+  - id: a2a
+    name: A2A Agent Card
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json and /.well-known/agent.json return 404 (or 403 at the API gateway) on
+      every Traveloka host.
+
+certifications:
+  published: []
+  probed:
+    - url: https://trust.traveloka.com/
+      status: 000
+      note: DNS does not resolve.
+    - url: https://www.traveloka.com/en-id/vulnerability-disclosure-program
+      status: 200
+      note: No SOC 2 / ISO 27001 / PCI DSS claim on the page.
+  note: >-
+    Traveloka handles card payments and operates in nine regulated markets, but names no security or
+    privacy certification on any public page. No Compliance or TrustCenter pointer is wired because
+    there is nothing published to point at.
+
+cross_links:
+  authentication: authentication/traveloka-authentication.yml
+  errors: errors/traveloka-problem-types.yml
+  conventions: conventions/traveloka-conventions.yml
+  security: security/traveloka-vulnerability-disclosure.yml
+  well_known: well-known/traveloka-well-known.yml

@@ -1,0 +1,485 @@
+generated: '2026-08-05'
+method: searched
+source: https://developer.travelokapartnersnetwork.com/faq
+summary: Published error-code registry for the Traveloka Partners Network (LOKA) v2 Accommodation API. Codes are
+  namespaced AFI<n> and are returned inside the error envelope as error.code alongside error.message and a per-call
+  error.requestId. Captured verbatim from the provider's public 'Error Codes & FAQ' reference; nothing here is inferred.
+format: proprietary
+rfc9457: false
+envelope:
+  shape:
+    data: object|null
+    error:
+      code: string
+      message: string
+      requestId: string
+  content_type: application/json
+  notes: 'Every non-2xx LOKA response returns data: null plus an error object. error.requestId is the correlation
+    id Traveloka support asks for. Derived from the components.schemas Error400/401/404/408/429/500 and ErrorCode422*
+    definitions in the published OpenAPI.'
+  source: openapi/traveloka-loka-partner-api-openapi.yml
+http_status_families:
+- status: 400
+  meaning: Bad Request - incorrect field or syntax
+  schema: Error400
+  documented_code: AFI100
+- status: 401
+  meaning: Unauthorized - invalid or expired access token
+  schema: Error401
+- status: 404
+  meaning: Not Found - hotel or booking not found
+  schema: Error404
+- status: 408
+  meaning: Request Timeout
+  schema: Error408
+- status: 422
+  meaning: Unprocessable Entity - per-operation validation failure, code AFIXXX
+  schema: ErrorCode422*
+- status: 429
+  meaning: Too Many Requests - rate limit exceeded
+  schema: Error429
+- status: 500
+  meaning: Internal Server Error
+  schema: Error500
+code_count: 142
+duplicate_codes:
+  note: These codes appear more than once in the published table with different names/meanings. Recorded as published
+    - not de-duplicated - because the provider's reference is the source of truth.
+  codes:
+  - AFI101
+  - AFI102
+  - AFI103
+  - AFI104
+  - AFI105
+codes:
+- code: AFI612
+  name: INVALID_NUMBER_ADULTS
+  description: The requested num of adults is invalid.
+- code: AFI614
+  name: INVALID_NUMBER_CHILDREN_COMBINATION_INVALID
+  description: The requested num child combination is invalid.
+- code: AFI616
+  name: INVALID_MAXIMUM_CHILDREN_AGE
+  description: Maximum children age is 17
+- code: AFI617
+  name: INVALID_NUMBER_INFANTS
+  description: The requested num of infants is invalid
+- code: AFI622
+  name: INVALID_NUMBER_PROPERTIES
+  description: The requested num of properties is invalid
+- code: AFI602
+  name: INVALID_NUMBER_ROOMS
+  description: The requested num of rooms is invalid
+- code: AFI010
+  name: INVALID_EMAIL
+  description: Invalid email
+- code: AFI020
+  name: INVALID_LOCALE
+  description: Invalid locale
+- code: AFI030
+  name: TOO_MANY_REQUEST
+  description: Request exceeds limit
+- code: AFI061
+  name: INVALID_CURRENCY_CODE
+  description: Invalid currency code
+- code: AFI062
+  name: INVALID_USER_SESSION
+  description: Invalid user session
+- code: AFI063
+  name: INVALID_SPEC
+  description: Invalid spec
+- code: AFI064
+  name: RESULT_CONVERSION_ERROR
+  description: Failed in converting operation result
+- code: AFI065
+  name: INVALID_CHECKIN_CHECKOUT_DATE
+  description: Invalid Check-in and Check-out date time format
+- code: AFI066
+  name: INVALID_BOOKING_RANGE_DAYS
+  description: Range days booking cannot exceed 365 days.
+- code: AFI080
+  name: RATE_KEY_NOT_FOUND
+  description: Rate key not found
+- code: AFI086
+  name: PROPERTY_NOT_FOUND
+  description: Property not found
+- code: AFI101
+  name: INVALID_COUNTRY_CODE
+  description: The country code is not compliant with ISO 316
+- code: AFI102
+  name: INVALID_LAST_UPDATE_TIME
+  description: The last updated time is not compliant with ISO 8601
+- code: AFI103
+  name: HOTEL_NOT_ACTIVE
+  description: Hotel not active
+- code: AFI104
+  name: NO_ACTIVE_ACCOMMODATION
+  description: Error no active accommodation
+- code: AFI105
+  name: INVALID_PROPERTY_CODE
+  description: Invalid property code
+- code: AFI600
+  name: INVALID_STAY_DATE_RANGE
+  description: The stay date cannot exceed 15 days.
+- code: AFI601
+  name: INVALID_LANGUAGE
+  description: The language is not compliant with ISO 3166-1 Alpha-2
+- code: AFI603
+  name: INVALID_NATIONALITY
+  description: The nationality is not valid
+- code: AFI604
+  name: INVALID_SEARCH_SPEC
+  description: Invalid search spec
+- code: AFI605
+  name: INVALID_CHECKOUT_DATE
+  description: Invalid Check-out date
+- code: AFI606
+  name: FAILED_TO_GENERATE_RATEKEY
+  description: Failed to generate ratekey
+- code: AFI607
+  name: INVALID_DATE_FORMAT
+  description: Invalid check-in or check-out date format
+- code: AFI608
+  name: PROPERTY_NOT_FOUND_FROM_SPEC
+  description: The property is not found from demand service
+- code: AFI609
+  name: INVALID_ROOM_TO_ADULT_RATIO
+  description: The number of rooms cannot be more than the number of adults
+- code: AFI611
+  name: CHECKOUT_DATE_ADVANCED_THAN_CHECKIN_DATE
+  description: Check-out date cannot be advanced than check-in date.
+- code: AFI623
+  name: INVALID_NUM_BULK_SEARCH_ROOMS
+  description: Invalid num of bulk search rooms
+- code: AFI629
+  name: INVALID_OPTION_PARAMETERS
+  description: Invalid option parameters
+- code: AFI661
+  name: INVALID_GEO_ID
+  description: The requested geoId is not valid.
+- code: AFI662
+  name: INVALID_PRICE_RANGE
+  description: The requested price range is invalid
+- code: AFI663
+  name: INVALID_NUMBER_OF_GEOID
+  description: Request contain zero or more than one of those searching method GeoId, HotelId, Geolocation
+- code: AFI664
+  name: INVALID_LIMIT_REQUES
+  description: The requested limit is invalid
+- code: AFI665
+  name: INVALID_OFFSET_REQUEST
+  description: The requested offset is invalid
+- code: AFI666
+  name: INVALID_SORT_TYPE
+  description: The requested sort type is invalid
+- code: AFI667
+  name: INVALID_STAR_FILTER
+  description: The requested star filter is invalid
+- code: AFI668
+  name: INVALID_ACCOMMODATION_TYPE
+  description: The requested accommodation type is invalid
+- code: AFI678
+  name: INVALID_GEO_LOCATION
+  description: The requested GeoLocation is invalid.
+- code: AFI680
+  name: INVALID_RATETYPE
+  description: The requested rate type is invalid
+- code: AFI700
+  name: ERROR_DURING_BOOKING
+  description: Encounter error during booking
+- code: AFI701
+  name: INVALID_PARTNER_BOOKING_ID
+  description: One of Partner Booking Id is too short
+- code: AFI702
+  name: INVALID_BOOKING_ID
+  description: Invalid bookingId
+- code: AFI703
+  name: INVALID_ITINERARY_ID
+  description: Invalid itineraryId
+- code: AFI704
+  name: INVALID_CANCEL_ID
+  description: Invalid cancelId
+- code: AFI705
+  name: INVALID_CUSTOMER_INFO
+  description: Invalid customer info
+- code: AFI706
+  name: INVALID_EXPECTED_TOTAL_CHARGEABLE_RATE
+  description: Invalid ecpected total chargeable rate
+- code: AFI707
+  name: INVALID_CHARGEABLE_RATE_INFO
+  description: Invalid chargeable rate info
+- code: AFI708
+  name: INVALID_PROPERTY_ID
+  description: Invalid propertyId
+- code: AFI709
+  name: INVALID_ROOM_DATA
+  description: Invalid room data
+- code: AFI710
+  name: INVALID_BOOKING_CHECKIN_DATE
+  description: Invalid checkInDate
+- code: AFI711
+  name: INVALID_BOOKING_CHECKOUT_DATE
+  description: Invalid checkOutDate
+- code: AFI712
+  name: INVALID_TIMEZONE
+  description: Invalid timezone
+- code: AFI713
+  name: INVALID_USER_PAYMENT
+  description: Invalid userPayment
+- code: AFI714
+  name: INVALID_REQUEST_FILTER
+  description: Invalid request filter
+- code: AFI715
+  name: INVALID_CANCELLATION_REQUEST
+  description: Invalid cancellation request
+- code: AFI731
+  name: BOOKING_NOT_FOUND
+  description: Booking not found
+- code: AFI732
+  name: BOOKING_ALREADY_CANCELLED
+  description: Booking already cancelled
+- code: AFI733
+  name: BOOKING_NOT_REFUNDABLE
+  description: Booking not refundable
+- code: AFI734
+  name: BOOKING_ALREADY_EXISTS
+  description: Booking already exists
+- code: AFI735
+  name: MISMATCHED_RATE
+  description: Mismatch rate
+- code: AFI736
+  name: PENDING_BOOKING
+  description: Pending booking
+- code: AFI737
+  name: SOLD_OUT
+  description: Sold out
+- code: AFI738
+  name: CREDIT_CARD_PROBLEM
+  description: Credit card problem
+- code: AFI739
+  name: CREDIT_LIMIT_FAILED
+  description: Credit limit failed
+- code: AFI740
+  name: DEPOSIT_TRANSACTION_FAILED
+  description: Deposit transaction failed
+- code: AFI741
+  name: BUSINESS_PARTNER_DATA_FAILED
+  description: Business partner data failed
+- code: AFI742
+  name: INVALID_SETTLEMENT_METHOD
+  description: Invalid settlement method
+- code: AFI745
+  name: BOOKING_ALREADY_PAID
+  description: Booking already paid
+- code: AFI747
+  name: BOOKING_EXPIRED
+  description: The booking with given id is expired
+- code: AFI900
+  name: SERVICE_UNAVAILABLE
+  description: Service unavailable
+- code: AFI901
+  name: AUTHORIZATION_ERROR
+  description: Authorization error
+- code: AFI16
+  name: INVALID_SEARCH_SPEC
+  description: Invalid search spec
+- code: AFI61
+  name: INVALID_CURRENCY_CODE
+  description: Invalid currency code
+- code: AFI62
+  name: INVALID_LOCALE
+  description: Invalid locale
+- code: AFI63
+  name: INVALID_GEOID
+  description: Invalid geoid
+- code: AFI64
+  name: INVALID_PRICE_FILTER_RANGE
+  description: Invalid price filter range
+- code: AFI15
+  name: INVALID_DATE_FORMAT
+  description: Invalid Check-in and Check-out date time format
+- code: AFI377
+  name: INVALID_STAY_DAYS
+  description: Invalid stay days
+- code: AFI14
+  name: INVALID_AFFILIATE_CONFIRMATION_ID
+  description: Invalid affiliate confirmation id
+- code: AFI17
+  name: INVALID_ITINERARY_ID
+  description: Invalid itinerary id
+- code: AFI18
+  name: INVALID_EMAIL
+  description: Invalid email
+- code: AFI67
+  name: INVALID_PRIMARY_SEARCH_METHOD
+  description: Request contain zero or more than one of those searching method GeoId, HotelId, GeoLocation
+- code: AFI68
+  name: INVALID_BOOKING_DATE
+  description: Check-in and Check-out exceed 365 days from today
+- code: AFI69
+  name: INVALID_CHEKCIN_DATE
+  description: Invalid Check-in date
+- code: AFI70
+  name: INVALID_CHECKOUT_DATE
+  description: Invalid Check-out date
+- code: AFI396
+  name: INVALID_NUMBER_OF_INFANT
+  description: Invalid number of infants
+- code: AFI397
+  name: INVALID_NUMBER_OF_ADULT
+  description: Invalid number of adults
+- code: AFI398
+  name: INVALID_NUMBER_OF_CHILD
+  description: Invalid number of children
+- code: AFI399
+  name: INVALID_CHILD_AGE
+  description: Invalid child age
+- code: AFI72
+  name: INVALID_RATE_TYPE
+  description: Invalid rate type
+- code: AFI73
+  name: INVALID_STAR_FILTER
+  description: Invalid star filter
+- code: AFI74
+  name: INVALID_ACCOMMODATION_TYPE
+  description: Invalid accommodation type
+- code: AFI378
+  name: INVALID_NUMBER_OF_ROOMS
+  description: Invalid number of rooms
+- code: AFI379
+  name: INVALID_NUMBER_OF_PROPERTIES
+  description: Invalid number of properties
+- code: AFI76
+  name: INVALID_OPTION_PARAMETER
+  description: Invalid option parameters
+- code: AFI77
+  name: INVALID_SORT_TYPE
+  description: Invalid sort type
+- code: AFI78
+  name: INVALID_GEO_LOCATION
+  description: Invalid geo location
+- code: AFI79
+  name: INVALID_OFFSET
+  description: Invalid offset
+- code: AFI80
+  name: INVALID_RATE_KEY
+  description: Invalid rate key
+- code: AFI81
+  name: INVALID_USER_SESSION
+  description: Invalid user session
+- code: AFI82
+  name: INVALID_LIMIT
+  description: Invalid limit
+- code: AFI83
+  name: RATE_KEY_NOT_FOUND
+  description: Rate key not found
+- code: AFI84
+  name: INVALID_RATE_KEY_SPEC
+  description: invalid spec to generate ratekey
+- code: AFI85
+  name: ERROR_RATE_KEY_GENERATION
+  description: Failed to generate ratekey
+- code: AFI86
+  name: PROPERTY_NOT_FOUND
+  description: The property is disallowed from cdc
+- code: AFI87
+  name: INVALID_NUM_BULK_SEARCH_ROOMS
+  description: Invalid num of bulk search rooms
+- code: AFI90
+  name: PROPERTY_NOT_FOUND_FROM_SPEC
+  description: The property is not found from demand service
+- code: AFI100
+  name: INVALID_SPEC
+  description: Invalid spec
+- code: AFI101
+  name: MISMATCH_EXPECTED_RATE
+  description: The expected and current rate are different
+- code: AFI102
+  name: DOUBLE_CONFIRMATION_ID
+  description: The booking with given confirmation id is already requested
+- code: AFI103
+  name: ROOM_SOLD_OUT
+  description: The room requested is not available anymore
+- code: AFI104
+  name: ALREADY_ISSUED_BOOKING
+  description: Already issued booking
+- code: AFI105
+  name: PENDING_ISSUANCE
+  description: The booking with given id is pending
+- code: AFI106
+  name: ERROR_BOOKING
+  description: Encounter error during booking
+- code: AFI177
+  name: INVALID_CANCELLATION_REQUEST
+  description: Invalid cancellation request
+- code: AFI497
+  name: AUTHORIZATION_ERROR
+  description: Authorization error
+- code: AFI429
+  name: TOO_MANY_REQUEST
+  description: Request exceeds limit
+- code: AFI430
+  name: RESULT_CONVERSION_ERROR
+  description: Failed in converting operation result
+- code: AFI108
+  name: INVALID_SETTLEMENT_METHOD
+  description: Invalid settlement method
+- code: AFI109
+  name: INVALID_CREDIT_CARD
+  description: Invalid credit card
+- code: AFI110
+  name: CREDIT_CARD_FAILED
+  description: Credit card failed
+- code: AFI111
+  name: CREDIT_CARD_NOT_FOUND
+  description: No credit card is registered
+- code: AFI112
+  name: CREDIT_LIMIT_DATA_FAILED
+  description: Failed when gathering credit limit data
+- code: AFI113
+  name: FAILED_BUSINESS_PARTNER_DATA
+  description: Failed when gathering business partner data
+- code: AFI114
+  name: FAILED_BUSINESS_AGREEMENT_DATA
+  description: Failed when gathering business agreement data
+- code: AFI115
+  name: NULL_BUSINESS_AGREEMENT_DATA
+  description: Null business agreement data
+- code: AFI116
+  name: EMPTY_BUSINESS_AGREEMENT_DATA
+  description: Empty business agreement data
+- code: AFI117
+  name: MULTIPLE_BUSINESS_AGREEMENT_DATA
+  description: Multiple business agreement data
+- code: AFI118
+  name: INACTIVE_BUSINESS_AGREEMENT_DATA
+  description: Business agreement is not active
+- code: AFI119
+  name: FAILED_CL_CONFIG_DATA
+  description: Failed when gathering credit limit data
+- code: AFI120
+  name: TRANSACTION_NOT_ALLOWED_BY_CL
+  description: Insufficient credit limit balance
+- code: AFI123
+  name: TRANSACTION_NOT_ALLOWED_BY_DMS
+  description: Deposit transaction failed
+- code: AFI121
+  name: BOOKING_EXPIRED
+  description: The booking with given id is expired
+- code: AFI122
+  name: ALREADY_PAID_BOOKING
+  description: The booking with given id is already paid
+- code: AFI404
+  name: BOOKING_NOT_FOUND
+  description: Booking not found
+- code: AFI503
+  name: SERVICE_UNAVAILABLE
+  description: Service unavailable
+- code: AFI999
+  name: UNKNOWN
+  description: Unknown code
+cross_links:
+  openapi: openapi/traveloka-loka-partner-api-openapi.yml
+  conventions: conventions/traveloka-conventions.yml
+  rate_limits: rate-limits/traveloka-rate-limits.yml
+  problem_types: errors/traveloka-problem-types.yml

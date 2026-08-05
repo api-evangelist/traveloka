@@ -1,0 +1,188 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://developer.travelokapartnersnetwork.com/faq +
+  https://developer.travelokapartnersnetwork.com/api-docs (LOKA API v2.4.8 OpenAPI) +
+  https://developer.travelokapartnersnetwork.com/get-started
+summary: >-
+  Cross-cutting request/response semantics for the Traveloka Partners Network (LOKA) v2 Accommodation
+  API, captured from the provider's published FAQ, getting-started guide and OpenAPI. Traveloka Connect
+  (OTA XML) and Traveloka Atlas (supplier-implemented) follow different conventions and are noted
+  separately at the bottom of this file.
+
+authentication:
+  style: oauth2_client_credentials
+  token_endpoint: POST /oauth/accesstoken
+  token_host: https://auth-api.afc.traveloka.com/
+  staging_token_host: https://auth-api.afc.staging-traveloka.com/
+  credential_fields: [client_id, client_secret]
+  request_media_type: application/x-www-form-urlencoded
+  token_lifetime_minutes: 60
+  token_reuse: >-
+    Reuse the same access token until it expires; a new token per call is explicitly discouraged by the
+    provider FAQ.
+  transport_header: 'Authorization: <access_token>'
+  expiry_signal: 401 Unauthorized
+  see: authentication/traveloka-authentication.yml
+
+idempotency:
+  documented: true
+  mechanism: client-supplied business key
+  header: null
+  field: partnerBookingId
+  scope: POST /bookings/booking/create
+  provider_statement: >-
+    "Ensure each booking request includes a unique partnerBookingId. This identifier helps track and
+    prevent duplicate booking submissions." - Traveloka Partners Network FAQ Q25.
+  duplicate_detection:
+    - code: AFI734
+      name: BOOKING_ALREADY_EXISTS
+    - code: AFI102
+      name: DOUBLE_CONFIRMATION_ID
+      description: The booking with given confirmation id is already requested.
+    - code: AFI104
+      name: ALREADY_ISSUED_BOOKING
+  recovery: >-
+    On a timeout or retry, do NOT re-issue the create. Poll GET /bookings/detail (getByBookingId) with
+    the bookingId or partnerBookingId to establish the authoritative booking state first.
+  retention: not published
+  notes: >-
+    This is a business-key idempotency model, not an Idempotency-Key header (RFC draft). It is real and
+    documented, but the retention window and the replay semantics of a repeated partnerBookingId with a
+    DIFFERENT payload are not published.
+
+pagination:
+  style: offset-limit
+  params:
+    limit: 'Maximum number of items returned. Provider guidance: default 50 records per page.'
+    offset: Number of items to skip. Start at 0 and increment by limit.
+  documented_limits:
+    max_property_ids_per_search: 50
+    max_bulk_search_rooms: 10
+    max_rooms_per_search: 8
+    max_adults_per_search: 30
+    max_children_age: 17
+    max_length_of_stay_days: 15
+    max_booking_window_days: 365
+    max_refund_availability_range: 6 days 23 hours 59 minutes
+  response_fields:
+    documented_example: [results, total, limit, offset, next, previous]
+    note: >-
+      The FAQ's pagination guidance is written generically (its examples use a /api/v1/hotels path that
+      is not part of the LOKA v2 contract). The LOKA v2 OpenAPI itself declares limit/offset query
+      parameters on the search operations. Treat the envelope fields above as guidance, not contract.
+  error_codes: [AFI664 INVALID_LIMIT_REQUES, AFI665 INVALID_OFFSET_REQUEST, AFI82 INVALID_LIMIT, AFI79 INVALID_OFFSET]
+
+sorting:
+  param: sortBy
+  fields_documented: [price, rating, property name, distance]
+  order_values: [asc, desc]
+  error_codes: [AFI666 INVALID_SORT_TYPE, AFI77 INVALID_SORT_TYPE]
+
+caching:
+  documented: true
+  guidance:
+    static_content:
+      operations: [GET /properties/content/hotel, GET /properties/content/room]
+      ttl: 7 days
+      refresh: weekly, or sooner on property closure / new facilities
+    dynamic_rates:
+      operations: [GET /properties/:getRates, POST /properties/checkRate]
+      ttl_high_demand: 15-30 minutes
+      ttl_low_demand: 6-12 hours
+      note: Bypass cache entirely for real-time booking flows.
+    property_sync:
+      operation: Get Property
+      cadence: every two weeks
+  incremental_sync:
+    param: lastUpdatedTime
+    applies_to: [GET /properties/content/hotel, GET /properties/content/room]
+    note: Fetch only properties changed since the supplied ISO 8601 timestamp.
+
+rate_limit_signaling:
+  limit: 100 requests per minute per API key
+  exceeded_status: 429
+  exceeded_code: AFI030 TOO_MANY_REQUEST / AFI429 TOO_MANY_REQUEST
+  suspension: >-
+    Sustained excess trips an "API Suspended" state that blocks traffic for 15 seconds.
+  headers: not published
+  see: rate-limits/traveloka-rate-limits.yml
+
+retry_policy:
+  documented: true
+  max_attempts: 3
+  backoff: exponential
+  initial_delay_seconds: 120
+  booking_timeouts: >-
+    Retry with a 120-second delay, then poll the booking read operation to confirm state rather than
+    re-issuing the create.
+
+request_id_tracing:
+  field: error.requestId
+  location: error response body
+  purpose: Correlation id to quote to Traveloka support when reporting a failure.
+  request_header: not published
+
+error_envelope:
+  shape: '{ data: object|null, error: { code, message, requestId } }'
+  rfc9457: false
+  see: errors/traveloka-problem-types.yml
+
+versioning:
+  scheme: path-major + semantic build version
+  path_prefix: /v2
+  published_version: 2.4.8
+  see: lifecycle/traveloka-lifecycle.yml
+
+field_expansion:
+  param: isExtended
+  applies_to: [GET /properties/:getRates]
+  effect: Returns ExtendedRatesResponse / ExtendedHotelContent instead of the compact shape.
+
+localization:
+  language_param: language
+  documented_values: [EN, ID, TH]
+  note: Provider states "and others"; the closed set is not published.
+  currency_param: displayCurrency
+  nationality_param: userNationality
+  standards: [ISO 3166-1 alpha-2, ISO 4217, ISO 8601]
+
+commercial_semantics:
+  look_to_book:
+    definition: Ratio of total search requests to total bookings.
+    enforcement: >-
+      Exceeding the contractually agreed LTB limit may result in suspension and a fee. This is a
+      commercial throttle layered on top of the technical rate limit.
+  booking_amount_field: partnerNettAmount
+  rate_validation: >-
+    Call POST /properties/checkRate immediately before POST /bookings/booking/create to avoid
+    AFI735 MISMATCHED_RATE / AFI101 MISMATCH_EXPECTED_RATE.
+
+other_traveloka_surfaces:
+  connect:
+    name: Traveloka Connect (Connectivity API)
+    style: OpenTravel (OTA) 2017B XML over HTTPS/443
+    base_url: https://api.connect.traveloka.com/
+    staging_base_url: https://api.connect.staging-traveloka.com/
+    path_prefixes:
+      ari: /accom/v1/xml/opentravel/{providerId}/ari
+      content: /accom/v1/xml/opentravel/{providerId}/content
+    conventions: OTA message pairs (OTA_*RQ / OTA_*RS); not JSON, not OpenAPI.
+  atlas:
+    name: Traveloka Atlas (supplier-implemented specification)
+    style: JSON over HTTPS/443
+    auth: HTTP Basic - base64(username:password)
+    null_handling: >-
+      For String fields with no value, omit the field entirely - do not send an empty string.
+    envelope: '{ requestId, error: { errorId, errorMessage } } - a 200 may still carry an error object.'
+    note: >-
+      Traveloka is the CLIENT here. The accommodation partner hosts these endpoints; Traveloka publishes
+      the contract the partner must implement.
+
+cross_links:
+  authentication: authentication/traveloka-authentication.yml
+  errors: errors/traveloka-problem-types.yml
+  error_codes: errors/traveloka-error-codes.yml
+  rate_limits: rate-limits/traveloka-rate-limits.yml
+  lifecycle: lifecycle/traveloka-lifecycle.yml
+  sandbox: sandbox/traveloka-sandbox.yml

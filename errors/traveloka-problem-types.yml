@@ -1,0 +1,96 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/traveloka-loka-partner-api-openapi.yml
+summary: >-
+  Error responses declared by the Traveloka Partners Network (LOKA) v2 OpenAPI, derived from every
+  4xx/5xx response object in the published spec. The API does NOT use RFC 9457 problem+json; it uses a
+  proprietary JSON envelope. Human-readable code meanings live in errors/traveloka-error-codes.yml.
+format: proprietary
+rfc9457: false
+media_type: application/json
+envelope:
+  data: object (null on error)
+  error:
+    code: string - AFI-namespaced code, or the bare HTTP status as a string for 401/404/408/429/500
+    message: string - human readable message
+    requestId: string - per-call correlation id to quote to Traveloka support
+problem_types:
+  - status: 400
+    schema: Error400
+    title: Bad Request
+    detail: Parameter missing; check the request body.
+    code_enum: [AFI100]
+    example_message: parameter missing, please check your request body.
+    remediation: Send every required query parameter / body field declared for the operation.
+    applies_to:
+      - GET /properties/content/hotel
+      - GET /properties/content/room
+      - GET /properties/:getRates
+      - POST /properties/checkRate
+      - POST /bookings/booking/create
+      - GET /bookings
+      - GET /bookings/detail
+      - POST /bookings/cancellation/submit
+  - status: 401
+    schema: Error401
+    title: Unauthorized
+    detail: The token might be expired.
+    code_enum: ['401']
+    remediation: >-
+      Access tokens expire after 60 minutes. Re-issue via POST /oauth/accesstoken with the original
+      client_id and client_secret, then retry.
+    applies_to: [all authenticated operations]
+  - status: 404
+    schema: Error404
+    title: Not Found
+    detail: Hotel, property, or booking not found.
+    remediation: Verify propertyId / bookingId / partnerBookingId before retrying.
+    applies_to: [all authenticated operations]
+  - status: 408
+    schema: Error408
+    title: Request Timeout
+    remediation: >-
+      Retry with exponential backoff, maximum 3 attempts, 120-second initial delay (provider guidance).
+      For booking timeouts, poll the booking read operation rather than re-issuing the create.
+    applies_to: [all authenticated operations]
+  - status: 422
+    schema: ErrorCode422PropertyContentHotelResponse
+    title: Unprocessable Entity
+    detail: Per-operation validation failure. code carries the specific AFI code.
+    code_enum: [AFIXXX]
+    remediation: Resolve the AFI code against errors/traveloka-error-codes.yml.
+    per_operation_schemas:
+      - ErrorCode422PropertyContentHotelResponse
+      - ErrorCode422PropertyContentRoomResponse
+      - ErrorCode422PropertiesGetRatesResponse
+      - ErrorCode422PropertiesCheckRateResponse
+      - ErrorCode422BookingsCreateResponse
+      - ErrorCode422BookingsResponse
+      - ErrorCode422BookingsDetailResponse
+      - ErrorCode422BookingsCancelResponse
+  - status: 429
+    schema: Error429
+    title: Too Many Requests
+    detail: Your request count exceeds the allowed QPS rate limit.
+    code_enum: ['429']
+    remediation: >-
+      Documented limit is 100 requests per minute per API key. Back off exponentially. Sustained excess
+      triggers a 15-second traffic block ("API Suspended").
+    see: rate-limits/traveloka-rate-limits.yml
+  - status: 500
+    schema: Error500
+    title: Internal Server Error
+    detail: Server Error. Please contact our support team.
+    code_enum: ['500']
+    remediation: Retry with backoff; quote error.requestId to partnersnetwork@traveloka.com.
+validation_message_enum:
+  schema: BookingsV2ErrorMessage
+  note: >-
+    The booking create/cancel operations return a closed enum of human-readable validation strings
+    (partner booking id length, property id, date ordering, customer name/email/phone, room id, rate key,
+    guest info). See the schema in the OpenAPI for the full list.
+cross_links:
+  error_codes: errors/traveloka-error-codes.yml
+  conventions: conventions/traveloka-conventions.yml
+  authentication: authentication/traveloka-authentication.yml
+  rate_limits: rate-limits/traveloka-rate-limits.yml

@@ -1,0 +1,154 @@
+generated: '2026-08-05'
+method: derived
+source: openapi/traveloka-loka-partner-api-openapi.yml
+summary: >-
+  Entity-relationship graph for the Traveloka Partners Network (LOKA) v2 Accommodation API, derived from
+  the $ref graph across components.schemas and from the id-reference fields the schemas carry. Traveloka
+  publishes no object reference page, so identifier formats and prefixes are recorded only where the
+  spec itself states them.
+
+identifiers:
+  - id: propertyId
+    entity: Property
+    type: string
+    role: Traveloka's identifier for a hotel / accommodation property.
+    appears_in: [HotelContent, ExtendedHotelContent, RatesResponse, ExtendedRatesResponse, CheckRateRequest, BookingRequest, BookingResponse, BookingsResponse, BookingResponseDetail]
+    errors: [AFI708 INVALID_PROPERTY_ID, AFI086 PROPERTY_NOT_FOUND, AFI105 INVALID_PROPERTY_CODE]
+  - id: roomId
+    entity: Room
+    type: string
+    role: Identifier for a bookable room type within a property.
+    appears_in: [RatesResponse, ExtendedRatesResponse, CheckRateRequest]
+    errors: [Room Id is invalid (BookingsV2ErrorMessage)]
+  - id: rateKey
+    entity: Rate
+    type: string
+    role: >-
+      Opaque, generated key that binds a specific rate + occupancy + stay-date combination. Produced by
+      the rate search and consumed by checkRate and booking create. It is the pivot of the whole flow.
+    lifecycle: >-
+      Generated per search. AFI606/AFI85 ERROR_RATE_KEY_GENERATION on generation failure;
+      AFI080/AFI83 RATE_KEY_NOT_FOUND when a stale key is replayed.
+    appears_in: [RatesResponse, ExtendedRatesResponse, CheckRateRequest]
+  - id: bookingId
+    entity: Booking
+    type: string
+    role: Traveloka-side booking identifier, returned on create.
+    errors: [AFI702 INVALID_BOOKING_ID, AFI731/AFI404 BOOKING_NOT_FOUND]
+  - id: partnerBookingId
+    entity: Booking
+    type: string
+    role: >-
+      Partner-supplied unique key. Doubles as the idempotency key for booking creation - see
+      conventions/traveloka-conventions.yml.
+    errors: [AFI701 INVALID_PARTNER_BOOKING_ID, AFI734 BOOKING_ALREADY_EXISTS]
+  - id: itineraryId
+    entity: Itinerary
+    type: string
+    role: Groups a booking into a Traveloka itinerary.
+    errors: [AFI703/AFI17 INVALID_ITINERARY_ID]
+  - id: cancellationId
+    entity: Cancellation
+    type: string
+    role: Identifier for a submitted cancellation request.
+    errors: [AFI704 INVALID_CANCEL_ID]
+  - id: geoId
+    entity: Geo
+    type: string
+    role: Geographic node identifier used by the optional Discovery surface; hierarchical via parentGeoId.
+    errors: [AFI661 INVALID_GEO_ID, AFI663 INVALID_NUMBER_OF_GEOID]
+  - id: contentResourceKey
+    entity: MealSelectOption
+    type: string
+    role: Key into Traveloka's content resource catalog for meal option labels.
+
+entities:
+  - name: Property
+    schemas: [HotelContent, ExtendedHotelContent, DisplayHotelContent, HotelContentResponse, PropertySummary]
+    relationships:
+      - {type: has_one, target: HotelAddress, via: '$ref'}
+      - {type: has_one, target: AccommodationType, via: '$ref'}
+      - {type: has_many, target: HotelImage, via: '$ref'}
+      - {type: has_one, target: HotelContact, via: schema}
+      - {type: has_many, target: Room, via: propertyId}
+  - name: Room
+    schemas: [DisplayRoomContent, RoomContentResponse]
+    relationships:
+      - {type: has_one, target: RoomSize, via: '$ref'}
+      - {type: has_one, target: RoomFacilities, via: '$ref'}
+      - {type: has_many, target: RoomImage, via: '$ref'}
+      - {type: has_many, target: BedArrangement, via: '$ref'}
+      - {type: belongs_to, target: Property, via: propertyId}
+  - name: Rate
+    schemas: [RatesResponse, ExtendedRatesResponse, DisplayRatesResponse, GetRatesResponse, CheckRateRequest, CheckRateResponse]
+    relationships:
+      - {type: belongs_to, target: Property, via: propertyId}
+      - {type: belongs_to, target: Room, via: roomId}
+      - {type: has_one, target: CancellationPolicy, via: '$ref'}
+      - {type: has_one, target: MealPlan, via: '$ref'}
+      - {type: has_one, target: RoomOccupancy, via: '$ref'}
+      - {type: has_many, target: ExtraCharge, via: '$ref'}
+      - {type: has_many, target: ExtraBenefits, via: '$ref'}
+      - {type: has_many, target: Charge, via: '$ref'}
+      - {type: has_many, target: BedArrangement, via: '$ref'}
+  - name: Booking
+    schemas: [BookingRequest, BookingResponse, BookingsResponse, BookingResponseDetail]
+    relationships:
+      - {type: belongs_to, target: Property, via: propertyId}
+      - {type: belongs_to, target: Rate, via: rateKey}
+      - {type: belongs_to, target: Itinerary, via: itineraryId}
+      - {type: has_many, target: GuestInfo, via: '$ref'}
+      - {type: has_one, target: userPayment, via: '$ref'}
+      - {type: has_one, target: PropertySummary, via: '$ref'}
+      - {type: has_one, target: CancellationPolicy, via: '$ref'}
+      - {type: has_one, target: MealPlan, via: '$ref'}
+      - {type: has_many, target: ExtraCharge, via: '$ref'}
+      - {type: has_one, target: Cancellation, via: cancellationId}
+  - name: Cancellation
+    schemas: [BookingCancellationRequest, BookingCancellationResponse, CancellationStatus]
+    relationships:
+      - {type: belongs_to, target: Booking, via: bookingId}
+      - {type: has_one, target: CancellationStatus, via: '$ref'}
+    states: [SUBMITTED, COMPLETED, FAILED]
+    state_source: https://developer.travelokapartnersnetwork.com/faq (Q28)
+  - name: MealPlan
+    schemas: [MealPlan, MealInclusionOption, MealInclusionDetail, MealPackageDetail, MealSelectOption, MealTimeRange, MealTime]
+    relationships:
+      - {type: has_many, target: MealInclusionOption, via: '$ref'}
+      - {type: has_many, target: MealPackageDetail, via: '$ref'}
+      - {type: has_many, target: MealSelectOption, via: '$ref'}
+      - {type: has_many, target: MealTimeRange, via: '$ref'}
+      - {type: has_one, target: MealTime, via: '$ref'}
+  - name: Geo
+    schemas: [GeoDetail, DiscoveryRatesRequest, DiscoveryRatesResponse]
+    relationships:
+      - {type: belongs_to, target: Geo, via: parentGeoId, note: self-referential hierarchy}
+      - {type: has_many, target: Property, via: sortedPropertyId}
+    note: Optional Discovery surface, for partners without their own master data.
+  - name: AccessToken
+    schemas: [AccessToken]
+    fields: [token_type, access_token, expires_in]
+    note: Not a domain entity; the credential returned by POST /oauth/accesstoken.
+
+flow:
+  canonical_sequence:
+    - {step: 1, operation: 'POST /oauth/accesstoken', produces: access_token}
+    - {step: 2, operation: 'GET /properties/content/hotel', produces: propertyId, cadence: cache 7 days}
+    - {step: 3, operation: 'GET /properties/content/room', produces: roomId, cadence: cache 7 days}
+    - {step: 4, operation: 'GET /properties/:getRates', consumes: propertyIds, produces: rateKey, cadence: cache 15-30 min}
+    - {step: 5, operation: 'POST /properties/checkRate', consumes: rateKey, purpose: re-validate immediately before booking}
+    - {step: 6, operation: 'POST /bookings/booking/create', consumes: [rateKey, partnerBookingId], produces: bookingId}
+    - {step: 7, operation: 'GET /bookings/detail', consumes: bookingId, purpose: confirm state / recover from timeout}
+    - {step: 8, operation: 'POST /bookings/cancellation/submit', consumes: bookingId, produces: cancellationId}
+
+atlas_model:
+  note: >-
+    The Traveloka Atlas supplier specification carries a separate, larger schema set (121 schemas) whose
+    entities mirror this graph from the supplier's side. It is not re-derived here; see
+    openapi/traveloka-atlas-supplier-api-openapi.yml.
+
+cross_links:
+  openapi: openapi/traveloka-loka-partner-api-openapi.yml
+  conventions: conventions/traveloka-conventions.yml
+  errors: errors/traveloka-error-codes.yml
+  skills: skills/_index.yml

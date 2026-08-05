@@ -1,0 +1,32 @@
+generated: '2026-08-05'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.traveloka.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb 16 23:59:59 2027 GMT
+  hsts: false
+- host: developer.travelokapartnersnetwork.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 21 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.travelokapartnersnetwork.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 23 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: traveloka.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+- domain: travelokapartnersnetwork.com
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: false

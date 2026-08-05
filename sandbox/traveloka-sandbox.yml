@@ -1,0 +1,85 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://developer.travelokapartnersnetwork.com/api-docs (LOKA API v2.4.8 OpenAPI servers[]) +
+  https://developer.travelokapartnersnetwork.com/get-started +
+  https://developer.connect.traveloka.com/
+summary: >-
+  Every Traveloka partner API program ships a named staging environment on a parallel
+  staging-traveloka.com hostname, and every program requires Traveloka-run certification against that
+  environment before production credentials are issued. There are no published test credentials, test
+  cards, magic identifiers, fixtures or time-simulation tools - access to staging is itself gated.
+
+environments:
+  - api: Traveloka Partners Network (LOKA) v2
+    production:
+      base_url: https://api.travelokapartnersnetwork.com/v2
+      auth_host: https://auth-api.afc.traveloka.com/
+    staging:
+      base_url: https://api.staging-travelokapartnersnetwork.com/v2
+      auth_host: https://auth-api.afc.staging-traveloka.com/
+      label: Staging/sandbox
+      source: servers[] and info.description of the published OpenAPI
+    note: >-
+      The assembled documentation spec lists the same production URL twice in servers[] (labelled
+      "Production server" and "Staging server"); the real staging hosts above come from the underlying
+      per-service server blocks and the OAuth spec description. Captured as published.
+  - api: Traveloka Connect - Connectivity API
+    production:
+      base_url: https://api.connect.traveloka.com/
+    staging:
+      base_url: https://api.connect.staging-traveloka.com/
+      example_endpoint: https://api.connect.staging-traveloka.com/accom/v1/xml/opentravel/myprovider/ari/:ping
+      note: >-
+        The docs use the literal provider id "myprovider" in staging examples; a partner's real
+        {providerId} is issued with credentials.
+  - api: Traveloka Atlas
+    production: null
+    staging: null
+    note: >-
+      Inverted integration - the SUPPLIER hosts the endpoints, so there is no Traveloka-hosted sandbox.
+      Traveloka certifies against the supplier's own test environment.
+
+access:
+  self_serve: false
+  gates:
+    - api: Traveloka Connect
+      staging_gate: Staging credentials are provided after an NDA is signed.
+      production_gate: Production credentials are provided after certification.
+      contact: tera-cm@traveloka.com
+    - api: Traveloka Partners Network (LOKA)
+      staging_gate: Site credentials are issued once the partnership is formalized.
+      production_gate: Certification request to the Traveloka connectivity team.
+      contact: partnersnetwork@traveloka.com
+
+test_data:
+  test_cards: not published
+  magic_identifiers: not published
+  fixtures: not published
+  time_simulation: not published
+  seeded_inventory: not published
+  note: >-
+    NOTHING is published. Do not assume any test value. The only published environment marker is the
+    staging- hostname prefix; there is no test-mode key prefix or mode flag in the request.
+
+certification:
+  required: true
+  owner: Traveloka connectivity / partner engineering team
+  scope: >-
+    Traveloka verifies integration quality against the sandbox before promoting a partner to production.
+  connect_features:
+    - Ping Service (OTA_PingRQ) - mandatory
+    - Get Mapping (OTA_HotelAvailRQ) - mandatory
+    - Push Availabilities (OTA_HotelAvailNotifRQ) - mandatory
+    - Push Rates (OTA_HotelRateAmountNotifRQ) - mandatory
+    - Booking Notification (OTA_HotelResNotifRQ) - mandatory
+    - Reservation (OTA_HotelResNotifRQ) - mandatory
+    - Check Availability (OTA_HotelAvailRQ) - mandatory
+    - Push Hotel & Room Content (OTA_HotelDescriptiveContentNotifRQ) - optional
+    - Push Rate Plan Content (OTA_HotelRatePlanNotifRQ) - optional
+    - Payment Notification (OTA_HotelResNotifRQ) - optional
+
+cross_links:
+  authentication: authentication/traveloka-authentication.yml
+  lifecycle: lifecycle/traveloka-lifecycle.yml
+  conventions: conventions/traveloka-conventions.yml

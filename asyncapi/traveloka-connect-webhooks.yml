@@ -1,0 +1,126 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://developer.connect.traveloka.com/ +
+  https://developer.connect.traveloka.com/api-doc/api-specification/payment-notification/ +
+  openapi/traveloka-atlas-supplier-api-openapi.yml
+summary: >-
+  Traveloka has a real asynchronous / callback surface, but publishes no AsyncAPI document for it. The
+  event flow is inverted relative to a conventional webhook: rather than Traveloka POSTing events to a
+  partner-registered URL, the PARTNER stands up a set of endpoints that Traveloka calls, and the
+  partner PUSHES availability, rate and content changes into Traveloka's own ARI endpoints. This file
+  captures that catalog as a Webhooks artifact. NO AsyncAPI is fabricated.
+
+asyncapi_published: false
+webhook_catalog_published: true
+transport: HTTPS on port 443
+formats:
+  connect: OpenTravel (OTA) 2017B XML
+  atlas: JSON
+
+partner_hosted_endpoints:
+  description: >-
+    Endpoints the partner implements and Traveloka calls. The endpoint URL is supplied by the partner
+    during certification ("Provided by each provider") - there is no fixed Traveloka path.
+  events:
+    - name: Booking Notification
+      message: OTA_HotelResNotifRQ
+      response: OTA_HotelResNotifRS
+      delivery: asynchronous
+      mandatory: true
+      program: Traveloka Connect
+      description: Traveloka notifies the partner system of a new reservation.
+    - name: Reservation
+      message: OTA_HotelResNotifRQ
+      response: OTA_HotelResNotifRS
+      delivery: synchronous
+      mandatory: true
+      program: Traveloka Connect
+      description: Reservation confirmation and management message.
+    - name: Check Availability
+      message: OTA_HotelAvailRQ
+      response: OTA_HotelAvailRS
+      delivery: synchronous
+      mandatory: true
+      program: Traveloka Connect
+      description: Real-time availability check against the partner's inventory before booking.
+    - name: Payment Notification
+      message: OTA_HotelResNotifRQ
+      response: OTA_HotelResNotifRS
+      delivery: asynchronous
+      mandatory: false
+      program: Traveloka Connect
+      description: >-
+        Notifies the property of payment for hotel-collect bookings. Documented at
+        /api-doc/api-specification/payment-notification/.
+
+traveloka_hosted_push_endpoints:
+  description: >-
+    Endpoints Traveloka hosts that the partner pushes change events into. base_url is
+    https://api.connect.traveloka.com (staging https://api.connect.staging-traveloka.com).
+  path_prefixes:
+    ari: /accom/v1/xml/opentravel/{providerId}/ari
+    content: /accom/v1/xml/opentravel/{providerId}/content
+  events:
+    - name: Ping Service
+      message: OTA_PingRQ
+      path: /accom/v1/xml/opentravel/{providerId}/ari/:ping
+      mandatory: true
+      description: Connectivity heartbeat / handshake.
+    - name: Get Mapping
+      message: OTA_HotelAvailRQ
+      path: /accom/v1/xml/opentravel/{providerId}/ari/accom-rooms/:get
+      mandatory: true
+      description: Retrieve Traveloka's room mapping for the provider's properties.
+    - name: Push Availabilities
+      message: OTA_HotelAvailNotifRQ
+      path: /accom/v1/xml/opentravel/{providerId}/ari/accom-availability-restrictions/:push
+      mandatory: true
+      description: Push availability and restriction changes.
+    - name: Push Rates
+      message: OTA_HotelRateAmountNotifRQ
+      path: /accom/v1/xml/opentravel/{providerId}/ari/accom-rates/:push
+      mandatory: true
+      description: Push rate amount changes.
+    - name: Push Hotel & Room Content
+      message: OTA_HotelDescriptiveContentNotifRQ
+      path: /accom/v1/xml/opentravel/{providerId}/content/hotel-rooms/:push
+      mandatory: false
+      description: Push static hotel and room descriptive content.
+    - name: Push Rate Plan Content
+      message: OTA_HotelRatePlanNotifRQ
+      path: /accom/v1/xml/opentravel/{providerId}/content/rate-plans/:push
+      mandatory: false
+      description: Push rate plan definitions.
+
+atlas_supplier_callbacks:
+  description: >-
+    The Traveloka Atlas program is the same inversion in JSON: the accommodation supplier hosts all ten
+    operations and Traveloka calls them. Every operation is therefore a callback the supplier must
+    serve. See the OpenAPI for schemas.
+  operations:
+    - {operationId: hotelOperation, path: /hotel-operation, tag: Content}
+    - {operationId: hotelOperationV2, path: /hotel-operation-v2, tag: Content}
+    - {operationId: hotelList, path: /hotel-list, tag: Search}
+    - {operationId: roomList, path: /room-list, tag: Search}
+    - {operationId: bulkRoomList, path: /bulk-room-list, tag: Search}
+    - {operationId: book, path: /book, tag: Booking}
+    - {operationId: issueCheck, path: /issue-check, tag: Booking}
+    - {operationId: issue, path: /issue, tag: Booking}
+    - {operationId: bookingSummary, path: /booking-summary, tag: Booking}
+    - {operationId: cancel, path: /cancel, tag: Booking}
+  source: openapi/traveloka-atlas-supplier-api-openapi.yml
+
+not_found:
+  - >-
+    No AsyncAPI 2.x/3.x document is published on any Traveloka host (/asyncapi.yaml, /asyncapi.json and
+    the docs hosts were all probed).
+  - >-
+    No partner-registerable webhook URL management surface exists on the LOKA v2 REST API - the LOKA
+    program is request/response only, with booking state retrieved by polling GET /bookings/detail.
+  - No event catalog, retry policy, or signature-verification scheme is published for any callback.
+
+cross_links:
+  conformance: conformance/traveloka-conformance.yml
+  conventions: conventions/traveloka-conventions.yml
+  sandbox: sandbox/traveloka-sandbox.yml

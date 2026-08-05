@@ -1,0 +1,109 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://developer.travelokapartnersnetwork.com/faq +
+  https://developer.travelokapartnersnetwork.com/api-docs (LOKA API v2.4.8 OpenAPI) +
+  https://atlas.traveloka.com/developers/docs/ (Traveloka Specification API) +
+  https://developer.connect.traveloka.com/api-doc/credentials/url/
+docs: https://developer.travelokapartnersnetwork.com/api-docs
+summary:
+  types: [oauth2, apiKey, http]
+  api_key_in: [header]
+  note: >-
+    Three distinct Traveloka API surfaces use three distinct auth models. The published LOKA v2 OpenAPI
+    declares its bearer credential as an apiKey-in-header scheme (an AWS API Gateway Lambda authorizer),
+    but the documented way to MINT that credential is an OAuth 2.0 client-credentials exchange. Both
+    facts are recorded below; neither is inferred.
+
+apis:
+  - api: Traveloka Partners Network (LOKA) v2 Accommodation API
+    primary: oauth2_client_credentials
+    token_endpoint: https://auth-api.afc.traveloka.com/oauth/accesstoken
+    staging_token_endpoint: https://auth-api.afc.staging-traveloka.com/oauth/accesstoken
+    method: POST
+    request_media_type: application/x-www-form-urlencoded
+    credential_fields: [client_id, client_secret]
+    response_fields: [token_type, access_token, expires_in]
+    response_schema: AccessToken
+    token_lifetime_minutes: 60
+    token_reuse: >-
+      Reuse until expiry. The provider FAQ explicitly discourages minting a token per call.
+    transport:
+      header: Authorization
+      location: header
+      note: >-
+        The spec models this as securityScheme api_gateway_lambda_authorizer (type apiKey, in header,
+        name Authorization) fronted by an AWS API Gateway custom Lambda authorizer with a 1800-second
+        authorizer result TTL.
+    expiry_signal:
+      status: 401
+      code: '401'
+      message: Unauthorized, the token might be expired.
+      remediation: Re-issue via POST /oauth/accesstoken with the original client_id and client_secret.
+    additional_scheme:
+      name: sigv4
+      type: apiKey
+      in: header
+      parameter: Authorization
+      x-amazon-apigateway-authtype: awsSigv4
+      note: >-
+        Declared in components.securitySchemes but not applied to any operation in the published spec.
+    scopes:
+      declared: ['auth']
+      note: >-
+        The spec's root security requirement is [{"OAuthStaging": ["auth"]}] but "OAuthStaging" is not
+        defined in components.securitySchemes - a dangling reference in the published document. No scope
+        reference page is published, so no scopes/ artifact is emitted.
+    credential_issuance:
+      model: approval
+      steps:
+        - Choose a partnership model.
+        - Register via the Become Partner form.
+        - Formalize the partnership to receive unique site credentials.
+        - Request certification from the Traveloka connectivity team.
+        - Promote to the live environment.
+      form: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+      contact: partnersnetwork@traveloka.com
+      self_serve: false
+
+  - api: Traveloka Atlas - Traveloka Specification API (supplier-implemented)
+    primary: http_basic
+    scheme: basic
+    format: base64(username:password)
+    header: 'Authorization: Basic <base64>'
+    transport_requirement: HTTPS on port 443
+    direction: >-
+      Inverted. Traveloka is the CLIENT; the accommodation supplier hosts these endpoints and validates
+      the Basic credential Traveloka presents.
+    source_scheme: basicAuth
+    sources: [openapi/traveloka-atlas-supplier-api-openapi.yml]
+
+  - api: Traveloka Connect - Connectivity API (OTA 2017B XML)
+    primary: partner_credentials
+    base_url: https://api.connect.traveloka.com/
+    staging_base_url: https://api.connect.staging-traveloka.com/
+    issuance:
+      staging: Credentials issued after NDA signing.
+      production: Credentials issued after certification.
+      contact: tera-cm@traveloka.com
+      channels: [Lark, Email, Teams]
+    note: >-
+      The credential mechanism itself is documented behind the developer.connect.traveloka.com login; the
+      public surface documents only the issuance process, base URLs, and OTA message set.
+    self_serve: false
+
+access_model:
+  onboarding: approval
+  pricing: enterprise
+  public: false
+  try_now: false
+  confidence: high
+  evidence: >-
+    No self-serve signup exists for any of the three surfaces. Every path requires a partnership form,
+    contract and certification before credentials are issued.
+
+cross_links:
+  conventions: conventions/traveloka-conventions.yml
+  sandbox: sandbox/traveloka-sandbox.yml
+  errors: errors/traveloka-problem-types.yml
+  conformance: conformance/traveloka-conformance.yml

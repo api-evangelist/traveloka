@@ -1,0 +1,193 @@
+generated: '2026-08-05'
+method: searched
+source: >-
+  https://registry.npmjs.org/-/v1/search?text=traveloka + PyPI + RubyGems + Packagist + NuGet +
+  https://api.github.com/orgs/traveloka
+summary: >-
+  Traveloka publishes NO client SDK for any of its three partner API programs. Partners integrate by
+  hand against the REST/OTA-XML contracts. Traveloka does maintain a set of first-party open-source npm
+  packages under the @traveloka scope, but they are front-end engineering tooling (React form/schema
+  libraries, lint configs, React Native components) - not API clients. No SDKs pointer is wired into
+  apis.yml because no API client library exists to point at.
+
+api_client_sdks:
+  count: 0
+  languages: []
+  note: >-
+    Searched npm, PyPI, RubyGems, Packagist, NuGet, pkg.go.dev and crates.io for a Traveloka partner API
+    client. No first-party or notable third-party client library exists. The developer portals
+    (developer.travelokapartnersnetwork.com, atlas.traveloka.com, developer.connect.traveloka.com)
+    publish no SDK, code sample repository, or Postman collection.
+
+packages:
+  - language: javascript
+    registry: npm
+    name: '@traveloka/react-schema'
+    version: 3.9.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-schema
+    purpose: React schema-driven form/component library.
+  - language: javascript
+    registry: npm
+    name: '@traveloka/react-schema-form'
+    version: 3.9.0
+    official: true
+    api_client: false
+    purpose: Form layer built on @traveloka/react-schema.
+  - language: javascript
+    registry: npm
+    name: '@traveloka/validation'
+    version: 3.9.0
+    official: true
+    api_client: false
+    purpose: Validation helpers used by the react-schema family.
+  - language: javascript
+    registry: npm
+    name: '@traveloka/prop-types'
+    version: 0.1.4
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/prop-types
+  - language: javascript
+    registry: npm
+    name: '@traveloka/rps'
+    version: 1.2.1
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/rps
+    purpose: React promise state management (loading/error/success callbacks).
+  - language: javascript
+    registry: npm
+    name: '@traveloka/react-load'
+    version: 0.2.1-alpha.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-load
+  - language: javascript
+    registry: npm
+    name: '@traveloka/react-native-pace'
+    version: 1.0.1
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-native-pace
+  - language: javascript
+    registry: npm
+    name: '@traveloka/fragment'
+    version: 0.0.4
+    official: true
+    api_client: false
+    purpose: Isomorphic React framework fragment.
+  - language: javascript
+    registry: npm
+    name: marlint
+    version: 7.0.1
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/javascript
+    purpose: Traveloka JavaScript styleguide linter.
+  - language: javascript
+    registry: npm
+    name: eslint-config-marlint
+    version: 7.0.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/javascript
+  - language: javascript
+    registry: npm
+    name: eslint-plugin-marlint
+    version: 1.0.0-alpha.0
+    official: true
+    api_client: false
+  - language: javascript
+    registry: npm
+    name: marlint-format
+    version: 0.1.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/marlint-format
+  - language: javascript
+    registry: npm
+    name: soya
+    version: 0.2.13
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/soya
+    purpose: Traveloka's React web front-end framework.
+  - language: javascript
+    registry: npm
+    name: soya-next
+    version: 1.1.1
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/soya-next
+  - language: javascript
+    registry: npm
+    name: soya-next-scripts
+    version: 1.1.2
+    official: true
+    api_client: false
+  - language: javascript
+    registry: npm
+    name: soya-form
+    version: 0.1.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/soya-form
+  - language: javascript
+    registry: npm
+    name: react-diode
+    version: 0.5.25
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-diode
+    purpose: Endpoint-agnostic unidirectional data fetching for React.
+  - language: javascript
+    registry: npm
+    name: react-dibs
+    version: 0.6.8
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-dibs
+  - language: javascript
+    registry: npm
+    name: react-native-coachmark
+    version: 0.3.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/react-native-coachmark
+  - language: javascript
+    registry: npm
+    name: slack-robot
+    version: 3.2.1
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/slack-robot
+  - language: javascript
+    registry: npm
+    name: hubormaster
+    version: 0.5.0
+    official: true
+    api_client: false
+    repository: https://github.com/traveloka/hubormaster
+
+registries_searched:
+  - {registry: npm, hits: 21, api_clients: 0}
+  - {registry: PyPI, hits: 0, probed: [traveloka, traveloka-api, loka-api], status: 404}
+  - {registry: RubyGems, hits: 0}
+  - {registry: Packagist, hits: 0}
+  - {registry: NuGet, hits: 0}
+
+github_organization:
+  url: https://github.com/traveloka
+  exists: true
+  created: '2012-04-27'
+  public_repos: 0
+  note: >-
+    The org account is live and is the declared owner of the @traveloka npm scope, but as of this probe
+    it exposes zero public repositories - every repository the published packages reference has been
+    made private, archived out, or deleted. A partner following an npm repository link lands on a 404.
+
+cross_links:
+  authentication: authentication/traveloka-authentication.yml
+  conventions: conventions/traveloka-conventions.yml
