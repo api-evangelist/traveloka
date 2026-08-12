@@ -50,55 +50,6 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 apis:
-- name: Traveloka Partners Network (LOKA) v2 Accommodation API
-  description: >-
-    REST API for distribution partners reselling Traveloka accommodation inventory. Covers hotel and
-    room content, rate search and rate re-validation, booking creation, booking retrieval and
-    cancellation submission, plus an optional discovery surface (geo and rate lookup) for partners
-    without their own master data. OAuth 2.0 client-credentials auth with 60-minute access tokens.
-  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
-  baseURL: https://api.travelokapartnersnetwork.com/v2/
-  tags:
-  - travel
-  - accommodation
-  - hotel-booking
-  - distribution
-  - rest
-  properties:
-  - type: OpenAPI
-    url: openapi/traveloka-loka-partner-api-openapi.yml
-  - type: DeveloperPortal
-    url: https://developer.travelokapartnersnetwork.com/
-  - type: Documentation
-    url: https://developer.travelokapartnersnetwork.com/api-docs
-  - type: APIReference
-    url: https://developer.travelokapartnersnetwork.com/api-docs
-  - type: GettingStarted
-    url: https://developer.travelokapartnersnetwork.com/get-started
-  - type: Authentication
-    url: authentication/traveloka-authentication.yml
-  - type: Conventions
-    url: conventions/traveloka-conventions.yml
-  - type: Idempotency
-    url: conventions/traveloka-conventions.yml
-  - type: ErrorCatalog
-    url: errors/traveloka-error-codes.yml
-  - type: ErrorCodes
-    url: errors/traveloka-problem-types.yml
-  - type: RateLimits
-    url: rate-limits/traveloka-rate-limits.yml
-  - type: DataModel
-    url: data-model/traveloka-data-model.yml
-  - type: Overlay
-    url: overlays/traveloka-loka-partner-api-overlay.yaml
-  - type: Sandbox
-    url: sandbox/traveloka-sandbox.yml
-  - type: AgentSkill
-    url: skills/_index.yml
-  - type: Support
-    url: mailto:partnersnetwork@traveloka.com
-  - type: SignUp
-    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
 - name: Traveloka Connect - Connectivity API
   description: >-
     OpenTravel (OTA) 2017B XML connectivity API for channel managers, property-management systems and
@@ -127,28 +78,673 @@ apis:
     url: mailto:tera-cm@traveloka.com
   - type: Login
     url: https://developer.connect.traveloka.com/login
-- name: Traveloka Atlas - Traveloka Specification API
+- aid: traveloka:traveloka-1-1-content-hotel-room-api
+  name: Traveloka 1.1 Content - Hotel & Room API
   description: >-
-    Published JSON contract that accommodation suppliers implement on their own infrastructure so
-    Traveloka can search and book against them - the direction of the integration is inverted, with
-    Traveloka acting as the client. Ten operations across content (hotelOperation, hotelOperationV2),
-    search (hotelList, roomList, bulkRoomList) and booking (book, issueCheck, issue, bookingSummary,
-    cancel). HTTP Basic auth over HTTPS port 443.
-  humanURL: https://atlas.traveloka.com/developers/docs/
-  baseURL: https://atlas.traveloka.com/
-  x-baseurl-note: >-
-    Traveloka publishes no runtime base URL for this API because the SUPPLIER hosts the endpoints. The
-    published spec ships a generated http://localhost:8080 server placeholder; the value recorded here is
-    the Atlas product host, not a callable API root.
+    The 1.1 Content - Hotel & Room API from Traveloka — 2 operation(s) for 1.1 content - hotel & room.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
   tags:
-  - travel
-  - accommodation
-  - hospitality
-  - supplier-integration
-  - rest
+  - 1.1 Content - Hotel & Room
   properties:
   - type: OpenAPI
-    url: openapi/traveloka-atlas-supplier-api-openapi.yml
+    url: openapi/traveloka-1-1-content-hotel-room-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-2-1-search-hotellist-api
+  name: Traveloka 2.1 Search - HotelList API
+  description: >-
+    The 2.1 Search - HotelList API from Traveloka — 1 operation(s) for 2.1 search - hotellist.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 2.1 Search - HotelList
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-2-1-search-hotellist-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-2-2-search-roomlist-api
+  name: Traveloka 2.2 Search - RoomList API
+  description: The 2.2 Search - RoomList API from Traveloka — 1 operation(s) for 2.2 search - roomlist.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 2.2 Search - RoomList
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-2-2-search-roomlist-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-2-3-search-bulkroomlist-api
+  name: Traveloka 2.3 Search - BulkRoomList API
+  description: >-
+    The 2.3 Search - BulkRoomList API from Traveloka — 1 operation(s) for 2.3 search - bulkroomlist.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 2.3 Search - BulkRoomList
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-2-3-search-bulkroomlist-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-3-1-booking-book-api
+  name: Traveloka 3.1 Booking - Book API
+  description: The 3.1 Booking - Book API from Traveloka — 1 operation(s) for 3.1 booking - book.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 3.1 Booking - Book
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-3-1-booking-book-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-3-2-booking-issuecheck-api
+  name: Traveloka 3.2 Booking - IssueCheck API
+  description: >-
+    The 3.2 Booking - IssueCheck API from Traveloka — 1 operation(s) for 3.2 booking - issuecheck.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 3.2 Booking - IssueCheck
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-3-2-booking-issuecheck-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-3-3-booking-issue-api
+  name: Traveloka 3.3 Booking - Issue API
+  description: The 3.3 Booking - Issue API from Traveloka — 1 operation(s) for 3.3 booking - issue.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 3.3 Booking - Issue
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-3-3-booking-issue-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-3-4-booking-bookingsummary-api
+  name: Traveloka 3.4 Booking - BookingSummary API
+  description: >-
+    The 3.4 Booking - BookingSummary API from Traveloka — 1 operation(s) for 3.4 booking - bookingsummary.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 3.4 Booking - BookingSummary
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-3-4-booking-bookingsummary-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-3-5-booking-cancel-api
+  name: Traveloka 3.5 Booking - Cancel API
+  description: The 3.5 Booking - Cancel API from Traveloka — 1 operation(s) for 3.5 booking - cancel.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - 3.5 Booking - Cancel
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-3-5-booking-cancel-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-authorization-api
+  name: Traveloka Authorization API
+  description: The Authorization API from Traveloka — 1 operation(s) for authorization.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-authorization-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-booking-api
+  name: Traveloka Booking API
+  description: The Booking API from Traveloka — 4 operation(s) for booking.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - Booking
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-booking-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-content-api
+  name: Traveloka Content API
+  description: The Content API from Traveloka — 2 operation(s) for content.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-content-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-discovery-optional-api
+  name: Traveloka Discovery (Optional) API
+  description: This API is optional and intended for partners who do not have their own master data.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - Discovery (Optional)
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-discovery-optional-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
+  - type: DeveloperPortal
+    url: https://atlas.traveloka.com/
+  - type: Documentation
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: APIReference
+    url: https://atlas.traveloka.com/developers/docs/
+  - type: Support
+    url: https://atlas.traveloka.com/developers/faq/
+  - type: SignUp
+    url: https://forms.gle/pZXs1PaZJ7HiHRE47
+- aid: traveloka:traveloka-rate-api
+  name: Traveloka Rate API
+  description: The Rate API from Traveloka — 2 operation(s) for rate.
+  humanURL: https://developer.travelokapartnersnetwork.com/api-docs
+  baseURL: https://api.travelokapartnersnetwork.com/v2/
+  tags:
+  - Rate
+  properties:
+  - type: OpenAPI
+    url: openapi/traveloka-rate-api-openapi.yml
+  - type: DeveloperPortal
+    url: https://developer.travelokapartnersnetwork.com/
+  - type: Documentation
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: APIReference
+    url: https://developer.travelokapartnersnetwork.com/api-docs
+  - type: GettingStarted
+    url: https://developer.travelokapartnersnetwork.com/get-started
+  - type: Authentication
+    url: authentication/traveloka-authentication.yml
+  - type: Conventions
+    url: conventions/traveloka-conventions.yml
+  - type: Idempotency
+    url: conventions/traveloka-conventions.yml
+  - type: ErrorCatalog
+    url: errors/traveloka-error-codes.yml
+  - type: ErrorCodes
+    url: errors/traveloka-problem-types.yml
+  - type: RateLimits
+    url: rate-limits/traveloka-rate-limits.yml
+  - type: DataModel
+    url: data-model/traveloka-data-model.yml
+  - type: Sandbox
+    url: sandbox/traveloka-sandbox.yml
+  - type: Support
+    url: mailto:partnersnetwork@traveloka.com
+  - type: SignUp
+    url: https://traveloka.sg.larksuite.com/share/base/form/shrlg7CyVohw5GHPRXwt8LdPCCW
   - type: DeveloperPortal
     url: https://atlas.traveloka.com/
   - type: Documentation
@@ -160,6 +756,8 @@ apis:
   - type: SignUp
     url: https://forms.gle/pZXs1PaZJ7HiHRE47
 common:
+- type: MCPServer
+  url: mcp/traveloka-mcp.yml
 - type: Website
   url: https://www.traveloka.com/
 - type: DeveloperPortal
