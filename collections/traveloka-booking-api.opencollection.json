@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOKA Booking API",
+    "version": "2.4.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Booking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelokapartnersnetwork.com/v2/bookings/booking/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new booking"
+        },
+        {
+          "info": {
+            "name": "Get all bookings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/bookings",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "checkInDate",
+                "value": "",
+                "type": "query",
+                "description": "Check-in date (YYYY-MM-DD)"
+              },
+              {
+                "name": "checkOutDate",
+                "value": "",
+                "type": "query",
+                "description": "Check-out date (YYYY-MM-DD)"
+              },
+              {
+                "name": "bookingStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Booking start date (YYYY-MM-DD)"
+              },
+              {
+                "name": "bookingEndDate",
+                "value": "",
+                "type": "query",
+                "description": "Booking end date (YYYY-MM-DD)"
+              },
+              {
+                "name": "bookingStatus",
+                "value": "",
+                "type": "query",
+                "description": "Booking status"
+              },
+              {
+                "name": "bookingIds",
+                "value": "",
+                "type": "query",
+                "description": "Booking Id"
+              },
+              {
+                "name": "partnerBookingIds",
+                "value": "",
+                "type": "query",
+                "description": "Partner Booking Id"
+              },
+              {
+                "name": "itineraryIds",
+                "value": "",
+                "type": "query",
+                "description": "List of itinerary Id"
+              },
+              {
+                "name": "cancellationIds",
+                "value": "",
+                "type": "query",
+                "description": "Cancellation Id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all bookings"
+        },
+        {
+          "info": {
+            "name": "Get booking by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/bookings/detail",
+            "params": [
+              {
+                "name": "bookingId",
+                "value": "",
+                "type": "query",
+                "description": "Booking Id"
+              },
+              {
+                "name": "partnerBookingId",
+                "value": "",
+                "type": "query",
+                "description": "Partner Booking Id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns booking by Id"
+        },
+        {
+          "info": {
+            "name": "Submit booking cancellation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelokapartnersnetwork.com/v2/bookings/cancellation/submit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submits booking cancellation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

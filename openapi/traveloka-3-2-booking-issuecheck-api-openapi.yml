@@ -1,0 +1,232 @@
+openapi: 3.2.0
+info:
+  title: Traveloka Atlas 3.2 Booking - IssueCheck API
+  version: ''
+  description: "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+security: []
+tags:
+- name: 3.2 Booking - IssueCheck
+paths:
+  /issue-check:
+    post:
+      tags:
+      - 3.2 Booking - IssueCheck
+      summary: Issue check for a booking
+      description: This operation is for Traveloka to check the status of an issued booking.
+      operationId: issueCheck
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IssueCheckRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueCheckResponse'
+              examples:
+                Success response example:
+                  summary: Success response
+                  description: Success response example
+                  value:
+                    requestId: requestId
+                    status: ISSUED
+                    booking:
+                      uniqueId: 220394113-0
+                      issuanceId: issuance-12345
+                      sourceProvider: provider-xyz
+                      status: ISSUED
+                Response 200 with error example:
+                  summary: This example is using BOOKING_NOT_CONFIRMED error
+                  description: Response 200 with error example
+                  value:
+                    requestId: requestId
+                    status: FAILED
+                    error:
+                      errorId: BOOKING_NOT_CONFIRMED
+                      errorMessage: Booking not confirmed
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueCheckErrorResponse'
+              examples:
+                Error 400 example:
+                  summary: This example is using INVALID_REQUEST_FIELD error
+                  description: Error 400 example
+                  value:
+                    requestId: requestId
+                    status: FAILED
+                    error:
+                      errorId: INVALID_REQUEST_FIELD
+                      errorMessage: Invalid request field
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueCheckErrorResponse'
+              examples:
+                Error 429 example:
+                  summary: This example is using TOO_MANY_REQUESTS error
+                  description: Error 429 example
+                  value:
+                    requestId: requestId
+                    status: FAILED
+                    error:
+                      errorId: TOO_MANY_REQUESTS
+                      errorMessage: Too many requests
+        '500':
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssueCheckErrorResponse'
+              examples:
+                Error 500 example:
+                  summary: This example is using UNKNOWN_SERVER_ERROR error
+                  description: Error 500 example
+                  value:
+                    requestId: requestId
+                    status: FAILED
+                    error:
+                      errorId: UNKNOWN_SERVER_ERROR
+                      errorMessage: Unknown server error
+      servers:
+      - url: http://localhost:8080
+        description: Generated server url
+components:
+  schemas:
+    IssueCheckErrorResponse:
+      required:
+      - error
+      - status
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the booking request
+          example: '1234567890'
+        status:
+          type: string
+          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
+          example: FAILED
+          enum:
+          - FAILED
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    IssueCheckBookingResponse:
+      required:
+      - status
+      - uniqueId
+      type: object
+      properties:
+        status:
+          type: string
+          description: "    Should be one of these:\n    PRICE_CHANGED → return PRICE_CHANGED if price changes between Book API and when Issue Check API is called\n    ISSUED → return ISSUED if the request already issued on your side, so we can continue to Booking Summary flow\n    FAILED → return FAILED if there's an error during processing the request\n    INVALID_UNIQUE_ID → return INVALID_UNIQUE_ID status if the unique ID does not yet exist on your side, to facilitate the progression to the next step\n    PENDING → return 'PENDING' if you are unable to confirm that the process will be completed within one minute.\n              If 'PENDING' is returned, we will not create another issueRQ.\n"
+          example: ISSUED
+          enum:
+          - PRICE_CHANGED
+          - ISSUED
+          - FAILED
+          - INVALID_UNIQUE_ID
+          - PENDING
+        sourceProvider:
+          type: string
+          description: Provider name
+          example: provider-xyz
+        issuanceId:
+          type: string
+          description: Id to identify this issuance, generated by provider (itinerary ID). This is Mandatory if the status is ISSUED
+          example: issuance-12345
+        uniqueId:
+          type: string
+          description: Unique Id Traveloka booking ID
+          example: 220394113-0
+    IssueCheckResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the booking request
+          example: '1234567890'
+        status:
+          type: string
+          description: 'Should be one of these:
+
+
+            ISSUED → return ISSUED if the request already issued on your side
+
+
+            FAILED → return FAILED if there''s an error during processing the request
+
+
+            INVALID_UNIQUE_ID → return INVALID_UNIQUE_ID status if the unique ID does not yet exist on your side, to facilitate the progression to the next step
+
+
+            PENDING → return ''PENDING'' if you are unable to confirm that the process will be completed within one minute. If ''PENDING'' is returned, we will not create another issueRQ
+
+            '
+          enum:
+          - ISSUED
+          - FAILED
+          - INVALID_UNIQUE_ID
+          - PENDING
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+        booking:
+          allOf:
+          - $ref: '#/components/schemas/IssueCheckBookingResponse'
+          - description: Booking information
+    IssueCheckRequest:
+      required:
+      - uniqueId
+      type: object
+      properties:
+        uniqueId:
+          type: string
+          description: Unique Id Traveloka booking ID
+          example: 220394113-0
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      description: 'Custom Basic Auth format:
+
+        - Format: username:password
+
+        - Encode with Base64
+
+        - Send in header: Authorization: Basic base64(username:password)
+
+        '
+      scheme: basic
+x-tagGroups:
+- name: Traveloka Atlas API (1.0)
+  tags:
+  - 1.1 Content - Hotel & Room
+  - 2.1 Search - HotelList
+  - 2.2 Search - RoomList
+  - 2.3 Search - BulkRoomList
+  - 3.1 Booking - Book
+  - 3.2 Booking - IssueCheck
+  - 3.3 Booking - Issue
+  - 3.4 Booking - BookingSummary
+  - 3.5 Booking - Cancel

@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "63f20b1c-f937-4885-90af-5770f2ea358b",
+      "name": "2.2 Search - RoomList",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9306bf84-d531-439c-9693-953a3025d42b",
+          "name": "Search for rooms",
+          "request": {
+            "name": "Search for rooms",
+            "description": {
+              "content": "This operation is for Traveloka to search for rooms in a hotel based on the provided criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "http",
+              "port": "8080",
+              "path": [
+                "room-list"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cache\": \"<boolean>\",\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"numAdults\": \"<integer>\",\n  \"numChildren\": \"<integer>\",\n  \"numRooms\": \"<integer>\",\n  \"providerHotelId\": \"<string>\",\n  \"requestId\": \"<string>\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"<string>\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"<string>\",\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66e4af05-2af8-49ba-8243-4d6a2bac88c9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "room-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelId\": \"1234567890\",\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"234dataw45esser\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"results\": [\n    {\n      \"checkInInstruction\": \"Please check in after 13:00\",\n      \"room\": {\n        \"providerHotelRoomId\": \"1234567890\",\n        \"providerHotelId\": 987654321,\n        \"caption\": \"Deluxe Room\",\n        \"description\": \"A spacious room with a king-sized bed and a beautiful view of the city.\",\n        \"size\": {\n          \"size\": 42,\n          \"unit\": \"SQUARE_METER\",\n          \"description\": \"string\",\n          \"sizeIncludingTerrace\": true\n        },\n        \"numRooms\": 4,\n        \"occupancyPolicy\": {\n          \"maxOccupancy\": 2,\n          \"maxChildOccupancy\": 2,\n          \"maxInfantOccupancy\": 1,\n          \"maxExtraBeds\": 1\n        },\n        \"beds\": {\n          \"numBeds\": 2,\n          \"bedType\": \"SINGLE\",\n          \"description\": \"Single Beds\"\n        },\n        \"roomFacility\": {\n          \"facilities\": [\n            \"WiFi\",\n            \"Air Conditioning\",\n            \"Mini Bar\"\n          ]\n        },\n        \"hotelRoomType\": \"SINGLE\",\n        \"view\": \"City view\",\n        \"hasTerrace\": true,\n        \"smokingPreferences\": \"S\",\n        \"embeddedAssets\": [\n          {\n            \"assetId\": \"string\",\n            \"type\": \"THUMBNAIL\",\n            \"isMain\": true,\n            \"url\": \"www.image.com/image?no=1\",\n            \"caption\": \"Room Image\",\n            \"width\": 250,\n            \"height\": 400\n          }\n        ]\n      },\n      \"inventories\": [\n        {\n          \"availabilityToken\": \"ROOM12345\",\n          \"rateType\": \"PAY_NOW\",\n          \"numRemainingRooms\": 5,\n          \"breakfastIncluded\": true,\n          \"mealPlan\": {\n            \"code\": \"RO\",\n            \"pax\": {\n              \"adults\": 2,\n              \"children\": 1\n            }\n          },\n          \"wifiIncluded\": true,\n          \"numExtraBedIncluded\": 0,\n          \"currency\": \"IDR\",\n          \"providerRecommendedSellingRate\": {\n            \"currency\": \"IDR\",\n            \"totalFare\": 1000000,\n            \"taxes\": 100000,\n            \"fees\": 50000\n          },\n          \"providerOriginalRate\": {\n            \"currency\": \"IDR\",\n            \"totalFare\": 1000000,\n            \"taxes\": 100000,\n            \"fees\": 50000\n          },\n          \"additionalFees\": {\n            \"mandatoryFee\": {},\n            \"mandatoryTax\": {},\n            \"resortFee\": {},\n            \"countryTaxFee\": [\n              5\n            ]\n          },\n          \"numChargedRooms\": 2,\n          \"refundable\": true,\n          \"cancellationPolicy\": {\n            \"cancellationPolicyDescription\": \"string\",\n            \"providerCancellationPolicyInfoList\": [\n              {\n                \"cancelDateTime\": \"2028-01-01T00:00:00.000Z\",\n                \"cancellationFee\": 120,\n                \"currency\": \"USD\",\n                \"nightCount\": 0\n              }\n            ]\n          },\n          \"noShowPolicy\": {\n            \"noShowDateTime\": \"1970-01-01T00:00:00.000Z\",\n            \"noShowFee\": 120,\n            \"currency\": \"USD\",\n            \"nightCount\": 1\n          },\n          \"promoIds\": [\n            \"string\"\n          ],\n          \"commissionRate\": 15\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0c9ce91-c1ec-4661-8288-b6495e881eb6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "room-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelId\": \"1234567890\",\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"234dataw45esser\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"INVALID_BOOKING_WINDOW\",\n    \"errorMessage\": \"Invalid booking window\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3376306-31d0-4ead-8e16-f6f203fcff8e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "room-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelId\": \"1234567890\",\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"234dataw45esser\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"AUTHENTICATION_FAILED\",\n    \"errorMessage\": \"Invalid username/password\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dc2994f-70ca-473a-9883-c9f57bc7e09c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "room-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelId\": \"1234567890\",\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"234dataw45esser\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"TOO_MANY_REQUESTS\",\n    \"errorMessage\": \"Too many requests. Please try again.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1563b361-baa5-4ca4-8239-4a8cd9162828",
+              "name": "Something went wrong",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "room-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelId\": \"1234567890\",\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"providerHotelRoomId\": \"<string>\",\n  \"availabilityToken\": \"234dataw45esser\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"UNKNOWN_SERVER_ERROR\",\n    \"errorMessage\": \"Unknown server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cd404cb4-f0c3-4500-ac13-72dc2985afaf",
+    "name": "Traveloka Atlas 2.2 Search - RoomList API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

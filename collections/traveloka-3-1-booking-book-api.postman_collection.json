@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "65a77e11-41d9-46d9-b242-4a92f6ec4c5e",
+      "name": "3.1 Booking - Book",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ae770b5f-4064-412e-b55d-544df6996279",
+          "name": "Book a booking",
+          "request": {
+            "name": "Book a booking",
+            "description": {
+              "content": "This operation is for Traveloka to send booking details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "http",
+              "port": "8080",
+              "path": [
+                "book"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"contact\": {\n    \"email\": \"<string>\",\n    \"personTitle\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"phone\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"numAdults\": \"<integer>\",\n  \"numChildren\": \"<integer>\",\n  \"numRooms\": \"<integer>\",\n  \"providerHotelId\": \"<string>\",\n  \"roomSpecs\": [\n    {\n      \"availabilityToken\": \"<string>\",\n      \"breakfastIncluded\": \"<boolean>\",\n      \"providerHotelRoomId\": \"<string>\",\n      \"refundable\": \"<boolean>\",\n      \"wifiIncluded\": \"<boolean>\",\n      \"promoIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"promoDescription\": \"<string>\",\n      \"guestInfo\": {\n        \"numAdults\": \"<integer>\",\n        \"numChildren\": \"<integer>\",\n        \"childrenAges\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"guests\": [\n        {\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"title\": \"<string>\",\n          \"passportNo\": \"<string>\",\n          \"passportCountryCode\": \"<string>\"\n        },\n        {\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"title\": \"<string>\",\n          \"passportNo\": \"<string>\",\n          \"passportCountryCode\": \"<string>\"\n        }\n      ],\n      \"numAdults\": \"<integer>\",\n      \"numChildren\": \"<integer>\",\n      \"cancellationPolicy\": {\n        \"cancellationPolicyDescription\": \"<string>\",\n        \"providerCancellationPolicyInfoList\": [\n          {\n            \"cancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationFee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nightCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"cancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationFee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nightCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"noShowPolicy\": {\n        \"noShowDateTime\": \"<string>\",\n        \"noShowFee\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"nightCount\": \"<integer>\"\n      },\n      \"mealPlan\": {\n        \"code\": \"<string>\",\n        \"pax\": {\n          \"adults\": \"<integer>\",\n          \"children\": \"<integer>\"\n        }\n      },\n      \"sellingRate\": {\n        \"currency\": \"<string>\",\n        \"totalFare\": \"<double>\",\n        \"taxes\": \"<double>\",\n        \"fees\": \"<double>\"\n      },\n      \"sellingRateInfo\": {\n        \"fees\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"taxes\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"surcharges\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"additionalFees\": {\n        \"mandatoryFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"mandatoryTax\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"resortFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"countryTaxFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"availabilityToken\": \"<string>\",\n      \"breakfastIncluded\": \"<boolean>\",\n      \"providerHotelRoomId\": \"<string>\",\n      \"refundable\": \"<boolean>\",\n      \"wifiIncluded\": \"<boolean>\",\n      \"promoIds\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"promoDescription\": \"<string>\",\n      \"guestInfo\": {\n        \"numAdults\": \"<integer>\",\n        \"numChildren\": \"<integer>\",\n        \"childrenAges\": [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      },\n      \"guests\": [\n        {\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"title\": \"<string>\",\n          \"passportNo\": \"<string>\",\n          \"passportCountryCode\": \"<string>\"\n        },\n        {\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"title\": \"<string>\",\n          \"passportNo\": \"<string>\",\n          \"passportCountryCode\": \"<string>\"\n        }\n      ],\n      \"numAdults\": \"<integer>\",\n      \"numChildren\": \"<integer>\",\n      \"cancellationPolicy\": {\n        \"cancellationPolicyDescription\": \"<string>\",\n        \"providerCancellationPolicyInfoList\": [\n          {\n            \"cancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationFee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nightCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"cancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationFee\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"nightCount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"noShowPolicy\": {\n        \"noShowDateTime\": \"<string>\",\n        \"noShowFee\": \"<double>\",\n        \"currency\": \"<string>\",\n        \"nightCount\": \"<integer>\"\n      },\n      \"mealPlan\": {\n        \"code\": \"<string>\",\n        \"pax\": {\n          \"adults\": \"<integer>\",\n          \"children\": \"<integer>\"\n        }\n      },\n      \"sellingRate\": {\n        \"currency\": \"<string>\",\n        \"totalFare\": \"<double>\",\n        \"taxes\": \"<double>\",\n        \"fees\": \"<double>\"\n      },\n      \"sellingRateInfo\": {\n        \"fees\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"taxes\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"surcharges\": [\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"additionalFees\": {\n        \"mandatoryFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"mandatoryTax\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"resortFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"countryTaxFee\": {\n          \"amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"currency\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"requestId\": \"<string>\",\n  \"uniqueId\": \"<string>\",\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"guests\": [\n    {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"title\": \"<string>\",\n      \"passportNo\": \"<string>\",\n      \"passportCountryCode\": \"<string>\"\n    },\n    {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\",\n      \"title\": \"<string>\",\n      \"passportNo\": \"<string>\",\n      \"passportCountryCode\": \"<string>\"\n    }\n  ],\n  \"specialRequest\": \"<string>\",\n  \"hotelRatePlanType\": \"<string>\",\n  \"totalSearchRate\": {\n    \"currency\": \"<string>\",\n    \"fees\": \"<double>\",\n    \"taxes\": \"<double>\",\n    \"totalFare\": \"<double>\"\n  },\n  \"locale\": \"<string>\",\n  \"rateType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38c2575b-1be7-42d2-badb-0211289ca758",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "book"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"c2a50648-abb7-45b0-af10-9af4e5bbcfee\",\n  \"uniqueId\": \"1223ertdq\",\n  \"numRooms\": 1,\n  \"numAdults\": 1,\n  \"numChildren\": 0,\n  \"checkInDate\": \"2016-03-29\",\n  \"checkOutDate\": \"2016-03-31\",\n  \"providerHotelId\": \"1058\",\n  \"hotelRatePlanType\": \"RETAIL\",\n  \"totalSearchRate\": {\n    \"currency\": \"USD\",\n    \"fees\": 10,\n    \"taxes\": 10,\n    \"totalFare\": 120\n  },\n  \"roomSpecs\": [\n    {\n      \"providerHotelRoomId\": \"123\",\n      \"availabilityToken\": \"ROOM12345\"\n    }\n  ],\n  \"rateType\": \"PAY_NOW\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"1234567890\",\n  \"bookingToken\": \"DHB170816104137188\",\n  \"status\": \"OK\",\n  \"bookSpec\": {\n    \"numRooms\": 2,\n    \"numAdults\": 2,\n    \"numChildren\": 1,\n    \"childrenAges\": [\n      5\n    ],\n    \"checkInDate\": \"2023-10-01\",\n    \"checkOutDate\": \"2023-10-02\",\n    \"contact\": {\n      \"personTitle\": \"MR\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"phone\": [\n        \"+6281234567890\",\n        \"+6289876543210\"\n      ],\n      \"email\": \"person@traveloka.com\"\n    },\n    \"guests\": [\n      {\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"title\": \"MR\",\n        \"passportNo\": \"A12345678\",\n        \"passportCountryCode\": \"ID\"\n      }\n    ],\n    \"specialRequest\": \"Late check-in\",\n    \"hotelRatePlanType\": \"RETAIL\",\n    \"providerHotelId\": \"123123123\",\n    \"totalSearchRate\": {\n      \"currency\": \"IDR\",\n      \"totalFare\": 1000000,\n      \"taxes\": 100000,\n      \"fees\": 50000\n    },\n    \"locale\": \"en_ID\",\n    \"roomSpecs\": [\n      {\n        \"providerHotelRoomId\": \"1234567890\",\n        \"availabilityToken\": \"ROOM12345\",\n        \"refundable\": true,\n        \"cancellationPolicy\": {\n          \"cancellationPolicyDescription\": \"string\",\n          \"providerCancellationPolicyInfoList\": [\n            {\n              \"cancelDateTime\": \"2018-08-27T00:00:00.000+08:00\",\n              \"cancellationFee\": 120,\n              \"currency\": \"USD\",\n              \"nightCount\": 0\n            }\n          ]\n        },\n        \"noShowPolicy\": {\n          \"noShowDateTime\": \"2018-08-27T00:00:00.000+08:00\",\n          \"noShowFee\": 120,\n          \"currency\": \"USD\",\n          \"nightCount\": 1\n        },\n        \"breakfastIncluded\": true,\n        \"mealPlan\": {\n          \"code\": \"RO\",\n          \"pax\": {\n            \"adults\": 2,\n            \"children\": 1\n          }\n        },\n        \"wifiIncluded\": true,\n        \"ccGuaranteeRequirement\": {\n          \"ccRequired\": true,\n          \"cvvRequired\": true,\n          \"addressRequired\": true,\n          \"csTokenRequired\": false,\n          \"supportedCCTypes\": [\n            \"VISA\"\n          ]\n        },\n        \"sellingRate\": {\n          \"currency\": \"IDR\",\n          \"totalFare\": 1000000,\n          \"taxes\": 100000,\n          \"fees\": 50000\n        },\n        \"sellingRateInfo\": {\n          \"fees\": [\n            {\n              \"description\": \"string\",\n              \"amount\": 0.1\n            }\n          ],\n          \"taxes\": [\n            {\n              \"description\": \"string\",\n              \"amount\": 0.1\n            }\n          ],\n          \"surcharges\": [\n            {\n              \"description\": \"string\",\n              \"amount\": 0.1\n            }\n          ]\n        },\n        \"additionalFees\": {\n          \"mandatoryFee\": 5,\n          \"mandatoryTax\": 5,\n          \"resortFee\": 5,\n          \"countryTaxFee\": 5\n        },\n        \"promoIds\": [\n          \"string\"\n        ],\n        \"promoDescription\": \"string\"\n      }\n    ],\n    \"rateType\": \"PAY_NOW\"\n  },\n  \"errors\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0675f36-24ea-4237-81a9-1ca2d4d072d9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "book"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"c2a50648-abb7-45b0-af10-9af4e5bbcfee\",\n  \"uniqueId\": \"1223ertdq\",\n  \"numRooms\": 1,\n  \"numAdults\": 1,\n  \"numChildren\": 0,\n  \"checkInDate\": \"2016-03-29\",\n  \"checkOutDate\": \"2016-03-31\",\n  \"providerHotelId\": \"1058\",\n  \"hotelRatePlanType\": \"RETAIL\",\n  \"totalSearchRate\": {\n    \"currency\": \"USD\",\n    \"fees\": 10,\n    \"taxes\": 10,\n    \"totalFare\": 120\n  },\n  \"roomSpecs\": [\n    {\n      \"providerHotelRoomId\": \"123\",\n      \"availabilityToken\": \"ROOM12345\"\n    }\n  ],\n  \"rateType\": \"PAY_NOW\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"INVALID_REQUEST_FIELD\",\n    \"errorMessage\": \"Invalid request field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96c6d99a-e350-474d-a91d-66f19a1b3bc6",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "book"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"c2a50648-abb7-45b0-af10-9af4e5bbcfee\",\n  \"uniqueId\": \"1223ertdq\",\n  \"numRooms\": 1,\n  \"numAdults\": 1,\n  \"numChildren\": 0,\n  \"checkInDate\": \"2016-03-29\",\n  \"checkOutDate\": \"2016-03-31\",\n  \"providerHotelId\": \"1058\",\n  \"hotelRatePlanType\": \"RETAIL\",\n  \"totalSearchRate\": {\n    \"currency\": \"USD\",\n    \"fees\": 10,\n    \"taxes\": 10,\n    \"totalFare\": 120\n  },\n  \"roomSpecs\": [\n    {\n      \"providerHotelRoomId\": \"123\",\n      \"availabilityToken\": \"ROOM12345\"\n    }\n  ],\n  \"rateType\": \"PAY_NOW\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"TOO_MANY_REQUEST\",\n    \"errorMessage\": \"Too many request\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5d5665c-b236-4dbe-bca6-f31d6fdd8353",
+              "name": "Something went wrong",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "book"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"c2a50648-abb7-45b0-af10-9af4e5bbcfee\",\n  \"uniqueId\": \"1223ertdq\",\n  \"numRooms\": 1,\n  \"numAdults\": 1,\n  \"numChildren\": 0,\n  \"checkInDate\": \"2016-03-29\",\n  \"checkOutDate\": \"2016-03-31\",\n  \"providerHotelId\": \"1058\",\n  \"hotelRatePlanType\": \"RETAIL\",\n  \"totalSearchRate\": {\n    \"currency\": \"USD\",\n    \"fees\": 10,\n    \"taxes\": 10,\n    \"totalFare\": 120\n  },\n  \"roomSpecs\": [\n    {\n      \"providerHotelRoomId\": \"123\",\n      \"availabilityToken\": \"ROOM12345\"\n    }\n  ],\n  \"rateType\": \"PAY_NOW\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"UNKNOWN_SERVER_ERROR\",\n    \"errorMessage\": \"Unknown server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f8d421bb-937e-4f6c-9bd7-9fbf9d56ae63",
+    "name": "Traveloka Atlas 3.1 Booking - Book API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

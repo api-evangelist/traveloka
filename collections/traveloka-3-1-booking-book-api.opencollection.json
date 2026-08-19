@@ -1,0 +1,32 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traveloka Atlas 3.1 Booking - Book API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "3.1 Booking - Book",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Book a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/book",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to send booking details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

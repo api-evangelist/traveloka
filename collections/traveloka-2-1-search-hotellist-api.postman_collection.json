@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "ecff69de-002d-4df8-9eb9-30e4d39fa49d",
+      "name": "2.1 Search - HotelList",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee922f99-a6a1-42ea-b5b7-8ac95c5affd2",
+          "name": "Search for hotels",
+          "request": {
+            "name": "Search for hotels",
+            "description": {
+              "content": "This operation is for Traveloka to search for hotels based on the provided criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "http",
+              "port": "8080",
+              "path": [
+                "hotel-list"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cache\": \"<boolean>\",\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"numAdults\": \"<integer>\",\n  \"numChildren\": \"<integer>\",\n  \"numRooms\": \"<integer>\",\n  \"providerHotelIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"requestId\": \"<string>\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"<string>\",\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"locale\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58601841-9025-496c-a39a-bcc9a8106cfa",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "hotel-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelIds\": [\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\",\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\"\n  ],\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8253138a-bf24-4386-ac76-1407be2efc89",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "hotel-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelIds\": [\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\",\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\"\n  ],\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"INVALID_BOOKING_WINDOW\",\n    \"errorMessage\": \"Invalid booking window\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5ced9c9-d04e-49ae-96c0-c1562b988f24",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "hotel-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelIds\": [\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\",\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\"\n  ],\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"AUTHENTICATION_FAILED\",\n    \"errorMessage\": \"Invalid username/password\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50a7f839-a624-410f-99e8-69f4c8e17e5c",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "hotel-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelIds\": [\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\",\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\"\n  ],\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"TOO_MANY_REQUESTS\",\n    \"errorMessage\": \"Too many requests. Please try again.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c79fff0-b66b-489c-96f6-c50807864a6f",
+              "name": "Something went wrong",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "hotel-list"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cache\": false,\n  \"checkInDate\": \"2023-10-01\",\n  \"checkOutDate\": \"2023-10-02\",\n  \"currency\": \"IDR\",\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"numRooms\": 1,\n  \"providerHotelIds\": [\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\",\n    \"[\\\"1234567890\\\",\\\"0987654321\\\"]\"\n  ],\n  \"requestId\": \"928827d7-b847-495f-9592-f207df896ac4\",\n  \"rateTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hotelRatePlanType\": \"<string>\",\n  \"sourceMarket\": \"ID\",\n  \"childrenAges\": [\n    5\n  ],\n  \"locale\": \"en_ID\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"error\": {\n    \"errorId\": \"UNKNOWN_SERVER_ERROR\",\n    \"errorMessage\": \"Unknown server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "88d866af-a561-48bd-86d5-afd36dcfdc95",
+    "name": "Traveloka Atlas 2.1 Search - HotelList API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

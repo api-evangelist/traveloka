@@ -1,0 +1,546 @@
+openapi: 3.2.0
+info:
+  title: Traveloka Atlas 2.1 Search - HotelList API
+  version: ''
+  description: "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+security: []
+tags:
+- name: 2.1 Search - HotelList
+paths:
+  /hotel-list:
+    post:
+      tags:
+      - 2.1 Search - HotelList
+      summary: Search for hotels
+      description: This operation is for Traveloka to search for hotels based on the provided criteria.
+      operationId: hotelList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HotelListSearchRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelListSearchResponse'
+              examples:
+                Not available:
+                  summary: Search request is not available
+                  description: Not available
+                  value:
+                    requestId: requestId
+                Http Status OK with error:
+                  summary: Object response when http status is 200 but contains error
+                  description: Http Status OK with error
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: RATE_UNAVAILABLE
+                      errorMessage: Rate is unavailable
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelListSearchErrorResponse'
+              examples:
+                Error 400 example:
+                  summary: This example is using INVALID_BOOKING_WINDOW error
+                  description: Error 400 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: INVALID_BOOKING_WINDOW
+                      errorMessage: Invalid booking window
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelListSearchErrorResponse'
+              examples:
+                Error 401 example:
+                  summary: This example is using AUTHENTICATION_FAILED error
+                  description: Error 401 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: AUTHENTICATION_FAILED
+                      errorMessage: Invalid username/password
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelListSearchErrorResponse'
+              examples:
+                Error 429 example:
+                  summary: This example is using TOO_MANY_REQUESTS error
+                  description: Error 429 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: TOO_MANY_REQUESTS
+                      errorMessage: Too many requests. Please try again.
+        '500':
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelListSearchErrorResponse'
+              examples:
+                Error 500 example:
+                  summary: This example is using UNKNOWN_SERVER_ERROR error
+                  description: Error 500 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: UNKNOWN_SERVER_ERROR
+                      errorMessage: Unknown server error
+      servers:
+      - url: http://localhost:8080
+        description: Generated server url
+components:
+  schemas:
+    HotelListSearchErrorResponse:
+      required:
+      - error
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    HotelListSearchResponse:
+      required:
+      - results
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        results:
+          type: array
+          description: List of hotels with rooms and inventory that match the search criteria
+          items:
+            $ref: '#/components/schemas/HotelWithRoomWithInventoryResponse'
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    HotelPromoType:
+      type: object
+      properties:
+        promoType:
+          type: string
+          description: Type of the hotel promo
+          enum:
+          - SALE
+          - EARLY_BIRD
+          - LAST_MINUTE
+          - UNKNOWN
+        promoDescription:
+          type: string
+          description: Description of the hotel promo
+      description: Promotion details (if applicable)
+    ChargeItem:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency of the charge item, e.g., USD, IDR
+          example: USD
+        amount:
+          type: number
+          description: Amount of the charge item
+          format: double
+          example: 100
+    HotelRoomOccupancyPolicy:
+      required:
+      - maxOccupancy
+      type: object
+      properties:
+        maxOccupancy:
+          type: integer
+          description: Return exactly the number of adults that were used in the search specification
+          format: int32
+          example: 2
+        maxChildOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 2
+        maxInfantOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 1
+        maxExtraBeds:
+          type: integer
+          description: Maximum number of extra beds in the room based on user specification
+          format: int32
+          example: 1
+      description: Room occupancy policy
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+    HotelListHotelRoom:
+      required:
+      - beds
+      - occupancyPolicy
+      - providerHotelRoomId
+      - rateType
+      type: object
+      properties:
+        providerHotelRoomId:
+          type: string
+          description: Provider hotel room ID
+          example: '1234567890'
+        rateType:
+          type: string
+          description: Hotel Rate Type
+          enum:
+          - PAY_NOW
+          - PAY_AT_PROPERTY
+        description:
+          type: string
+          description: Room description in English
+          example: A spacious room with a king-sized bed and a beautiful view of the city.
+        caption:
+          type: string
+          description: Room caption in English
+          example: Deluxe Room
+        occupancyPolicy:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomOccupancyPolicy'
+          - description: Room occupancy policy
+        size:
+          $ref: '#/components/schemas/HotelRoomSize'
+        beds:
+          $ref: '#/components/schemas/HotelBeds'
+    HotelListSearchRequest:
+      required:
+      - cache
+      - checkInDate
+      - checkOutDate
+      - currency
+      - numAdults
+      - numChildren
+      - numRooms
+      - providerHotelIds
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        providerHotelIds:
+          type: array
+          description: List of provider hotel IDs to be searched. We will search at maximum 1000 hotels per search.
+          example:
+          - '1234567890'
+          - 0987654321
+          items:
+            type: string
+            description: List of provider hotel IDs to be searched. We will search at maximum 1000 hotels per search.
+            example: '["1234567890","0987654321"]'
+        rateTypes:
+          type: array
+          description: Hotel Rate Type.
+          items:
+            type: string
+            description: Hotel Rate Type.
+            enum:
+            - PAY_NOW
+            - PAY_AT_PROPERTY
+        hotelRatePlanType:
+          type: string
+          description: Hotel Rate Plan Type.
+          enum:
+          - RETAIL
+          - MOBILE
+          - PRIVATESALE
+          - LAST_MINUTE
+          - BUDGET_ROOMS
+          - PACKAGE
+          - CAMPAIGN
+          - CROSS_SELL
+          - CORPORATE
+          - STATIC
+          - GROWTH_MARKET
+        sourceMarket:
+          type: string
+          description: Country ID to indicate the source (customer) search market. For example, providers have option to set special price for certain nationality when booking property located overseas.
+          example: ID
+        numRooms:
+          type: integer
+          description: Number of rooms to be booked in this search request
+          format: int32
+          example: 1
+        numAdults:
+          type: integer
+          description: Number of adults (total adults per booking, not total adult per room)
+          format: int32
+          example: 2
+        numChildren:
+          type: integer
+          description: Number of children (total children per booking, not total children per room)
+          format: int32
+          example: 1
+        childrenAges:
+          type: array
+          description: Mandatory if numChildren > 0
+          example:
+          - 5
+          items:
+            type: integer
+            description: Mandatory if numChildren > 0
+            format: int32
+        checkInDate:
+          type: string
+          description: Check-in date in yyyy-MM-dd format
+          example: '2023-10-01'
+        checkOutDate:
+          type: string
+          description: Check-out date in yyyy-MM-dd format
+          example: '2023-10-02'
+        currency:
+          type: string
+          description: Currency code for the search request, e.g. IDR, USD
+          example: IDR
+        locale:
+          type: string
+          description: Locale for the search request, e.g. en_US, id_ID
+          example: en_ID
+        cache:
+          type: boolean
+          description: 'Indicates whether to return the cached search result or not.
+
+
+            If true → return cached rates.
+
+
+            If false → return latest rates.
+
+            '
+          example: false
+    HotelBeds:
+      required:
+      - bedType
+      - numBeds
+      type: object
+      properties:
+        numBeds:
+          type: integer
+          description: Number of beds in the room
+          format: int32
+          example: 2
+        bedType:
+          type: string
+          description: Type of the bed
+          enum:
+          - SINGLE
+          - DOUBLE
+          - TWIN
+          - QUEEN
+          - KING
+          - ONE_SINGLE_BED
+          - ONE_DOUBLE_BED
+          - ONE_QUEEN_BED
+          - ONE_KING_BED
+          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
+          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
+          - TWO_SINGLE_BED
+          - TWO_DOUBLE_BED
+          - TWO_QUEEN_BED
+          - TWO_KING_BED
+          - TWO_DOUBLE_AND_TWO_SINGLE_BED
+          - THREE_SINGLE_BED
+          - THREE_DOUBLE_BED
+          - DOUBLE_SINGLE_AND_SOFA_BED
+          - CAPSULE_BED
+          - BUNK_BED
+          - UNKNOWN
+        description:
+          type: string
+          description: Beds description
+          example: Single Beds
+    HotelRoomSize:
+      required:
+      - size
+      - unit
+      type: object
+      properties:
+        size:
+          type: number
+          description: Size of the room
+          format: double
+          example: 42
+        isSizeIncludingTerrace:
+          type: boolean
+        unit:
+          type: string
+          description: Unit of measurement for the room size
+          enum:
+          - SQUARE_METER
+          - SQUARE_FOOT
+          - UNKNOWN
+        description:
+          type: string
+      description: Room size
+    HotelWithRoomWithInventoryResponse:
+      required:
+      - hotelInventory
+      - providerHotelId
+      - rooms
+      type: object
+      properties:
+        providerHotelId:
+          type: string
+          description: Provider hotel ID
+          example: '1234567890'
+        hotelInventory:
+          allOf:
+          - $ref: '#/components/schemas/HotelInventory'
+          - description: Data for the cheapest room of the hotel
+        rooms:
+          type: array
+          description: List of rooms in the hotel
+          items:
+            $ref: '#/components/schemas/HotelListHotelRoom'
+    AdditionalFees:
+      type: object
+      properties:
+        mandatoryFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory fees are collected by the property at check-in or check-out.
+        mandatoryTax:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory taxes are collected by the property at check-in or check-out.
+        resortFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Resort fees are charged for amenities and extras and collected by the property at check-in or check-out.
+        countryTaxFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Country tax fee is collected by the property at check-in or check-out.
+    HotelRoomRate:
+      required:
+      - currency
+      - fees
+      - taxes
+      - totalFare
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code, e.g. IDR, USD
+          example: IDR
+        totalFare:
+          type: number
+          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
+          format: double
+          example: 1000000
+        taxes:
+          type: number
+          description: Total taxes amount
+          format: double
+          example: 100000
+        fees:
+          type: number
+          description: Total fees amount
+          format: double
+          example: 50000
+    HotelInventory:
+      required:
+      - currency
+      - hotelRoomName
+      - maxExtraBeds
+      - numChargedRooms
+      - numRemainingRooms
+      - providerOriginalRate
+      - providerRecommendedSellingRate
+      type: object
+      properties:
+        numRemainingRooms:
+          type: integer
+          description: Number of Remaining Bookable Room
+          format: int32
+          example: 4
+        maxExtraBeds:
+          type: integer
+          description: Maximum number of extra beds for the room
+          format: int32
+          example: 2
+        currency:
+          type: string
+          description: Currency info
+          example: IDR
+        providerRecommendedSellingRate:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomRate'
+          - description: Recommended price for this room type in currency provided by the request
+        providerOriginalRate:
+          $ref: '#/components/schemas/HotelRoomRate'
+        additionalFees:
+          $ref: '#/components/schemas/AdditionalFees'
+        hotelRoomName:
+          type: string
+          description: Hotel room name of the cheapest room
+          example: Deluxe Room
+        numChargedRooms:
+          type: integer
+          description: Number of room being charged. If two rooms are requested in the request spec, this should return 2 and the price will be for two rooms.
+          format: int32
+          example: 2
+        hotelPromoType:
+          $ref: '#/components/schemas/HotelPromoType'
+  securitySchemes:
+    basicAuth:
+      type: http
+      description: 'Custom Basic Auth format:
+
+        - Format: username:password
+
+        - Encode with Base64
+
+        - Send in header: Authorization: Basic base64(username:password)
+
+        '
+      scheme: basic
+x-tagGroups:
+- name: Traveloka Atlas API (1.0)
+  tags:
+  - 1.1 Content - Hotel & Room
+  - 2.1 Search - HotelList
+  - 2.2 Search - RoomList
+  - 2.3 Search - BulkRoomList
+  - 3.1 Booking - Book
+  - 3.2 Booking - IssueCheck
+  - 3.3 Booking - Issue
+  - 3.4 Booking - BookingSummary
+  - 3.5 Booking - Cancel

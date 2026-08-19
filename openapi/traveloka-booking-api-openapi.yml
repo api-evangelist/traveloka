@@ -1,0 +1,1524 @@
+openapi: 3.2.0
+info:
+  title: LOKA Booking API
+  version: 2.4.8
+  description: ''
+servers:
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Production server
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Staging server
+security:
+- OAuthStaging:
+  - auth
+tags:
+- name: Booking
+paths:
+  /bookings/booking/create:
+    post:
+      summary: Create a new booking
+      description: Creates a new booking
+      tags:
+      - Booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BookingResponse'
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: A code that identifies this type of error.
+                        enum:
+                        - AFI700
+                        - AFI701
+                        - AFI705
+                        - AFI706
+                        - AFI707
+                        - AFI708
+                        - AFI709
+                        - AFI710
+                        - AFI711
+                        - AFI712
+                        - AFI713
+                        - AFI715
+                        - AFI734
+                        - AFI735
+                        - AFI736
+                        - AFI737
+                        - AFI738
+                        - AFI739
+                        - AFI740
+                        - AFI741
+                        - AFI742
+                        example: ''
+                      message:
+                        type: string
+                        description: Error message
+                        example: ''
+                      requestId:
+                        type: string
+                        description: You may use this value to refer this request when you ask us helping you fix the error.
+                        example: ''
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422BookingsCreateResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: https://${stageVariables.afibaBasePath}/v2/bookings/booking/create
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.afibaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+  /bookings:
+    get:
+      summary: Get all bookings
+      description: Returns all bookings
+      tags:
+      - Booking
+      parameters:
+      - name: offset
+        in: query
+        description: Offset
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: Limit
+        schema:
+          type: integer
+      - name: checkInDate
+        in: query
+        description: Check-in date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: checkOutDate
+        in: query
+        description: Check-out date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: bookingStartDate
+        in: query
+        description: Booking start date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: bookingEndDate
+        in: query
+        description: Booking end date (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: bookingStatus
+        in: query
+        description: Booking status
+        schema:
+          type: string
+          enum:
+          - ISSUED
+          - BOOKED
+          - CANCELLED
+      - name: bookingIds
+        in: query
+        description: Booking Id
+        schema:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+      - name: partnerBookingIds
+        in: query
+        description: Partner Booking Id
+        schema:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+      - name: itineraryIds
+        in: query
+        description: List of itinerary Id
+        schema:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+      - name: cancellationIds
+        in: query
+        description: Cancellation Id
+        schema:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/BookingsResponse'
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: A code that identifies this type of error.
+                        enum:
+                        - AFI700
+                        - AFI701
+                        - AFI702
+                        - AFI703
+                        - AFI704
+                        - AFI714
+                        example: ''
+                      message:
+                        type: string
+                        description: Error message
+                        example: ''
+                      requestId:
+                        type: string
+                        description: You may use this value to refer this request when you ask us helping you fix the error.
+                        example: ''
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422BookingsResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: https://${stageVariables.afibaBasePath}/v2/bookings/
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.afibaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+  /bookings/detail:
+    get:
+      summary: Get booking by Id
+      description: Returns booking by Id
+      tags:
+      - Booking
+      parameters:
+      - name: bookingId
+        in: query
+        description: Booking Id
+        schema:
+          type: string
+      - name: partnerBookingId
+        in: query
+        description: Partner Booking Id
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BookingResponseDetail'
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: A code that identifies this type of error.
+                        enum:
+                        - AFI700
+                        - AFI701
+                        - AFI702
+                        - AFI731
+                        example: ''
+                      message:
+                        type: string
+                        description: Error message
+                        example: ''
+                      requestId:
+                        type: string
+                        description: You may use this value to refer this request when you ask us helping you fix the error.
+                        example: ''
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422BookingsDetailResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: https://${stageVariables.afibaBasePath}/v2/bookings/detail
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.afibaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+  /bookings/cancellation/submit:
+    post:
+      summary: Submit booking cancellation
+      description: Submits booking cancellation
+      tags:
+      - Booking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingCancellationRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/BookingCancellationResponse'
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: A code that identifies this type of error.
+                        enum:
+                        - AFI700
+                        - AFI701
+                        - AFI702
+                        - AFI731
+                        - AFI732
+                        - AFI733
+                        example: ''
+                      message:
+                        type: string
+                        description: Error message
+                        example: ''
+                      requestId:
+                        type: string
+                        description: You may use this value to refer this request when you ask us helping you fix the error.
+                        example: ''
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422BookingsCancelResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: https://${stageVariables.afibaBasePath}/v2/bookings/cancellation/submit
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.afibaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+components:
+  schemas:
+    Error401:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 401: Unauthorized."
+              enum:
+              - '401'
+            message:
+              type: string
+              description: Error message
+              example: Unauthorized, the token might be expired.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    BookingResponseDetail:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          example: '100160766'
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        bookingStatus:
+          type: string
+          enum:
+          - ISSUED
+          - BOOKED
+          - CANCELLED
+          - FAILED
+          - PENDING
+        partnerBookingId:
+          type: string
+          description: Partner booking Id
+          example: '1234567890'
+        itineraryId:
+          type: string
+          description: Itenary Id
+          example: '200000102216'
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              roomName:
+                type: string
+                description: Room name
+                example: Deluxe Room
+              roomType:
+                type: string
+                description: Room type
+                example: Deluxe
+              checkInPolicy:
+                type: object
+                properties:
+                  checkInDate:
+                    type: string
+                    description: Check-in date (YYYY-MM-DD)
+                    example: '2024-01-01'
+                  checkOutDate:
+                    type: string
+                    description: Check-out date (YYYY-MM-DD)
+                    example: '2024-01-02'
+              guestInfo:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuestInfo'
+              roomSize:
+                type: string
+                description: 'language. with default value ''en'', example: ''en'', ''id'''
+              roomId:
+                type: string
+                example: '11477200'
+              numRooms:
+                type: integer
+                description: Number of rooms
+                example: 1
+              numAdults:
+                type: integer
+                description: Number of adults
+                example: 1
+              numChildren:
+                type: integer
+                description: Number of children
+                example: 1
+              maxChildAge:
+                type: integer
+                description: Max child age
+                deprecated: true
+                example: 12
+              roomOccupancyPolicy:
+                type: object
+                properties:
+                  maxOccupancy:
+                    type: integer
+                    description: Maximum number of adults allowed in a room
+                    example: 4
+                  maxChildOccupancy:
+                    type: integer
+                    description: Maximum number of children allowed in a room
+                    example: 2
+                  maxChildAge:
+                    type: integer
+                    description: Maximum child age
+                    example: 12
+              mealType:
+                type: string
+                description: Meal type
+                enum:
+                - BREAKFAST_EXCLUDED
+                - BREAKFAST_INCLUDED
+              roomMealPlans:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MealPlan'
+              totalSettlementRates:
+                type: object
+                properties:
+                  partnerCurrency:
+                    type: string
+                    example: IDR
+                  partnerAmount:
+                    type: number
+                    example: 1000000
+              totalRates:
+                type: object
+                properties:
+                  partnerCurrency:
+                    type: string
+                    example: IDR
+                  partnerSellAmount:
+                    type: number
+                    example: 1000000
+                  partnerNetAmount:
+                    type: number
+                    example: 900000
+              extraCharges:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExtraCharge'
+              isRefundable:
+                type: boolean
+                description: Is booking can be refunded
+                example: true
+              cancellationPolicy:
+                $ref: '#/components/schemas/CancellationPolicy'
+        cancellation:
+          $ref: '#/components/schemas/BookingCancellationResponse'
+    MealPlan:
+      type: object
+      properties:
+        mealInclusionOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealInclusionOption'
+        mealPackageDetails:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/MealPackageDetail'
+    MealInclusionOption:
+      type: object
+      properties:
+        mealInclusionDetails:
+          type: object
+          description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealInclusionDetail'
+    ErrorCode422BookingsDetailResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI710: Booking not found."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI702
+              - AFI710
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ExtraCharge:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+        currency:
+          type: string
+          description: currency
+        value:
+          type: string
+          format: double
+          description: Amount of the extra charge in the specified currency
+        isIncluded:
+          type: boolean
+          description: Indicates if the extra charge is included in the total rate
+      example:
+        name: COUNTRY_TAX_ADJUSTMENT
+        currency: USD
+        value: '12.1'
+        isIncluded: false
+    BookingRequest:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        partnerBookingId:
+          type: string
+          example: '1234567890'
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              roomId:
+                type: string
+                example: '1000066445'
+              rateKey:
+                type: string
+                description: Rate key
+                example: eyJpbnZlbnRvcnlSYXRlS...
+              numRooms:
+                type: integer
+                description: Number of rooms
+                example: 1
+              numAdults:
+                type: integer
+                minimum: 1
+                example: '1'
+              numChildren:
+                type: integer
+                minimum: 0
+                example: '0'
+              childrenAges:
+                type: array
+                description: A comma-separated list of ages of children
+                items:
+                  type: integer
+                  minimum: 1
+                  maximum: 15
+              guestInfo:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                      enum:
+                      - MR
+                      - MISS
+                      - MRS
+                      example: MR
+                    firstName:
+                      type: string
+                      example: John
+                    lastName:
+                      type: string
+                      example: Doe
+                    IdType:
+                      type: string
+                      example: KTP
+                    IdNumber:
+                      type: string
+                      example: '1234567890'
+                    email:
+                      type: string
+                      example: user@example.com
+                    gender:
+                      type: string
+            required:
+            - roomId
+            - rateKey
+            - numAdults
+            - guestInfo
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        totalRates:
+          type: object
+          properties:
+            partnerSellAmount:
+              type: string
+              example: '1000000'
+            partnerNetAmount:
+              type: string
+              example: '900000'
+        customerInfo:
+          type: object
+          properties:
+            title:
+              type: string
+              enum:
+              - MR
+              - MISS
+              - MRS
+              example: MR
+            firstName:
+              type: string
+              example: John
+            lastName:
+              type: string
+              example: Doe
+            email:
+              type: string
+              example: user@example.com
+            phone:
+              type: string
+              example: 081234567890
+        language:
+          type: string
+          description: 'language. with default value ''en'', example: ''en'', ''id'''
+          example: id
+        userNationality:
+          type: string
+          example: ID
+        userPayment:
+          $ref: '#/components/schemas/userPayment'
+        specialRequest:
+          type: string
+          example: Special request
+      required:
+      - propertyId
+      - partnerBookingId
+      - rooms
+      - checkInDate
+      - checkOutDate
+      - totalRates
+      - expectedTotalChargeableRate
+      - chargeableRateInfo
+      - customerInfo
+      - userNationality
+      - userPayment
+    MealTimeRange:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MealTime'
+        to:
+          $ref: '#/components/schemas/MealTime'
+    BookingCancellationResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          description: Booking Id
+          example: '100160766'
+        cancellationId:
+          type: string
+          description: Cancellation Id
+          example: '1234567890'
+        cancellationSubmissionTime:
+          type: string
+          format: date-time
+          example: 2023-07-26T10:00:00+0700
+        cancellationStatus:
+          $ref: '#/components/schemas/CancellationStatus'
+          type: object
+          enum:
+          - SUBMITTED
+          - COMPLETED
+          - FAILED
+    Error408:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 408: Timeout."
+              enum:
+              - '408'
+            message:
+              type: string
+              description: Error message
+              example: Timeout. Your request exceeds the timeout limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error429:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              enum:
+              - '429'
+            message:
+              type: string
+              description: Error message
+              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    GuestInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          example: MR
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+    ErrorCode422BookingsCancelResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: Invalid itineraryId. \n - AFI710: Booking not found. \n - AFI711: Booking already cancelled. \n - AFI712: Bokking not refundable."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI702
+              - AFI703
+              - AFI710
+              - AFI711
+              - AFI712
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    CancellationPolicy:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Cancellation policy text
+          example: Cancellation Policy
+        displayText:
+          type: string
+          description: Display cancellation policy display text
+          example: Cancellation Policy
+        propertyTimezone:
+          type: string
+          description: Timezone of the property
+          example: GMT+07:00
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              startCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-26T10:00:00+07:00'
+                description: Start of cancellation period
+              endCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-30T10:00:00+07:00'
+                description: End of cancellation period
+              cancellationCharge:
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    description: Currency code for cancellation fee
+                    example: IDR
+                  amount:
+                    type: string
+                    description: Amount of cancellation fee
+                    example: '100000'
+    BookingResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          example: '100160766'
+        bookingStatus:
+          type: string
+          enum:
+          - ISSUED
+          - BOOKED
+          - CANCELLED
+          - FAILED
+          - PENDING
+        partnerBookingId:
+          type: string
+          example: '1234567890'
+        itineraryId:
+          type: string
+          description: Itenary Id
+          example: '200000102216'
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        importantNotice:
+          type: string
+          description: Important Notice
+          example: There will be gala dinner on 31st Dec, and will be charged separately.
+        hotelPolicy:
+          type: string
+          description: Hotel Policy
+          example: Check-in time is after 14:00, and check-out time is before 12:00.
+        checkInInstruction:
+          type: string
+          description: Check In Instruction
+          example: Married couple must show marriage certificate upon check-in.
+        extraCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtraCharge'
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              roomId:
+                type: string
+                example: '1000066445'
+              roomName:
+                type: string
+                description: Room name
+                example: Deluxe Room
+              propertySummary:
+                $ref: '#/components/schemas/PropertySummary'
+              guestInfo:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuestInfo'
+    MealPackageDetail:
+      type: object
+      properties:
+        defaultLanguage:
+          type: string
+        name:
+          type: object
+          additionalProperties:
+            type: string
+        servingPlace:
+          type: object
+          additionalProperties:
+            type: string
+        servingType:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        cuisineSelection:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        dietaryRestriction:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        servingTime:
+          type: object
+          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealTimeRange'
+        notes:
+          type: object
+          additionalProperties:
+            type: string
+    Error500:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 500: Server Error."
+              enum:
+              - '500'
+            message:
+              type: string
+              description: Error message
+              example: Server Error. Please contact our support team.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    BookingCancellationRequest:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          example: '100160766'
+        partnerBookingId:
+          type: string
+          example: '1234567890'
+        cancellationReason:
+          type: string
+          example: Don't like the room
+    ErrorCode422BookingsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: InvalidItineraryId. \n - AFI704: Invalid cancellationId. \n - AFI705: Invalid status filter."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI702
+              - AFI703
+              - AFI704
+              - AFI705
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error404:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 404: Not Found."
+              enum:
+              - '404'
+            message:
+              type: string
+              description: Error message
+              example: Not Found. The requested resource is not found.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    PropertySummary:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the property
+          example: Staycation Hotel (For Affiliate B2B Partner Only)
+        formerName:
+          type: string
+          description: Former name of the property
+          example: Staycation Hotel
+        address:
+          type: object
+          properties:
+            lines:
+              type: array
+              items:
+                type: string
+              description: Address lines
+              example:
+              - Jl Dr. Ir Soekarno 1
+            city:
+              type: string
+              description: City
+              example: Bali
+            countryName:
+              type: string
+              description: Country name
+              example: Indonesia
+            postalCode:
+              type: string
+              description: Postal code
+              example: '1234'
+        phoneNumber:
+          type: string
+          description: Phone number
+          example: 0123456789
+        localAddress:
+          type: object
+          properties:
+            lines:
+              type: array
+              items:
+                type: string
+              description: Local address lines
+              example:
+              - Jl Dr. Ir Soekarno 1
+            city:
+              type: string
+              description: Local city
+              example: Bali
+            countryName:
+              type: string
+              description: Local country name
+              example: Indonesia
+            postalCode:
+              type: string
+              description: Local postal code
+              example: '1234'
+        starRating:
+          type: string
+          description: Star rating of the property
+          example: '4.0'
+        reviewScore:
+          type: string
+          description: Review score of the property
+          example: '9.1'
+        accommodationType:
+          type: string
+          description: Type of accommodation
+          example: RESORT
+        geoLocation:
+          type: object
+          properties:
+            lat:
+              type: string
+              description: Latitude
+              example: '-8.5525323'
+            lon:
+              type: string
+              description: Longitude
+              example: '115.13335119999999'
+        countryISO:
+          type: string
+          description: ISO country code
+          example: ID
+    CancellationStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUBMITTED
+          - COMPLETED
+          - FAILED
+    Error400:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
+              enum:
+              - AFI100
+            message:
+              type: string
+              description: Error message
+              example: parameter missing, please check your request body.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    userPayment:
+      type: object
+      required:
+      - userPayment
+      properties:
+        userPayment:
+          type: string
+          enum:
+          - CREDIT_CARD
+          - NON_CREDIT_CARD
+          - DUMMY_TESTING
+        creditCardDetail:
+          type: object
+          properties:
+            creditCardOwner:
+              type: string
+            creditCardNumber:
+              type: string
+              example: '1234567890'
+    MealTime:
+      type: object
+      properties:
+        hour:
+          type: integer
+          format: int32
+        minute:
+          type: integer
+          format: int32
+    MealInclusionDetail:
+      type: object
+      properties:
+        mealPackages:
+          type: array
+          items:
+            type: string
+        adultPax:
+          type: integer
+          format: int32
+        childrenPax:
+          type: integer
+          format: int32
+    MealSelectOption:
+      type: object
+      properties:
+        name:
+          type: string
+        renderedName:
+          type: string
+        contentResourceKey:
+          type: string
+    ErrorCode422BookingsCreateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI706: Invalid checkInDate. \n - AFI707: Invalid checkOutDate. \n - AFI708: Invalid propertyId. \n - AFI709: Invalid email. \n - AFI713: Booking already exist."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI706
+              - AFI707
+              - AFI708
+              - AFI709
+              - AFI713
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    BookingsResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          example: '100160766'
+        bookingStatus:
+          type: string
+          enum:
+          - ISSUED
+          - BOOKED
+          - CANCELLED
+          - FAILED
+          - PENDING
+        partnerBookingId:
+          type: string
+          example: '1234567890'
+        itineraryId:
+          type: string
+          description: Itenary Id
+          example: '200000102216'
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        importantNotice:
+          type: string
+          description: Important Notice
+          example: There will be gala dinner on 31st Dec, and will be charged separately.
+        hotelPolicy:
+          type: string
+          description: Hotel Policy
+          example: Check-in time is after 14:00, and check-out time is before 12:00.
+        checkInInstruction:
+          type: string
+          description: Check In Instruction
+          example: Married couple must show marriage certificate upon check-in.
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              roomId:
+                type: string
+                example: '1000066445'
+              roomName:
+                type: string
+                description: Room name
+                example: Deluxe Room
+              guestInfo:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuestInfo'
+        extraCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtraCharge'
+        cancellationId:
+          type: string
+          description: Cancellation ID
+          example: '1234567890'
+        cancellationSubmissionTime:
+          type: string
+          format: date-time
+          example: 2023-07-26T10:00:00+0700
+        cancellationStatus:
+          $ref: '#/components/schemas/CancellationStatus'
+  securitySchemes:
+    api_gateway_lambda_authorizer:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: custom
+      x-amazon-apigateway-authorizer:
+        type: token
+        authorizerUri: arn:aws:apigateway:ap-southeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-1:284600670248:function:afiauth-lambda-authorizer-ac1bec7f8693b057/invocations
+        authorizerResultTtlInSeconds: 1800
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: awsSigv4
+x-tagGroups:
+- name: General
+  tags:
+  - Authorization
+- name: Accommodation
+  tags:
+  - Content
+  - Rate
+  - Booking
+  - Discovery (Optional)

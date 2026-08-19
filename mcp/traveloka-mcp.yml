@@ -3,96 +3,93 @@ method: derived
 source: openapi/traveloka-loka-partner-api-openapi.yml
 status: candidate
 published: false
-summary: >-
-  Traveloka publishes NO MCP server. This file is a CANDIDATE tool surface derived from the operations
-  in the published LOKA v2 OpenAPI - what an MCP server for this API would expose if Traveloka built
-  one. It is a design artifact, not a discovery record.
-  NO MCPServer pointer is wired into apis.yml, because there is no server to point at. Do not read this
-  file as evidence that Traveloka has an agent surface.
-
+summary: Traveloka publishes NO MCP server. This file is a CANDIDATE tool surface derived from the operations
+  in the published LOKA v2 OpenAPI - what an MCP server for this API would expose if Traveloka built one.
+  It is a design artifact, not a discovery record. NO MCPServer pointer is wired into apis.yml, because
+  there is no server to point at. Do not read this file as evidence that Traveloka has an agent surface.
 search:
   performed: '2026-08-05'
   found: false
   probed:
-    - {url: 'https://api.travelokapartnersnetwork.com/.well-known/oauth-protected-resource', status: 404}
-    - {url: 'https://api.travelokapartnersnetwork.com/.well-known/oauth-authorization-server', status: 404}
-    - {url: 'https://developer.travelokapartnersnetwork.com/llms.txt', status: 404}
-    - {url: 'https://atlas.traveloka.com/llms.txt', status: 404}
-    - {url: 'https://www.traveloka.com/.well-known/agent-card.json', status: 404}
-  note: >-
-    No hosted or remote MCP endpoint is advertised on any Traveloka developer surface, in any registry,
+  - url: https://api.travelokapartnersnetwork.com/.well-known/oauth-protected-resource
+    status: 404
+  - url: https://api.travelokapartnersnetwork.com/.well-known/oauth-authorization-server
+    status: 404
+  - url: https://developer.travelokapartnersnetwork.com/llms.txt
+    status: 404
+  - url: https://atlas.traveloka.com/llms.txt
+    status: 404
+  - url: https://www.traveloka.com/.well-known/agent-card.json
+    status: 404
+  note: No hosted or remote MCP endpoint is advertised on any Traveloka developer surface, in any registry,
     or in the consumer llms.txt (which is about citation and linking, not tool use).
-
 candidate_tools:
-  - name: traveloka_get_hotel_content
-    rest: GET /properties/content/hotel
-    category: content
-    read_only: true
-    input_schema_source: parameters of the backing operation (hotelIds, countryISO, language, lastUpdatedTime)
-  - name: traveloka_get_room_content
-    rest: GET /properties/content/room
-    category: content
-    read_only: true
-  - name: traveloka_search_rates
-    rest: GET /properties/:getRates
-    category: search
-    read_only: true
-    input_schema_source: >-
-      propertyIds, checkInDate, checkOutDate, numRooms, numAdults, numChildren, childrenAges,
-      displayCurrency, language, userNationality, isExtended
-  - name: traveloka_check_rate
-    rest: POST /properties/checkRate
-    category: search
-    read_only: true
-    note: Must be called immediately before booking creation.
-  - name: traveloka_create_booking
-    rest: POST /bookings/booking/create
-    category: booking
-    read_only: false
-    consequence: irreversible-with-cost
-    escalation: >-
-      Creates a real, chargeable reservation. Any MCP exposure of this operation needs explicit human
-      confirmation and a client-supplied partnerBookingId held outside the model's context.
-  - name: traveloka_list_bookings
-    rest: GET /bookings
-    category: booking
-    read_only: true
-  - name: traveloka_get_booking_detail
-    rest: GET /bookings/detail
-    category: booking
-    read_only: true
-  - name: traveloka_submit_cancellation
-    rest: POST /bookings/cancellation/submit
-    category: booking
-    read_only: false
-    consequence: irreversible
-  - name: traveloka_get_geo
-    rest: GET /discovery/getGeo
-    category: discovery
-    read_only: true
-    optional: true
-  - name: traveloka_discovery_rates
-    rest: POST /discovery/getRates
-    category: discovery
-    read_only: true
-    optional: true
-
+- name: traveloka_get_hotel_content
+  rest: GET /properties/content/hotel
+  category: content
+  read_only: true
+  input_schema_source: parameters of the backing operation (hotelIds, countryISO, language, lastUpdatedTime)
+- name: traveloka_get_room_content
+  rest: GET /properties/content/room
+  category: content
+  read_only: true
+- name: traveloka_search_rates
+  rest: GET /properties/:getRates
+  category: search
+  read_only: true
+  input_schema_source: propertyIds, checkInDate, checkOutDate, numRooms, numAdults, numChildren, childrenAges,
+    displayCurrency, language, userNationality, isExtended
+- name: traveloka_check_rate
+  rest: POST /properties/checkRate
+  category: search
+  read_only: true
+  note: Must be called immediately before booking creation.
+- name: traveloka_create_booking
+  rest: POST /bookings/booking/create
+  category: booking
+  read_only: false
+  consequence: irreversible-with-cost
+  escalation: Creates a real, chargeable reservation. Any MCP exposure of this operation needs explicit
+    human confirmation and a client-supplied partnerBookingId held outside the model's context.
+- name: traveloka_list_bookings
+  rest: GET /bookings
+  category: booking
+  read_only: true
+- name: traveloka_get_booking_detail
+  rest: GET /bookings/detail
+  category: booking
+  read_only: true
+- name: traveloka_submit_cancellation
+  rest: POST /bookings/cancellation/submit
+  category: booking
+  read_only: false
+  consequence: irreversible
+- name: traveloka_get_geo
+  rest: GET /discovery/getGeo
+  category: discovery
+  read_only: true
+  optional: true
+- name: traveloka_discovery_rates
+  rest: POST /discovery/getRates
+  category: discovery
+  read_only: true
+  optional: true
 excluded:
-  - rest: POST /oauth/accesstoken
-    reason: >-
-      Credential minting. A tool must never expose client_secret exchange to a model; the server holds
-      the credential and refreshes it out of band.
-
+- rest: POST /oauth/accesstoken
+  reason: Credential minting. A tool must never expose client_secret exchange to a model; the server holds
+    the credential and refreshes it out of band.
 blockers:
-  - >-
-    Access is approval-gated. There is no self-serve credential, so a public MCP server could not be
-    used by anyone outside a signed partnership.
-  - >-
-    The commercial Look-to-Book ratio penalizes searches that do not convert. Agent-driven exploratory
-    search is exactly the traffic shape that trips it, so any MCP surface would need LTB-aware caching
-    built in rather than bolted on.
-
+- Access is approval-gated. There is no self-serve credential, so a public MCP server could not be used
+  by anyone outside a signed partnership.
+- The commercial Look-to-Book ratio penalizes searches that do not convert. Agent-driven exploratory search
+  is exactly the traffic shape that trips it, so any MCP surface would need LTB-aware caching built in
+  rather than bolted on.
 cross_links:
   openapi: openapi/traveloka-loka-partner-api-openapi.yml
   conventions: conventions/traveloka-conventions.yml
   skills: skills/_index.yml
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

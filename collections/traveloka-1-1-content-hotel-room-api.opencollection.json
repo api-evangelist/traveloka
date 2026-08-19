@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traveloka Atlas 1.1 Content - Hotel & Room API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "1.1 Content - Hotel & Room",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import hotel and room data (v1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/hotel-operation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to import/get the hotel and room data based on the content data that are provided by our partner provider."
+        },
+        {
+          "info": {
+            "name": "Import hotel and room data (v1.1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/hotel-operation-v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to import/get the hotel and room data based on the content data that are provided by our partner provider. This is the new protocol and will be the primary integration going forward.<br/><br/>\n**[Please read this before developing Content API v1.1]**<br/>\nContent API v1.1 makes many fields optional compared to v1, but we recommend submitting complete, accurate data wherever possible. Our system uses these fields to map your hotels and rooms to our database - missi"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

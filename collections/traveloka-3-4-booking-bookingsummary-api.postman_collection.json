@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "id": "ee23359c-b3e4-4ad4-99d0-2a18191d6fc0",
+      "name": "3.4 Booking - BookingSummary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "747b87d7-90b9-4e5a-88ef-fbd44216d4d8",
+          "name": "Get booking summary",
+          "request": {
+            "name": "Get booking summary",
+            "description": {
+              "content": "This operation is for Traveloka to retrieve the summary of a booking.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "http",
+              "port": "8080",
+              "path": [
+                "booking-summary"
+              ],
+              "host": [
+                "localhost"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uniqueId\": \"<string>\",\n  \"availabilityToken\": \"<string>\",\n  \"bookingToken\": \"<string>\",\n  \"issuanceId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae8279c5-bf72-484e-96e4-2af79844d387",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "booking-summary"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uniqueId\": \"20214324-0\",\n  \"availabilityToken\": \"12312312\",\n  \"bookingToken\": \"12312312\",\n  \"issuanceId\": \"12312312\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uniqueId\": \"2342454-0\",\n  \"bookingToken\": \"1234567890\",\n  \"providerHotelId\": \"1234567890\",\n  \"status\": \"NOT_BOOKED\",\n  \"providerRoomBookingSummaryList\": [\n    {\n      \"availabilityToken\": \"ROOM12345\",\n      \"providerHotelRoomId\": \"1234567890\",\n      \"numAdults\": 2,\n      \"numChildren\": 1,\n      \"refundable\": true,\n      \"sellingRate\": {\n        \"currency\": \"IDR\",\n        \"totalFare\": 1000000,\n        \"taxes\": 100000,\n        \"fees\": 50000\n      },\n      \"additionalFees\": {\n        \"mandatoryFee\": [\n          5\n        ],\n        \"mandatoryTax\": [\n          5\n        ],\n        \"resortFee\": [\n          5\n        ],\n        \"countryTaxFee\": [\n          5\n        ]\n      },\n      \"cancellationPolicy\": {\n        \"cancellationPolicyDescription\": \"string\",\n        \"providerCancellationPolicyInfoList\": [\n          {\n            \"cancelDateTime\": \"2018-08-27T00:00:00.000+08:00\",\n            \"cancellationFee\": 120,\n            \"currency\": \"USD\",\n            \"nightCount\": 0\n          }\n        ]\n      },\n      \"breakfastIncluded\": true,\n      \"mealPlan\": {\n        \"code\": \"RO\",\n        \"pax\": {\n          \"adults\": 2,\n          \"children\": 1\n        }\n      },\n      \"wifiIncluded\": true,\n      \"roomBookingId\": \"1234567890\",\n      \"status\": \"NOT_BOOKED\"\n    }\n  ],\n  \"totalRate\": {\n    \"currency\": \"IDR\",\n    \"totalFare\": 1000000,\n    \"taxes\": 100000,\n    \"fees\": 50000\n  },\n  \"guests\": [\n    {\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"title\": \"MR\",\n      \"passportNo\": \"A12345678\",\n      \"passportCountryCode\": \"ID\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "181262ca-e879-4bf3-909c-5654b989a1da",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "booking-summary"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uniqueId\": \"20214324-0\",\n  \"availabilityToken\": \"12312312\",\n  \"bookingToken\": \"12312312\",\n  \"issuanceId\": \"12312312\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"INVALID_REQUEST_FIELD\",\n    \"errorMessage\": \"Invalid request field\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b1189a1-7307-4639-9d5c-56103b0f2ef6",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "booking-summary"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uniqueId\": \"20214324-0\",\n  \"availabilityToken\": \"12312312\",\n  \"bookingToken\": \"12312312\",\n  \"issuanceId\": \"12312312\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"AUTHENTICATION_FAILED\",\n    \"errorMessage\": \"Authentication failed\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6382a2b9-a204-4a60-ad04-0f022df4a2e7",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "booking-summary"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uniqueId\": \"20214324-0\",\n  \"availabilityToken\": \"12312312\",\n  \"bookingToken\": \"12312312\",\n  \"issuanceId\": \"12312312\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"TOO_MANY_REQUESTS\",\n    \"errorMessage\": \"Too many requests\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73ae6dcf-39a6-4669-a0ad-fed7028803b6",
+              "name": "Something went wrong",
+              "originalRequest": {
+                "url": {
+                  "protocol": "http",
+                  "port": "8080",
+                  "path": [
+                    "booking-summary"
+                  ],
+                  "host": [
+                    "localhost"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uniqueId\": \"20214324-0\",\n  \"availabilityToken\": \"12312312\",\n  \"bookingToken\": \"12312312\",\n  \"issuanceId\": \"12312312\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"requestId\",\n  \"status\": \"FAILED\",\n  \"error\": {\n    \"errorId\": \"UNKNOWN_SERVER_ERROR\",\n    \"errorMessage\": \"Unknown server error\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fdd64e8e-8a32-4f5b-96fb-913a964c02b7",
+    "name": "Traveloka Atlas 3.4 Booking - BookingSummary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n",
+      "type": "text/plain"
+    }
+  }
+}

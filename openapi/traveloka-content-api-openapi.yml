@@ -1,0 +1,815 @@
+openapi: 3.2.0
+info:
+  title: LOKA Content API
+  version: 2.4.8
+  description: ''
+servers:
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Production server
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Staging server
+security:
+- OAuthStaging:
+  - auth
+tags:
+- name: Content
+paths:
+  /properties/content/hotel:
+    get:
+      summary: Get hotels
+      description: Returns hotel content
+      tags:
+      - Content
+      parameters:
+      - name: hotelIds
+        in: query
+        description: Hotel Ids
+        schema:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          maxItems: 100
+      - name: countryISO
+        in: query
+        description: 'Country Id, format ISO 3166-1 alpha-2, example: ''ID'', ''SG'''
+        required: true
+        schema:
+          type: string
+        example: ID
+      - name: language
+        in: query
+        description: 'language. with default value ''en'', example: ''en'', ''id'''
+        required: true
+        schema:
+          type: string
+        example: en
+      - name: lastUpdatedTime
+        in: query
+        description: Last update time
+        required: false
+        schema:
+          type: string
+        example: '2020-01-01T00:00:00Z'
+      - name: offset
+        in: query
+        description: Offset
+        required: true
+        schema:
+          type: integer
+          minimum: 0
+          maximum: 1000
+          default: 0
+        example: 0
+      - name: limit
+        in: query
+        description: Limit
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+        example: 100
+      - name: isExtended
+        in: query
+        description: Extended response
+        required: false
+        schema:
+          type: boolean
+          default: false
+        example: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HotelContentResponse'
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422PropertyContentHotelResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: https://${stageVariables.aficaBasePath}/v2/properties/content/hotel
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.aficaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+  /properties/content/room:
+    get:
+      summary: Get room
+      description: Returns room content
+      tags:
+      - Content
+      parameters:
+      - name: propertyIds
+        in: query
+        description: 'Property Id, You can use a single query parameter and separate multiple values with a ''&''. For example: GET /endpoint?id=a&id=b&id=c'
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+            example: '72900'
+          minItems: 1
+          maxItems: 100
+        example: '1000000187546'
+      - name: language
+        in: query
+        description: 'language. with default value ''en'', example: ''en'', ''id'''
+        required: true
+        schema:
+          type: string
+          enum:
+          - en
+          - id
+        example: en
+      - name: lastUpdatedTime
+        in: query
+        description: Last updated time
+        required: false
+        schema:
+          type: string
+        example: '2020-01-01T00:00:00Z'
+      - name: isExtended
+        in: query
+        description: Enable if buyer need detailed rooms
+        example: true
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response with list of properties
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomContentResponse'
+        '400':
+          description: Bad request. We cannot understand your intention.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+        '408':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error408'
+        '422':
+          description: Request is understood, but the server couldn't process it.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCode422PropertyContentRoomResponse'
+        '429':
+          description: Exceed rate limit
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error429'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+      security:
+      - api_gateway_lambda_authorizer: []
+      x-amazon-apigateway-integration:
+        httpMethod: GET
+        uri: https://${stageVariables.afisaBasePath}/v3/properties/content/room
+        connectionType: VPC_LINK
+        connectionId: ${stageVariables.afisaVpcLinkId}
+        type: http_proxy
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+        passthroughBehavior: when_no_match
+      servers:
+      - url: https://api.travelokapartnersnetwork.com/v2
+        description: Production
+      - url: https://api.staging-travelokapartnersnetwork.com/v2
+        description: Staging
+components:
+  schemas:
+    HotelAddress:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+            example: Jl. M.H. Thamrin No. 1
+        city:
+          type: string
+          example: Jakarta
+        province:
+          type: string
+          example: DKI Jakarta
+        country:
+          type: string
+          example: Indonesia
+        postalCode:
+          type: string
+          example: '10310'
+    RoomContentResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          $ref: '#/components/schemas/DisplayRoomContent'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    Error401:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 401: Unauthorized."
+              enum:
+              - '401'
+            message:
+              type: string
+              description: Error message
+              example: Unauthorized, the token might be expired.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ErrorCode422PropertyContentRoomResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: A code that identifies this type of error.
+              enum:
+              - AFIXXX
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    DisplayRoomContent:
+      type: array
+      items:
+        type: object
+        properties:
+          propertyId:
+            type: string
+            description: Property Id
+            example: '9000000128672'
+          roomId:
+            type: string
+            description: Room Id
+            example: '1000066445'
+          roomStatus:
+            type: string
+            description: Room status
+            enum:
+            - AVAILABLE
+            - NOT_AVAILABLE
+          roomName:
+            type: string
+            description: Room name
+            example: Grand Deluxe Room
+          roomType:
+            type: string
+            description: Room type
+            example: DELUXE
+          roomDescription:
+            type: string
+            description: Room description
+            example: This room is suitable for family of two
+          roomView:
+            type: string
+            description: Room view
+            example: city view
+          roomHasWindow:
+            type: boolean
+            description: Room has window
+            example: true
+          maxOccupancy:
+            type: integer
+            description: Max adult occupancy per room
+            minimum: 1
+            example: 1
+          maxChildOccupancy:
+            type: integer
+            description: Max child occupancy per room
+            minimum: 0
+            example: 1
+          bedArrangement:
+            type: array
+            items:
+              $ref: '#/components/schemas/BedArrangement'
+          roomSize:
+            $ref: '#/components/schemas/RoomSize'
+          roomImages:
+            type: array
+            items:
+              $ref: '#/components/schemas/RoomImage'
+          roomFacilities:
+            type: array
+            items:
+              $ref: '#/components/schemas/RoomFacilities'
+          smokingPreference:
+            type: string
+            description: Smoking preference (NON_SMOKING, SMOKING, EITHER)
+            example: NON_SMOKING
+          gender:
+            type: string
+            description: Gender (MALE, FEMALE, EITHER)
+            example: EITHER
+          mealPlans:
+            type: array
+            items:
+              type: string
+              description: Meal plan
+              example: BF
+              enum:
+              - BF
+              - RO
+              - LN
+              - DN
+          lastUpdatedTime:
+            type: string
+            description: Last updated time
+            example: '2019-08-01T00:00:00.000+07:00'
+    RoomSize:
+      type: object
+      description: Room size
+      example:
+        size: 28
+        unit: SQUARE_METER
+      properties:
+        size:
+          type: number
+          description: Room size
+          example: 28
+        unit:
+          type: string
+          description: Room size unit
+          example: SQUARE_METER
+          enum:
+          - SQUARE_METER
+          - SQUARE_FEET
+    ErrorCode422PropertyContentHotelResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: A code that identifies this type of error.
+              enum:
+              - AFIXXX
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    HotelContentResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          $ref: '#/components/schemas/DisplayHotelContent'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    ExtendedHotelContent:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          description: Property Id
+          example: '9000000128672'
+        propertyStatus:
+          type: string
+          description: Hotel status
+          example: AVAILABLE
+        propertyName:
+          type: string
+          description: Hotel name
+          example: Hotel Indonesia Kempinski Jakarta
+        formerName:
+          type: string
+          description: Former name
+          example: Hotel Indonesia
+        latitude:
+          type: string
+          description: Latitude
+          example: '-6.174465'
+        longitude:
+          type: string
+          description: Longitude
+          example: '106.822745'
+        chainName:
+          type: string
+          description: Chain name
+          example: Kempinski
+        propertyAddress:
+          $ref: '#/components/schemas/HotelAddress'
+          description: Hotel address, contains street, city, province, country, postal code, and phone number
+          example:
+            lines:
+            - Jl. M.H. Thamrin No. 1
+            city: Jakarta
+            province: DKI Jakarta
+            country: Indonesia
+            postalCode: '10310'
+        starRating:
+          type: number
+          description: Star rating
+          example: 5
+        accommodationType:
+          $ref: '#/components/schemas/AccommodationType'
+        review:
+          type: string
+          format: double
+          description: Review
+          example: 8.9
+        propertyPolicy:
+          type: string
+          description: Hotel policy
+          example: No pets allowed
+          maxLength: 1000
+        importantNotice:
+          type: string
+          description: Hotel policy
+          example: No pets allowed
+          maxLength: 1000
+        checkInInstruction:
+          type: string
+          description: Hotel policy
+          example: No pets allowed
+          maxLength: 1000
+        propertyImages:
+          type: array
+          description: Hotel images
+          items:
+            $ref: '#/components/schemas/HotelImage'
+        propertyFacilities:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Facility Id
+              category:
+                type: string
+                description: Facility category
+              name:
+                type: string
+                description: Facility name
+            example:
+              id: '1000000000001'
+              category: HOTEL
+              name: 24-Hour Front Desk
+        lastUpdatedTime:
+          type: string
+          description: Last update date
+          example: '2019-08-01T00:00:00.000+07:00'
+    Error408:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 408: Timeout."
+              enum:
+              - '408'
+            message:
+              type: string
+              description: Error message
+              example: Timeout. Your request exceeds the timeout limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    AccommodationType:
+      type: string
+      description: Accommodation type
+      enum:
+      - HOTEL
+      - HOSTEL
+      - VILLA
+      - RESORT
+      - ALL_INCLUSIVE
+      - APARTMENT
+      - BED_AND_BREAKFAST
+      - CAMPING
+      - BOAT
+      - HOMESTAY
+      - GUESTHOUSE
+      - RYOKAN
+      - RIAD
+      - POUSADA
+      - PRIVATE_VACATION_HOME
+      - CAPSULE_HOTEL
+      - OTHER
+    Error429:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              enum:
+              - '429'
+            message:
+              type: string
+              description: Error message
+              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    HotelContent:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          description: Property Id
+          example: '1000000340382'
+        propertyName:
+          type: string
+          description: Property name
+          example: Hotel Indonesia Kempinski Jakarta
+    RoomImage:
+      type: object
+    Error500:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 500: Server Error."
+              enum:
+              - '500'
+            message:
+              type: string
+              description: Error message
+              example: Server Error. Please contact our support team.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    HotelImage:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              imageType:
+                type: string
+                description: Image type
+                enum:
+                - SMALL
+              url:
+                type: string
+                description: Image URL
+                example: https://ik.imagekit.io/tvlkdev/apr-asset/P1G5O6%2BnVHjV52skmBPrf5pP0WFENJr4JbIQ3ZDf7w39jzSxIGG5kZNhhHY-p7nw/hotel/asset/30001628-904f9cbee2eea9e9800b02056d67243e.jpeg?tr=q-40,w-145,h-145&_src=imagekit
+    Error404:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 404: Not Found."
+              enum:
+              - '404'
+            message:
+              type: string
+              description: Error message
+              example: Not Found. The requested resource is not found.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error400:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
+              enum:
+              - AFI100
+            message:
+              type: string
+              description: Error message
+              example: parameter missing, please check your request body.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    RoomFacilities:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Facility ID
+        name:
+          type: string
+          description: Facility name
+      example:
+        id: '208'
+        name: COMPLIMENTARY_BOTTLED_WATER
+        localizedName: Air minum kemasan cuma-cuma
+    BedArrangement:
+      type: object
+      properties:
+        bedroomLayouts:
+          type: array
+          items:
+            type: object
+            properties:
+              arrangements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bedType:
+                      type: string
+                      enum:
+                      - SINGLE
+                      - DOUBLE
+                      - TWIN
+                      - QUEEN
+                      - KING
+                      - BUNK
+                      - SOFA
+                      - CRIB
+                      - ROLLAWAY
+                      - FUTON
+                      - HIDEABED
+                      - MURPHY
+                      - DAY
+                      - TRUNDLE
+                      - AIR_MATTRESS
+                      - WATER_BED
+                      - OTHER
+                    total:
+                      type: integer
+              arrangementType:
+                type: string
+                enum:
+                - DEFAULT
+                - ALTERNATIVE
+    DisplayHotelContent:
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/HotelContent'
+        - $ref: '#/components/schemas/ExtendedHotelContent'
+  securitySchemes:
+    api_gateway_lambda_authorizer:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: custom
+      x-amazon-apigateway-authorizer:
+        type: token
+        authorizerUri: arn:aws:apigateway:ap-southeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-1:284600670248:function:afiauth-lambda-authorizer-ac1bec7f8693b057/invocations
+        authorizerResultTtlInSeconds: 1800
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: awsSigv4
+x-tagGroups:
+- name: General
+  tags:
+  - Authorization
+- name: Accommodation
+  tags:
+  - Content
+  - Rate
+  - Booking
+  - Discovery (Optional)

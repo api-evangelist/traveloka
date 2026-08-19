@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOKA Authorization API",
+    "version": "2.4.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelokapartnersnetwork.com/v2/oauth/accesstoken",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "API call to see sample Access Token response.<br/> Access Tokens has a 60-minutes expiration time and will have to be re-generated before it expires<br/>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

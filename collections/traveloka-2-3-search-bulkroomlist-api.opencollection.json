@@ -1,0 +1,32 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traveloka Atlas 2.3 Search - BulkRoomList API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "2.3 Search - BulkRoomList",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk search for rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/bulk-room-list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to perform a bulk search for rooms in multiple hotels."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

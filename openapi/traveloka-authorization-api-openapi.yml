@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: LOKA Authorization API
+  version: 2.4.8
+  description: ''
+servers:
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Production server
+- url: https://api.travelokapartnersnetwork.com/v2/
+  description: Staging server
+security:
+- OAuthStaging:
+  - auth
+tags:
+- name: Authorization
+paths:
+  /oauth/accesstoken:
+    post:
+      tags:
+      - Authorization
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      description: API call to see sample Access Token response.<br/> Access Tokens has a 60-minutes expiration time and will have to be re-generated before it expires<br/>
+      operationId: Generate Token
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                client_id:
+                  type: string
+                  description: Your consumer key
+                client_secret:
+                  type: string
+                  description: Your secret key
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        uri: https://${stageVariables.afcauthBasePath}/oauth2/token?grant_type=client_credentials
+        responses:
+          default:
+            statusCode: '200'
+        requestParameters:
+          integration.request.header.X-Authorizer-Client-Id: context.authorizer.claims.sub
+          integration.request.header.cachebody: method.request.body
+          integration.request.header.X-Amzn-Apigateway-Request-Id: context.requestId
+          integration.request.header.X-Authorizer-Scopes: context.authorizer.claims.scope
+        passthroughBehavior: when_no_match
+        cacheNamespace: mycache
+        timeoutInMillis: 29000
+        cacheKeyParameters:
+        - method.request.header.Authorization
+        - method.request.querystring.client_id
+        - method.request.querystring.client_secret
+        - integration.request.header.cachebody
+        type: http_proxy
+      servers:
+      - url: https://auth-api.afc.traveloka.com/
+        description: Production
+      - url: https://auth-api.afc.staging-traveloka.com/
+        description: Staging/sandbox
+components:
+  schemas:
+    AccessToken:
+      type: object
+      properties:
+        token_type:
+          type: string
+        access_token:
+          type: string
+        expires_in:
+          type: string
+  securitySchemes:
+    api_gateway_lambda_authorizer:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: custom
+      x-amazon-apigateway-authorizer:
+        type: token
+        authorizerUri: arn:aws:apigateway:ap-southeast-1:lambda:path/2015-03-31/functions/arn:aws:lambda:ap-southeast-1:284600670248:function:afiauth-lambda-authorizer-ac1bec7f8693b057/invocations
+        authorizerResultTtlInSeconds: 1800
+    sigv4:
+      type: apiKey
+      name: Authorization
+      in: header
+      x-amazon-apigateway-authtype: awsSigv4
+x-tagGroups:
+- name: General
+  tags:
+  - Authorization
+- name: Accommodation
+  tags:
+  - Content
+  - Rate
+  - Booking
+  - Discovery (Optional)

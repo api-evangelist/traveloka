@@ -1,0 +1,333 @@
+{
+  "item": [
+    {
+      "id": "4aa1f318-9bcd-4fef-858f-514c5b83fdcc",
+      "name": "Discovery (Optional)",
+      "description": {
+        "content": "This API is optional and intended for partners who do not have their own master data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66e8923a-a6e8-4670-bc56-0bdc6ab22f2f",
+          "name": "Discover geo by geo location",
+          "request": {
+            "name": "Discover geo by geo location",
+            "description": {
+              "content": "Discover geo by geo location",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "discovery",
+                "getGeo"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<number>",
+                  "description": "Latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<number>",
+                  "description": "Longitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>",
+                  "description": "Country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "en",
+                  "description": "Language"
+                },
+                {
+                  "disabled": false,
+                  "key": "geoName",
+                  "value": "<string>",
+                  "description": "Geo name"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ada5cce-06fa-481b-b4b9-fde0efb92423",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "discovery",
+                    "getGeo"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "latitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "geoName",
+                      "value": "Jakarta"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"geoId\": \"1000000000001\",\n    \"geoName\": \"Jakarta\",\n    \"geoType\": \"CITY\",\n    \"parentGeoId\": \"1000000000002\",\n    \"latitude\": \"-6.174465\",\n    \"longitude\": \"106.822745\"\n  },\n  {\n    \"geoId\": \"1000000000001\",\n    \"geoName\": \"Jakarta\",\n    \"geoType\": \"CITY\",\n    \"parentGeoId\": \"1000000000002\",\n    \"latitude\": \"-6.174465\",\n    \"longitude\": \"106.822745\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "658cde15-6747-4ebe-b774-b7035081ff26",
+          "name": "Discover hotels by filters",
+          "request": {
+            "name": "Discover hotels by filters",
+            "description": {
+              "content": "Discover hotels by filters",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "discovery",
+                "getRates"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"geoId\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"numRooms\": 1,\n  \"numAdults\": 1,\n  \"numChildren\": 0,\n  \"displayCurrency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"userNationality\": \"<string>\",\n  \"isExtended\": false,\n  \"isMultiRoom\": false,\n  \"filters\": {\n    \"starRating\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"priceRange\": {\n      \"min\": \"<number>\",\n      \"max\": \"<number>\"\n    },\n    \"propertyTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cancellationPolicy\": \"<string>\",\n    \"mealTypes\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"sortBy\": \"POPULARITY\",\n  \"sortDirection\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "859e84cd-176a-46bb-ac33-c884918e6796",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "discovery",
+                    "getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geoId\": \"1000000000001\",\n  \"cursor\": \"eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=\",\n  \"checkInDate\": \"2022-04-21\",\n  \"checkOutDate\": \"2022-04-22\",\n  \"numRooms\": 1,\n  \"numAdults\": 2,\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    6\n  ],\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"en\",\n  \"userNationality\": \"ID\",\n  \"isExtended\": true,\n  \"isMultiRoom\": true,\n  \"filters\": {\n    \"starRating\": [\n      4,\n      5\n    ],\n    \"priceRange\": {\n      \"min\": 0,\n      \"max\": 10000000\n    },\n    \"propertyTypes\": [\n      \"HOTEL\"\n    ],\n    \"cancellationPolicy\": \"FREE_CANCELLATION\",\n    \"mealTypes\": [\n      \"BF\"\n    ]\n  },\n  \"sortBy\": \"POPULARITY\",\n  \"sortDirection\": \"DESC\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": {\n      \"propertyName\": \"Hotel Indonesia Kempinski Jakarta\",\n      \"starRating\": 5,\n      \"rates\": [\n        {\n          \"propertyId\": \"72900\",\n          \"rateStatus\": \"NOT_AVAILABLE\",\n          \"roomId\": \"11477200\",\n          \"roomName\": \"Deluxe Room\",\n          \"roomType\": \"Deluxe\",\n          \"numRooms\": 1,\n          \"numAdults\": 1,\n          \"numChildren\": 1,\n          \"maxOccupancy\": 1,\n          \"maxChildOccupancy\": 1,\n          \"maxChildAge\": 12,\n          \"roomOccupancy\": {\n            \"numAdults\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numChildren\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildAge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mealType\": \"BF\",\n          \"roomMealPlan\": {\n            \"mealInclusionOptions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mealPackageDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"isRefundable\": true,\n          \"isSmokingAllowed\": true,\n          \"totalRates\": {\n            \"displayCurrency\": \"IDR\",\n            \"displaySellAmount\": 1000000,\n            \"displayNetAmount\": 900000,\n            \"partnerCurrency\": \"IDR\",\n            \"partnerSellAmount\": 1000000,\n            \"partnerNetAmount\": 900000\n          },\n          \"extraCharges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n          \"cancellationPolicy\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"propertyTimezone\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policies\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"checkInPolicy\": {\n            \"checkInDate\": \"2024-01-01\",\n            \"checkOutDate\": \"2024-01-02\"\n          },\n          \"extraBenefits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"propertyId\": \"72900\",\n          \"rateStatus\": \"AVAILABLE\",\n          \"roomId\": \"11477200\",\n          \"roomName\": \"Deluxe Room\",\n          \"roomType\": \"Deluxe\",\n          \"numRooms\": 1,\n          \"numAdults\": 1,\n          \"numChildren\": 1,\n          \"maxOccupancy\": 1,\n          \"maxChildOccupancy\": 1,\n          \"maxChildAge\": 12,\n          \"roomOccupancy\": {\n            \"numAdults\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numChildren\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildAge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mealType\": \"BF\",\n          \"roomMealPlan\": {\n            \"mealInclusionOptions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mealPackageDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"isRefundable\": true,\n          \"isSmokingAllowed\": true,\n          \"totalRates\": {\n            \"displayCurrency\": \"IDR\",\n            \"displaySellAmount\": 1000000,\n            \"displayNetAmount\": 900000,\n            \"partnerCurrency\": \"IDR\",\n            \"partnerSellAmount\": 1000000,\n            \"partnerNetAmount\": 900000\n          },\n          \"extraCharges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n          \"cancellationPolicy\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"propertyTimezone\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policies\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"checkInPolicy\": {\n            \"checkInDate\": \"2024-01-01\",\n            \"checkOutDate\": \"2024-01-02\"\n          },\n          \"extraBenefits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    },\n    \"key_1\": {\n      \"propertyName\": \"Hotel Indonesia Kempinski Jakarta\",\n      \"starRating\": 5,\n      \"rates\": [\n        {\n          \"propertyId\": \"72900\",\n          \"rateStatus\": \"AVAILABLE\",\n          \"roomId\": \"11477200\",\n          \"roomName\": \"Deluxe Room\",\n          \"roomType\": \"Deluxe\",\n          \"numRooms\": 1,\n          \"numAdults\": 1,\n          \"numChildren\": 1,\n          \"maxOccupancy\": 1,\n          \"maxChildOccupancy\": 1,\n          \"maxChildAge\": 12,\n          \"roomOccupancy\": {\n            \"numAdults\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numChildren\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildAge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mealType\": \"RO\",\n          \"roomMealPlan\": {\n            \"mealInclusionOptions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mealPackageDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"isRefundable\": true,\n          \"isSmokingAllowed\": true,\n          \"totalRates\": {\n            \"displayCurrency\": \"IDR\",\n            \"displaySellAmount\": 1000000,\n            \"displayNetAmount\": 900000,\n            \"partnerCurrency\": \"IDR\",\n            \"partnerSellAmount\": 1000000,\n            \"partnerNetAmount\": 900000\n          },\n          \"extraCharges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n          \"cancellationPolicy\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"propertyTimezone\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policies\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"checkInPolicy\": {\n            \"checkInDate\": \"2024-01-01\",\n            \"checkOutDate\": \"2024-01-02\"\n          },\n          \"extraBenefits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        {\n          \"propertyId\": \"72900\",\n          \"rateStatus\": \"NOT_AVAILABLE\",\n          \"roomId\": \"11477200\",\n          \"roomName\": \"Deluxe Room\",\n          \"roomType\": \"Deluxe\",\n          \"numRooms\": 1,\n          \"numAdults\": 1,\n          \"numChildren\": 1,\n          \"maxOccupancy\": 1,\n          \"maxChildOccupancy\": 1,\n          \"maxChildAge\": 12,\n          \"roomOccupancy\": {\n            \"numAdults\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"numChildren\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildOccupancy\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"maxChildAge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"mealType\": \"BF\",\n          \"roomMealPlan\": {\n            \"mealInclusionOptions\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mealPackageDetails\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"isRefundable\": true,\n          \"isSmokingAllowed\": true,\n          \"totalRates\": {\n            \"displayCurrency\": \"IDR\",\n            \"displaySellAmount\": 1000000,\n            \"displayNetAmount\": 900000,\n            \"partnerCurrency\": \"IDR\",\n            \"partnerSellAmount\": 1000000,\n            \"partnerNetAmount\": 900000\n          },\n          \"extraCharges\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n          \"cancellationPolicy\": {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"displayText\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"propertyTimezone\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"policies\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"checkInPolicy\": {\n            \"checkInDate\": \"2024-01-01\",\n            \"checkOutDate\": \"2024-01-02\"\n          },\n          \"extraBenefits\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      ]\n    }\n  },\n  \"sortedPropertyId\": [\n    \"property1\",\n    \"property2\"\n  ],\n  \"nextCursor\": \"eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=\",\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelokapartnersnetwork.com/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "39b7bf8e-efff-485a-a5d0-84f584e81bcb",
+    "name": "LOKA Discovery (Optional) Discovery (Optional) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API is optional and intended for partners who do not have their own master data.",
+      "type": "text/plain"
+    }
+  }
+}

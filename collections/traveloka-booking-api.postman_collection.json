@@ -1,0 +1,2467 @@
+{
+  "item": [
+    {
+      "id": "cc3dfc9b-9e6c-44a3-9b1f-8ef10c9b55d4",
+      "name": "Booking",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "763a0217-f756-4591-b6e7-db0d671de58a",
+          "name": "Create a new booking",
+          "request": {
+            "name": "Create a new booking",
+            "description": {
+              "content": "Creates a new booking",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "bookings",
+                "booking",
+                "create"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"<string>\",\n  \"partnerBookingId\": \"<string>\",\n  \"rooms\": [\n    {\n      \"roomId\": \"<string>\",\n      \"rateKey\": \"<string>\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"IdType\": \"<string>\",\n          \"IdNumber\": \"<string>\",\n          \"email\": \"<string>\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"IdType\": \"<string>\",\n          \"IdNumber\": \"<string>\",\n          \"email\": \"<string>\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": \"<integer>\",\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"<string>\",\n      \"rateKey\": \"<string>\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"IdType\": \"<string>\",\n          \"IdNumber\": \"<string>\",\n          \"email\": \"<string>\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"<string>\",\n          \"firstName\": \"<string>\",\n          \"lastName\": \"<string>\",\n          \"IdType\": \"<string>\",\n          \"IdNumber\": \"<string>\",\n          \"email\": \"<string>\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": \"<integer>\",\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"<string>\",\n    \"partnerNetAmount\": \"<string>\"\n  },\n  \"customerInfo\": {\n    \"title\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"<string>\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"<string>\"\n    }\n  },\n  \"language\": \"<string>\",\n  \"specialRequest\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ef5d595-4282-47f5-9c84-3801628f97a7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"bookingId\": \"100160766\",\n    \"bookingStatus\": \"PENDING\",\n    \"partnerBookingId\": \"1234567890\",\n    \"itineraryId\": \"200000102216\",\n    \"propertyId\": \"72900\",\n    \"checkInDate\": \"2024-01-01\",\n    \"checkOutDate\": \"2024-01-02\",\n    \"importantNotice\": \"There will be gala dinner on 31st Dec, and will be charged separately.\",\n    \"hotelPolicy\": \"Check-in time is after 14:00, and check-out time is before 12:00.\",\n    \"checkInInstruction\": \"Married couple must show marriage certificate upon check-in.\",\n    \"extraCharges\": [\n      {\n        \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n        \"currency\": \"USD\",\n        \"value\": \"12.1\",\n        \"isIncluded\": false\n      },\n      {\n        \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n        \"currency\": \"USD\",\n        \"value\": \"12.1\",\n        \"isIncluded\": false\n      }\n    ],\n    \"rooms\": [\n      {\n        \"roomId\": \"1000066445\",\n        \"roomName\": \"Deluxe Room\",\n        \"propertySummary\": {\n          \"name\": \"Staycation Hotel (For Affiliate B2B Partner Only)\",\n          \"formerName\": \"Staycation Hotel\",\n          \"address\": {\n            \"lines\": [\n              \"Jl Dr. Ir Soekarno 1\"\n            ],\n            \"city\": \"Bali\",\n            \"countryName\": \"Indonesia\",\n            \"postalCode\": \"1234\"\n          },\n          \"phoneNumber\": \"string\",\n          \"localAddress\": {\n            \"lines\": [\n              \"Jl Dr. Ir Soekarno 1\"\n            ],\n            \"city\": \"Bali\",\n            \"countryName\": \"Indonesia\",\n            \"postalCode\": \"1234\"\n          },\n          \"starRating\": \"4.0\",\n          \"reviewScore\": \"9.1\",\n          \"accommodationType\": \"RESORT\",\n          \"geoLocation\": {\n            \"lat\": \"-8.5525323\",\n            \"lon\": \"115.13335119999999\"\n          },\n          \"countryISO\": \"ID\"\n        },\n        \"guestInfo\": [\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          },\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          }\n        ]\n      },\n      {\n        \"roomId\": \"1000066445\",\n        \"roomName\": \"Deluxe Room\",\n        \"propertySummary\": {\n          \"name\": \"Staycation Hotel (For Affiliate B2B Partner Only)\",\n          \"formerName\": \"Staycation Hotel\",\n          \"address\": {\n            \"lines\": [\n              \"Jl Dr. Ir Soekarno 1\"\n            ],\n            \"city\": \"Bali\",\n            \"countryName\": \"Indonesia\",\n            \"postalCode\": \"1234\"\n          },\n          \"phoneNumber\": \"string\",\n          \"localAddress\": {\n            \"lines\": [\n              \"Jl Dr. Ir Soekarno 1\"\n            ],\n            \"city\": \"Bali\",\n            \"countryName\": \"Indonesia\",\n            \"postalCode\": \"1234\"\n          },\n          \"starRating\": \"4.0\",\n          \"reviewScore\": \"9.1\",\n          \"accommodationType\": \"RESORT\",\n          \"geoLocation\": {\n            \"lat\": \"-8.5525323\",\n            \"lon\": \"115.13335119999999\"\n          },\n          \"countryISO\": \"ID\"\n        },\n        \"guestInfo\": [\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          },\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          }\n        ]\n      }\n    ]\n  },\n  \"error\": {\n    \"code\": \"AFI739\",\n    \"message\": \"\",\n    \"requestId\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "759e48c0-36d7-4f98-88bd-397bacaa2a53",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a8a9ef0-b448-4e96-b788-6d03b605c36f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f7395d2-e1fd-454a-b255-f456080c6802",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb658e8-4611-4d5a-bda9-efc7b15fbd00",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d63e3301-ff11-4339-bd08-28aff59364a6",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI709\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4e86070-caff-4bd7-ad31-b0759414deb8",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b9326f8-9ea6-43ee-9b5f-6dc3e656f138",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "booking",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"partnerBookingId\": \"1234567890\",\n  \"rooms\": [\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    {\n      \"roomId\": \"1000066445\",\n      \"rateKey\": \"eyJpbnZlbnRvcnlSYXRlS...\",\n      \"numAdults\": \"<integer>\",\n      \"guestInfo\": [\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        },\n        {\n          \"title\": \"MR\",\n          \"firstName\": \"John\",\n          \"lastName\": \"Doe\",\n          \"IdType\": \"KTP\",\n          \"IdNumber\": \"1234567890\",\n          \"email\": \"user@example.com\",\n          \"gender\": \"<string>\"\n        }\n      ],\n      \"numRooms\": 1,\n      \"numChildren\": \"<integer>\",\n      \"childrenAges\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"totalRates\": {\n    \"partnerSellAmount\": \"1000000\",\n    \"partnerNetAmount\": \"900000\"\n  },\n  \"customerInfo\": {\n    \"title\": \"MR\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"email\": \"user@example.com\",\n    \"phone\": \"<string>\"\n  },\n  \"userNationality\": \"ID\",\n  \"userPayment\": {\n    \"userPayment\": \"<string>\",\n    \"creditCardDetail\": {\n      \"creditCardOwner\": \"<string>\",\n      \"creditCardNumber\": \"1234567890\"\n    }\n  },\n  \"language\": \"id\",\n  \"specialRequest\": \"Special request\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d28dc54-4cd5-4145-93b0-8d31d6f44a46",
+          "name": "Get all bookings",
+          "request": {
+            "name": "Get all bookings",
+            "description": {
+              "content": "Returns all bookings",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "bookings"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkInDate",
+                  "value": "<date>",
+                  "description": "Check-in date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkOutDate",
+                  "value": "<date>",
+                  "description": "Check-out date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookingStartDate",
+                  "value": "<date>",
+                  "description": "Booking start date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookingEndDate",
+                  "value": "<date>",
+                  "description": "Booking end date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookingStatus",
+                  "value": "<string>",
+                  "description": "Booking status"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookingIds",
+                  "value": "<string>",
+                  "description": "Booking Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "partnerBookingIds",
+                  "value": "<string>",
+                  "description": "Partner Booking Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "itineraryIds",
+                  "value": "<string>",
+                  "description": "List of itinerary Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "cancellationIds",
+                  "value": "<string>",
+                  "description": "Cancellation Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6be0438-fe70-41f1-86a8-cbf86ff0c2ad",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"bookingId\": \"100160766\",\n      \"bookingStatus\": \"ISSUED\",\n      \"partnerBookingId\": \"1234567890\",\n      \"itineraryId\": \"200000102216\",\n      \"propertyId\": \"72900\",\n      \"importantNotice\": \"There will be gala dinner on 31st Dec, and will be charged separately.\",\n      \"hotelPolicy\": \"Check-in time is after 14:00, and check-out time is before 12:00.\",\n      \"checkInInstruction\": \"Married couple must show marriage certificate upon check-in.\",\n      \"checkInDate\": \"2024-01-01\",\n      \"checkOutDate\": \"2024-01-02\",\n      \"rooms\": [\n        {\n          \"roomId\": \"1000066445\",\n          \"roomName\": \"Deluxe Room\",\n          \"guestInfo\": [\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            },\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            }\n          ]\n        },\n        {\n          \"roomId\": \"1000066445\",\n          \"roomName\": \"Deluxe Room\",\n          \"guestInfo\": [\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            },\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            }\n          ]\n        }\n      ],\n      \"extraCharges\": [\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        },\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        }\n      ],\n      \"cancellationId\": \"1234567890\",\n      \"cancellationSubmissionTime\": \"2023-07-26T10:00:00+0700\",\n      \"cancellationStatus\": {\n        \"status\": \"COMPLETED\"\n      }\n    },\n    {\n      \"bookingId\": \"100160766\",\n      \"bookingStatus\": \"PENDING\",\n      \"partnerBookingId\": \"1234567890\",\n      \"itineraryId\": \"200000102216\",\n      \"propertyId\": \"72900\",\n      \"importantNotice\": \"There will be gala dinner on 31st Dec, and will be charged separately.\",\n      \"hotelPolicy\": \"Check-in time is after 14:00, and check-out time is before 12:00.\",\n      \"checkInInstruction\": \"Married couple must show marriage certificate upon check-in.\",\n      \"checkInDate\": \"2024-01-01\",\n      \"checkOutDate\": \"2024-01-02\",\n      \"rooms\": [\n        {\n          \"roomId\": \"1000066445\",\n          \"roomName\": \"Deluxe Room\",\n          \"guestInfo\": [\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            },\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            }\n          ]\n        },\n        {\n          \"roomId\": \"1000066445\",\n          \"roomName\": \"Deluxe Room\",\n          \"guestInfo\": [\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            },\n            {\n              \"title\": \"MR\",\n              \"firstName\": \"John\",\n              \"lastName\": \"Doe\"\n            }\n          ]\n        }\n      ],\n      \"extraCharges\": [\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        },\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        }\n      ],\n      \"cancellationId\": \"1234567890\",\n      \"cancellationSubmissionTime\": \"2023-07-26T10:00:00+0700\",\n      \"cancellationStatus\": {\n        \"status\": \"FAILED\"\n      }\n    }\n  ],\n  \"error\": {\n    \"code\": \"AFI704\",\n    \"message\": \"\",\n    \"requestId\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70af2103-e4cd-4765-b356-f658e071afef",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bc5b5a7-5ba1-4822-b453-36f945fa0f18",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ff8853e-a94e-44c5-8d08-e9a8b9b26a4e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0f4db25-b747-4bc2-b7cc-411225098cc4",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f36d98ca-f7a2-4ac5-9f85-b12e3ac038d9",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI704\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bfda1e1-4fd8-4edd-bc95-a279ad89f32d",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73dcc971-24c6-4c36-baf8-5680142dffb9",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingEndDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "bookingStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "itineraryIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cancellationIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9625722f-ef24-4c1c-97e0-3d19543c9b19",
+          "name": "Get booking by Id",
+          "request": {
+            "name": "Get booking by Id",
+            "description": {
+              "content": "Returns booking by Id",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "bookings",
+                "detail"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bookingId",
+                  "value": "<string>",
+                  "description": "Booking Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "partnerBookingId",
+                  "value": "<string>",
+                  "description": "Partner Booking Id"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc301b04-b346-49c3-95a5-9f2511cb5c19",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"bookingId\": \"100160766\",\n    \"propertyId\": \"72900\",\n    \"bookingStatus\": \"BOOKED\",\n    \"partnerBookingId\": \"1234567890\",\n    \"itineraryId\": \"200000102216\",\n    \"checkInDate\": \"2024-01-01\",\n    \"checkOutDate\": \"2024-01-02\",\n    \"rooms\": [\n      {\n        \"roomName\": \"Deluxe Room\",\n        \"roomType\": \"Deluxe\",\n        \"checkInPolicy\": {\n          \"checkInDate\": \"2024-01-01\",\n          \"checkOutDate\": \"2024-01-02\"\n        },\n        \"guestInfo\": [\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          },\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          }\n        ],\n        \"roomSize\": \"string\",\n        \"roomId\": \"11477200\",\n        \"numRooms\": 1,\n        \"numAdults\": 1,\n        \"numChildren\": 1,\n        \"maxChildAge\": 12,\n        \"roomOccupancyPolicy\": {\n          \"maxOccupancy\": 4,\n          \"maxChildOccupancy\": 2,\n          \"maxChildAge\": 12\n        },\n        \"mealType\": \"BREAKFAST_INCLUDED\",\n        \"roomMealPlans\": [\n          {\n            \"mealInclusionOptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mealPackageDetails\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"mealInclusionOptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mealPackageDetails\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_4\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"totalSettlementRates\": {\n          \"partnerCurrency\": \"IDR\",\n          \"partnerAmount\": 1000000\n        },\n        \"totalRates\": {\n          \"partnerCurrency\": \"IDR\",\n          \"partnerSellAmount\": 1000000,\n          \"partnerNetAmount\": 900000\n        },\n        \"extraCharges\": [\n          {\n            \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n            \"currency\": \"USD\",\n            \"value\": \"12.1\",\n            \"isIncluded\": false\n          },\n          {\n            \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n            \"currency\": \"USD\",\n            \"value\": \"12.1\",\n            \"isIncluded\": false\n          }\n        ],\n        \"isRefundable\": true,\n        \"cancellationPolicy\": {\n          \"text\": \"Cancellation Policy\",\n          \"displayText\": \"Cancellation Policy\",\n          \"propertyTimezone\": \"GMT+07:00\",\n          \"policies\": [\n            {\n              \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n              \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n              \"cancellationCharge\": {\n                \"currency\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"amount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n              \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n              \"cancellationCharge\": {\n                \"currency\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"amount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ]\n        }\n      },\n      {\n        \"roomName\": \"Deluxe Room\",\n        \"roomType\": \"Deluxe\",\n        \"checkInPolicy\": {\n          \"checkInDate\": \"2024-01-01\",\n          \"checkOutDate\": \"2024-01-02\"\n        },\n        \"guestInfo\": [\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          },\n          {\n            \"title\": \"MR\",\n            \"firstName\": \"John\",\n            \"lastName\": \"Doe\"\n          }\n        ],\n        \"roomSize\": \"string\",\n        \"roomId\": \"11477200\",\n        \"numRooms\": 1,\n        \"numAdults\": 1,\n        \"numChildren\": 1,\n        \"maxChildAge\": 12,\n        \"roomOccupancyPolicy\": {\n          \"maxOccupancy\": 4,\n          \"maxChildOccupancy\": 2,\n          \"maxChildAge\": 12\n        },\n        \"mealType\": \"BREAKFAST_EXCLUDED\",\n        \"roomMealPlans\": [\n          {\n            \"mealInclusionOptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mealPackageDetails\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"mealInclusionOptions\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"mealPackageDetails\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ],\n        \"totalSettlementRates\": {\n          \"partnerCurrency\": \"IDR\",\n          \"partnerAmount\": 1000000\n        },\n        \"totalRates\": {\n          \"partnerCurrency\": \"IDR\",\n          \"partnerSellAmount\": 1000000,\n          \"partnerNetAmount\": 900000\n        },\n        \"extraCharges\": [\n          {\n            \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n            \"currency\": \"USD\",\n            \"value\": \"12.1\",\n            \"isIncluded\": false\n          },\n          {\n            \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n            \"currency\": \"USD\",\n            \"value\": \"12.1\",\n            \"isIncluded\": false\n          }\n        ],\n        \"isRefundable\": true,\n        \"cancellationPolicy\": {\n          \"text\": \"Cancellation Policy\",\n          \"displayText\": \"Cancellation Policy\",\n          \"propertyTimezone\": \"GMT+07:00\",\n          \"policies\": [\n            {\n              \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n              \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n              \"cancellationCharge\": {\n                \"currency\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"amount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            },\n            {\n              \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n              \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n              \"cancellationCharge\": {\n                \"currency\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"amount\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            }\n          ]\n        }\n      }\n    ],\n    \"cancellation\": {\n      \"bookingId\": \"100160766\",\n      \"cancellationId\": \"1234567890\",\n      \"cancellationSubmissionTime\": \"2023-07-26T10:00:00+0700\",\n      \"cancellationStatus\": {\n        \"status\": \"SUBMITTED\"\n      }\n    }\n  },\n  \"error\": {\n    \"code\": \"AFI700\",\n    \"message\": \"\",\n    \"requestId\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fd4680f-cd68-4675-895f-9e4a7dbe1d92",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44b937a3-b910-483a-9dec-2b821b213427",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3ce9c0b-a896-4ea9-a951-2df1e92f730f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d507cc0b-27d2-4db6-9685-d10253cd923e",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeb4c5b0-4634-45d5-98b5-b01210df4bd5",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI700\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07a1bff8-60c0-4aa4-89ac-8f6c3f9a8d4d",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5acc70d-2116-4fa7-8e67-9b6f2da60791",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "detail"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "bookingId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "partnerBookingId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9e91232-b27d-4f29-8f95-8552209c6c5a",
+          "name": "Submit booking cancellation",
+          "request": {
+            "name": "Submit booking cancellation",
+            "description": {
+              "content": "Submits booking cancellation",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "bookings",
+                "cancellation",
+                "submit"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bookingId\": \"<string>\",\n  \"partnerBookingId\": \"<string>\",\n  \"cancellationReason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc252137-376b-4673-a61e-f777bfe45cb3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"bookingId\": \"100160766\",\n    \"cancellationId\": \"1234567890\",\n    \"cancellationSubmissionTime\": \"2023-07-26T10:00:00+0700\",\n    \"cancellationStatus\": {\n      \"status\": \"COMPLETED\"\n    }\n  },\n  \"error\": {\n    \"code\": \"AFI700\",\n    \"message\": \"\",\n    \"requestId\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc4d56a9-aa1a-4cde-bb73-04e5ca34fe50",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b4aa520-fb62-4a55-bbf3-d9bb7427be1f",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13ff9da4-0957-45ec-be1e-d7d7da0f0fcc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bddfafee-7d16-4c9b-abf8-1d302b9ed772",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f446847-7705-44c9-a834-97abd3d2af89",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI710\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b71fa4e-31e9-4e84-a459-4bb9cf1da98b",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66a214d6-8c84-4cd4-a6a4-15bc5202658f",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "bookings",
+                    "cancellation",
+                    "submit"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bookingId\": \"100160766\",\n  \"partnerBookingId\": \"1234567890\",\n  \"cancellationReason\": \"Don't like the room\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelokapartnersnetwork.com/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c5c6c895-1335-4608-ac13-81ec3c08a994",
+    "name": "LOKA Booking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

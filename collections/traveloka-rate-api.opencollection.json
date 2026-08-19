@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOKA Rate API",
+    "version": "2.4.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Price and availability for properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/properties/:getRates",
+            "params": [
+              {
+                "name": "propertyIds",
+                "value": "",
+                "type": "query",
+                "description": "Property Id, You can use a single query parameter and separate multiple values with a comma (or any other delimiter). For example: GET /endpoint?id=a&id=b&id=c"
+              },
+              {
+                "name": "checkInDate",
+                "value": "",
+                "type": "query",
+                "description": "Check-in date (YYYY-MM-DD)"
+              },
+              {
+                "name": "checkOutDate",
+                "value": "",
+                "type": "query",
+                "description": "Check-out date (YYYY-MM-DD)"
+              },
+              {
+                "name": "numRooms",
+                "value": "",
+                "type": "query",
+                "description": "Number of rooms"
+              },
+              {
+                "name": "numAdults",
+                "value": "",
+                "type": "query",
+                "description": "Number of adults"
+              },
+              {
+                "name": "numChildren",
+                "value": "",
+                "type": "query",
+                "description": "Number of children"
+              },
+              {
+                "name": "childrenAges",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of ages of children"
+              },
+              {
+                "name": "displayCurrency",
+                "value": "",
+                "type": "query",
+                "description": "Currency code"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "language. with default value 'en', example: 'en', 'id'"
+              },
+              {
+                "name": "userNationality",
+                "value": "",
+                "type": "query",
+                "description": "Nationality of the user using ISO 3166 Alpha-2, e.g ID"
+              },
+              {
+                "name": "isExtended",
+                "value": "true",
+                "type": "query",
+                "description": "Enable if buyer need detailed rates"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The Price/Rate API provides real-time access to pricing information for different accommodations. By utilizing this API, developers can retrieve cached rates for various room types, allowing users to compare prices and make cost-effective decisions."
+        },
+        {
+          "info": {
+            "name": "Price Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelokapartnersnetwork.com/v2/properties/checkRate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The Price Check API enables developers to dynamically calculate the estimated cost of a potential stay. By inputting check-in and check-out dates along with room preferences, users can obtain an instant quote for their desired booking before proceeding with the reservation. The result itself is dynamic and it is recommended to update the content regularly (XX-XX hours)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

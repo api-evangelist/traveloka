@@ -1,0 +1,1366 @@
+{
+  "item": [
+    {
+      "id": "39e60196-80b9-478d-ae53-a6ef1a150fe2",
+      "name": "Content",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02ff410b-8035-4556-8689-1e304314928a",
+          "name": "Get hotels",
+          "request": {
+            "name": "Get hotels",
+            "description": {
+              "content": "Returns hotel content",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "properties",
+                "content",
+                "hotel"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hotelIds",
+                  "value": "<string>",
+                  "description": "Hotel Ids"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryISO",
+                  "value": "<string>",
+                  "description": "(Required) Country Id, format ISO 3166-1 alpha-2, example: 'ID', 'SG'"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "(Required) language. with default value 'en', example: 'en', 'id'"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastUpdatedTime",
+                  "value": "<string>",
+                  "description": "Last update time"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "(Required) Offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "(Required) Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "isExtended",
+                  "value": "false",
+                  "description": "Extended response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be19514e-d385-4cd1-b6de-4633884d683b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4377,\n  \"data\": [\n    {\n      \"propertyId\": \"1000000340382\",\n      \"propertyName\": \"Hotel Indonesia Kempinski Jakarta\"\n    },\n    {\n      \"propertyId\": \"1000000340382\",\n      \"propertyName\": \"Hotel Indonesia Kempinski Jakarta\"\n    }\n  ],\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de1f94d-e68b-40af-a774-04910d427b62",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "434b2d6c-f0bf-4ce1-92ca-5e03904c3e43",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b95fc87d-6dbc-4730-817d-3c170d8007f0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae60206e-55a9-4407-ad5a-35f78cff1748",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "489f29bf-e398-4053-b347-4f458338987c",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFIXXX\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "446f71bf-e3ed-422f-9eb4-4f032fd3aa87",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c10e46f2-e825-4f44-9f38-95c15bd1f25b",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "hotel"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "hotelIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryISO",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acc12fc4-fe5a-4b8b-b696-b9cbaa907d36",
+          "name": "Get room",
+          "request": {
+            "name": "Get room",
+            "description": {
+              "content": "Returns room content",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "properties",
+                "content",
+                "room"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyIds",
+                  "value": "<string>",
+                  "description": "(Required) Property Id, You can use a single query parameter and separate multiple values with a '&'. For example: GET /endpoint?id=a&id=b&id=c"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "(Required) language. with default value 'en', example: 'en', 'id'"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastUpdatedTime",
+                  "value": "<string>",
+                  "description": "Last updated time"
+                },
+                {
+                  "disabled": false,
+                  "key": "isExtended",
+                  "value": "<boolean>",
+                  "description": "Enable if buyer need detailed rooms"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "701845c6-d5f5-44dc-9b64-ee231bf4107c",
+              "name": "Successful response with list of properties",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3667,\n  \"data\": [\n    {\n      \"propertyId\": \"9000000128672\",\n      \"roomId\": \"1000066445\",\n      \"roomStatus\": \"NOT_AVAILABLE\",\n      \"roomName\": \"Grand Deluxe Room\",\n      \"roomType\": \"DELUXE\",\n      \"roomDescription\": \"This room is suitable for family of two\",\n      \"roomView\": \"city view\",\n      \"roomHasWindow\": true,\n      \"maxOccupancy\": 1,\n      \"maxChildOccupancy\": 1,\n      \"bedArrangement\": [\n        {\n          \"bedroomLayouts\": [\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"DEFAULT\"\n            },\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"ALTERNATIVE\"\n            }\n          ]\n        },\n        {\n          \"bedroomLayouts\": [\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"DEFAULT\"\n            },\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"DEFAULT\"\n            }\n          ]\n        }\n      ],\n      \"roomSize\": {\n        \"size\": 28,\n        \"unit\": \"SQUARE_METER\"\n      },\n      \"roomFacilities\": [\n        {\n          \"name\": \"COMPLIMENTARY_BOTTLED_WATER\",\n          \"localizedName\": \"Air minum kemasan cuma-cuma\"\n        },\n        {\n          \"name\": \"COMPLIMENTARY_BOTTLED_WATER\",\n          \"localizedName\": \"Air minum kemasan cuma-cuma\"\n        }\n      ],\n      \"smokingPreference\": \"NON_SMOKING\",\n      \"gender\": \"EITHER\",\n      \"mealPlans\": [\n        \"BF\",\n        \"BF\"\n      ],\n      \"lastUpdatedTime\": \"2019-08-01T00:00:00.000+07:00\"\n    },\n    {\n      \"propertyId\": \"9000000128672\",\n      \"roomId\": \"1000066445\",\n      \"roomStatus\": \"AVAILABLE\",\n      \"roomName\": \"Grand Deluxe Room\",\n      \"roomType\": \"DELUXE\",\n      \"roomDescription\": \"This room is suitable for family of two\",\n      \"roomView\": \"city view\",\n      \"roomHasWindow\": true,\n      \"maxOccupancy\": 1,\n      \"maxChildOccupancy\": 1,\n      \"bedArrangement\": [\n        {\n          \"bedroomLayouts\": [\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"ALTERNATIVE\"\n            },\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"ALTERNATIVE\"\n            }\n          ]\n        },\n        {\n          \"bedroomLayouts\": [\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"DEFAULT\"\n            },\n            {\n              \"arrangements\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"arrangementType\": \"ALTERNATIVE\"\n            }\n          ]\n        }\n      ],\n      \"roomSize\": {\n        \"size\": 28,\n        \"unit\": \"SQUARE_METER\"\n      },\n      \"roomFacilities\": [\n        {\n          \"name\": \"COMPLIMENTARY_BOTTLED_WATER\",\n          \"localizedName\": \"Air minum kemasan cuma-cuma\"\n        },\n        {\n          \"name\": \"COMPLIMENTARY_BOTTLED_WATER\",\n          \"localizedName\": \"Air minum kemasan cuma-cuma\"\n        }\n      ],\n      \"smokingPreference\": \"NON_SMOKING\",\n      \"gender\": \"EITHER\",\n      \"mealPlans\": [\n        \"BF\",\n        \"BF\"\n      ],\n      \"lastUpdatedTime\": \"2019-08-01T00:00:00.000+07:00\"\n    }\n  ],\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c4f1127-b136-4a16-aeef-7cefd0032bb2",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe27ff4-31a0-4f6f-81be-d5441d91b537",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec173f5a-5ce5-4a35-8e41-4b9f64ccb53b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eaee4b44-2648-40e4-a1a6-09b975ed9ae7",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "069d1de8-d334-4a9f-a957-95151129ba96",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFIXXX\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbd7935e-5116-4809-a7c6-67e90632ce1b",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0372d7b-ab3a-4fc1-8de3-41d2bd3956eb",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "content",
+                    "room"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "72900"
+                    },
+                    {
+                      "key": "language",
+                      "value": "en"
+                    },
+                    {
+                      "key": "lastUpdatedTime",
+                      "value": "2020-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelokapartnersnetwork.com/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a2bb7ac3-9ce7-4a76-ab72-832b8f2065cf",
+    "name": "LOKA Content API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

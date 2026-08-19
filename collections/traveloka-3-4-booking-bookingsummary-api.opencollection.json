@@ -1,0 +1,32 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traveloka Atlas 3.4 Booking - BookingSummary API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "3.4 Booking - BookingSummary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get booking summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/booking-summary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to retrieve the summary of a booking."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

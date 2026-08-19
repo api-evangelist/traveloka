@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOKA Discovery (Optional) Discovery (Optional) API",
+    "version": "2.4.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery (Optional)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discover geo by geo location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/discovery/getGeo",
+            "params": [
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "Latitude"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "Longitude"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query",
+                "description": "Country code"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Language"
+              },
+              {
+                "name": "geoName",
+                "value": "",
+                "type": "query",
+                "description": "Geo name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Discover geo by geo location"
+        },
+        {
+          "info": {
+            "name": "Discover hotels by filters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.travelokapartnersnetwork.com/v2/discovery/getRates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Discover hotels by filters"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

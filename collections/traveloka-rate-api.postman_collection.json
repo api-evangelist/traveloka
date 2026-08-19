@@ -1,0 +1,1454 @@
+{
+  "item": [
+    {
+      "id": "8c0cb47b-8412-48b4-8fde-a8f98bd09de4",
+      "name": "Rate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "029a3bd5-5f6c-4f9b-a33d-638d2f82e1eb",
+          "name": "Retrieve Price and availability for properties",
+          "request": {
+            "name": "Retrieve Price and availability for properties",
+            "description": {
+              "content": "The Price/Rate API provides real-time access to pricing information for different accommodations. By utilizing this API, developers can retrieve cached rates for various room types, allowing users to compare prices and make cost-effective decisions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "properties",
+                ":getRates"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyIds",
+                  "value": "<string>",
+                  "description": "(Required) Property Id, You can use a single query parameter and separate multiple values with a comma (or any other delimiter). For example: GET /endpoint?id=a&id=b&id=c"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkInDate",
+                  "value": "<string>",
+                  "description": "(Required) Check-in date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "checkOutDate",
+                  "value": "<string>",
+                  "description": "(Required) Check-out date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "numRooms",
+                  "value": "<integer>",
+                  "description": "(Required) Number of rooms"
+                },
+                {
+                  "disabled": false,
+                  "key": "numAdults",
+                  "value": "<integer>",
+                  "description": "(Required) Number of adults"
+                },
+                {
+                  "disabled": false,
+                  "key": "numChildren",
+                  "value": "<integer>",
+                  "description": "Number of children"
+                },
+                {
+                  "disabled": false,
+                  "key": "childrenAges",
+                  "value": "<integer>",
+                  "description": "A comma-separated list of ages of children"
+                },
+                {
+                  "disabled": false,
+                  "key": "childrenAges",
+                  "value": "<integer>",
+                  "description": "A comma-separated list of ages of children"
+                },
+                {
+                  "disabled": false,
+                  "key": "displayCurrency",
+                  "value": "<string>",
+                  "description": "(Required) Currency code"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "(Required) language. with default value 'en', example: 'en', 'id'"
+                },
+                {
+                  "disabled": false,
+                  "key": "userNationality",
+                  "value": "<string>",
+                  "description": "(Required) Nationality of the user using ISO 3166 Alpha-2, e.g ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "isExtended",
+                  "value": "<boolean>",
+                  "description": "Enable if buyer need detailed rates"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49905980-4e5a-415f-b720-b61131171a40",
+              "name": "Successful response with rates and availability",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2555,\n  \"data\": [\n    {\n      \"propertyId\": \"72900\",\n      \"rateStatus\": \"AVAILABLE\",\n      \"roomId\": \"11477200\",\n      \"roomName\": \"Deluxe Room\",\n      \"roomType\": \"Deluxe\",\n      \"numRooms\": 1,\n      \"numAdults\": 1,\n      \"numChildren\": 1,\n      \"maxOccupancy\": 1,\n      \"maxChildOccupancy\": 1,\n      \"maxChildAge\": 12,\n      \"roomOccupancy\": {\n        \"numAdults\": 1,\n        \"numChildren\": 1,\n        \"maxOccupancy\": 1,\n        \"maxChildOccupancy\": 1,\n        \"maxChildAge\": 12\n      },\n      \"mealType\": \"RO\",\n      \"roomMealPlan\": {\n        \"mealInclusionOptions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"mealPackageDetails\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"isRefundable\": true,\n      \"isSmokingAllowed\": true,\n      \"totalRates\": {\n        \"displayCurrency\": \"IDR\",\n        \"displaySellAmount\": 1000000,\n        \"displayNetAmount\": 900000,\n        \"partnerCurrency\": \"IDR\",\n        \"partnerSellAmount\": 1000000,\n        \"partnerNetAmount\": 900000\n      },\n      \"extraCharges\": [\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        },\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        }\n      ],\n      \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n      \"cancellationPolicy\": {\n        \"text\": \"Cancellation Policy\",\n        \"displayText\": \"Cancellation Policy\",\n        \"propertyTimezone\": \"GMT+07:00\",\n        \"policies\": [\n          {\n            \"startCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationCharge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationCharge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"checkInPolicy\": {\n        \"checkInDate\": \"2024-01-01\",\n        \"checkOutDate\": \"2024-01-02\"\n      },\n      \"extraBenefits\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"valueList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"renderedName\": \"Free Breakfast for 2 pax\",\n          \"additionalInfo\": \"Terms and conditions apply\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"valueList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"renderedName\": \"Free Breakfast for 2 pax\",\n          \"additionalInfo\": \"Terms and conditions apply\"\n        }\n      ]\n    },\n    {\n      \"propertyId\": \"72900\",\n      \"rateStatus\": \"AVAILABLE\",\n      \"roomId\": \"11477200\",\n      \"roomName\": \"Deluxe Room\",\n      \"roomType\": \"Deluxe\",\n      \"numRooms\": 1,\n      \"numAdults\": 1,\n      \"numChildren\": 1,\n      \"maxOccupancy\": 1,\n      \"maxChildOccupancy\": 1,\n      \"maxChildAge\": 12,\n      \"roomOccupancy\": {\n        \"numAdults\": 1,\n        \"numChildren\": 1,\n        \"maxOccupancy\": 1,\n        \"maxChildOccupancy\": 1,\n        \"maxChildAge\": 12\n      },\n      \"mealType\": \"BF\",\n      \"roomMealPlan\": {\n        \"mealInclusionOptions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"mealPackageDetails\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"isRefundable\": true,\n      \"isSmokingAllowed\": true,\n      \"totalRates\": {\n        \"displayCurrency\": \"IDR\",\n        \"displaySellAmount\": 1000000,\n        \"displayNetAmount\": 900000,\n        \"partnerCurrency\": \"IDR\",\n        \"partnerSellAmount\": 1000000,\n        \"partnerNetAmount\": 900000\n      },\n      \"extraCharges\": [\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        },\n        {\n          \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n          \"currency\": \"USD\",\n          \"value\": \"12.1\",\n          \"isIncluded\": false\n        }\n      ],\n      \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n      \"cancellationPolicy\": {\n        \"text\": \"Cancellation Policy\",\n        \"displayText\": \"Cancellation Policy\",\n        \"propertyTimezone\": \"GMT+07:00\",\n        \"policies\": [\n          {\n            \"startCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationCharge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endCancelDateTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cancellationCharge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"checkInPolicy\": {\n        \"checkInDate\": \"2024-01-01\",\n        \"checkOutDate\": \"2024-01-02\"\n      },\n      \"extraBenefits\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"valueList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"renderedName\": \"Free Breakfast for 2 pax\",\n          \"additionalInfo\": \"Terms and conditions apply\"\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"valueList\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"renderedName\": \"Free Breakfast for 2 pax\",\n          \"additionalInfo\": \"Terms and conditions apply\"\n        }\n      ]\n    }\n  ],\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be942d6b-d6ae-4013-9d77-61dbddc22f1a",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0eedd9f-8f6e-44af-aaa9-3a13ec0fc787",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed647ec6-829c-4643-abd2-2b81bacccc79",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62e42728-19f7-4900-94eb-9c0ae960c4fc",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8b4b9c3-b185-4a42-b8ce-9e01baa208ef",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFIXXX\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94ab7563-7617-46ef-8848-a06299a7e69c",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1cb64409-6464-4371-bb65-f730936cc019",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":getRates"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyIds",
+                      "value": "[72900, 48666]"
+                    },
+                    {
+                      "key": "checkInDate",
+                      "value": "2024-01-01"
+                    },
+                    {
+                      "key": "checkOutDate",
+                      "value": "2024-01-02"
+                    },
+                    {
+                      "key": "numRooms",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numAdults",
+                      "value": "1"
+                    },
+                    {
+                      "key": "numChildren",
+                      "value": "1"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "childrenAges",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "displayCurrency",
+                      "value": "IDR"
+                    },
+                    {
+                      "key": "language",
+                      "value": "id"
+                    },
+                    {
+                      "key": "userNationality",
+                      "value": "ID"
+                    },
+                    {
+                      "key": "isExtended",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8176491-c0a3-4ac7-99e2-f305c2b49a62",
+          "name": "Price Check",
+          "request": {
+            "name": "Price Check",
+            "description": {
+              "content": "The Price Check API enables developers to dynamically calculate the estimated cost of a potential stay. By inputting check-in and check-out dates along with room preferences, users can obtain an instant quote for their desired booking before proceeding with the reservation. The result itself is dynamic and it is recommended to update the content regularly (XX-XX hours)",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "v2",
+                "properties",
+                "checkRate"
+              ],
+              "host": [
+                "api",
+                "travelokapartnersnetwork",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"<string>\",\n  \"roomId\": \"<string>\",\n  \"checkInDate\": \"<string>\",\n  \"checkOutDate\": \"<string>\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": \"<integer>\",\n  \"displayCurrency\": \"<string>\",\n  \"language\": \"<string>\",\n  \"userNationality\": \"<string>\",\n  \"rateKey\": \"<string>\",\n  \"numChildren\": \"<integer>\",\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f18e6a1f-6c47-498c-b755-3c13d4a8c013",
+              "name": "List of rates for rooms",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"rateStatus\": \"Rates Sold Out\",\n    \"propertyId\": \"72900\",\n    \"roomId\": \"11477200\",\n    \"roomName\": \"Deluxe Room\",\n    \"roomType\": \"Deluxe\",\n    \"checkInDate\": \"2024-01-01\",\n    \"checkOutDate\": \"2024-01-02\",\n    \"numRooms\": 1,\n    \"numAdults\": 1,\n    \"numChildren\": 1,\n    \"maxOccupancy\": 1,\n    \"maxChildOccupancy\": 1,\n    \"maxChildAge\": 12,\n    \"roomOccupancy\": {\n      \"numAdults\": 1,\n      \"numChildren\": 1,\n      \"maxOccupancy\": 1,\n      \"maxChildOccupancy\": 1,\n      \"maxChildAge\": 12\n    },\n    \"bedArrangement\": [\n      {\n        \"bedroomLayouts\": [\n          {\n            \"arrangements\": [\n              {\n                \"bedType\": \"SINGLE\",\n                \"total\": 982\n              },\n              {\n                \"bedType\": \"SINGLE\",\n                \"total\": 157\n              }\n            ],\n            \"arrangementType\": \"ALTERNATIVE\"\n          },\n          {\n            \"arrangements\": [\n              {\n                \"bedType\": \"DAY\",\n                \"total\": 7760\n              },\n              {\n                \"bedType\": \"AIR_MATTRESS\",\n                \"total\": 1995\n              }\n            ],\n            \"arrangementType\": \"ALTERNATIVE\"\n          }\n        ]\n      },\n      {\n        \"bedroomLayouts\": [\n          {\n            \"arrangements\": [\n              {\n                \"bedType\": \"DOUBLE\",\n                \"total\": 8582\n              },\n              {\n                \"bedType\": \"SINGLE\",\n                \"total\": 9981\n              }\n            ],\n            \"arrangementType\": \"DEFAULT\"\n          },\n          {\n            \"arrangements\": [\n              {\n                \"bedType\": \"SOFA\",\n                \"total\": 7383\n              },\n              {\n                \"bedType\": \"SOFA\",\n                \"total\": 2528\n              }\n            ],\n            \"arrangementType\": \"DEFAULT\"\n          }\n        ]\n      }\n    ],\n    \"mealType\": \"RO\",\n    \"roomMealPlan\": {\n      \"mealInclusionOptions\": [\n        {\n          \"mealInclusionDetails\": {\n            \"key_0\": {\n              \"mealPackages\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"adultPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"childrenPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"key_1\": {\n              \"mealPackages\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"adultPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"childrenPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"key_2\": {\n              \"mealPackages\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"adultPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"childrenPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        },\n        {\n          \"mealInclusionDetails\": {\n            \"key_0\": {\n              \"mealPackages\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"adultPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"childrenPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"key_1\": {\n              \"mealPackages\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"adultPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"childrenPax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        }\n      ],\n      \"mealPackageDetails\": {\n        \"key_0\": {\n          \"defaultLanguage\": \"string\",\n          \"name\": {\n            \"key_0\": \"string\"\n          },\n          \"servingPlace\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"servingType\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"cuisineSelection\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"dietaryRestriction\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"renderedName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"contentResourceKey\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"servingTime\": {\n            \"key_0\": {\n              \"from\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"to\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"notes\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      }\n    },\n    \"isRefundable\": true,\n    \"benefits\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"name\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"name\": \"string\"\n      }\n    ],\n    \"extraBenefits\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"valueList\": [\n          {\n            \"value\": 3077,\n            \"unit\": \"string\"\n          },\n          {\n            \"value\": 9182,\n            \"unit\": \"string\"\n          }\n        ],\n        \"renderedName\": \"Free Breakfast for 2 pax\",\n        \"additionalInfo\": \"Terms and conditions apply\"\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"string\",\n        \"valueList\": [\n          {\n            \"value\": 9323,\n            \"unit\": \"string\"\n          },\n          {\n            \"value\": 9820,\n            \"unit\": \"string\"\n          }\n        ],\n        \"renderedName\": \"Free Breakfast for 2 pax\",\n        \"additionalInfo\": \"Terms and conditions apply\"\n      }\n    ],\n    \"totalRates\": {\n      \"displayCurrency\": \"IDR\",\n      \"displaySellAmount\": 1000000,\n      \"displayNetAmount\": 900000,\n      \"partnerCurrency\": \"IDR\",\n      \"partnerSellAmount\": 1000000,\n      \"partnerNetAmount\": 900000\n    },\n    \"nightlyRates\": {\n      \"displayCurrency\": \"IDR\",\n      \"displaySellAmount\": 1000000,\n      \"displayNetAmount\": 900000,\n      \"partnerCurrency\": \"IDR\",\n      \"partnerSellAmount\": 1000000,\n      \"partnerNetAmount\": 900000\n    },\n    \"charges\": [\n      {\n        \"type\": \"TAX\",\n        \"displayCurrency\": \"IDR\",\n        \"displayAmount\": 50000,\n        \"isIncluded\": true\n      },\n      {\n        \"type\": \"TAX\",\n        \"displayCurrency\": \"IDR\",\n        \"displayAmount\": 50000,\n        \"isIncluded\": true\n      }\n    ],\n    \"extraCharges\": [\n      {\n        \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n        \"currency\": \"USD\",\n        \"value\": \"12.1\",\n        \"isIncluded\": false\n      },\n      {\n        \"name\": \"COUNTRY_TAX_ADJUSTMENT\",\n        \"currency\": \"USD\",\n        \"value\": \"12.1\",\n        \"isIncluded\": false\n      }\n    ],\n    \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n    \"cancellationPolicy\": {\n      \"text\": \"Cancellation Policy\",\n      \"displayText\": \"Cancellation Policy\",\n      \"propertyTimezone\": \"GMT+07:00\",\n      \"policies\": [\n        {\n          \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n          \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n          \"cancellationCharge\": {\n            \"currency\": \"IDR\",\n            \"amount\": \"100000\"\n          }\n        },\n        {\n          \"startCancelDateTime\": \"2023-07-26T10:00:00+07:00\",\n          \"endCancelDateTime\": \"2023-07-30T10:00:00+07:00\",\n          \"cancellationCharge\": {\n            \"currency\": \"IDR\",\n            \"amount\": \"100000\"\n          }\n        }\n      ]\n    }\n  },\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eabde35-22e5-408e-9517-753b53b4ddea",
+              "name": "Bad request. We cannot understand your intention.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFI100\",\n    \"message\": \"parameter missing, please check your request body.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42070147-7be0-417f-90f9-ccbf164d00a5",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"401\",\n    \"message\": \"Unauthorized, the token might be expired.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62c1c9e0-302d-4bb0-bcb7-18a331dec3ca",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"404\",\n    \"message\": \"Not Found. The requested resource is not found.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "345d3d73-bc85-48f8-85fa-c5549c1e11c8",
+              "name": "Timeout",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"408\",\n    \"message\": \"Timeout. Your request exceeds the timeout limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a30c8086-048f-4bb4-bba3-20ea629d8296",
+              "name": "Request is understood, but the server couldn't process it.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"AFIXXX\",\n    \"message\": \"Error message\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73cc4fab-e5d2-4ca8-8643-23c7f8966779",
+              "name": "Exceed rate limit",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"429\",\n    \"message\": \"Exceed rate limit. Your request count exceeds the allowed QPS rate limit.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "987fea30-6fb4-498d-b4ba-e400a1c49961",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "v2",
+                    "properties",
+                    "checkRate"
+                  ],
+                  "host": [
+                    "api",
+                    "travelokapartnersnetwork",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"72900\",\n  \"roomId\": \"11477200\",\n  \"checkInDate\": \"2024-01-01\",\n  \"checkOutDate\": \"2024-01-02\",\n  \"numRooms\": \"<integer>\",\n  \"numAdults\": 1,\n  \"displayCurrency\": \"IDR\",\n  \"language\": \"id\",\n  \"userNationality\": \"ID\",\n  \"rateKey\": \"povEwB3ZzsU2C6pd+6...\",\n  \"numChildren\": 1,\n  \"childrenAges\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {},\n  \"error\": {\n    \"code\": \"500\",\n    \"message\": \"Server Error. Please contact our support team.\",\n    \"requestId\": \"1234567890\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.travelokapartnersnetwork.com/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4c9ccc6d-3d62-46d4-8794-fc9322d92ad7",
+    "name": "LOKA Rate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

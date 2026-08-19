@@ -1,0 +1,32 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Traveloka Atlas 2.2 Search - RoomList API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "2.2 Search - RoomList",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8080/room-list",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation is for Traveloka to search for rooms in a hotel based on the provided criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

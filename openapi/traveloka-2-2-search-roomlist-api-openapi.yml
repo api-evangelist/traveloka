@@ -1,0 +1,1093 @@
+openapi: 3.2.0
+info:
+  title: Traveloka Atlas 2.2 Search - RoomList API
+  version: ''
+  description: "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n"
+servers:
+- url: http://localhost:8080
+  description: Generated server url
+security: []
+tags:
+- name: 2.2 Search - RoomList
+paths:
+  /room-list:
+    post:
+      tags:
+      - 2.2 Search - RoomList
+      summary: Search for rooms
+      description: This operation is for Traveloka to search for rooms in a hotel based on the provided criteria.
+      operationId: roomList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoomListSearchRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListSearchResponse'
+              examples:
+                Success:
+                  summary: Search request is successful
+                  description: Success
+                  value:
+                    requestId: 928827d7-b847-495f-9592-f207df896ac4
+                    results:
+                    - checkInInstruction: Please check in after 13:00
+                      room:
+                        providerHotelRoomId: '1234567890'
+                        providerHotelId: 0987654321
+                        caption: Deluxe Room
+                        description: A spacious room with a king-sized bed and a beautiful view of the city.
+                        size:
+                          size: 42
+                          unit: SQUARE_METER
+                          description: string
+                          sizeIncludingTerrace: true
+                        numRooms: 4
+                        occupancyPolicy:
+                          maxOccupancy: 2
+                          maxChildOccupancy: 2
+                          maxInfantOccupancy: 1
+                          maxExtraBeds: 1
+                        beds:
+                          numBeds: 2
+                          bedType: SINGLE
+                          description: Single Beds
+                        roomFacility:
+                          facilities:
+                          - WiFi
+                          - Air Conditioning
+                          - Mini Bar
+                        hotelRoomType: SINGLE
+                        view: City view
+                        hasTerrace: true
+                        smokingPreferences: S
+                        embeddedAssets:
+                        - assetId: string
+                          type: THUMBNAIL
+                          isMain: true
+                          url: www.image.com/image?no=1
+                          caption: Room Image
+                          width: 250
+                          height: 400
+                      inventories:
+                      - availabilityToken: ROOM12345
+                        rateType: PAY_NOW
+                        numRemainingRooms: 5
+                        breakfastIncluded: true
+                        mealPlan:
+                          code: RO
+                          pax:
+                            adults: 2
+                            children: 1
+                        wifiIncluded: true
+                        numExtraBedIncluded: 0
+                        currency: IDR
+                        providerRecommendedSellingRate:
+                          currency: IDR
+                          totalFare: 1000000
+                          taxes: 100000
+                          fees: 50000
+                        providerOriginalRate:
+                          currency: IDR
+                          totalFare: 1000000
+                          taxes: 100000
+                          fees: 50000
+                        additionalFees:
+                          mandatoryFee: {}
+                          mandatoryTax: {}
+                          resortFee: {}
+                          countryTaxFee:
+                          - 5
+                        numChargedRooms: 2
+                        refundable: true
+                        cancellationPolicy:
+                          cancellationPolicyDescription: string
+                          providerCancellationPolicyInfoList:
+                          - cancelDateTime: '2028-01-01T00:00:00.000Z'
+                            cancellationFee: 120
+                            currency: USD
+                            nightCount: 0
+                        noShowPolicy:
+                          noShowDateTime: '1970-01-01T00:00:00.000Z'
+                          noShowFee: 120
+                          currency: USD
+                          nightCount: 1
+                        promoIds:
+                        - string
+                        commissionRate: 15
+                Not available:
+                  summary: Search request is not available
+                  description: Not available
+                  value:
+                    requestId: requestId
+                Http Status OK with error:
+                  summary: Object response when http status is 200 but contains error
+                  description: Http Status OK with error
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: RATE_UNAVAILABLE
+                      errorMessage: Rate is unavailable
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListSearchErrorResponse'
+              examples:
+                Error 400 example:
+                  summary: This example is using INVALID_BOOKING_WINDOW error
+                  description: Error 400 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: INVALID_BOOKING_WINDOW
+                      errorMessage: Invalid booking window
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListSearchErrorResponse'
+              examples:
+                Error 401 example:
+                  summary: This example is using AUTHENTICATION_FAILED error
+                  description: Error 401 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: AUTHENTICATION_FAILED
+                      errorMessage: Invalid username/password
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListSearchErrorResponse'
+              examples:
+                Error 429 example:
+                  summary: This example is using TOO_MANY_REQUESTS error
+                  description: Error 429 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: TOO_MANY_REQUESTS
+                      errorMessage: Too many requests. Please try again.
+        '500':
+          description: Something went wrong
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomListSearchErrorResponse'
+              examples:
+                Error 500 example:
+                  summary: This example is using UNKNOWN_SERVER_ERROR error
+                  description: Error 500 example
+                  value:
+                    requestId: requestId
+                    error:
+                      errorId: UNKNOWN_SERVER_ERROR
+                      errorMessage: Unknown server error
+      servers:
+      - url: http://localhost:8080
+        description: Generated server url
+components:
+  schemas:
+    RoomListSearchRequest:
+      required:
+      - cache
+      - checkInDate
+      - checkOutDate
+      - currency
+      - numAdults
+      - numChildren
+      - numRooms
+      - providerHotelId
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        providerHotelId:
+          type: string
+          description: Provider hotel ID to be searched
+          example: '1234567890'
+        providerHotelRoomId:
+          type: string
+          description: Hotel Room ID to be searched. (will be mandatory for prebook step, not mandatory for roomList step)
+          example: 0987654321
+        availabilityToken:
+          type: string
+          description: Token/ID for this room type/price. (will be mandatory for prebook step, not mandatory for roomList step)
+          example: 234dataw45esser
+        rateTypes:
+          type: array
+          description: Hotel Rate Type.
+          items:
+            type: string
+            description: Hotel Rate Type.
+            enum:
+            - PAY_NOW
+            - PAY_AT_PROPERTY
+        hotelRatePlanType:
+          type: string
+          description: Hotel Rate Plan Type.
+          enum:
+          - RETAIL
+          - MOBILE
+          - PRIVATESALE
+          - LAST_MINUTE
+          - BUDGET_ROOMS
+          - PACKAGE
+          - CAMPAIGN
+          - CROSS_SELL
+          - CORPORATE
+          - STATIC
+          - GROWTH_MARKET
+        sourceMarket:
+          type: string
+          description: Country ID to indicate the source (customer) search market. For example, provider have option to set special price for certain nationality when booking property located overseas.
+          example: ID
+        numRooms:
+          type: integer
+          description: Number of rooms to be booked in this search request
+          format: int32
+          example: 1
+        numAdults:
+          type: integer
+          description: Number of adults (total adults per booking, not total adult per room)
+          format: int32
+          example: 2
+        numChildren:
+          type: integer
+          description: Number of children (total children per booking, not total children per room)
+          format: int32
+          example: 1
+        childrenAges:
+          type: array
+          description: Mandatory if numChildren > 0
+          example:
+          - 5
+          items:
+            type: integer
+            description: Mandatory if numChildren > 0
+            format: int32
+        checkInDate:
+          type: string
+          description: Check-in date in yyyy-MM-dd format
+          example: '2023-10-01'
+        checkOutDate:
+          type: string
+          description: Check-out date in yyyy-MM-dd format
+          example: '2023-10-02'
+        currency:
+          type: string
+          description: Currency code for the search request, e.g. IDR, USD
+          example: IDR
+        locale:
+          type: string
+          description: Locale for the search request, e.g. en_US, id_ID
+          example: en_ID
+        cache:
+          type: boolean
+          description: 'Indicates whether to return the cached search result or not.
+
+
+            If true → return cached rates.
+
+
+            If false → return latest rates.
+
+            '
+          example: false
+    HotelCancellationPolicy:
+      type: object
+      properties:
+        cancellationPolicyDescription:
+          type: string
+          description: Description for cancellation policy
+        providerCancellationPolicyInfoList:
+          type: array
+          description: List of cancellation policy information
+          items:
+            $ref: '#/components/schemas/HotelCancellationPolicyInfo'
+    HotelBeds:
+      required:
+      - bedType
+      - numBeds
+      type: object
+      properties:
+        numBeds:
+          type: integer
+          description: Number of beds in the room
+          format: int32
+          example: 2
+        bedType:
+          type: string
+          description: Type of the bed
+          enum:
+          - SINGLE
+          - DOUBLE
+          - TWIN
+          - QUEEN
+          - KING
+          - ONE_SINGLE_BED
+          - ONE_DOUBLE_BED
+          - ONE_QUEEN_BED
+          - ONE_KING_BED
+          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
+          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
+          - TWO_SINGLE_BED
+          - TWO_DOUBLE_BED
+          - TWO_QUEEN_BED
+          - TWO_KING_BED
+          - TWO_DOUBLE_AND_TWO_SINGLE_BED
+          - THREE_SINGLE_BED
+          - THREE_DOUBLE_BED
+          - DOUBLE_SINGLE_AND_SOFA_BED
+          - CAPSULE_BED
+          - BUNK_BED
+          - UNKNOWN
+        description:
+          type: string
+          description: Beds description
+          example: Single Beds
+    MealPlan:
+      required:
+      - code
+      - pax
+      type: object
+      properties:
+        code:
+          type: string
+          description: Mealplan codes. See FAQ - Mealplan for all available enums.
+          example: RO
+          enum:
+          - RO
+          - BF
+          - LU
+          - DI
+          - HB
+          - HB_BF_LU
+          - HB_BF_DI
+          - HB_LU_DI
+          - FB
+          - AI
+        pax:
+          $ref: '#/components/schemas/PiMealPlanPax'
+      description: Meal plan for this room, e.g. if the booking is for 2 rooms 3 night, the mealPlan should cover for 1 room 1 night
+    HotelRoomAssetEmbeddedResponse:
+      required:
+      - assetId
+      - height
+      - url
+      - width
+      type: object
+      properties:
+        assetId:
+          type: string
+          description: Asset/Image ID
+        type:
+          type: string
+          description: Type of the hotel room asset
+          enum:
+          - THUMBNAIL
+          - SMALL_PHOTO
+          - FULL_LANDSCAPE_PHOTO
+          - HIGH_RESOLUTION_PHOTO
+        isMain:
+          type: boolean
+          description: Indicates if this asset is the main asset for the hotel room
+          example: true
+        url:
+          type: string
+          description: URL of the hotel room asset
+          example: www.image.com/image?no=1
+        caption:
+          type: string
+          description: Caption of the hotel room asset
+          example: Room Image
+        width:
+          type: integer
+          description: Image width
+          format: int32
+          example: 250
+        height:
+          type: integer
+          description: Image height
+          format: int32
+          example: 400
+    AdditionalFees:
+      type: object
+      properties:
+        mandatoryFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory fees are collected by the property at check-in or check-out.
+        mandatoryTax:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory taxes are collected by the property at check-in or check-out.
+        resortFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Resort fees are charged for amenities and extras and collected by the property at check-in or check-out.
+        countryTaxFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Country tax fee is collected by the property at check-in or check-out.
+    HotelRoomSize:
+      required:
+      - size
+      - unit
+      type: object
+      properties:
+        size:
+          type: number
+          description: Size of the room
+          format: double
+          example: 42
+        isSizeIncludingTerrace:
+          type: boolean
+        unit:
+          type: string
+          description: Unit of measurement for the room size
+          enum:
+          - SQUARE_METER
+          - SQUARE_FOOT
+          - UNKNOWN
+        description:
+          type: string
+      description: Room size
+    HotelRoomOccupancyPolicy:
+      required:
+      - maxOccupancy
+      type: object
+      properties:
+        maxOccupancy:
+          type: integer
+          description: Return exactly the number of adults that were used in the search specification
+          format: int32
+          example: 2
+        maxChildOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 2
+        maxInfantOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 1
+        maxExtraBeds:
+          type: integer
+          description: Maximum number of extra beds in the room based on user specification
+          format: int32
+          example: 1
+      description: Room occupancy policy
+    HotelWithInventoryResponse:
+      required:
+      - inventories
+      - room
+      type: object
+      properties:
+        checkInInstruction:
+          type: string
+          description: Special check-in instruction
+          example: Please check in after 13:00
+        room:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoom'
+          - description: Separate the room object if they have different price due to different promotion.
+        inventories:
+          type: array
+          description: List of room inventories for this room
+          items:
+            $ref: '#/components/schemas/HotelRoomInventoryResponse'
+    RoomListSearchResponse:
+      required:
+      - results
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        results:
+          type: array
+          description: List of hotel rooms with inventory that match the search criteria
+          items:
+            $ref: '#/components/schemas/HotelWithInventoryResponse'
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    HotelRoomRate:
+      required:
+      - currency
+      - fees
+      - taxes
+      - totalFare
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code, e.g. IDR, USD
+          example: IDR
+        totalFare:
+          type: number
+          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
+          format: double
+          example: 1000000
+        taxes:
+          type: number
+          description: Total taxes amount
+          format: double
+          example: 100000
+        fees:
+          type: number
+          description: Total fees amount
+          format: double
+          example: 50000
+    HotelRoom:
+      required:
+      - beds
+      - description
+      - hotelRoomType
+      - occupancyPolicy
+      - providerHotelId
+      - providerHotelRoomId
+      - size
+      type: object
+      properties:
+        providerHotelRoomId:
+          type: string
+          description: Provider hotel room ID
+          example: '1234567890'
+        providerHotelId:
+          type: string
+          description: Provider hotel ID
+          example: 0987654321
+        caption:
+          type: string
+          description: Room caption / Room name in English
+          example: Deluxe Room
+        description:
+          type: string
+          description: Room name
+          example: A spacious room with a king-sized bed and a beautiful view of the city.
+        size:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomSize'
+          - description: Room size
+        numRooms:
+          type: integer
+          description: Number of available rooms
+          format: int32
+          example: 4
+        occupancyPolicy:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomOccupancyPolicy'
+          - description: Room occupancy policy
+        beds:
+          $ref: '#/components/schemas/HotelBeds'
+        roomFacility:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomFacility'
+          - description: Room facility
+        hotelRoomType:
+          type: string
+          description: Hotel Room Type
+          example: SINGLE
+          enum:
+          - SINGLE
+          - DOUBLE
+          - TWIN
+          - TRIPLE
+          - STANDARD
+          - DELUXE
+          - EXECUTIVE
+          - SUPERIOR
+          - JUNIOR_SUITE
+          - SUITE
+          - ONE_BEDROOM
+          - TWO_BEDROOM
+          - THREE_BEDROOM
+          - FOUR_BEDROOM
+          - FIVE_BEDROOM
+          - SIX_BEDROOM
+          - SEVEN_BEDROOM
+          - DOUBLE_OR_TWIN
+          - STUDIO_ROOM
+          - OTHERS
+        view:
+          type: string
+          description: Room views, e.g. "city view"
+          example: City view
+        hasTerrace:
+          type: boolean
+        smokingPreferences:
+          type: string
+          description: 'Whether smoking is allowed inside the room. Expected output:
+
+
+            "S" → Smoking
+
+
+            "NS" → Non-Smoking
+
+
+            "E" → Either
+
+            '
+          example: S
+          enum:
+          - S
+          - NS
+          - E
+        embeddedAssets:
+          type: array
+          description: 'List of embedded assets for the room (can be room images, etc)
+
+
+            Gives an empty array if unavailable ("embeddedAssets": [])
+
+            '
+          items:
+            $ref: '#/components/schemas/HotelRoomAssetEmbeddedResponse'
+    PayAtPropertyNoShowPolicy:
+      type: object
+      properties:
+        noShowDateTime:
+          type: string
+          description: "  Time to considered as no show.\n  The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.\n"
+          example: '1970-01-01T00:00:00.000Z'
+        noShowFee:
+          type: number
+          description: No show fee.
+          format: double
+          example: 120
+        currency:
+          type: string
+          description: Currency info
+          example: USD
+        nightCount:
+          type: integer
+          description: 'No show fee in room night.
+
+            Example: nightCount = 1 means cancellation fee is one room night.
+
+            This field is not mandatory if @noShowFee already filled in.
+
+            But if @nightCount is filled in, @noShowFee MUST also be filled in.'
+          format: int32
+          example: 1
+    ChargeItem:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency of the charge item, e.g., USD, IDR
+          example: USD
+        amount:
+          type: number
+          description: Amount of the charge item
+          format: double
+          example: 100
+    HotelRoomInventoryResponse:
+      required:
+      - availabilityToken
+      - commissionRate
+      - currency
+      - numChargedRooms
+      - numRemainingRooms
+      - providerOriginalRate
+      - providerRecommendedSellingRate
+      - rateType
+      - refundable
+      - wifiIncluded
+      type: object
+      properties:
+        availabilityToken:
+          type: string
+          description: Token/ID for this room type/price. This availabilityToken will be used in the booking to determine which particular room type is being chosen.
+          example: ROOM12345
+        rateType:
+          type: string
+          description: Hotel Rate Type
+          example: PAY_NOW
+          enum:
+          - PAY_NOW
+          - PAY_AT_PROPERTY
+        numRemainingRooms:
+          type: integer
+          description: Number of remaining rooms of this room type
+          format: int32
+          example: 5
+        breakfastIncluded:
+          type: boolean
+          description: Breakfast Available for the total guest requested
+          deprecated: true
+        mealPlan:
+          allOf:
+          - $ref: '#/components/schemas/MealPlan'
+          - description: Meal plan for total room
+        wifiIncluded:
+          type: boolean
+        numExtraBedIncluded:
+          type: integer
+          format: int32
+        currency:
+          type: string
+          description: Currency info
+          example: IDR
+        providerRecommendedSellingRate:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomRate'
+          - description: Recommended price for this room type in currency provided by the request
+        providerOriginalRate:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomRate'
+          - description: Original rate for this room type in currency provided by the request
+        additionalFees:
+          allOf:
+          - $ref: '#/components/schemas/AdditionalFees'
+          - description: The fees collected by the property. The values for each type of fee are the total for that type.
+        numChargedRooms:
+          type: integer
+          description: Number of room being charged. If two rooms are requested in the request spec, this should return 2 and the price will be for two rooms.
+          format: int32
+          example: 2
+        refundable:
+          type: boolean
+          description: Indicate yes if this room type is refundable upon cancellation, either fully or partially refundable
+        cancellationPolicy:
+          allOf:
+          - $ref: '#/components/schemas/HotelCancellationPolicy'
+          - description: Cancellation policy for this room type. Mandatory if refundable is true. Expected behavior is that all rooms have the same cancellation policy.
+        noShowPolicy:
+          allOf:
+          - $ref: '#/components/schemas/PayAtPropertyNoShowPolicy'
+          - description: This is mandatory for rateType = PAY_AT_PROPERTY. This will be the charge to Customer in case of no show for PAY_AT_PROPERTY.
+        promoIds:
+          type: array
+          description: Lists of promoIds applicable for this type.
+          items:
+            type: string
+            description: Lists of promoIds applicable for this type.
+        commissionRate:
+          type: number
+          description: Commission rate (percentage) for this room type
+          format: double
+          example: 15
+    HotelCancellationPolicyInfo:
+      required:
+      - cancelDateTime
+      - cancellationFee
+      - currency
+      type: object
+      properties:
+        cancelDateTime:
+          type: string
+          description: 'Date time which cancellation fee will start to take place.
+
+
+            The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.
+
+
+            Example:
+
+
+            cancelDateTime: 2028-01-01T00:00:00.000Z
+
+
+            cancellationFee: 120 (USD)
+
+
+            means, cancellation after 01-Jan-2028 will impose $120 cancellation fee.
+
+            '
+          example: '2028-01-01T00:00:00.000Z'
+        cancellationFee:
+          type: number
+          description: Cancellation fee for all rooms all nights
+          format: double
+          example: 120
+        nightCount:
+          type: integer
+          description: 'Cancellation fee in room night.
+
+
+            Example: nightCount = 1 means cancellation fee is one room night.
+
+
+            This field is not mandatory if @cancellationFee is already filled in.
+
+
+            But if @nightCount is filled in, @cancellationFee MUST also be filled in.
+
+            '
+          format: int32
+        currency:
+          type: string
+          description: Currency of the cancellation fee
+          example: USD
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+    PiMealPlanPax:
+      required:
+      - adults
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: "Number of adult pax. \n\nNote: Adult pax can be consumed by child guests. \n\nFor example, if the returned mealPax is 3 adults, and the guest consists of 2 adults and 1 child, it is permissible.\n"
+          format: int32
+          example: 2
+        children:
+          type: integer
+          description: "Number of child pax\n\nNote: Child pax can not be consumed by adult guests. \n"
+          format: int32
+          example: 1
+      description: Pax applicable to the mealPlan. Mandatory for all mealPlan, except Room Only.
+    RoomListSearchErrorResponse:
+      required:
+      - error
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    HotelRoomFacility:
+      type: object
+      properties:
+        facilities:
+          type: array
+          description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
+          example:
+          - WiFi
+          - Air Conditioning
+          - Mini Bar
+          items:
+            type: string
+            description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
+            example: '["WiFi","Air Conditioning","Mini Bar"]'
+            enum:
+            - BREAKFAST
+            - FREE_INTERNATIONAL_CALLS
+            - FREE_LOCAL_CALLS
+            - FREE_LONG_DISTANCE_CALLS
+            - FREE_WIFI
+            - HIGH_SPEED_INTERNET
+            - HOUSEKEEPING
+            - INTERNET_ACCESS
+            - INTERNET_SURCHARGE
+            - NON_SMOKING_ROOMS
+            - PHONE
+            - ROOM_SERVICE
+            - SMOKING_ROOMS
+            - TURNDOWN_SERVICE
+            - TWENTY_FOUR_HOUR_ROOM_SERVICE
+            - WIFI_SURCHARGE
+            - AIR_CONDITIONING
+            - AIR_CONDITIONING_SURCHARGE
+            - BALCONY_TERRACE
+            - BLACKOUT_DRAPES_CURTAINS
+            - CLOTHES_DRYER
+            - COFFEE_TEA_MAKER
+            - COMPLIMENTARY_BOTTLED_WATER
+            - CRIBS_SURCHARGE
+            - DESK
+            - DISHWASHER
+            - DRYER
+            - DVD_PLAYER
+            - ELECTRIC_KETTLE
+            - EXTRA_BEDS
+            - EXTRA_BEDS_AVAILABLE
+            - FAN
+            - FREE_CRIBS
+            - FREE_NEWSPAPER
+            - FUTON
+            - FUTON_SURCHARGE
+            - HEATING
+            - IN_HOUSE_MOVIES
+            - IN_ROOM_CLIMATE_CONTROL
+            - IN_ROOM_SAFE
+            - IN_ROOM_SAFE_SURCHARGE
+            - IN_ROOM_VIDEO_GAMES
+            - IRONING_BOARD_ON_REQUEST
+            - IRONING_FACILITIES
+            - KITCHEN
+            - LINENS_PROVIDED
+            - MICROWAVE
+            - MICROWAVE_ON_REQUEST
+            - MINIBAR
+            - OVEN
+            - PRIVATE_POOL
+            - REFRIGERATOR
+            - REFRIGERATOR_ON_REQUEST
+            - RICE_COOKER
+            - ROLLAWAY_OR_EXTRA_BEDS
+            - ROLLAWAY_OR_EXTRA_BEDS_SURCHARGE
+            - SEPARATE_DINING_AREA
+            - SLIPPERS
+            - SOFA_BED
+            - SOFA_BED_SIZE
+            - SOUNDPROOFED_ROOMS
+            - STOVETOP
+            - TELEVISION
+            - TOASTER
+            - TOWELS_OR_SHEETS_SURCHARGE
+            - WASHER_OR_DRYER
+            - WASHING_MACHINE
+            - BATHROBES
+            - BATHTUB
+            - DISABILITY_FRIENDLY_BATHROOM
+            - HAIR_DRYER
+            - HAIR_DRYER_ON_REQUEST
+            - HEATED_WATER
+            - HYDROMASSAGE_SHOWERHEAD
+            - INDOOR_PRIVATE_BATH
+            - OUTDOOR_BATHROOM
+            - OUTDOOR_SHOWER
+            - PARTIALLY_OPEN_BATHROOM
+            - PRIVATE_BATHROOM
+            - PRIVATE_BATHROOM_NOT_IN_ROOM
+            - RAINFALL_SHOWERHEAD
+            - SEPARATE_SHOWER_AND_TUB
+            - SHARED_BATHROOM
+            - SHOWER
+            - SHOWER_OR_TUB
+            - SPA_TUB
+            - TOILET_WITH_ELECTRONIC_BIDET
+            - TOILETRIES
+            - TOWELS_PROVIDED
+            - CHAMPAGNE_SERVICE
+            - COFFEE_OR_TEA_MAKER
+            - COOKWARE
+            - FREEZER
+            - ICE_MAKER
+            - KITCHEN_SURCHARGE
+            - KITCHENETTE
+            - KITCHENETTE_SURCHARGE
+            - MICROWAVE_SURCHARGE
+            - MINI_FRIDGE
+            - REFRIGERATOR_SURCHARGE
+            - WAFFLE_MAKER
+            - BABY_BATH
+            - BABY_MONITOR
+            - CHANGING_TABLE
+            - CRIBS_OR_INFANT_BEDS
+            - CRIBS_OR_INFANT_BEDS_SURCHARGE
+            - IN_ROOM_CHILDCARE_SURCHARGE
+            - BALCONY
+            - BALCONY_OR_PATIO
+            - CONNECTING_ROOMS
+            - DECK_OR_PATIO
+            - FIREPLACE
+            - INDOOR_HOT_SPRINGS
+            - LANAI
+            - OUTDOOR_HOT_SPRINGS
+            - OUTDOOR_PRIVATE_BATH
+            - PORCH_OR_LANAI
+            - SEPARATE_BEDROOM
+            - SEPARATE_LIVING_ROOM
+            - SHARED_ACCOMMODATIONS
+            - SHARED_KITCHEN
+            - TATAMI_FLOORS
+            - YARD
+            - HULU
+            - LIMITED_FREE_WIFI
+            - LIMITED_WIFI_SURCHARGE
+            - NETFLIX
+            - SMARTPHONE
+            - STREAMING_SERVICES
+            - TABLET
+            - TELEVISION_SURCHARGE
+            - VIDEO_GAMES
+            - HOUSEKEEPING_ON_REQUEST
+            - HOUSEKEEPING_SURCHARGE
+            - LIMITED_HOURS_ROOM_SERVICE
+            - NO_HOUSEKEEPING
+            - WHEELCHAIR_ACCESSIBLE
+            - BOTTLED_WATER
+            - TOILETRIES_WITH_SOAP_AND_SHAMPOO
+            - TOILETRIES_WITH_SOAP_SHAMPOO_AND_DENTAL_KIT
+            - TOILETRIES_WITH_MORE_THAN_4_ITEMS
+            - IRONING_BOARD
+            - IRONING
+            - BALCONY_OR_TERRACE
+            - INTERNET_ACCESS_LAN_CHARGES_APPLY
+            - INTERNET_ACCESS_LAN_COMPLIMENTARY
+            - INTERNET_ACCESS_WIFI_CHARGES_APPLY
+            - INTERNET_ACCESS_WIFI_COMPLIMENTARY
+            - MOSQUITO_NET
+            - SPARE_BEDDING
+            - INTERCONNECTING_ROOMS_AVAILABLE
+            - EXECUTIVE_LOUNGE_ACCESS
+            - SEATING_AREA
+            - POWER_OUTLETS_110V
+            - DISPENSER
+            - DAILY_NEWSPAPER
+            - DVD_CD_PLAYER
+            - JACUZZI
+            - BIDET
+            - ALARM_CLOCK
+            - SEWING_KIT
+            - MINI_BAR
+            - BLACKOUT_CURTAINS
+            - DINNER
+            - INHOUSE_MOVIES
+            - LUNCH
+            - TELEVISION_LCD_PLASMA_SCREEN
+            - SATELLITE_CABLE_TV
+            - JACUZZI_BATHTUB
+            - OTHER
+            - INTERNET
+  securitySchemes:
+    basicAuth:
+      type: http
+      description: 'Custom Basic Auth format:
+
+        - Format: username:password
+
+        - Encode with Base64
+
+        - Send in header: Authorization: Basic base64(username:password)
+
+        '
+      scheme: basic
+x-tagGroups:
+- name: Traveloka Atlas API (1.0)
+  tags:
+  - 1.1 Content - Hotel & Room
+  - 2.1 Search - HotelList
+  - 2.2 Search - RoomList
+  - 2.3 Search - BulkRoomList
+  - 3.1 Booking - Book
+  - 3.2 Booking - IssueCheck
+  - 3.3 Booking - Issue
+  - 3.4 Booking - BookingSummary
+  - 3.5 Booking - Cancel

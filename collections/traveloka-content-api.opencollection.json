@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LOKA Content API",
+    "version": "2.4.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get hotels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/properties/content/hotel",
+            "params": [
+              {
+                "name": "hotelIds",
+                "value": "",
+                "type": "query",
+                "description": "Hotel Ids"
+              },
+              {
+                "name": "countryISO",
+                "value": "ID",
+                "type": "query",
+                "description": "Country Id, format ISO 3166-1 alpha-2, example: 'ID', 'SG'"
+              },
+              {
+                "name": "language",
+                "value": "en",
+                "type": "query",
+                "description": "language. with default value 'en', example: 'en', 'id'"
+              },
+              {
+                "name": "lastUpdatedTime",
+                "value": "2020-01-01T00:00:00Z",
+                "type": "query",
+                "description": "Last update time"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Offset"
+              },
+              {
+                "name": "limit",
+                "value": "100",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "isExtended",
+                "value": "false",
+                "type": "query",
+                "description": "Extended response"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns hotel content"
+        },
+        {
+          "info": {
+            "name": "Get room",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.travelokapartnersnetwork.com/v2/properties/content/room",
+            "params": [
+              {
+                "name": "propertyIds",
+                "value": "1000000187546",
+                "type": "query",
+                "description": "Property Id, You can use a single query parameter and separate multiple values with a '&'. For example: GET /endpoint?id=a&id=b&id=c"
+              },
+              {
+                "name": "language",
+                "value": "en",
+                "type": "query",
+                "description": "language. with default value 'en', example: 'en', 'id'"
+              },
+              {
+                "name": "lastUpdatedTime",
+                "value": "2020-01-01T00:00:00Z",
+                "type": "query",
+                "description": "Last updated time"
+              },
+              {
+                "name": "isExtended",
+                "value": "true",
+                "type": "query",
+                "description": "Enable if buyer need detailed rooms"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns room content"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
