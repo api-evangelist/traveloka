@@ -11,6 +11,18 @@ description: >-
   content; and Traveloka Atlas, a published JSON specification that accommodation suppliers implement on
   their own hosts so Traveloka can search and book against them. All three are approval-gated behind a
   partnership agreement and certification; none offer self-serve signup.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://ik.imagekit.io/tvlk/image/imageResource/2024/08/09/1723192761223-35bd6fefad235fbb690b6d79b050343f.png?tr=q-75
 url: https://raw.githubusercontent.com/api-evangelist/traveloka/refs/heads/main/apis.yml
 x-type: company
