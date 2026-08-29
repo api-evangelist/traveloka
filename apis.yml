@@ -787,6 +787,9 @@ apis:
   - type: SignUp
     url: https://forms.gle/pZXs1PaZJ7HiHRE47
 common:
+- type: CapabilityMap
+  url: capabilities/traveloka-capability-edges.yml
+  name: Traveloka Business Capability Map
 - type: MCPServer
   url: mcp/traveloka-mcp.yml
 - type: Website

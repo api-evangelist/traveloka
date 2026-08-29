@@ -1,0 +1,94 @@
+slug: traveloka
+provider: Traveloka
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 8
+edges:
+- tag: 1.1 Content - Hotel & Room
+  spec_file: traveloka-1-1-content-hotel-room-api-openapi.yml
+  capability_id: BC-4000.10
+  capability_id_l1: BC-4000
+  capability_name: Lodging Product Management
+  confidence: 0.9
+  evidence: POST /hotel-operation  Import hotel and room data (v1); schemas HotelFacility, RoomBedV2,
+    PropertyPoliciesV2, PropertyCheckInOutV2, HotelAsset
+  reason: Accommodation providers push hotel property and room-type master content — facilities, room
+    views/sizes/beds, policies, check-in/out, assets — into Traveloka. This is definition of lodging products
+    and their descriptive content; BC-4000.10 fits the room-type/property master, with BC-4000.70 (content
+    and imagery) also relevant given HotelAsset/PropertyAssetV2.
+- tag: 3.5 Booking - Cancel
+  spec_file: traveloka-3-5-booking-cancel-api-openapi.yml
+  capability_id: BC-4020.20
+  capability_id_l1: BC-4020
+  capability_name: Booking Modification & Cancellation
+  confidence: 0.9
+  evidence: POST /cancel cancel "Cancel a booking"; schemas HotelBookingCancelRequest, CancelBookingResponse
+  reason: Explicit cancellation of a hotel booking — booking modification and cancellation.
+- tag: 3.1 Booking - Book
+  spec_file: traveloka-3-1-booking-book-api-openapi.yml
+  capability_id: BC-4020.10
+  capability_id_l1: BC-4020
+  capability_name: Reservation Capture
+  confidence: 0.88
+  evidence: POST /book book "Book a booking"; schemas BookRequest, HotelBookingRoomSpecRequest, HotelBookingGuest,
+    HotelGuestInfo
+  reason: Creates a hotel reservation with guest and room-rate specification — reservation capture.
+- tag: Booking
+  spec_file: traveloka-booking-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.85
+  evidence: POST /bookings/booking/create "Create a new booking"; GET /bookings/detail "Get booking by
+    Id"; POST /bookings/cancellation/submit "Submit booking cancellation"
+  reason: Full accommodation reservation lifecycle (create, retrieve, cancel) with guest and meal-plan
+    detail; spans capture and cancellation so the L1 is the honest level.
+- tag: Content
+  spec_file: traveloka-content-api-openapi.yml
+  capability_id: BC-4000.70
+  capability_id_l1: BC-4000
+  capability_name: Travel Content & Imagery Management
+  confidence: 0.74
+  evidence: GET /properties/content/hotel "Get hotels"; GET /properties/content/room "Get room"; schemas
+    HotelImage, RoomImage, HotelContent, RoomFacilities, AccommodationType
+  reason: Descriptive hotel and room content plus imagery for accommodation products — travel content
+    and imagery management; overlaps with lodging product definition, hence 0.74.
+- tag: 3.2 Booking - IssueCheck
+  spec_file: traveloka-3-2-booking-issuecheck-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.72
+  evidence: POST /issue-check issueCheck "Issue check for a booking"; schemas IssueCheckBookingResponse,
+    IssueCheckRequest
+  reason: A pre-issuance validation step within the hotel reservation lifecycle; clearly reservation/booking
+    management but too thin to pin a sub-capability between capture and confirmation.
+- tag: 3.4 Booking - BookingSummary
+  spec_file: traveloka-3-4-booking-bookingsummary-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.72
+  evidence: POST /booking-summary bookingSummary "Get booking summary"; schemas HotelBookingSummaryResponse,
+    HotelBookingGuest, HotelCancellationPolicyInfo
+  reason: Retrieval of reservation details and charges within the booking lifecycle; sub-capability not
+    determinable from a read-only summary operation.
+- tag: 3.3 Booking - Issue
+  spec_file: traveloka-3-3-booking-issue-api-openapi.yml
+  capability_id: BC-4020.10
+  capability_id_l1: BC-4020
+  capability_name: Reservation Capture
+  confidence: 0.7
+  evidence: POST /issue issue "Issue a booking"; schemas HotelBookingRequest, CreditCardInfo, HotelRoomCCGuaranteeRequirementInfo,
+    HotelBookingGuest
+  reason: Confirms/commits the hotel reservation with guest details and credit-card guarantee — reservation
+    capture completion; could alternatively be read as confirmation/documentation, hence 0.7.
