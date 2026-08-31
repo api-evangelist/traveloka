@@ -44,18 +44,18 @@ accessModel:
   generated: '2026-08-05'
   method: derived
 tags:
-- Travel
-- Online Travel Agency
-- Accommodation
-- Hotel Booking
+- travel
+- online-travel-agency
+- accommodation
+- hotel-booking
 - Flights
 - Activities
-- Hospitality
+- hospitality
 - Distribution
-- Channel Manager
-- OpenTravel
-- Southeast Asia
-- Indonesia
+- channel-manager
+- opentravel
+- southeast-asia
+- indonesia
 tags_raw:
 - travel
 - online-travel-agency
@@ -85,11 +85,11 @@ apis:
   humanURL: https://developer.connect.traveloka.com/
   baseURL: https://api.connect.traveloka.com/
   tags:
-  - Travel
-  - Accommodation
-  - Channel Manager
-  - OpenTravel
-  - XML
+  - travel
+  - accommodation
+  - channel-manager
+  - opentravel
+  - xml
   tags_raw:
   - travel
   - accommodation
