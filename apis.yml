@@ -790,8 +790,9 @@ common:
 - type: CapabilityMap
   url: capabilities/traveloka-capability-edges.yml
   name: Traveloka Business Capability Map
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/traveloka-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: Website
   url: https://www.traveloka.com/
 - type: DeveloperPortal
