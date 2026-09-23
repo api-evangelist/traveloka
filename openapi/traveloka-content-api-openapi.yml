@@ -146,6 +146,8 @@ paths:
         description: Production
       - url: https://api.staging-travelokapartnersnetwork.com/v2
         description: Staging
+      operationId: getPropertiesContentHotel
+      x-operation-id-source: derived
   /properties/content/room:
     get:
       summary: Get room
@@ -256,6 +258,8 @@ paths:
         description: Production
       - url: https://api.staging-travelokapartnersnetwork.com/v2
         description: Staging
+      operationId: getPropertiesContentRoom
+      x-operation-id-source: derived
 components:
   schemas:
     HotelAddress:
@@ -278,202 +282,25 @@ components:
         postalCode:
           type: string
           example: '10310'
-    RoomContentResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          $ref: '#/components/schemas/DisplayRoomContent'
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-    Error401:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 401: Unauthorized."
-              enum:
-              - '401'
-            message:
-              type: string
-              description: Error message
-              example: Unauthorized, the token might be expired.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    ErrorCode422PropertyContentRoomResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: A code that identifies this type of error.
-              enum:
-              - AFIXXX
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    DisplayRoomContent:
+    DisplayHotelContent:
       type: array
       items:
-        type: object
-        properties:
-          propertyId:
-            type: string
-            description: Property Id
-            example: '9000000128672'
-          roomId:
-            type: string
-            description: Room Id
-            example: '1000066445'
-          roomStatus:
-            type: string
-            description: Room status
-            enum:
-            - AVAILABLE
-            - NOT_AVAILABLE
-          roomName:
-            type: string
-            description: Room name
-            example: Grand Deluxe Room
-          roomType:
-            type: string
-            description: Room type
-            example: DELUXE
-          roomDescription:
-            type: string
-            description: Room description
-            example: This room is suitable for family of two
-          roomView:
-            type: string
-            description: Room view
-            example: city view
-          roomHasWindow:
-            type: boolean
-            description: Room has window
-            example: true
-          maxOccupancy:
-            type: integer
-            description: Max adult occupancy per room
-            minimum: 1
-            example: 1
-          maxChildOccupancy:
-            type: integer
-            description: Max child occupancy per room
-            minimum: 0
-            example: 1
-          bedArrangement:
-            type: array
-            items:
-              $ref: '#/components/schemas/BedArrangement'
-          roomSize:
-            $ref: '#/components/schemas/RoomSize'
-          roomImages:
-            type: array
-            items:
-              $ref: '#/components/schemas/RoomImage'
-          roomFacilities:
-            type: array
-            items:
-              $ref: '#/components/schemas/RoomFacilities'
-          smokingPreference:
-            type: string
-            description: Smoking preference (NON_SMOKING, SMOKING, EITHER)
-            example: NON_SMOKING
-          gender:
-            type: string
-            description: Gender (MALE, FEMALE, EITHER)
-            example: EITHER
-          mealPlans:
-            type: array
-            items:
-              type: string
-              description: Meal plan
-              example: BF
-              enum:
-              - BF
-              - RO
-              - LN
-              - DN
-          lastUpdatedTime:
-            type: string
-            description: Last updated time
-            example: '2019-08-01T00:00:00.000+07:00'
-    RoomSize:
+        oneOf:
+        - $ref: '#/components/schemas/HotelContent'
+        - $ref: '#/components/schemas/ExtendedHotelContent'
+    RoomFacilities:
       type: object
-      description: Room size
-      example:
-        size: 28
-        unit: SQUARE_METER
       properties:
-        size:
-          type: number
-          description: Room size
-          example: 28
-        unit:
+        id:
           type: string
-          description: Room size unit
-          example: SQUARE_METER
-          enum:
-          - SQUARE_METER
-          - SQUARE_FEET
-    ErrorCode422PropertyContentHotelResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: A code that identifies this type of error.
-              enum:
-              - AFIXXX
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    HotelContentResponse:
-      type: object
-      properties:
-        total:
-          type: integer
-        data:
-          $ref: '#/components/schemas/DisplayHotelContent'
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
+          description: Facility ID
+        name:
+          type: string
+          description: Facility name
+      example:
+        id: '208'
+        name: COMPLIMENTARY_BOTTLED_WATER
+        localizedName: Air minum kemasan cuma-cuma
     ExtendedHotelContent:
       type: object
       properties:
@@ -590,158 +417,20 @@ components:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
-    AccommodationType:
-      type: string
-      description: Accommodation type
-      enum:
-      - HOTEL
-      - HOSTEL
-      - VILLA
-      - RESORT
-      - ALL_INCLUSIVE
-      - APARTMENT
-      - BED_AND_BREAKFAST
-      - CAMPING
-      - BOAT
-      - HOMESTAY
-      - GUESTHOUSE
-      - RYOKAN
-      - RIAD
-      - POUSADA
-      - PRIVATE_VACATION_HOME
-      - CAPSULE_HOTEL
-      - OTHER
-    Error429:
+    HotelContentResponse:
       type: object
       properties:
+        total:
+          type: integer
         data:
-          type: object
-          example: null
+          $ref: '#/components/schemas/DisplayHotelContent'
         error:
           type: object
           properties:
             code:
               type: string
-              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
-              enum:
-              - '429'
             message:
               type: string
-              description: Error message
-              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    HotelContent:
-      type: object
-      properties:
-        propertyId:
-          type: string
-          description: Property Id
-          example: '1000000340382'
-        propertyName:
-          type: string
-          description: Property name
-          example: Hotel Indonesia Kempinski Jakarta
-    RoomImage:
-      type: object
-    Error500:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 500: Server Error."
-              enum:
-              - '500'
-            message:
-              type: string
-              description: Error message
-              example: Server Error. Please contact our support team.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    HotelImage:
-      type: object
-      properties:
-        entries:
-          type: array
-          items:
-            type: object
-            properties:
-              imageType:
-                type: string
-                description: Image type
-                enum:
-                - SMALL
-              url:
-                type: string
-                description: Image URL
-                example: https://ik.imagekit.io/tvlkdev/apr-asset/P1G5O6%2BnVHjV52skmBPrf5pP0WFENJr4JbIQ3ZDf7w39jzSxIGG5kZNhhHY-p7nw/hotel/asset/30001628-904f9cbee2eea9e9800b02056d67243e.jpeg?tr=q-40,w-145,h-145&_src=imagekit
-    Error404:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 404: Not Found."
-              enum:
-              - '404'
-            message:
-              type: string
-              description: Error message
-              example: Not Found. The requested resource is not found.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    Error400:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
-              enum:
-              - AFI100
-            message:
-              type: string
-              description: Error message
-              example: parameter missing, please check your request body.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    RoomFacilities:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Facility ID
-        name:
-          type: string
-          description: Facility name
-      example:
-        id: '208'
-        name: COMPLIMENTARY_BOTTLED_WATER
-        localizedName: Air minum kemasan cuma-cuma
     BedArrangement:
       type: object
       properties:
@@ -782,12 +471,327 @@ components:
                 enum:
                 - DEFAULT
                 - ALTERNATIVE
-    DisplayHotelContent:
+    Error500:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 500: Server Error."
+              enum:
+              - '500'
+            message:
+              type: string
+              description: Error message
+              example: Server Error. Please contact our support team.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    HotelImage:
+      type: object
+      properties:
+        entries:
+          type: array
+          items:
+            type: object
+            properties:
+              imageType:
+                type: string
+                description: Image type
+                enum:
+                - SMALL
+              url:
+                type: string
+                description: Image URL
+                example: https://ik.imagekit.io/tvlkdev/apr-asset/P1G5O6%2BnVHjV52skmBPrf5pP0WFENJr4JbIQ3ZDf7w39jzSxIGG5kZNhhHY-p7nw/hotel/asset/30001628-904f9cbee2eea9e9800b02056d67243e.jpeg?tr=q-40,w-145,h-145&_src=imagekit
+    Error400:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
+              enum:
+              - AFI100
+            message:
+              type: string
+              description: Error message
+              example: parameter missing, please check your request body.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    DisplayRoomContent:
       type: array
       items:
-        oneOf:
-        - $ref: '#/components/schemas/HotelContent'
-        - $ref: '#/components/schemas/ExtendedHotelContent'
+        type: object
+        properties:
+          propertyId:
+            type: string
+            description: Property Id
+            example: '9000000128672'
+          roomId:
+            type: string
+            description: Room Id
+            example: '1000066445'
+          roomStatus:
+            type: string
+            description: Room status
+            enum:
+            - AVAILABLE
+            - NOT_AVAILABLE
+          roomName:
+            type: string
+            description: Room name
+            example: Grand Deluxe Room
+          roomType:
+            type: string
+            description: Room type
+            example: DELUXE
+          roomDescription:
+            type: string
+            description: Room description
+            example: This room is suitable for family of two
+          roomView:
+            type: string
+            description: Room view
+            example: city view
+          roomHasWindow:
+            type: boolean
+            description: Room has window
+            example: true
+          maxOccupancy:
+            type: integer
+            description: Max adult occupancy per room
+            minimum: 1
+            example: 1
+          maxChildOccupancy:
+            type: integer
+            description: Max child occupancy per room
+            minimum: 0
+            example: 1
+          bedArrangement:
+            type: array
+            items:
+              $ref: '#/components/schemas/BedArrangement'
+          roomSize:
+            $ref: '#/components/schemas/RoomSize'
+          roomImages:
+            type: array
+            items:
+              $ref: '#/components/schemas/RoomImage'
+          roomFacilities:
+            type: array
+            items:
+              $ref: '#/components/schemas/RoomFacilities'
+          smokingPreference:
+            type: string
+            description: Smoking preference (NON_SMOKING, SMOKING, EITHER)
+            example: NON_SMOKING
+          gender:
+            type: string
+            description: Gender (MALE, FEMALE, EITHER)
+            example: EITHER
+          mealPlans:
+            type: array
+            items:
+              type: string
+              description: Meal plan
+              example: BF
+              enum:
+              - BF
+              - RO
+              - LN
+              - DN
+          lastUpdatedTime:
+            type: string
+            description: Last updated time
+            example: '2019-08-01T00:00:00.000+07:00'
+    Error401:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 401: Unauthorized."
+              enum:
+              - '401'
+            message:
+              type: string
+              description: Error message
+              example: Unauthorized, the token might be expired.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ErrorCode422PropertyContentRoomResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: A code that identifies this type of error.
+              enum:
+              - AFIXXX
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error404:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 404: Not Found."
+              enum:
+              - '404'
+            message:
+              type: string
+              description: Error message
+              example: Not Found. The requested resource is not found.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    RoomSize:
+      type: object
+      description: Room size
+      example:
+        size: 28
+        unit: SQUARE_METER
+      properties:
+        size:
+          type: number
+          description: Room size
+          example: 28
+        unit:
+          type: string
+          description: Room size unit
+          example: SQUARE_METER
+          enum:
+          - SQUARE_METER
+          - SQUARE_FEET
+    AccommodationType:
+      type: string
+      description: Accommodation type
+      enum:
+      - HOTEL
+      - HOSTEL
+      - VILLA
+      - RESORT
+      - ALL_INCLUSIVE
+      - APARTMENT
+      - BED_AND_BREAKFAST
+      - CAMPING
+      - BOAT
+      - HOMESTAY
+      - GUESTHOUSE
+      - RYOKAN
+      - RIAD
+      - POUSADA
+      - PRIVATE_VACATION_HOME
+      - CAPSULE_HOTEL
+      - OTHER
+    RoomImage:
+      type: object
+    RoomContentResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          $ref: '#/components/schemas/DisplayRoomContent'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    Error429:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              enum:
+              - '429'
+            message:
+              type: string
+              description: Error message
+              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ErrorCode422PropertyContentHotelResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: A code that identifies this type of error.
+              enum:
+              - AFIXXX
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    HotelContent:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          description: Property Id
+          example: '1000000340382'
+        propertyName:
+          type: string
+          description: Property name
+          example: Hotel Indonesia Kempinski Jakarta
   securitySchemes:
     api_gateway_lambda_authorizer:
       type: apiKey

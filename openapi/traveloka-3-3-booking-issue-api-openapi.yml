@@ -2,7 +2,14 @@ openapi: 3.2.0
 info:
   title: Traveloka Atlas 3.3 Booking - Issue API
   version: ''
-  description: "Traveloka Specification API for Accommodation Provider\n\n**General Notes**\n* Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**\n* For fields with type \"String\", if there's no value, do not return empty string (e.g. \"\"), instead do not return the field at all\n\nThis API uses custom Basic Authentication.\n\nHow to get a token:\n- Combine username and password using a colon: [username:password]\n- Encode that using Base64\n- Example:\n  ```\n  echo -n 'user:pass' | base64\n  -> dXNlcjpwYXNz\n  ```\n\nThen use:\n```\nAuthorization: Basic dXNlcjpwYXNz\n```\n"
+  description: 'Traveloka Specification API for Accommodation Provider
+
+
+    **General Notes**
+
+    * Please ensure that the endpoint is configured to connect using **HTTPS via port 443.**
+
+    * For fields with type "String", if there''s no value, do not return empty string (e.g.'
 servers:
 - url: http://localhost:8080
   description: Generated server url
@@ -355,6 +362,464 @@ paths:
         description: Generated server url
 components:
   schemas:
+    ProviderError:
+      required:
+      - errorId
+      - errorMessage
+      type: object
+      properties:
+        errorId:
+          type: string
+          description: "    MANDATORY if has error(s).\n    The values for errorId and the message are:\n    3017 -> BOOKING_ALREADY_ISSUED\n    3018 -> BOOKING_CANCELED\n    3006 -> BOOKING_EXPIRED\n    3016 -> FAILED_TO_CONFIRM_BOOKING\n    3003 -> INCORRECT_BOOKING_ID\n    3001 -> INCORRECT_BOOKING_INFORMATION\n    3020 -> PENDING_BOOKING\n    3000 -> UNEXPECTED_ERROR\n"
+        errorSeverity:
+          type: string
+          description: 'Should be one of these:
+
+            LOW, HIGH, HIGHEST
+
+            '
+          enum:
+          - LOW
+          - HIGH
+          - HIGHEST
+        errorMessage:
+          type: string
+          description: "    MANDATORY if has error(s).\n    The values for errorId and the message are:\n    3017 -> BOOKING_ALREADY_ISSUED\n    3018 -> BOOKING_CANCELED\n    3006 -> BOOKING_EXPIRED\n    3016 -> FAILED_TO_CONFIRM_BOOKING\n    3003 -> INCORRECT_BOOKING_ID\n    3001 -> INCORRECT_BOOKING_INFORMATION\n    3020 -> PENDING_BOOKING\n    3000 -> UNEXPECTED_ERROR\n"
+        timestamp:
+          type: string
+          description: Timestamp of the error occurrence in unix milliseconds time format
+      deprecated: true
+    ChargeItem:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency of the charge item, e.g., USD, IDR
+          example: USD
+        amount:
+          type: number
+          description: Amount of the charge item
+          format: double
+          example: 100
+    IssueResponse:
+      required:
+      - booking
+      - status
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID
+          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
+        booking:
+          allOf:
+          - $ref: '#/components/schemas/HotelBookingResponse'
+          - description: Booking details
+        status:
+          type: string
+          description: "    Should be one of these:\n\n    OK -> return OK to indicate a successful issue request\n\n    FAILED -> return FAILED if there's an error during processing the request\n\n    ALREADY_ISSUED -> return ALREADY_ISSUED if the unique ID already issued and the payment has already been processed\n\n    PENDING -> return PENDING if you are unable to confirm that the process will be completed within one minute. We will retry the Issue Check API call\n\n    PRICE_CHANGED -> return PRICE_CHANGED if there has been a change in the room rate, whether it has increased or decreased. We will retry the Issue Check API call\n"
+          enum:
+          - OK
+          - FAILED
+          - ALREADY_ISSUED
+          - PRICE_CHANGED
+          - PENDING
+        failureReason:
+          type: string
+          description: MANDATORY if issueRS status = FAILED.
+          deprecated: true
+          enum:
+          - PROCESS_FAIL
+          - CREDIT_CARD_FAIL
+          - SOLD_OUT
+          - INTERNAL_ERROR
+          - INCORRECT_BOOKING_DATA
+          - UNKNOWN
+        hotelContact:
+          $ref: '#/components/schemas/IssueHotelContact'
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+        errors:
+          type: array
+          description: Mandatory if status = FAILED.
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/ProviderError'
+    HotelCancellationPolicyInfo:
+      required:
+      - cancelDateTime
+      - cancellationFee
+      - currency
+      type: object
+      properties:
+        cancelDateTime:
+          type: string
+          description: 'Date time which cancellation fee will start to take place.
+
+
+            The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.
+
+
+            Example:
+
+
+            cancelDateTime: 2028-01-01T00:00:00.000Z
+
+
+            cancellationFee: 120 (USD)
+
+
+            means, cancellation after 01-Jan-2028 will impose $120 cancellation fee.
+
+            '
+          example: '2028-01-01T00:00:00.000Z'
+        cancellationFee:
+          type: number
+          description: Cancellation fee for all rooms all nights
+          format: double
+          example: 120
+        nightCount:
+          type: integer
+          description: 'Cancellation fee in room night.
+
+
+            Example: nightCount = 1 means cancellation fee is one room night.
+
+
+            This field is not mandatory if @cancellationFee is already filled in.
+
+
+            But if @nightCount is filled in, @cancellationFee MUST also be filled in.
+
+            '
+          format: int32
+        currency:
+          type: string
+          description: Currency of the cancellation fee
+          example: USD
+    CreditCardHolderName:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+    HotelCancellationPolicy:
+      type: object
+      properties:
+        cancellationPolicyDescription:
+          type: string
+          description: Description for cancellation policy
+        providerCancellationPolicyInfoList:
+          type: array
+          description: List of cancellation policy information
+          items:
+            $ref: '#/components/schemas/HotelCancellationPolicyInfo'
+    IssueRequest:
+      required:
+      - hotelBooking
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID
+          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
+        hotelBooking:
+          allOf:
+          - $ref: '#/components/schemas/HotelBookingRequest'
+          - description: Booking details
+        creditCardInfo:
+          allOf:
+          - $ref: '#/components/schemas/CreditCardInfo'
+          - description: Credit card information
+        locale:
+          type: string
+          description: Locale
+          example: en_ID
+    HotelBookingGuest:
+      required:
+      - firstName
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: First name of the guest
+          example: John
+        lastName:
+          type: string
+          description: Last name of the guest
+          example: Doe
+        title:
+          type: string
+          description: Title of the guest
+          enum:
+          - MR
+          - MRS
+          - MISS
+          - OTHERS
+        passportNo:
+          type: string
+          description: Passport number of the guest
+          example: A12345678
+        passportCountryCode:
+          type: string
+          description: Country code of the passport
+          example: ID
+      description: 'In the guest node, the following information must be included: firstName, lastName.'
+    PayAtPropertyNoShowPolicy:
+      type: object
+      properties:
+        noShowDateTime:
+          type: string
+          description: "  Time to considered as no show.\n  The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.\n"
+          example: '1970-01-01T00:00:00.000Z'
+        noShowFee:
+          type: number
+          description: No show fee.
+          format: double
+          example: 120
+        currency:
+          type: string
+          description: Currency info
+          example: USD
+        nightCount:
+          type: integer
+          description: 'No show fee in room night.
+
+            Example: nightCount = 1 means cancellation fee is one room night.
+
+            This field is not mandatory if @noShowFee already filled in.
+
+            But if @nightCount is filled in, @noShowFee MUST also be filled in.'
+          format: int32
+          example: 1
+    HotelBookingResponse:
+      required:
+      - issuanceId
+      - providerHotelId
+      - rooms
+      - sourceProvider
+      - uniqueId
+      type: object
+      properties:
+        issuanceId:
+          type: string
+          description: Id to identify this issuance, generated by provider (itinerary ID)
+          example: DHB170816104137188
+        uniqueId:
+          type: string
+          description: The Traveloka id that is associated with this booking
+          example: 21323112-0
+        sourceProvider:
+          type: string
+          description: This is will be printed on voucher which will be read by the hotel receptionist/ops
+          example: Travel Travel
+        providerHotelId:
+          type: string
+          description: Hotel Id
+          example: '123123123'
+        hotelRatePlanType:
+          type: string
+          description: Rate plan type
+          enum:
+          - RETAIL
+          - MOBILE
+          - PRIVATESALE
+          - LAST_MINUTE
+          - BUDGET_ROOMS
+          - PACKAGE
+          - CAMPAIGN
+          - CROSS_SELL
+          - CORPORATE
+          - STATIC
+          - GROWTH_MARKET
+        rooms:
+          type: array
+          description: List of rooms in the booking
+          items:
+            $ref: '#/components/schemas/HotelBookingRoomResponse'
+    HotelRoomCCGuaranteeRequirementInfo:
+      required:
+      - addressRequired
+      - ccRequired
+      - cvvRequired
+      type: object
+      properties:
+        ccRequired:
+          type: boolean
+          description: Indicates if credit card information is required for guarantee
+          example: true
+        cvvRequired:
+          type: boolean
+          description: Indicates if CVV is required for the credit card
+          example: true
+        addressRequired:
+          type: boolean
+          description: Indicates if address is required for the credit card
+          example: true
+        csTokenRequired:
+          type: boolean
+          description: Indicates if a Cybersource token is required, meaning raw credit card data is not needed
+          example: false
+        supportedCCTypes:
+          type: array
+          description: List of supported credit card types
+          items:
+            type: string
+            description: List of supported credit card types
+            enum:
+            - VISA
+            - MASTER_CARD
+            - AMERICAN_EXPRESS
+            - JAPAN_CREDIT_BUREAU
+            - BC_CARD
+            - DISCOVER
+            - MAESTRO
+            - DINERS_CLUB
+            - CARTA_SI
+            - CARTE_BLEUE
+            - VISA_ELECTRON
+            - CHINA_UNION_PAY
+      description: Credit card guarantee requirement for this room
+    HotelBookingRequest:
+      required:
+      - bookingToken
+      - providerHotelId
+      - rooms
+      - uniqueId
+      type: object
+      properties:
+        bookingToken:
+          type: string
+          description: Token returned in book response
+          example: DHB170816104137188
+        uniqueId:
+          type: string
+          description: The Traveloka id that is associated with this booking
+          example: 21323112-0
+        providerHotelId:
+          type: string
+          description: Hotel Id
+          example: '123123123'
+        hotelRatePlanType:
+          type: string
+          description: Rate plan type
+          enum:
+          - RETAIL
+          - MOBILE
+          - PRIVATESALE
+          - LAST_MINUTE
+          - BUDGET_ROOMS
+          - PACKAGE
+          - CAMPAIGN
+          - CROSS_SELL
+          - CORPORATE
+          - STATIC
+          - GROWTH_MARKET
+        specialRequest:
+          type: string
+          description: Special Request (if any)
+          example: Late check-in
+        rooms:
+          type: array
+          description: List of rooms in the booking
+          items:
+            $ref: '#/components/schemas/HotelBookingRoomRequest'
+    HotelBookingRoomRequest:
+      required:
+      - availabilityToken
+      - guestInfo
+      - guests
+      - perRoomBookedRate
+      - providerHotelRoomId
+      type: object
+      properties:
+        providerHotelRoomId:
+          type: string
+          description: Provider hotel room id
+          example: '1234567890'
+        availabilityToken:
+          type: string
+          description: "Token/ID for this room type/price. This is passed from room list search request. \nAvailability token does not depend on the number of rooms"
+          example: DHB170816104137188
+        ccGuaranteeRequirement:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomCCGuaranteeRequirementInfo'
+          - description: Credit card guarantee requirement for this room
+        perRoomBookedRate:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomRate'
+          - description: Per room booked rate
+        perRoomBookedRateInfo:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomRateInfo'
+          - description: Per room booked rate info
+        guestInfo:
+          allOf:
+          - $ref: '#/components/schemas/HotelGuestInfo'
+          - description: Guest information for this booking
+        guests:
+          type: array
+          description: 'In the guest node, the following information must be included: firstName, lastName.'
+          items:
+            $ref: '#/components/schemas/HotelBookingGuest'
+        promoIds:
+          type: array
+          description: Promotion id
+          items:
+            type: string
+            description: Promotion id
+        promoDescription:
+          type: string
+          description: Promotion description
+    IssueHotelContact:
+      required:
+      - emails
+      - phones
+      type: object
+      properties:
+        phones:
+          type: array
+          description: List of phone numbers for the hotel contact
+          example:
+          - '+62123456789'
+          - '+628123456789'
+          items:
+            type: string
+            description: List of phone numbers for the hotel contact
+            example: '["+62123456789","+628123456789"]'
+        faxes:
+          type: array
+          description: List of fax numbers for the hotel contact. If none exist, just put an empty list
+          example:
+          - '+62123456789'
+          - '+628123456789'
+          items:
+            type: string
+            description: List of fax numbers for the hotel contact. If none exist, just put an empty list
+            example: '["+62123456789","+628123456789"]'
+        emails:
+          type: array
+          description: List of email addresses for the hotel contact. If none exist, just put an empty list
+          example:
+          - hotel@traveloka.com
+          - hotel_operation@traveloka.com
+          items:
+            type: string
+            description: List of email addresses for the hotel contact. If none exist, just put an empty list
+            example: '["hotel@traveloka.com","hotel_operation@traveloka.com"]'
     HotelGuestInfo:
       required:
       - numAdults
@@ -382,6 +847,179 @@ components:
             description: Mandatory if numChildren > 0
             format: int32
       description: Guest information for this booking
+    IssueErrorResponse:
+      required:
+      - error
+      - failureReason
+      - status
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID
+          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
+        status:
+          type: string
+          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
+          example: FAILED
+          enum:
+          - FAILED
+        failureReason:
+          type: string
+          description: MANDATORY if issueRS status = FAILED.
+          deprecated: true
+          enum:
+          - PROCESS_FAIL
+          - CREDIT_CARD_FAIL
+          - SOLD_OUT
+          - INTERNAL_ERROR
+          - INCORRECT_BOOKING_DATA
+          - UNKNOWN
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+        errors:
+          type: array
+          description: MANDATORY if the issuance has error(s).
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/ProviderError'
+    CreditCardInfo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        ccNum:
+          type: string
+        securityCode:
+          type: string
+        ccType:
+          type: string
+          enum:
+          - VISA
+          - MASTER_CARD
+          - AMERICAN_EXPRESS
+          - JAPAN_CREDIT_BUREAU
+          - BC_CARD
+          - DISCOVER
+          - MAESTRO
+          - DINERS_CLUB
+          - CARTA_SI
+          - CARTE_BLEUE
+          - VISA_ELECTRON
+          - CHINA_UNION_PAY
+        validMonth:
+          type: integer
+          format: int32
+        validYear:
+          type: integer
+          format: int32
+        creditCardHolderName:
+          $ref: '#/components/schemas/CreditCardHolderName'
+        ccHolderAddress:
+          $ref: '#/components/schemas/CreditCardHolderAddress'
+        phoneNum:
+          type: string
+        desc:
+          type: string
+        fulfillmentPaymentId:
+          type: string
+        additionalData:
+          type: object
+          additionalProperties:
+            type: string
+    PiMealPlanPax:
+      required:
+      - adults
+      type: object
+      properties:
+        adults:
+          type: integer
+          description: "Number of adult pax. \n\nNote: Adult pax can be consumed by child guests. \n\nFor example, if the returned mealPax is 3 adults, and the guest consists of 2 adults and 1 child, it is permissible.\n"
+          format: int32
+          example: 2
+        children:
+          type: integer
+          description: "Number of child pax\n\nNote: Child pax can not be consumed by adult guests. \n"
+          format: int32
+          example: 1
+      description: Pax applicable to the mealPlan. Mandatory for all mealPlan, except Room Only.
+    HotelFee:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the fee
+        amount:
+          type: number
+          description: Amount of the fee
+          format: double
+    HotelRoomRate:
+      required:
+      - currency
+      - fees
+      - taxes
+      - totalFare
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency code, e.g. IDR, USD
+          example: IDR
+        totalFare:
+          type: number
+          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
+          format: double
+          example: 1000000
+        taxes:
+          type: number
+          description: Total taxes amount
+          format: double
+          example: 100000
+        fees:
+          type: number
+          description: Total fees amount
+          format: double
+          example: 50000
+    AdditionalFees:
+      type: object
+      properties:
+        mandatoryFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory fees are collected by the property at check-in or check-out.
+        mandatoryTax:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Mandatory taxes are collected by the property at check-in or check-out.
+        resortFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Resort fees are charged for amenities and extras and collected by the property at check-in or check-out.
+        countryTaxFee:
+          allOf:
+          - $ref: '#/components/schemas/ChargeItem'
+          - description: Country tax fee is collected by the property at check-in or check-out.
+    HotelRoomRateInfo:
+      type: object
+      properties:
+        fees:
+          type: array
+          description: List of fees associated with the hotel rate
+          items:
+            $ref: '#/components/schemas/HotelFee'
+        taxes:
+          type: array
+          description: List of taxes associated with the hotel rate
+          items:
+            $ref: '#/components/schemas/HotelFee'
+        surcharges:
+          type: array
+          description: List of surcharges associated with the hotel rate
+          items:
+            $ref: '#/components/schemas/HotelFee'
     HotelBookingRoomResponse:
       required:
       - availabilityToken
@@ -453,83 +1091,17 @@ components:
         promoDescription:
           type: string
           description: Promotion description
-    HotelCancellationPolicy:
+    CreditCardHolderAddress:
       type: object
       properties:
-        cancellationPolicyDescription:
+        address:
           type: string
-          description: Description for cancellation policy
-        providerCancellationPolicyInfoList:
-          type: array
-          description: List of cancellation policy information
-          items:
-            $ref: '#/components/schemas/HotelCancellationPolicyInfo'
-    IssueRequest:
-      required:
-      - hotelBooking
-      type: object
-      properties:
-        requestId:
+        countryCode:
           type: string
-          description: Request ID
-          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
-        hotelBooking:
-          allOf:
-          - $ref: '#/components/schemas/HotelBookingRequest'
-          - description: Booking details
-        creditCardInfo:
-          allOf:
-          - $ref: '#/components/schemas/CreditCardInfo'
-          - description: Credit card information
-        locale:
+        city:
           type: string
-          description: Locale
-          example: en_ID
-    CreditCardInfo:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        ccNum:
+        postalCode:
           type: string
-        securityCode:
-          type: string
-        ccType:
-          type: string
-          enum:
-          - VISA
-          - MASTER_CARD
-          - AMERICAN_EXPRESS
-          - JAPAN_CREDIT_BUREAU
-          - BC_CARD
-          - DISCOVER
-          - MAESTRO
-          - DINERS_CLUB
-          - CARTA_SI
-          - CARTE_BLEUE
-          - VISA_ELECTRON
-          - CHINA_UNION_PAY
-        validMonth:
-          type: integer
-          format: int32
-        validYear:
-          type: integer
-          format: int32
-        creditCardHolderName:
-          $ref: '#/components/schemas/CreditCardHolderName'
-        ccHolderAddress:
-          $ref: '#/components/schemas/CreditCardHolderAddress'
-        phoneNum:
-          type: string
-        desc:
-          type: string
-        fulfillmentPaymentId:
-          type: string
-        additionalData:
-          type: object
-          additionalProperties:
-            type: string
     MealPlan:
       required:
       - code
@@ -554,571 +1126,6 @@ components:
         pax:
           $ref: '#/components/schemas/PiMealPlanPax'
       description: Meal plan for this room, e.g. if the booking is for 2 rooms 3 night, the mealPlan should cover for 1 room 1 night
-    AdditionalFees:
-      type: object
-      properties:
-        mandatoryFee:
-          allOf:
-          - $ref: '#/components/schemas/ChargeItem'
-          - description: Mandatory fees are collected by the property at check-in or check-out.
-        mandatoryTax:
-          allOf:
-          - $ref: '#/components/schemas/ChargeItem'
-          - description: Mandatory taxes are collected by the property at check-in or check-out.
-        resortFee:
-          allOf:
-          - $ref: '#/components/schemas/ChargeItem'
-          - description: Resort fees are charged for amenities and extras and collected by the property at check-in or check-out.
-        countryTaxFee:
-          allOf:
-          - $ref: '#/components/schemas/ChargeItem'
-          - description: Country tax fee is collected by the property at check-in or check-out.
-    HotelBookingRequest:
-      required:
-      - bookingToken
-      - providerHotelId
-      - rooms
-      - uniqueId
-      type: object
-      properties:
-        bookingToken:
-          type: string
-          description: Token returned in book response
-          example: DHB170816104137188
-        uniqueId:
-          type: string
-          description: The Traveloka id that is associated with this booking
-          example: 21323112-0
-        providerHotelId:
-          type: string
-          description: Hotel Id
-          example: '123123123'
-        hotelRatePlanType:
-          type: string
-          description: Rate plan type
-          enum:
-          - RETAIL
-          - MOBILE
-          - PRIVATESALE
-          - LAST_MINUTE
-          - BUDGET_ROOMS
-          - PACKAGE
-          - CAMPAIGN
-          - CROSS_SELL
-          - CORPORATE
-          - STATIC
-          - GROWTH_MARKET
-        specialRequest:
-          type: string
-          description: Special Request (if any)
-          example: Late check-in
-        rooms:
-          type: array
-          description: List of rooms in the booking
-          items:
-            $ref: '#/components/schemas/HotelBookingRoomRequest'
-    HotelRoomCCGuaranteeRequirementInfo:
-      required:
-      - addressRequired
-      - ccRequired
-      - cvvRequired
-      type: object
-      properties:
-        ccRequired:
-          type: boolean
-          description: Indicates if credit card information is required for guarantee
-          example: true
-        cvvRequired:
-          type: boolean
-          description: Indicates if CVV is required for the credit card
-          example: true
-        addressRequired:
-          type: boolean
-          description: Indicates if address is required for the credit card
-          example: true
-        csTokenRequired:
-          type: boolean
-          description: Indicates if a Cybersource token is required, meaning raw credit card data is not needed
-          example: false
-        supportedCCTypes:
-          type: array
-          description: List of supported credit card types
-          items:
-            type: string
-            description: List of supported credit card types
-            enum:
-            - VISA
-            - MASTER_CARD
-            - AMERICAN_EXPRESS
-            - JAPAN_CREDIT_BUREAU
-            - BC_CARD
-            - DISCOVER
-            - MAESTRO
-            - DINERS_CLUB
-            - CARTA_SI
-            - CARTE_BLEUE
-            - VISA_ELECTRON
-            - CHINA_UNION_PAY
-      description: Credit card guarantee requirement for this room
-    IssueResponse:
-      required:
-      - booking
-      - status
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Request ID
-          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
-        booking:
-          allOf:
-          - $ref: '#/components/schemas/HotelBookingResponse'
-          - description: Booking details
-        status:
-          type: string
-          description: "    Should be one of these:\n\n    OK -> return OK to indicate a successful issue request\n\n    FAILED -> return FAILED if there's an error during processing the request\n\n    ALREADY_ISSUED -> return ALREADY_ISSUED if the unique ID already issued and the payment has already been processed\n\n    PENDING -> return PENDING if you are unable to confirm that the process will be completed within one minute. We will retry the Issue Check API call\n\n    PRICE_CHANGED -> return PRICE_CHANGED if there has been a change in the room rate, whether it has increased or decreased. We will retry the Issue Check API call\n"
-          enum:
-          - OK
-          - FAILED
-          - ALREADY_ISSUED
-          - PRICE_CHANGED
-          - PENDING
-        failureReason:
-          type: string
-          description: MANDATORY if issueRS status = FAILED.
-          deprecated: true
-          enum:
-          - PROCESS_FAIL
-          - CREDIT_CARD_FAIL
-          - SOLD_OUT
-          - INTERNAL_ERROR
-          - INCORRECT_BOOKING_DATA
-          - UNKNOWN
-        hotelContact:
-          $ref: '#/components/schemas/IssueHotelContact'
-        error:
-          allOf:
-          - $ref: '#/components/schemas/Error'
-          - description: For complete error enums, please check on FAQ > Error Object
-        errors:
-          type: array
-          description: Mandatory if status = FAILED.
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/ProviderError'
-    HotelFee:
-      type: object
-      properties:
-        description:
-          type: string
-          description: Description of the fee
-        amount:
-          type: number
-          description: Amount of the fee
-          format: double
-    CreditCardHolderName:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-    IssueHotelContact:
-      required:
-      - emails
-      - phones
-      type: object
-      properties:
-        phones:
-          type: array
-          description: List of phone numbers for the hotel contact
-          example:
-          - '+62123456789'
-          - '+628123456789'
-          items:
-            type: string
-            description: List of phone numbers for the hotel contact
-            example: '["+62123456789","+628123456789"]'
-        faxes:
-          type: array
-          description: List of fax numbers for the hotel contact. If none exist, just put an empty list
-          example:
-          - '+62123456789'
-          - '+628123456789'
-          items:
-            type: string
-            description: List of fax numbers for the hotel contact. If none exist, just put an empty list
-            example: '["+62123456789","+628123456789"]'
-        emails:
-          type: array
-          description: List of email addresses for the hotel contact. If none exist, just put an empty list
-          example:
-          - hotel@traveloka.com
-          - hotel_operation@traveloka.com
-          items:
-            type: string
-            description: List of email addresses for the hotel contact. If none exist, just put an empty list
-            example: '["hotel@traveloka.com","hotel_operation@traveloka.com"]'
-    HotelRoomRate:
-      required:
-      - currency
-      - fees
-      - taxes
-      - totalFare
-      type: object
-      properties:
-        currency:
-          type: string
-          description: Currency code, e.g. IDR, USD
-          example: IDR
-        totalFare:
-          type: number
-          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
-          format: double
-          example: 1000000
-        taxes:
-          type: number
-          description: Total taxes amount
-          format: double
-          example: 100000
-        fees:
-          type: number
-          description: Total fees amount
-          format: double
-          example: 50000
-    HotelRoomRateInfo:
-      type: object
-      properties:
-        fees:
-          type: array
-          description: List of fees associated with the hotel rate
-          items:
-            $ref: '#/components/schemas/HotelFee'
-        taxes:
-          type: array
-          description: List of taxes associated with the hotel rate
-          items:
-            $ref: '#/components/schemas/HotelFee'
-        surcharges:
-          type: array
-          description: List of surcharges associated with the hotel rate
-          items:
-            $ref: '#/components/schemas/HotelFee'
-    HotelBookingRoomRequest:
-      required:
-      - availabilityToken
-      - guestInfo
-      - guests
-      - perRoomBookedRate
-      - providerHotelRoomId
-      type: object
-      properties:
-        providerHotelRoomId:
-          type: string
-          description: Provider hotel room id
-          example: '1234567890'
-        availabilityToken:
-          type: string
-          description: "Token/ID for this room type/price. This is passed from room list search request. \nAvailability token does not depend on the number of rooms"
-          example: DHB170816104137188
-        ccGuaranteeRequirement:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomCCGuaranteeRequirementInfo'
-          - description: Credit card guarantee requirement for this room
-        perRoomBookedRate:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomRate'
-          - description: Per room booked rate
-        perRoomBookedRateInfo:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomRateInfo'
-          - description: Per room booked rate info
-        guestInfo:
-          allOf:
-          - $ref: '#/components/schemas/HotelGuestInfo'
-          - description: Guest information for this booking
-        guests:
-          type: array
-          description: 'In the guest node, the following information must be included: firstName, lastName.'
-          items:
-            $ref: '#/components/schemas/HotelBookingGuest'
-        promoIds:
-          type: array
-          description: Promotion id
-          items:
-            type: string
-            description: Promotion id
-        promoDescription:
-          type: string
-          description: Promotion description
-    PayAtPropertyNoShowPolicy:
-      type: object
-      properties:
-        noShowDateTime:
-          type: string
-          description: "  Time to considered as no show.\n  The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.\n"
-          example: '1970-01-01T00:00:00.000Z'
-        noShowFee:
-          type: number
-          description: No show fee.
-          format: double
-          example: 120
-        currency:
-          type: string
-          description: Currency info
-          example: USD
-        nightCount:
-          type: integer
-          description: 'No show fee in room night.
-
-            Example: nightCount = 1 means cancellation fee is one room night.
-
-            This field is not mandatory if @noShowFee already filled in.
-
-            But if @nightCount is filled in, @noShowFee MUST also be filled in.'
-          format: int32
-          example: 1
-    IssueErrorResponse:
-      required:
-      - error
-      - failureReason
-      - status
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Request ID
-          example: c2a50648-abb7-45b0-af10-9af4e5bbcfee
-        status:
-          type: string
-          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
-          example: FAILED
-          enum:
-          - FAILED
-        failureReason:
-          type: string
-          description: MANDATORY if issueRS status = FAILED.
-          deprecated: true
-          enum:
-          - PROCESS_FAIL
-          - CREDIT_CARD_FAIL
-          - SOLD_OUT
-          - INTERNAL_ERROR
-          - INCORRECT_BOOKING_DATA
-          - UNKNOWN
-        error:
-          allOf:
-          - $ref: '#/components/schemas/Error'
-          - description: For complete error enums, please check on FAQ > Error Object
-        errors:
-          type: array
-          description: MANDATORY if the issuance has error(s).
-          deprecated: true
-          items:
-            $ref: '#/components/schemas/ProviderError'
-    ChargeItem:
-      required:
-      - amount
-      - currency
-      type: object
-      properties:
-        currency:
-          type: string
-          description: Currency of the charge item, e.g., USD, IDR
-          example: USD
-        amount:
-          type: number
-          description: Amount of the charge item
-          format: double
-          example: 100
-    HotelBookingResponse:
-      required:
-      - issuanceId
-      - providerHotelId
-      - rooms
-      - sourceProvider
-      - uniqueId
-      type: object
-      properties:
-        issuanceId:
-          type: string
-          description: Id to identify this issuance, generated by provider (itinerary ID)
-          example: DHB170816104137188
-        uniqueId:
-          type: string
-          description: The Traveloka id that is associated with this booking
-          example: 21323112-0
-        sourceProvider:
-          type: string
-          description: This is will be printed on voucher which will be read by the hotel receptionist/ops
-          example: Travel Travel
-        providerHotelId:
-          type: string
-          description: Hotel Id
-          example: '123123123'
-        hotelRatePlanType:
-          type: string
-          description: Rate plan type
-          enum:
-          - RETAIL
-          - MOBILE
-          - PRIVATESALE
-          - LAST_MINUTE
-          - BUDGET_ROOMS
-          - PACKAGE
-          - CAMPAIGN
-          - CROSS_SELL
-          - CORPORATE
-          - STATIC
-          - GROWTH_MARKET
-        rooms:
-          type: array
-          description: List of rooms in the booking
-          items:
-            $ref: '#/components/schemas/HotelBookingRoomResponse'
-    HotelCancellationPolicyInfo:
-      required:
-      - cancelDateTime
-      - cancellationFee
-      - currency
-      type: object
-      properties:
-        cancelDateTime:
-          type: string
-          description: 'Date time which cancellation fee will start to take place.
-
-
-            The allowed format is YYYY-MM-DDThh:mm:ss.nnnZ.
-
-
-            Example:
-
-
-            cancelDateTime: 2028-01-01T00:00:00.000Z
-
-
-            cancellationFee: 120 (USD)
-
-
-            means, cancellation after 01-Jan-2028 will impose $120 cancellation fee.
-
-            '
-          example: '2028-01-01T00:00:00.000Z'
-        cancellationFee:
-          type: number
-          description: Cancellation fee for all rooms all nights
-          format: double
-          example: 120
-        nightCount:
-          type: integer
-          description: 'Cancellation fee in room night.
-
-
-            Example: nightCount = 1 means cancellation fee is one room night.
-
-
-            This field is not mandatory if @cancellationFee is already filled in.
-
-
-            But if @nightCount is filled in, @cancellationFee MUST also be filled in.
-
-            '
-          format: int32
-        currency:
-          type: string
-          description: Currency of the cancellation fee
-          example: USD
-    HotelBookingGuest:
-      required:
-      - firstName
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: First name of the guest
-          example: John
-        lastName:
-          type: string
-          description: Last name of the guest
-          example: Doe
-        title:
-          type: string
-          description: Title of the guest
-          enum:
-          - MR
-          - MRS
-          - MISS
-          - OTHERS
-        passportNo:
-          type: string
-          description: Passport number of the guest
-          example: A12345678
-        passportCountryCode:
-          type: string
-          description: Country code of the passport
-          example: ID
-      description: 'In the guest node, the following information must be included: firstName, lastName.'
-    CreditCardHolderAddress:
-      type: object
-      properties:
-        address:
-          type: string
-        countryCode:
-          type: string
-        city:
-          type: string
-        postalCode:
-          type: string
-    Error:
-      type: object
-      properties:
-        errorId:
-          type: string
-        errorMessage:
-          type: string
-    PiMealPlanPax:
-      required:
-      - adults
-      type: object
-      properties:
-        adults:
-          type: integer
-          description: "Number of adult pax. \n\nNote: Adult pax can be consumed by child guests. \n\nFor example, if the returned mealPax is 3 adults, and the guest consists of 2 adults and 1 child, it is permissible.\n"
-          format: int32
-          example: 2
-        children:
-          type: integer
-          description: "Number of child pax\n\nNote: Child pax can not be consumed by adult guests. \n"
-          format: int32
-          example: 1
-      description: Pax applicable to the mealPlan. Mandatory for all mealPlan, except Room Only.
-    ProviderError:
-      required:
-      - errorId
-      - errorMessage
-      type: object
-      properties:
-        errorId:
-          type: string
-          description: "    MANDATORY if has error(s).\n    The values for errorId and the message are:\n    3017 -> BOOKING_ALREADY_ISSUED\n    3018 -> BOOKING_CANCELED\n    3006 -> BOOKING_EXPIRED\n    3016 -> FAILED_TO_CONFIRM_BOOKING\n    3003 -> INCORRECT_BOOKING_ID\n    3001 -> INCORRECT_BOOKING_INFORMATION\n    3020 -> PENDING_BOOKING\n    3000 -> UNEXPECTED_ERROR\n"
-        errorSeverity:
-          type: string
-          description: 'Should be one of these:
-
-            LOW, HIGH, HIGHEST
-
-            '
-          enum:
-          - LOW
-          - HIGH
-          - HIGHEST
-        errorMessage:
-          type: string
-          description: "    MANDATORY if has error(s).\n    The values for errorId and the message are:\n    3017 -> BOOKING_ALREADY_ISSUED\n    3018 -> BOOKING_CANCELED\n    3006 -> BOOKING_EXPIRED\n    3016 -> FAILED_TO_CONFIRM_BOOKING\n    3003 -> INCORRECT_BOOKING_ID\n    3001 -> INCORRECT_BOOKING_INFORMATION\n    3020 -> PENDING_BOOKING\n    3000 -> UNEXPECTED_ERROR\n"
-        timestamp:
-          type: string
-          description: Timestamp of the error occurrence in unix milliseconds time format
-      deprecated: true
   securitySchemes:
     basicAuth:
       type: http

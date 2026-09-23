@@ -23,7 +23,9 @@ paths:
         in: header
         schema:
           type: string
-      description: API call to see sample Access Token response.<br/> Access Tokens has a 60-minutes expiration time and will have to be re-generated before it expires<br/>
+      description: 'API call to see sample Access Token response.
+
+        Access Tokens has a 60-minutes expiration time and will have to be re-generated before it expires'
       operationId: Generate Token
       requestBody:
         content:
@@ -68,6 +70,8 @@ paths:
         description: Production
       - url: https://auth-api.afc.staging-traveloka.com/
         description: Staging/sandbox
+      summary: Generate token
+      x-summary-source: derived
 components:
   schemas:
     AccessToken:

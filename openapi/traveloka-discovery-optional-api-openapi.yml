@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: LOKA Discovery (Optional) Discovery (Optional) API
+  title: LOKA Discovery (Optional) API
   version: 2.4.8
   description: This API is optional and intended for partners who do not have their own master data.
 servers:
@@ -18,7 +18,6 @@ paths:
   /discovery/getGeo:
     get:
       summary: Discover geo by geo location
-      description: Discover geo by geo location
       tags:
       - Discovery (Optional)
       parameters:
@@ -99,10 +98,11 @@ paths:
         description: Production
       - url: https://api.staging-travelokapartnersnetwork.com/v2
         description: Staging
+      operationId: getDiscoveryGetGeo
+      x-operation-id-source: derived
   /discovery/getRates:
     post:
       summary: Discover hotels by filters
-      description: Discover hotels by filters
       tags:
       - Discovery (Optional)
       requestBody:
@@ -136,19 +136,10 @@ paths:
         description: Production
       - url: https://api.staging-travelokapartnersnetwork.com/v2
         description: Staging
+      operationId: postDiscoveryGetRates
+      x-operation-id-source: derived
 components:
   schemas:
-    MealPlan:
-      type: object
-      properties:
-        mealInclusionOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealInclusionOption'
-        mealPackageDetails:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/MealPackageDetail'
     MealInclusionOption:
       type: object
       properties:
@@ -157,6 +148,263 @@ components:
           description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
           additionalProperties:
             $ref: '#/components/schemas/MealInclusionDetail'
+    Charge:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - TAX
+            - FEE
+          displayCurrency:
+            type: string
+            example: IDR
+          displayAmount:
+            type: number
+            example: 50000
+          isIncluded:
+            type: boolean
+            example: true
+    CancellationPolicy:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Cancellation policy text
+          example: Cancellation Policy
+        displayText:
+          type: string
+          description: Display cancellation policy display text
+          example: Cancellation Policy
+        propertyTimezone:
+          type: string
+          description: Timezone of the property
+          example: GMT+07:00
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              startCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-26T10:00:00+07:00'
+                description: Start of cancellation period
+              endCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-30T10:00:00+07:00'
+                description: End of cancellation period
+              cancellationCharge:
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    description: Currency code for cancellation fee
+                    example: IDR
+                  amount:
+                    type: string
+                    description: Amount of cancellation fee
+                    example: '100000'
+    ExtraBenefits:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Extra Benefit id
+        type:
+          type: string
+          description: Extra Benefit type
+        valueList:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: integer
+                description: Extra Benefit value
+              unit:
+                type: string
+                description: Extra Benefit unit
+        renderedName:
+          type: string
+          description: Display name
+          example: Free Breakfast for 2 pax
+        additionalInfo:
+          type: string
+          description: Additional information
+          example: Terms and conditions apply
+    DiscoveryRatesRequest:
+      type: object
+      required:
+      - geoId
+      properties:
+        geoId:
+          type: string
+          description: Geo Id
+          example: '1000000000001'
+        cursor:
+          type: string
+          description: Cursor
+          example: eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2022-04-21'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2022-04-22'
+        numRooms:
+          type: integer
+          description: Number of rooms
+          example: 1
+          default: 1
+          minimum: 1
+        numAdults:
+          type: integer
+          description: Number of adults
+          example: 2
+          default: 1
+          minimum: 1
+        numChildren:
+          type: integer
+          description: Number of children
+          example: 1
+          default: 0
+          minimum: 0
+        childrenAges:
+          type: array
+          description: Children ages
+          items:
+            type: integer
+          default: []
+          example:
+          - 6
+        displayCurrency:
+          type: string
+          description: Display currency
+          example: IDR
+        language:
+          type: string
+          description: Language
+          example: en
+        userNationality:
+          type: string
+          description: User nationality
+          example: ID
+        isExtended:
+          type: boolean
+          default: false
+          description: Is extended
+          example: true
+        isMultiRoom:
+          type: boolean
+          default: false
+          description: Is multi room
+          example: true
+        filters:
+          type: object
+          description: Filters
+          properties:
+            starRating:
+              type: array
+              description: Star rating
+              items:
+                type: number
+                minimum: 1
+                maximum: 5
+              example:
+              - 4
+              - 5
+            priceRange:
+              type: object
+              description: Price range
+              properties:
+                min:
+                  type: number
+                  example: 0
+                max:
+                  type: number
+                  example: 10000000
+            propertyTypes:
+              type: array
+              description: Property types
+              items:
+                type: string
+              example:
+              - HOTEL
+            cancellationPolicy:
+              type: string
+              description: Cancellation policy
+              example: FREE_CANCELLATION
+            mealTypes:
+              type: array
+              description: Meal Types
+              items:
+                type: string
+                enum:
+                - BF
+                - RO
+              example:
+              - BF
+        sortBy:
+          type: string
+          default: POPULARITY
+          description: Sorting criteria
+          enum:
+          - PRICE
+          - REVIEW
+          - POPULARITY
+          example: POPULARITY
+        sortDirection:
+          type: string
+          description: Sorting direction. Defaults to ASC if sortBy is PRICE, and defaults to DESC if sortBy is POPULARITY or REVIEW.
+          enum:
+          - ASC
+          - DESC
+          example: DESC
+    DiscoveryRatesResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          description: map of propertyId and property rates
+          additionalProperties:
+            type: object
+            description: Property rates
+            properties:
+              propertyName:
+                type: string
+                description: Property Name
+                example: Hotel Indonesia Kempinski Jakarta
+              starRating:
+                type: number
+                description: Star rating
+                example: 5
+              rates:
+                $ref: '#/components/schemas/DisplayRatesResponse'
+        sortedPropertyId:
+          type: array
+          description: Sorted property Id
+          items:
+            type: string
+          example:
+          - property1
+          - property2
+        nextCursor:
+          type: string
+          description: Next cursor
+          example: eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
     ExtraCharge:
       type: object
       properties:
@@ -185,25 +433,6 @@ components:
           $ref: '#/components/schemas/MealTime'
         to:
           $ref: '#/components/schemas/MealTime'
-    Charge:
-      type: array
-      items:
-        type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - TAX
-            - FEE
-          displayCurrency:
-            type: string
-            example: IDR
-          displayAmount:
-            type: number
-            example: 50000
-          isIncluded:
-            type: boolean
-            example: true
     RatesResponse:
       type: object
       properties:
@@ -324,6 +553,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtraBenefits'
+    BedArrangement:
+      type: object
+      properties:
+        bedroomLayouts:
+          type: array
+          items:
+            type: object
+            properties:
+              arrangements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bedType:
+                      type: string
+                      enum:
+                      - SINGLE
+                      - DOUBLE
+                      - TWIN
+                      - QUEEN
+                      - KING
+                      - BUNK
+                      - SOFA
+                      - CRIB
+                      - ROLLAWAY
+                      - FUTON
+                      - HIDEABED
+                      - MURPHY
+                      - DAY
+                      - TRUNDLE
+                      - AIR_MATTRESS
+                      - WATER_BED
+                      - OTHER
+                    total:
+                      type: integer
+              arrangementType:
+                type: string
+                enum:
+                - DEFAULT
+                - ALTERNATIVE
+    MealPackageDetail:
+      type: object
+      properties:
+        defaultLanguage:
+          type: string
+        name:
+          type: object
+          additionalProperties:
+            type: string
+        servingPlace:
+          type: object
+          additionalProperties:
+            type: string
+        servingType:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        cuisineSelection:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        dietaryRestriction:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        servingTime:
+          type: object
+          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealTimeRange'
+        notes:
+          type: object
+          additionalProperties:
+            type: string
+    MealTime:
+      type: object
+      properties:
+        hour:
+          type: integer
+          format: int32
+        minute:
+          type: integer
+          format: int32
     GeoDetail:
       type: object
       required:
@@ -355,75 +667,15 @@ components:
           type: string
           description: Centroid longitude
           example: '106.822745'
-    CancellationPolicy:
+    MealSelectOption:
       type: object
       properties:
-        text:
+        name:
           type: string
-          description: Cancellation policy text
-          example: Cancellation Policy
-        displayText:
-          type: string
-          description: Display cancellation policy display text
-          example: Cancellation Policy
-        propertyTimezone:
-          type: string
-          description: Timezone of the property
-          example: GMT+07:00
-        policies:
-          type: array
-          items:
-            type: object
-            properties:
-              startCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-26T10:00:00+07:00'
-                description: Start of cancellation period
-              endCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-30T10:00:00+07:00'
-                description: End of cancellation period
-              cancellationCharge:
-                type: object
-                properties:
-                  currency:
-                    type: string
-                    description: Currency code for cancellation fee
-                    example: IDR
-                  amount:
-                    type: string
-                    description: Amount of cancellation fee
-                    example: '100000'
-    ExtraBenefits:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Extra Benefit id
-        type:
-          type: string
-          description: Extra Benefit type
-        valueList:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: integer
-                description: Extra Benefit value
-              unit:
-                type: string
-                description: Extra Benefit unit
         renderedName:
           type: string
-          description: Display name
-          example: Free Breakfast for 2 pax
-        additionalInfo:
+        contentResourceKey:
           type: string
-          description: Additional information
-          example: Terms and conditions apply
     ExtendedRatesResponse:
       type: object
       properties:
@@ -584,218 +836,12 @@ components:
           description: Last updated time
           format: date-time
           example: '2023-07-26T10:00:00+07:00'
-    DiscoveryRatesRequest:
-      type: object
-      required:
-      - geoId
-      properties:
-        geoId:
-          type: string
-          description: Geo Id
-          example: '1000000000001'
-        cursor:
-          type: string
-          description: Cursor
-          example: eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=
-        checkInDate:
-          type: string
-          description: Check-in date (YYYY-MM-DD)
-          example: '2022-04-21'
-        checkOutDate:
-          type: string
-          description: Check-out date (YYYY-MM-DD)
-          example: '2022-04-22'
-        numRooms:
-          type: integer
-          description: Number of rooms
-          example: 1
-          default: 1
-          minimum: 1
-        numAdults:
-          type: integer
-          description: Number of adults
-          example: 2
-          default: 1
-          minimum: 1
-        numChildren:
-          type: integer
-          description: Number of children
-          example: 1
-          default: 0
-          minimum: 0
-        childrenAges:
-          type: array
-          description: Children ages
-          items:
-            type: integer
-          default: []
-          example:
-          - 6
-        displayCurrency:
-          type: string
-          description: Display currency
-          example: IDR
-        language:
-          type: string
-          description: Language
-          example: en
-        userNationality:
-          type: string
-          description: User nationality
-          example: ID
-        isExtended:
-          type: boolean
-          default: false
-          description: Is extended
-          example: true
-        isMultiRoom:
-          type: boolean
-          default: false
-          description: Is multi room
-          example: true
-        filters:
-          type: object
-          description: Filters
-          properties:
-            starRating:
-              type: array
-              description: Star rating
-              items:
-                type: number
-                minimum: 1
-                maximum: 5
-              example:
-              - 4
-              - 5
-            priceRange:
-              type: object
-              description: Price range
-              properties:
-                min:
-                  type: number
-                  example: 0
-                max:
-                  type: number
-                  example: 10000000
-            propertyTypes:
-              type: array
-              description: Property types
-              items:
-                type: string
-              example:
-              - HOTEL
-            cancellationPolicy:
-              type: string
-              description: Cancellation policy
-              example: FREE_CANCELLATION
-            mealTypes:
-              type: array
-              description: Meal Types
-              items:
-                type: string
-                enum:
-                - BF
-                - RO
-              example:
-              - BF
-        sortBy:
-          type: string
-          default: POPULARITY
-          description: Sorting criteria
-          enum:
-          - PRICE
-          - REVIEW
-          - POPULARITY
-          example: POPULARITY
-        sortDirection:
-          type: string
-          description: Sorting direction. Defaults to ASC if sortBy is PRICE, and defaults to DESC if sortBy is POPULARITY or REVIEW.
-          enum:
-          - ASC
-          - DESC
-          example: DESC
-    MealPackageDetail:
-      type: object
-      properties:
-        defaultLanguage:
-          type: string
-        name:
-          type: object
-          additionalProperties:
-            type: string
-        servingPlace:
-          type: object
-          additionalProperties:
-            type: string
-        servingType:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        cuisineSelection:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        dietaryRestriction:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        servingTime:
-          type: object
-          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
-          additionalProperties:
-            $ref: '#/components/schemas/MealTimeRange'
-        notes:
-          type: object
-          additionalProperties:
-            type: string
-    DiscoveryRatesResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          description: map of propertyId and property rates
-          additionalProperties:
-            type: object
-            description: Property rates
-            properties:
-              propertyName:
-                type: string
-                description: Property Name
-                example: Hotel Indonesia Kempinski Jakarta
-              starRating:
-                type: number
-                description: Star rating
-                example: 5
-              rates:
-                $ref: '#/components/schemas/DisplayRatesResponse'
-        sortedPropertyId:
-          type: array
-          description: Sorted property Id
-          items:
-            type: string
-          example:
-          - property1
-          - property2
-        nextCursor:
-          type: string
-          description: Next cursor
-          example: eyJ0eXBlIjoiZGV0YWlscyIsInN0YXJ0IjoiY2F0ZWdvcnkiLCJkYXRlIjoiMjAyMi0wNC0yMSIsImV4cGlyYXRpb24iOiIyMDIyLTA0LTIxIn0=
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-    MealTime:
-      type: object
-      properties:
-        hour:
-          type: integer
-          format: int32
-        minute:
-          type: integer
-          format: int32
+    DisplayRatesResponse:
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/RatesResponse'
+        - $ref: '#/components/schemas/ExtendedRatesResponse'
     MealInclusionDetail:
       type: object
       properties:
@@ -809,61 +855,6 @@ components:
         childrenPax:
           type: integer
           format: int32
-    BedArrangement:
-      type: object
-      properties:
-        bedroomLayouts:
-          type: array
-          items:
-            type: object
-            properties:
-              arrangements:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    bedType:
-                      type: string
-                      enum:
-                      - SINGLE
-                      - DOUBLE
-                      - TWIN
-                      - QUEEN
-                      - KING
-                      - BUNK
-                      - SOFA
-                      - CRIB
-                      - ROLLAWAY
-                      - FUTON
-                      - HIDEABED
-                      - MURPHY
-                      - DAY
-                      - TRUNDLE
-                      - AIR_MATTRESS
-                      - WATER_BED
-                      - OTHER
-                    total:
-                      type: integer
-              arrangementType:
-                type: string
-                enum:
-                - DEFAULT
-                - ALTERNATIVE
-    DisplayRatesResponse:
-      type: array
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/RatesResponse'
-        - $ref: '#/components/schemas/ExtendedRatesResponse'
-    MealSelectOption:
-      type: object
-      properties:
-        name:
-          type: string
-        renderedName:
-          type: string
-        contentResourceKey:
-          type: string
     RoomOccupancy:
       type: object
       properties:
@@ -887,6 +878,17 @@ components:
           type: integer
           description: Max child age
           example: 12
+    MealPlan:
+      type: object
+      properties:
+        mealInclusionOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealInclusionOption'
+        mealPackageDetails:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/MealPackageDetail'
   securitySchemes:
     api_gateway_lambda_authorizer:
       type: apiKey

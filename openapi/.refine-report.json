@@ -1,20 +1,8 @@
 {
   "provider": "traveloka",
   "sources": [
-    "traveloka-1-1-content-hotel-room-api-openapi.yml",
-    "traveloka-2-1-search-hotellist-api-openapi.yml",
-    "traveloka-2-2-search-roomlist-api-openapi.yml",
-    "traveloka-2-3-search-bulkroomlist-api-openapi.yml",
-    "traveloka-3-1-booking-book-api-openapi.yml",
-    "traveloka-3-2-booking-issuecheck-api-openapi.yml",
-    "traveloka-3-3-booking-issue-api-openapi.yml",
-    "traveloka-3-4-booking-bookingsummary-api-openapi.yml",
-    "traveloka-3-5-booking-cancel-api-openapi.yml",
-    "traveloka-authorization-api-openapi.yml",
-    "traveloka-booking-api-openapi.yml",
-    "traveloka-content-api-openapi.yml",
-    "traveloka-discovery-optional-api-openapi.yml",
-    "traveloka-rate-api-openapi.yml"
+    "_original/traveloka-atlas-api.json",
+    "_original/traveloka-loka-api-v2.json"
   ],
   "outputs": [
     "traveloka-1-1-content-hotel-room-api-openapi.yml",
@@ -35,32 +23,31 @@
   "archived": [],
   "errors": [],
   "warnings": [
-    "traveloka-1-1-content-hotel-room-api-openapi.yml: info.version missing",
-    "traveloka-2-1-search-hotellist-api-openapi.yml: info.version missing",
-    "traveloka-2-2-search-roomlist-api-openapi.yml: info.version missing",
-    "traveloka-2-3-search-bulkroomlist-api-openapi.yml: info.version missing",
-    "traveloka-3-1-booking-book-api-openapi.yml: info.version missing",
-    "traveloka-3-2-booking-issuecheck-api-openapi.yml: info.version missing",
-    "traveloka-3-3-booking-issue-api-openapi.yml: info.version missing",
-    "traveloka-3-4-booking-bookingsummary-api-openapi.yml: info.version missing",
-    "traveloka-3-5-booking-cancel-api-openapi.yml: info.version missing"
+    "traveloka-atlas-api.json: info.version missing"
   ],
   "notes": [
-    "traveloka-1-1-content-hotel-room-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-2-1-search-hotellist-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-2-2-search-roomlist-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-2-3-search-bulkroomlist-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-3-1-booking-book-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-3-2-booking-issuecheck-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-3-3-booking-issue-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-3-4-booking-bookingsummary-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-3-5-booking-cancel-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-authorization-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-booking-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-content-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-discovery-optional-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
-    "traveloka-rate-api-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "2 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "traveloka-atlas-api.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "traveloka-loka-api-v2.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "_original/traveloka-loka-partner-api-openapi.yml: archived document superseded by a larger archived document",
+    "_original/traveloka-atlas-supplier-api-openapi.yml: archived document superseded by a larger archived document",
+    "traveloka-1-1-content-hotel-room-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-2-1-search-hotellist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-2-2-search-roomlist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-2-3-search-bulkroomlist-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-3-1-booking-book-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-3-2-booking-issuecheck-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-3-3-booking-issue-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-3-4-booking-bookingsummary-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-3-5-booking-cancel-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-booking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-discovery-optional-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "traveloka-rate-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
