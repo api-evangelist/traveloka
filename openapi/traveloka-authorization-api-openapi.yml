@@ -26,7 +26,7 @@ paths:
       description: 'API call to see sample Access Token response.
 
         Access Tokens has a 60-minutes expiration time and will have to be re-generated before it expires'
-      operationId: Generate Token
+      operationId: GenerateToken
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -72,6 +72,8 @@ paths:
         description: Staging/sandbox
       summary: Generate token
       x-summary-source: derived
+      x-operation-id-source: normalized
+      x-operation-id-original: Generate Token
 components:
   schemas:
     AccessToken:

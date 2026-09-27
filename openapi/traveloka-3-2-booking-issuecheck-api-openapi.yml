@@ -111,6 +111,42 @@ paths:
         description: Generated server url
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+    IssueCheckErrorResponse:
+      required:
+      - error
+      - status
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for the booking request
+          example: '1234567890'
+        status:
+          type: string
+          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
+          example: FAILED
+          enum:
+          - FAILED
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    IssueCheckRequest:
+      required:
+      - uniqueId
+      type: object
+      properties:
+        uniqueId:
+          type: string
+          description: Unique Id Traveloka booking ID
+          example: 220394113-0
     IssueCheckResponse:
       type: object
       properties:
@@ -148,22 +184,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/IssueCheckBookingResponse'
           - description: Booking information
-    IssueCheckRequest:
-      required:
-      - uniqueId
-      type: object
-      properties:
-        uniqueId:
-          type: string
-          description: Unique Id Traveloka booking ID
-          example: 220394113-0
-    Error:
-      type: object
-      properties:
-        errorId:
-          type: string
-        errorMessage:
-          type: string
     IssueCheckBookingResponse:
       required:
       - status
@@ -192,26 +212,6 @@ components:
           type: string
           description: Unique Id Traveloka booking ID
           example: 220394113-0
-    IssueCheckErrorResponse:
-      required:
-      - error
-      - status
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Unique identifier for the booking request
-          example: '1234567890'
-        status:
-          type: string
-          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
-          example: FAILED
-          enum:
-          - FAILED
-        error:
-          allOf:
-          - $ref: '#/components/schemas/Error'
-          - description: For complete error enums, please check on FAQ > Error Object
   securitySchemes:
     basicAuth:
       type: http
