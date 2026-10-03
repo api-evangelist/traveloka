@@ -259,34 +259,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorCode422PropertiesGetRatesResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: A code that identifies this type of error.
-              enum:
-              - AFIXXX
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    MealTimeRange:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MealTime'
-        to:
-          $ref: '#/components/schemas/MealTime'
     CheckRateResponse:
       type: object
       properties:
@@ -448,6 +420,103 @@ components:
               type: string
             message:
               type: string
+    Error404:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 404: Not Found."
+              enum:
+              - '404'
+            message:
+              type: string
+              description: Error message
+              example: Not Found. The requested resource is not found.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ExtraCharge:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ''
+        currency:
+          type: string
+          description: currency
+        value:
+          type: string
+          format: double
+          description: Amount of the extra charge in the specified currency
+        isIncluded:
+          type: boolean
+          description: Indicates if the extra charge is included in the total rate
+      example:
+        name: COUNTRY_TAX_ADJUSTMENT
+        currency: USD
+        value: '12.1'
+        isIncluded: false
+    MealInclusionDetail:
+      type: object
+      properties:
+        mealPackages:
+          type: array
+          items:
+            type: string
+        adultPax:
+          type: integer
+          format: int32
+        childrenPax:
+          type: integer
+          format: int32
+    MealPackageDetail:
+      type: object
+      properties:
+        defaultLanguage:
+          type: string
+        name:
+          type: object
+          additionalProperties:
+            type: string
+        servingPlace:
+          type: object
+          additionalProperties:
+            type: string
+        servingType:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        cuisineSelection:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        dietaryRestriction:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        servingTime:
+          type: object
+          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealTimeRange'
+        notes:
+          type: object
+          additionalProperties:
+            type: string
+    MealTimeRange:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MealTime'
+        to:
+          $ref: '#/components/schemas/MealTime'
     Error408:
       type: object
       properties:
@@ -466,6 +535,141 @@ components:
               type: string
               description: Error message
               example: Timeout. Your request exceeds the timeout limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    MealInclusionOption:
+      type: object
+      properties:
+        mealInclusionDetails:
+          type: object
+          description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealInclusionDetail'
+    ExtraBenefits:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Extra Benefit id
+        type:
+          type: string
+          description: Extra Benefit type
+        valueList:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: integer
+                description: Extra Benefit value
+              unit:
+                type: string
+                description: Extra Benefit unit
+        renderedName:
+          type: string
+          description: Display name
+          example: Free Breakfast for 2 pax
+        additionalInfo:
+          type: string
+          description: Additional information
+          example: Terms and conditions apply
+    CancellationPolicy:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Cancellation policy text
+          example: Cancellation Policy
+        displayText:
+          type: string
+          description: Display cancellation policy display text
+          example: Cancellation Policy
+        propertyTimezone:
+          type: string
+          description: Timezone of the property
+          example: GMT+07:00
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              startCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-26T10:00:00+07:00'
+                description: Start of cancellation period
+              endCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-30T10:00:00+07:00'
+                description: End of cancellation period
+              cancellationCharge:
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    description: Currency code for cancellation fee
+                    example: IDR
+                  amount:
+                    type: string
+                    description: Amount of cancellation fee
+                    example: '100000'
+    RoomOccupancy:
+      type: object
+      properties:
+        numAdults:
+          type: integer
+          description: Number of adults per room
+          example: 1
+        numChildren:
+          type: integer
+          description: Number of children per room
+          example: 1
+        maxOccupancy:
+          type: integer
+          description: Max adult occupancy per room
+          example: 1
+        maxChildOccupancy:
+          type: integer
+          description: Max child occupancy per room
+          example: 1
+        maxChildAge:
+          type: integer
+          description: Max child age
+          example: 12
+    GetRatesResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+        data:
+          $ref: '#/components/schemas/DisplayRatesResponse'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    ErrorCode422PropertiesGetRatesResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: A code that identifies this type of error.
+              enum:
+              - AFIXXX
+            message:
+              type: string
+              description: Error message
+              example: Error message
             requestId:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
@@ -590,15 +794,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtraBenefits'
-    MealTime:
+    Error500:
       type: object
       properties:
-        hour:
-          type: integer
-          format: int32
-        minute:
-          type: integer
-          format: int32
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 500: Server Error."
+              enum:
+              - '500'
+            message:
+              type: string
+              description: Error message
+              example: Server Error. Please contact our support team.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
     ErrorCode422PropertiesCheckRateResponse:
       type: object
       properties:
@@ -620,207 +837,6 @@ components:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
-    Error404:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 404: Not Found."
-              enum:
-              - '404'
-            message:
-              type: string
-              description: Error message
-              example: Not Found. The requested resource is not found.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    MealInclusionDetail:
-      type: object
-      properties:
-        mealPackages:
-          type: array
-          items:
-            type: string
-        adultPax:
-          type: integer
-          format: int32
-        childrenPax:
-          type: integer
-          format: int32
-    Error400:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
-              enum:
-              - AFI100
-            message:
-              type: string
-              description: Error message
-              example: parameter missing, please check your request body.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    CheckRateRequest:
-      type: object
-      required:
-      - propertyId
-      - roomId
-      - checkInDate
-      - checkOutDate
-      - numRooms
-      - numAdults
-      - displayCurrency
-      - language
-      - userNationality
-      - rateKey
-      properties:
-        propertyId:
-          type: string
-          description: Property Id
-          example: '72900'
-        roomId:
-          type: string
-          description: Room Id
-          example: '11477200'
-        checkInDate:
-          type: string
-          description: Check-in date (YYYY-MM-DD)
-          example: '2024-01-01'
-        checkOutDate:
-          type: string
-          description: Check-out date (YYYY-MM-DD)
-          example: '2024-01-02'
-        numRooms:
-          type: integer
-          description: Number of rooms
-          minimum: 1
-        numAdults:
-          type: integer
-          description: Number of adults
-          minimum: 1
-          example: 1
-        numChildren:
-          type: integer
-          description: Number of children
-          minimum: 0
-          example: 1
-        childrenAges:
-          type: array
-          description: A comma-separated list of ages of children
-          items:
-            type: integer
-            minimum: 1
-            maximum: 15
-            example:
-            - 1
-        displayCurrency:
-          type: string
-          description: Currency code
-          example: IDR
-        language:
-          type: string
-          description: 'language. with default value ''en'', example: ''en'', ''id'''
-          example: id
-        userNationality:
-          type: string
-          description: Nationality of the user using ISO 3166 Alpha-2, e.g ID
-          example: ID
-        rateKey:
-          type: string
-          description: Rate key
-          example: povEwB3ZzsU2C6pd+6...
-    MealPackageDetail:
-      type: object
-      properties:
-        defaultLanguage:
-          type: string
-        name:
-          type: object
-          additionalProperties:
-            type: string
-        servingPlace:
-          type: object
-          additionalProperties:
-            type: string
-        servingType:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        cuisineSelection:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        dietaryRestriction:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        servingTime:
-          type: object
-          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
-          additionalProperties:
-            $ref: '#/components/schemas/MealTimeRange'
-        notes:
-          type: object
-          additionalProperties:
-            type: string
-    Error401:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 401: Unauthorized."
-              enum:
-              - '401'
-            message:
-              type: string
-              description: Error message
-              example: Unauthorized, the token might be expired.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    Charge:
-      type: array
-      items:
-        type: object
-        properties:
-          type:
-            type: string
-            enum:
-            - TAX
-            - FEE
-          displayCurrency:
-            type: string
-            example: IDR
-          displayAmount:
-            type: number
-            example: 50000
-          isIncluded:
-            type: boolean
-            example: true
     BedArrangement:
       type: object
       properties:
@@ -861,144 +877,59 @@ components:
                 enum:
                 - DEFAULT
                 - ALTERNATIVE
-    DisplayRatesResponse:
-      type: array
-      items:
-        oneOf:
-        - $ref: '#/components/schemas/RatesResponse'
-        - $ref: '#/components/schemas/ExtendedRatesResponse'
-    ExtraBenefits:
+    MealTime:
       type: object
       properties:
-        id:
-          type: string
-          description: Extra Benefit id
-        type:
-          type: string
-          description: Extra Benefit type
-        valueList:
-          type: array
-          items:
-            type: object
-            properties:
-              value:
-                type: integer
-                description: Extra Benefit value
-              unit:
-                type: string
-                description: Extra Benefit unit
-        renderedName:
-          type: string
-          description: Display name
-          example: Free Breakfast for 2 pax
-        additionalInfo:
-          type: string
-          description: Additional information
-          example: Terms and conditions apply
-    ExtraCharge:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-        currency:
-          type: string
-          description: currency
-        value:
-          type: string
-          format: double
-          description: Amount of the extra charge in the specified currency
-        isIncluded:
-          type: boolean
-          description: Indicates if the extra charge is included in the total rate
-      example:
-        name: COUNTRY_TAX_ADJUSTMENT
-        currency: USD
-        value: '12.1'
-        isIncluded: false
-    MealPlan:
-      type: object
-      properties:
-        mealInclusionOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealInclusionOption'
-        mealPackageDetails:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/MealPackageDetail'
-    MealInclusionOption:
-      type: object
-      properties:
-        mealInclusionDetails:
-          type: object
-          description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
-          additionalProperties:
-            $ref: '#/components/schemas/MealInclusionDetail'
-    MealSelectOption:
-      type: object
-      properties:
-        name:
-          type: string
-        renderedName:
-          type: string
-        contentResourceKey:
-          type: string
-    GetRatesResponse:
-      type: object
-      properties:
-        total:
+        hour:
           type: integer
+          format: int32
+        minute:
+          type: integer
+          format: int32
+    Error429:
+      type: object
+      properties:
         data:
-          $ref: '#/components/schemas/DisplayRatesResponse'
+          type: object
+          example: null
         error:
           type: object
           properties:
             code:
               type: string
+              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              enum:
+              - '429'
             message:
               type: string
-    CancellationPolicy:
+              description: Error message
+              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error400:
       type: object
       properties:
-        text:
-          type: string
-          description: Cancellation policy text
-          example: Cancellation Policy
-        displayText:
-          type: string
-          description: Display cancellation policy display text
-          example: Cancellation Policy
-        propertyTimezone:
-          type: string
-          description: Timezone of the property
-          example: GMT+07:00
-        policies:
-          type: array
-          items:
-            type: object
-            properties:
-              startCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-26T10:00:00+07:00'
-                description: Start of cancellation period
-              endCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-30T10:00:00+07:00'
-                description: End of cancellation period
-              cancellationCharge:
-                type: object
-                properties:
-                  currency:
-                    type: string
-                    description: Currency code for cancellation fee
-                    example: IDR
-                  amount:
-                    type: string
-                    description: Amount of cancellation fee
-                    example: '100000'
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
+              enum:
+              - AFI100
+            message:
+              type: string
+              description: Error message
+              example: parameter missing, please check your request body.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
     ExtendedRatesResponse:
       type: object
       properties:
@@ -1159,7 +1090,7 @@ components:
           description: Last updated time
           format: date-time
           example: '2023-07-26T10:00:00+07:00'
-    Error429:
+    Error401:
       type: object
       properties:
         data:
@@ -1170,62 +1101,131 @@ components:
           properties:
             code:
               type: string
-              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              description: "A code that identifies this type of error. \n - 401: Unauthorized."
               enum:
-              - '429'
+              - '401'
             message:
               type: string
               description: Error message
-              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+              example: Unauthorized, the token might be expired.
             requestId:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
-    RoomOccupancy:
+    DisplayRatesResponse:
+      type: array
+      items:
+        oneOf:
+        - $ref: '#/components/schemas/RatesResponse'
+        - $ref: '#/components/schemas/ExtendedRatesResponse'
+    CheckRateRequest:
       type: object
+      required:
+      - propertyId
+      - roomId
+      - checkInDate
+      - checkOutDate
+      - numRooms
+      - numAdults
+      - displayCurrency
+      - language
+      - userNationality
+      - rateKey
       properties:
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        roomId:
+          type: string
+          description: Room Id
+          example: '11477200'
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        numRooms:
+          type: integer
+          description: Number of rooms
+          minimum: 1
         numAdults:
           type: integer
-          description: Number of adults per room
+          description: Number of adults
+          minimum: 1
           example: 1
         numChildren:
           type: integer
-          description: Number of children per room
+          description: Number of children
+          minimum: 0
           example: 1
-        maxOccupancy:
-          type: integer
-          description: Max adult occupancy per room
-          example: 1
-        maxChildOccupancy:
-          type: integer
-          description: Max child occupancy per room
-          example: 1
-        maxChildAge:
-          type: integer
-          description: Max child age
-          example: 12
-    Error500:
+        childrenAges:
+          type: array
+          description: A comma-separated list of ages of children
+          items:
+            type: integer
+            minimum: 1
+            maximum: 15
+            example:
+            - 1
+        displayCurrency:
+          type: string
+          description: Currency code
+          example: IDR
+        language:
+          type: string
+          description: 'language. with default value ''en'', example: ''en'', ''id'''
+          example: id
+        userNationality:
+          type: string
+          description: Nationality of the user using ISO 3166 Alpha-2, e.g ID
+          example: ID
+        rateKey:
+          type: string
+          description: Rate key
+          example: povEwB3ZzsU2C6pd+6...
+    Charge:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - TAX
+            - FEE
+          displayCurrency:
+            type: string
+            example: IDR
+          displayAmount:
+            type: number
+            example: 50000
+          isIncluded:
+            type: boolean
+            example: true
+    MealSelectOption:
       type: object
       properties:
-        data:
+        name:
+          type: string
+        renderedName:
+          type: string
+        contentResourceKey:
+          type: string
+    MealPlan:
+      type: object
+      properties:
+        mealInclusionOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealInclusionOption'
+        mealPackageDetails:
           type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 500: Server Error."
-              enum:
-              - '500'
-            message:
-              type: string
-              description: Error message
-              example: Server Error. Please contact our support team.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
+          additionalProperties:
+            $ref: '#/components/schemas/MealPackageDetail'
   securitySchemes:
     api_gateway_lambda_authorizer:
       type: apiKey

@@ -107,38 +107,6 @@ paths:
         description: Generated server url
 components:
   schemas:
-    CancelBookingRequest:
-      required:
-      - hotelBooking
-      type: object
-      properties:
-        hotelBooking:
-          allOf:
-          - $ref: '#/components/schemas/HotelBookingCancelRequest'
-          - description: Booking detail.
-    CancelBookingErrorResponse:
-      required:
-      - error
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
-          example: FAILED
-          enum:
-          - FAILED
-        error:
-          allOf:
-          - $ref: '#/components/schemas/Error'
-          - description: For complete error enums, please check on FAQ > Error Object
-    Error:
-      type: object
-      properties:
-        errorId:
-          type: string
-        errorMessage:
-          type: string
     HotelBookingCancelRequest:
       required:
       - issuanceId
@@ -155,6 +123,38 @@ components:
           type: array
           items:
             type: string
+    CancelBookingErrorResponse:
+      required:
+      - error
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "    Should be one of these:\n\n    FAILED -> return FAILED if there's an error during processing the request\n"
+          example: FAILED
+          enum:
+          - FAILED
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
+    CancelBookingRequest:
+      required:
+      - hotelBooking
+      type: object
+      properties:
+        hotelBooking:
+          allOf:
+          - $ref: '#/components/schemas/HotelBookingCancelRequest'
+          - description: Booking detail.
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
     CancelBookingResponse:
       required:
       - status

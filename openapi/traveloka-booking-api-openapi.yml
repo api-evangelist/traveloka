@@ -533,26 +533,7 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    MealTimeRange:
-      type: object
-      properties:
-        from:
-          $ref: '#/components/schemas/MealTime'
-        to:
-          $ref: '#/components/schemas/MealTime'
-    BookingCancellationRequest:
-      type: object
-      properties:
-        bookingId:
-          type: string
-          example: '100160766'
-        partnerBookingId:
-          type: string
-          example: '1234567890'
-        cancellationReason:
-          type: string
-          example: Don't like the room
-    Error408:
+    Error404:
       type: object
       properties:
         data:
@@ -563,36 +544,49 @@ components:
           properties:
             code:
               type: string
-              description: "A code that identifies this type of error. \n - 408: Timeout."
+              description: "A code that identifies this type of error. \n - 404: Not Found."
               enum:
-              - '408'
+              - '404'
             message:
               type: string
               description: Error message
-              example: Timeout. Your request exceeds the timeout limit.
+              example: Not Found. The requested resource is not found.
             requestId:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
-    GuestInfo:
+    ExtraCharge:
       type: object
       properties:
-        title:
+        name:
           type: string
-          example: MR
-        firstName:
+          description: ''
+        currency:
           type: string
-          example: John
-        lastName:
+          description: currency
+        value:
           type: string
-          example: Doe
-    MealTime:
+          format: double
+          description: Amount of the extra charge in the specified currency
+        isIncluded:
+          type: boolean
+          description: Indicates if the extra charge is included in the total rate
+      example:
+        name: COUNTRY_TAX_ADJUSTMENT
+        currency: USD
+        value: '12.1'
+        isIncluded: false
+    MealInclusionDetail:
       type: object
       properties:
-        hour:
+        mealPackages:
+          type: array
+          items:
+            type: string
+        adultPax:
           type: integer
           format: int32
-        minute:
+        childrenPax:
           type: integer
           format: int32
     ErrorCode422BookingsDetailResponse:
@@ -619,6 +613,190 @@ components:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
+    MealPackageDetail:
+      type: object
+      properties:
+        defaultLanguage:
+          type: string
+        name:
+          type: object
+          additionalProperties:
+            type: string
+        servingPlace:
+          type: object
+          additionalProperties:
+            type: string
+        servingType:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        cuisineSelection:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        dietaryRestriction:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealSelectOption'
+        servingTime:
+          type: object
+          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealTimeRange'
+        notes:
+          type: object
+          additionalProperties:
+            type: string
+    MealTimeRange:
+      type: object
+      properties:
+        from:
+          $ref: '#/components/schemas/MealTime'
+        to:
+          $ref: '#/components/schemas/MealTime'
+    ErrorCode422BookingsCreateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI706: Invalid checkInDate. \n - AFI707: Invalid checkOutDate. \n - AFI708: Invalid propertyId. \n - AFI709: Invalid email. \n - AFI713: Booking already exist."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI706
+              - AFI707
+              - AFI708
+              - AFI709
+              - AFI713
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    userPayment:
+      type: object
+      required:
+      - userPayment
+      properties:
+        userPayment:
+          type: string
+          enum:
+          - CREDIT_CARD
+          - NON_CREDIT_CARD
+          - DUMMY_TESTING
+        creditCardDetail:
+          type: object
+          properties:
+            creditCardOwner:
+              type: string
+            creditCardNumber:
+              type: string
+              example: '1234567890'
+    Error408:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 408: Timeout."
+              enum:
+              - '408'
+            message:
+              type: string
+              description: Error message
+              example: Timeout. Your request exceeds the timeout limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    BookingResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          example: '100160766'
+        bookingStatus:
+          type: string
+          enum:
+          - ISSUED
+          - BOOKED
+          - CANCELLED
+          - FAILED
+          - PENDING
+        partnerBookingId:
+          type: string
+          example: '1234567890'
+        itineraryId:
+          type: string
+          description: Itenary Id
+          example: '200000102216'
+        propertyId:
+          type: string
+          description: Property Id
+          example: '72900'
+        checkInDate:
+          type: string
+          description: Check-in date (YYYY-MM-DD)
+          example: '2024-01-01'
+        checkOutDate:
+          type: string
+          description: Check-out date (YYYY-MM-DD)
+          example: '2024-01-02'
+        importantNotice:
+          type: string
+          description: Important Notice
+          example: There will be gala dinner on 31st Dec, and will be charged separately.
+        hotelPolicy:
+          type: string
+          description: Hotel Policy
+          example: Check-in time is after 14:00, and check-out time is before 12:00.
+        checkInInstruction:
+          type: string
+          description: Check In Instruction
+          example: Married couple must show marriage certificate upon check-in.
+        extraCharges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtraCharge'
+        rooms:
+          type: array
+          items:
+            type: object
+            properties:
+              roomId:
+                type: string
+                example: '1000066445'
+              roomName:
+                type: string
+                description: Room name
+                example: Deluxe Room
+              propertySummary:
+                $ref: '#/components/schemas/PropertySummary'
+              guestInfo:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuestInfo'
+    MealInclusionOption:
+      type: object
+      properties:
+        mealInclusionDetails:
+          type: object
+          description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
+          additionalProperties:
+            $ref: '#/components/schemas/MealInclusionDetail'
     BookingsResponse:
       type: object
       properties:
@@ -694,41 +872,95 @@ components:
           example: 2023-07-26T10:00:00+0700
         cancellationStatus:
           $ref: '#/components/schemas/CancellationStatus'
-    Error404:
+    GuestInfo:
+      type: object
+      properties:
+        title:
+          type: string
+          example: MR
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+    MealSelectOption:
+      type: object
+      properties:
+        name:
+          type: string
+        renderedName:
+          type: string
+        contentResourceKey:
+          type: string
+    CancellationPolicy:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Cancellation policy text
+          example: Cancellation Policy
+        displayText:
+          type: string
+          description: Display cancellation policy display text
+          example: Cancellation Policy
+        propertyTimezone:
+          type: string
+          description: Timezone of the property
+          example: GMT+07:00
+        policies:
+          type: array
+          items:
+            type: object
+            properties:
+              startCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-26T10:00:00+07:00'
+                description: Start of cancellation period
+              endCancelDateTime:
+                type: string
+                format: date-time
+                example: '2023-07-30T10:00:00+07:00'
+                description: End of cancellation period
+              cancellationCharge:
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    description: Currency code for cancellation fee
+                    example: IDR
+                  amount:
+                    type: string
+                    description: Amount of cancellation fee
+                    example: '100000'
+    ErrorCode422BookingsCancelResponse:
       type: object
       properties:
         data:
           type: object
           example: null
         error:
-          type: object
           properties:
             code:
               type: string
-              description: "A code that identifies this type of error. \n - 404: Not Found."
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: Invalid itineraryId. \n - AFI710: Booking not found. \n - AFI711: Booking already cancelled. \n - AFI712: Bokking not refundable."
               enum:
-              - '404'
+              - AFI700
+              - AFI701
+              - AFI702
+              - AFI703
+              - AFI710
+              - AFI711
+              - AFI712
             message:
               type: string
               description: Error message
-              example: Not Found. The requested resource is not found.
+              example: Error message
             requestId:
               type: string
               description: You may use this value to refer this request when you ask us helping you fix the error.
               example: '1234567890'
-    MealInclusionDetail:
-      type: object
-      properties:
-        mealPackages:
-          type: array
-          items:
-            type: string
-        adultPax:
-          type: integer
-          format: int32
-        childrenPax:
-          type: integer
-          format: int32
     BookingResponseDetail:
       type: object
       properties:
@@ -872,349 +1104,6 @@ components:
                 $ref: '#/components/schemas/CancellationPolicy'
         cancellation:
           $ref: '#/components/schemas/BookingCancellationResponse'
-    Error400:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
-              enum:
-              - AFI100
-            message:
-              type: string
-              description: Error message
-              example: parameter missing, please check your request body.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    MealPackageDetail:
-      type: object
-      properties:
-        defaultLanguage:
-          type: string
-        name:
-          type: object
-          additionalProperties:
-            type: string
-        servingPlace:
-          type: object
-          additionalProperties:
-            type: string
-        servingType:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        cuisineSelection:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        dietaryRestriction:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealSelectOption'
-        servingTime:
-          type: object
-          description: 'Map of meal type to serving time range. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
-          additionalProperties:
-            $ref: '#/components/schemas/MealTimeRange'
-        notes:
-          type: object
-          additionalProperties:
-            type: string
-    BookingResponse:
-      type: object
-      properties:
-        bookingId:
-          type: string
-          example: '100160766'
-        bookingStatus:
-          type: string
-          enum:
-          - ISSUED
-          - BOOKED
-          - CANCELLED
-          - FAILED
-          - PENDING
-        partnerBookingId:
-          type: string
-          example: '1234567890'
-        itineraryId:
-          type: string
-          description: Itenary Id
-          example: '200000102216'
-        propertyId:
-          type: string
-          description: Property Id
-          example: '72900'
-        checkInDate:
-          type: string
-          description: Check-in date (YYYY-MM-DD)
-          example: '2024-01-01'
-        checkOutDate:
-          type: string
-          description: Check-out date (YYYY-MM-DD)
-          example: '2024-01-02'
-        importantNotice:
-          type: string
-          description: Important Notice
-          example: There will be gala dinner on 31st Dec, and will be charged separately.
-        hotelPolicy:
-          type: string
-          description: Hotel Policy
-          example: Check-in time is after 14:00, and check-out time is before 12:00.
-        checkInInstruction:
-          type: string
-          description: Check In Instruction
-          example: Married couple must show marriage certificate upon check-in.
-        extraCharges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtraCharge'
-        rooms:
-          type: array
-          items:
-            type: object
-            properties:
-              roomId:
-                type: string
-                example: '1000066445'
-              roomName:
-                type: string
-                description: Room name
-                example: Deluxe Room
-              propertySummary:
-                $ref: '#/components/schemas/PropertySummary'
-              guestInfo:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GuestInfo'
-    Error401:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 401: Unauthorized."
-              enum:
-              - '401'
-            message:
-              type: string
-              description: Error message
-              example: Unauthorized, the token might be expired.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    ErrorCode422BookingsCreateResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI706: Invalid checkInDate. \n - AFI707: Invalid checkOutDate. \n - AFI708: Invalid propertyId. \n - AFI709: Invalid email. \n - AFI713: Booking already exist."
-              enum:
-              - AFI700
-              - AFI701
-              - AFI706
-              - AFI707
-              - AFI708
-              - AFI709
-              - AFI713
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    userPayment:
-      type: object
-      required:
-      - userPayment
-      properties:
-        userPayment:
-          type: string
-          enum:
-          - CREDIT_CARD
-          - NON_CREDIT_CARD
-          - DUMMY_TESTING
-        creditCardDetail:
-          type: object
-          properties:
-            creditCardOwner:
-              type: string
-            creditCardNumber:
-              type: string
-              example: '1234567890'
-    ExtraCharge:
-      type: object
-      properties:
-        name:
-          type: string
-          description: ''
-        currency:
-          type: string
-          description: currency
-        value:
-          type: string
-          format: double
-          description: Amount of the extra charge in the specified currency
-        isIncluded:
-          type: boolean
-          description: Indicates if the extra charge is included in the total rate
-      example:
-        name: COUNTRY_TAX_ADJUSTMENT
-        currency: USD
-        value: '12.1'
-        isIncluded: false
-    CancellationStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - SUBMITTED
-          - COMPLETED
-          - FAILED
-    MealPlan:
-      type: object
-      properties:
-        mealInclusionOptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/MealInclusionOption'
-        mealPackageDetails:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/MealPackageDetail'
-    MealSelectOption:
-      type: object
-      properties:
-        name:
-          type: string
-        renderedName:
-          type: string
-        contentResourceKey:
-          type: string
-    MealInclusionOption:
-      type: object
-      properties:
-        mealInclusionDetails:
-          type: object
-          description: 'Map of meal type to meal inclusion detail. Meal type values can be: BREAKFAST, LUNCH, DINNER.'
-          additionalProperties:
-            $ref: '#/components/schemas/MealInclusionDetail'
-    CancellationPolicy:
-      type: object
-      properties:
-        text:
-          type: string
-          description: Cancellation policy text
-          example: Cancellation Policy
-        displayText:
-          type: string
-          description: Display cancellation policy display text
-          example: Cancellation Policy
-        propertyTimezone:
-          type: string
-          description: Timezone of the property
-          example: GMT+07:00
-        policies:
-          type: array
-          items:
-            type: object
-            properties:
-              startCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-26T10:00:00+07:00'
-                description: Start of cancellation period
-              endCancelDateTime:
-                type: string
-                format: date-time
-                example: '2023-07-30T10:00:00+07:00'
-                description: End of cancellation period
-              cancellationCharge:
-                type: object
-                properties:
-                  currency:
-                    type: string
-                    description: Currency code for cancellation fee
-                    example: IDR
-                  amount:
-                    type: string
-                    description: Amount of cancellation fee
-                    example: '100000'
-    ErrorCode422BookingsCancelResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: Invalid itineraryId. \n - AFI710: Booking not found. \n - AFI711: Booking already cancelled. \n - AFI712: Bokking not refundable."
-              enum:
-              - AFI700
-              - AFI701
-              - AFI702
-              - AFI703
-              - AFI710
-              - AFI711
-              - AFI712
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    ErrorCode422BookingsResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: InvalidItineraryId. \n - AFI704: Invalid cancellationId. \n - AFI705: Invalid status filter."
-              enum:
-              - AFI700
-              - AFI701
-              - AFI702
-              - AFI703
-              - AFI704
-              - AFI705
-            message:
-              type: string
-              description: Error message
-              example: Error message
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
     PropertySummary:
       type: object
       properties:
@@ -1301,6 +1190,160 @@ components:
           type: string
           description: ISO country code
           example: ID
+    Error500:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 500: Server Error."
+              enum:
+              - '500'
+            message:
+              type: string
+              description: Error message
+              example: Server Error. Please contact our support team.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    MealTime:
+      type: object
+      properties:
+        hour:
+          type: integer
+          format: int32
+        minute:
+          type: integer
+          format: int32
+    Error429:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
+              enum:
+              - '429'
+            message:
+              type: string
+              description: Error message
+              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    Error400:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI100: there's parameter missing."
+              enum:
+              - AFI100
+            message:
+              type: string
+              description: Error message
+              example: parameter missing, please check your request body.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    BookingCancellationResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+          description: Booking Id
+          example: '100160766'
+        cancellationId:
+          type: string
+          description: Cancellation Id
+          example: '1234567890'
+        cancellationSubmissionTime:
+          type: string
+          format: date-time
+          example: 2023-07-26T10:00:00+0700
+        cancellationStatus:
+          $ref: '#/components/schemas/CancellationStatus'
+          type: object
+          enum:
+          - SUBMITTED
+          - COMPLETED
+          - FAILED
+    Error401:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - 401: Unauthorized."
+              enum:
+              - '401'
+            message:
+              type: string
+              description: Error message
+              example: Unauthorized, the token might be expired.
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    ErrorCode422BookingsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          example: null
+        error:
+          properties:
+            code:
+              type: string
+              description: "A code that identifies this type of error. \n - AFI700: Unknown error. \n - AFI701: Invalid partnerBookingId. \n - AFI702: Invalid bookingId. \n - AFI703: InvalidItineraryId. \n - AFI704: Invalid cancellationId. \n - AFI705: Invalid status filter."
+              enum:
+              - AFI700
+              - AFI701
+              - AFI702
+              - AFI703
+              - AFI704
+              - AFI705
+            message:
+              type: string
+              description: Error message
+              example: Error message
+            requestId:
+              type: string
+              description: You may use this value to refer this request when you ask us helping you fix the error.
+              example: '1234567890'
+    CancellationStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUBMITTED
+          - COMPLETED
+          - FAILED
     BookingRequest:
       type: object
       properties:
@@ -1439,72 +1482,29 @@ components:
       - customerInfo
       - userNationality
       - userPayment
-    Error429:
-      type: object
-      properties:
-        data:
-          type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 429: Exceed rate limit."
-              enum:
-              - '429'
-            message:
-              type: string
-              description: Error message
-              example: Exceed rate limit. Your request count exceeds the allowed QPS rate limit.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
-    BookingCancellationResponse:
+    BookingCancellationRequest:
       type: object
       properties:
         bookingId:
           type: string
-          description: Booking Id
           example: '100160766'
-        cancellationId:
+        partnerBookingId:
           type: string
-          description: Cancellation Id
           example: '1234567890'
-        cancellationSubmissionTime:
+        cancellationReason:
           type: string
-          format: date-time
-          example: 2023-07-26T10:00:00+0700
-        cancellationStatus:
-          $ref: '#/components/schemas/CancellationStatus'
-          type: object
-          enum:
-          - SUBMITTED
-          - COMPLETED
-          - FAILED
-    Error500:
+          example: Don't like the room
+    MealPlan:
       type: object
       properties:
-        data:
+        mealInclusionOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/MealInclusionOption'
+        mealPackageDetails:
           type: object
-          example: null
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: "A code that identifies this type of error. \n - 500: Server Error."
-              enum:
-              - '500'
-            message:
-              type: string
-              description: Error message
-              example: Server Error. Please contact our support team.
-            requestId:
-              type: string
-              description: You may use this value to refer this request when you ask us helping you fix the error.
-              example: '1234567890'
+          additionalProperties:
+            $ref: '#/components/schemas/MealPackageDetail'
   securitySchemes:
     api_gateway_lambda_authorizer:
       type: apiKey
