@@ -116,110 +116,6 @@ paths:
         description: Generated server url
 components:
   schemas:
-    HotelBeds:
-      required:
-      - bedType
-      - numBeds
-      type: object
-      properties:
-        numBeds:
-          type: integer
-          description: Number of beds in the room
-          format: int32
-          example: 2
-        bedType:
-          type: string
-          description: Type of the bed
-          enum:
-          - SINGLE
-          - DOUBLE
-          - TWIN
-          - QUEEN
-          - KING
-          - ONE_SINGLE_BED
-          - ONE_DOUBLE_BED
-          - ONE_QUEEN_BED
-          - ONE_KING_BED
-          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
-          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
-          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
-          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
-          - TWO_SINGLE_BED
-          - TWO_DOUBLE_BED
-          - TWO_QUEEN_BED
-          - TWO_KING_BED
-          - TWO_DOUBLE_AND_TWO_SINGLE_BED
-          - THREE_SINGLE_BED
-          - THREE_DOUBLE_BED
-          - DOUBLE_SINGLE_AND_SOFA_BED
-          - CAPSULE_BED
-          - BUNK_BED
-          - UNKNOWN
-        description:
-          type: string
-          description: Beds description
-          example: Single Beds
-    HotelRoomRate:
-      required:
-      - currency
-      - fees
-      - taxes
-      - totalFare
-      type: object
-      properties:
-        currency:
-          type: string
-          description: Currency code, e.g. IDR, USD
-          example: IDR
-        totalFare:
-          type: number
-          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
-          format: double
-          example: 1000000
-        taxes:
-          type: number
-          description: Total taxes amount
-          format: double
-          example: 100000
-        fees:
-          type: number
-          description: Total fees amount
-          format: double
-          example: 50000
-    HotelListHotelRoom:
-      required:
-      - beds
-      - occupancyPolicy
-      - providerHotelRoomId
-      - rateType
-      type: object
-      properties:
-        providerHotelRoomId:
-          type: string
-          description: Provider hotel room ID
-          example: '1234567890'
-        rateType:
-          type: string
-          description: Hotel Rate Type
-          enum:
-          - PAY_NOW
-          - PAY_AT_PROPERTY
-        description:
-          type: string
-          description: Room description in English
-          example: A spacious room with a king-sized bed and a beautiful view of the city.
-        caption:
-          type: string
-          description: Room caption in English
-          example: Deluxe Room
-        occupancyPolicy:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomOccupancyPolicy'
-          - description: Room occupancy policy
-        size:
-          $ref: '#/components/schemas/HotelRoomSize'
-        beds:
-          $ref: '#/components/schemas/HotelBeds'
     AdditionalFees:
       type: object
       properties:
@@ -239,6 +135,39 @@ components:
           allOf:
           - $ref: '#/components/schemas/ChargeItem'
           - description: Country tax fee is collected by the property at check-in or check-out.
+    HotelPromoType:
+      type: object
+      properties:
+        promoType:
+          type: string
+          description: Type of the hotel promo
+          enum:
+          - SALE
+          - EARLY_BIRD
+          - LAST_MINUTE
+          - UNKNOWN
+        promoDescription:
+          type: string
+          description: Description of the hotel promo
+      description: Promotion details (if applicable)
+    HotelListSearchResponse:
+      required:
+      - results
+      type: object
+      properties:
+        requestId:
+          type: string
+          description: Request ID for this search request
+          example: 928827d7-b847-495f-9592-f207df896ac4
+        results:
+          type: array
+          description: List of hotels with rooms and inventory that match the search criteria
+          items:
+            $ref: '#/components/schemas/HotelWithRoomWithInventoryResponse'
+        error:
+          allOf:
+          - $ref: '#/components/schemas/Error'
+          - description: For complete error enums, please check on FAQ > Error Object
     HotelListSearchRequest:
       required:
       - cache
@@ -345,44 +274,6 @@ components:
 
             '
           example: false
-    HotelWithRoomWithInventoryResponse:
-      required:
-      - hotelInventory
-      - providerHotelId
-      - rooms
-      type: object
-      properties:
-        providerHotelId:
-          type: string
-          description: Provider hotel ID
-          example: '1234567890'
-        hotelInventory:
-          allOf:
-          - $ref: '#/components/schemas/HotelInventory'
-          - description: Data for the cheapest room of the hotel
-        rooms:
-          type: array
-          description: List of rooms in the hotel
-          items:
-            $ref: '#/components/schemas/HotelListHotelRoom'
-    HotelListSearchResponse:
-      required:
-      - results
-      type: object
-      properties:
-        requestId:
-          type: string
-          description: Request ID for this search request
-          example: 928827d7-b847-495f-9592-f207df896ac4
-        results:
-          type: array
-          description: List of hotels with rooms and inventory that match the search criteria
-          items:
-            $ref: '#/components/schemas/HotelWithRoomWithInventoryResponse'
-        error:
-          allOf:
-          - $ref: '#/components/schemas/Error'
-          - description: For complete error enums, please check on FAQ > Error Object
     HotelRoomSize:
       required:
       - size
@@ -406,6 +297,81 @@ components:
         description:
           type: string
       description: Room size
+    HotelRoomOccupancyPolicy:
+      required:
+      - maxOccupancy
+      type: object
+      properties:
+        maxOccupancy:
+          type: integer
+          description: Return exactly the number of adults that were used in the search specification
+          format: int32
+          example: 2
+        maxChildOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 2
+        maxInfantOccupancy:
+          type: integer
+          description: Return exactly the number of children that were used in the search specification
+          format: int32
+          example: 1
+        maxExtraBeds:
+          type: integer
+          description: Maximum number of extra beds in the room based on user specification
+          format: int32
+          example: 1
+      description: Room occupancy policy
+    ChargeItem:
+      required:
+      - amount
+      - currency
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency of the charge item, e.g., USD, IDR
+          example: USD
+        amount:
+          type: number
+          description: Amount of the charge item
+          format: double
+          example: 100
+    HotelListHotelRoom:
+      required:
+      - beds
+      - occupancyPolicy
+      - providerHotelRoomId
+      - rateType
+      type: object
+      properties:
+        providerHotelRoomId:
+          type: string
+          description: Provider hotel room ID
+          example: '1234567890'
+        rateType:
+          type: string
+          description: Hotel Rate Type
+          enum:
+          - PAY_NOW
+          - PAY_AT_PROPERTY
+        description:
+          type: string
+          description: Room description in English
+          example: A spacious room with a king-sized bed and a beautiful view of the city.
+        caption:
+          type: string
+          description: Room caption in English
+          example: Deluxe Room
+        occupancyPolicy:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomOccupancyPolicy'
+          - description: Room occupancy policy
+        size:
+          $ref: '#/components/schemas/HotelRoomSize'
+        beds:
+          $ref: '#/components/schemas/HotelBeds'
     HotelListSearchErrorResponse:
       required:
       - error
@@ -419,13 +385,26 @@ components:
           allOf:
           - $ref: '#/components/schemas/Error'
           - description: For complete error enums, please check on FAQ > Error Object
-    Error:
+    HotelWithRoomWithInventoryResponse:
+      required:
+      - hotelInventory
+      - providerHotelId
+      - rooms
       type: object
       properties:
-        errorId:
+        providerHotelId:
           type: string
-        errorMessage:
-          type: string
+          description: Provider hotel ID
+          example: '1234567890'
+        hotelInventory:
+          allOf:
+          - $ref: '#/components/schemas/HotelInventory'
+          - description: Data for the cheapest room of the hotel
+        rooms:
+          type: array
+          description: List of rooms in the hotel
+          items:
+            $ref: '#/components/schemas/HotelListHotelRoom'
     HotelInventory:
       required:
       - currency
@@ -470,62 +449,83 @@ components:
           example: 2
         hotelPromoType:
           $ref: '#/components/schemas/HotelPromoType'
-    ChargeItem:
+    HotelRoomRate:
       required:
-      - amount
       - currency
+      - fees
+      - taxes
+      - totalFare
       type: object
       properties:
         currency:
           type: string
-          description: Currency of the charge item, e.g., USD, IDR
-          example: USD
-        amount:
+          description: Currency code, e.g. IDR, USD
+          example: IDR
+        totalFare:
           type: number
-          description: Amount of the charge item
+          description: Total fare (including taxes, fees, and commission). If two rooms are requested in the specs, this totalFare will be for two rooms.
           format: double
-          example: 100
-    HotelRoomOccupancyPolicy:
+          example: 1000000
+        taxes:
+          type: number
+          description: Total taxes amount
+          format: double
+          example: 100000
+        fees:
+          type: number
+          description: Total fees amount
+          format: double
+          example: 50000
+    Error:
+      type: object
+      properties:
+        errorId:
+          type: string
+        errorMessage:
+          type: string
+    HotelBeds:
       required:
-      - maxOccupancy
+      - bedType
+      - numBeds
       type: object
       properties:
-        maxOccupancy:
+        numBeds:
           type: integer
-          description: Return exactly the number of adults that were used in the search specification
+          description: Number of beds in the room
           format: int32
           example: 2
-        maxChildOccupancy:
-          type: integer
-          description: Return exactly the number of children that were used in the search specification
-          format: int32
-          example: 2
-        maxInfantOccupancy:
-          type: integer
-          description: Return exactly the number of children that were used in the search specification
-          format: int32
-          example: 1
-        maxExtraBeds:
-          type: integer
-          description: Maximum number of extra beds in the room based on user specification
-          format: int32
-          example: 1
-      description: Room occupancy policy
-    HotelPromoType:
-      type: object
-      properties:
-        promoType:
+        bedType:
           type: string
-          description: Type of the hotel promo
+          description: Type of the bed
           enum:
-          - SALE
-          - EARLY_BIRD
-          - LAST_MINUTE
+          - SINGLE
+          - DOUBLE
+          - TWIN
+          - QUEEN
+          - KING
+          - ONE_SINGLE_BED
+          - ONE_DOUBLE_BED
+          - ONE_QUEEN_BED
+          - ONE_KING_BED
+          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
+          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
+          - TWO_SINGLE_BED
+          - TWO_DOUBLE_BED
+          - TWO_QUEEN_BED
+          - TWO_KING_BED
+          - TWO_DOUBLE_AND_TWO_SINGLE_BED
+          - THREE_SINGLE_BED
+          - THREE_DOUBLE_BED
+          - DOUBLE_SINGLE_AND_SOFA_BED
+          - CAPSULE_BED
+          - BUNK_BED
           - UNKNOWN
-        promoDescription:
+        description:
           type: string
-          description: Description of the hotel promo
-      description: Promotion details (if applicable)
+          description: Beds description
+          example: Single Beds
   securitySchemes:
     basicAuth:
       type: http
