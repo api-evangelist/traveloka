@@ -80,6 +80,629 @@ paths:
         description: Generated server url
 components:
   schemas:
+    HotelRoomFacility:
+      type: object
+      properties:
+        facilities:
+          type: array
+          description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
+          example:
+          - WiFi
+          - Air Conditioning
+          - Mini Bar
+          items:
+            type: string
+            description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
+            example: '["WiFi","Air Conditioning","Mini Bar"]'
+            enum:
+            - BREAKFAST
+            - FREE_INTERNATIONAL_CALLS
+            - FREE_LOCAL_CALLS
+            - FREE_LONG_DISTANCE_CALLS
+            - FREE_WIFI
+            - HIGH_SPEED_INTERNET
+            - HOUSEKEEPING
+            - INTERNET_ACCESS
+            - INTERNET_SURCHARGE
+            - NON_SMOKING_ROOMS
+            - PHONE
+            - ROOM_SERVICE
+            - SMOKING_ROOMS
+            - TURNDOWN_SERVICE
+            - TWENTY_FOUR_HOUR_ROOM_SERVICE
+            - WIFI_SURCHARGE
+            - AIR_CONDITIONING
+            - AIR_CONDITIONING_SURCHARGE
+            - BALCONY_TERRACE
+            - BLACKOUT_DRAPES_CURTAINS
+            - CLOTHES_DRYER
+            - COFFEE_TEA_MAKER
+            - COMPLIMENTARY_BOTTLED_WATER
+            - CRIBS_SURCHARGE
+            - DESK
+            - DISHWASHER
+            - DRYER
+            - DVD_PLAYER
+            - ELECTRIC_KETTLE
+            - EXTRA_BEDS
+            - EXTRA_BEDS_AVAILABLE
+            - FAN
+            - FREE_CRIBS
+            - FREE_NEWSPAPER
+            - FUTON
+            - FUTON_SURCHARGE
+            - HEATING
+            - IN_HOUSE_MOVIES
+            - IN_ROOM_CLIMATE_CONTROL
+            - IN_ROOM_SAFE
+            - IN_ROOM_SAFE_SURCHARGE
+            - IN_ROOM_VIDEO_GAMES
+            - IRONING_BOARD_ON_REQUEST
+            - IRONING_FACILITIES
+            - KITCHEN
+            - LINENS_PROVIDED
+            - MICROWAVE
+            - MICROWAVE_ON_REQUEST
+            - MINIBAR
+            - OVEN
+            - PRIVATE_POOL
+            - REFRIGERATOR
+            - REFRIGERATOR_ON_REQUEST
+            - RICE_COOKER
+            - ROLLAWAY_OR_EXTRA_BEDS
+            - ROLLAWAY_OR_EXTRA_BEDS_SURCHARGE
+            - SEPARATE_DINING_AREA
+            - SLIPPERS
+            - SOFA_BED
+            - SOFA_BED_SIZE
+            - SOUNDPROOFED_ROOMS
+            - STOVETOP
+            - TELEVISION
+            - TOASTER
+            - TOWELS_OR_SHEETS_SURCHARGE
+            - WASHER_OR_DRYER
+            - WASHING_MACHINE
+            - BATHROBES
+            - BATHTUB
+            - DISABILITY_FRIENDLY_BATHROOM
+            - HAIR_DRYER
+            - HAIR_DRYER_ON_REQUEST
+            - HEATED_WATER
+            - HYDROMASSAGE_SHOWERHEAD
+            - INDOOR_PRIVATE_BATH
+            - OUTDOOR_BATHROOM
+            - OUTDOOR_SHOWER
+            - PARTIALLY_OPEN_BATHROOM
+            - PRIVATE_BATHROOM
+            - PRIVATE_BATHROOM_NOT_IN_ROOM
+            - RAINFALL_SHOWERHEAD
+            - SEPARATE_SHOWER_AND_TUB
+            - SHARED_BATHROOM
+            - SHOWER
+            - SHOWER_OR_TUB
+            - SPA_TUB
+            - TOILET_WITH_ELECTRONIC_BIDET
+            - TOILETRIES
+            - TOWELS_PROVIDED
+            - CHAMPAGNE_SERVICE
+            - COFFEE_OR_TEA_MAKER
+            - COOKWARE
+            - FREEZER
+            - ICE_MAKER
+            - KITCHEN_SURCHARGE
+            - KITCHENETTE
+            - KITCHENETTE_SURCHARGE
+            - MICROWAVE_SURCHARGE
+            - MINI_FRIDGE
+            - REFRIGERATOR_SURCHARGE
+            - WAFFLE_MAKER
+            - BABY_BATH
+            - BABY_MONITOR
+            - CHANGING_TABLE
+            - CRIBS_OR_INFANT_BEDS
+            - CRIBS_OR_INFANT_BEDS_SURCHARGE
+            - IN_ROOM_CHILDCARE_SURCHARGE
+            - BALCONY
+            - BALCONY_OR_PATIO
+            - CONNECTING_ROOMS
+            - DECK_OR_PATIO
+            - FIREPLACE
+            - INDOOR_HOT_SPRINGS
+            - LANAI
+            - OUTDOOR_HOT_SPRINGS
+            - OUTDOOR_PRIVATE_BATH
+            - PORCH_OR_LANAI
+            - SEPARATE_BEDROOM
+            - SEPARATE_LIVING_ROOM
+            - SHARED_ACCOMMODATIONS
+            - SHARED_KITCHEN
+            - TATAMI_FLOORS
+            - YARD
+            - HULU
+            - LIMITED_FREE_WIFI
+            - LIMITED_WIFI_SURCHARGE
+            - NETFLIX
+            - SMARTPHONE
+            - STREAMING_SERVICES
+            - TABLET
+            - TELEVISION_SURCHARGE
+            - VIDEO_GAMES
+            - HOUSEKEEPING_ON_REQUEST
+            - HOUSEKEEPING_SURCHARGE
+            - LIMITED_HOURS_ROOM_SERVICE
+            - NO_HOUSEKEEPING
+            - WHEELCHAIR_ACCESSIBLE
+            - BOTTLED_WATER
+            - TOILETRIES_WITH_SOAP_AND_SHAMPOO
+            - TOILETRIES_WITH_SOAP_SHAMPOO_AND_DENTAL_KIT
+            - TOILETRIES_WITH_MORE_THAN_4_ITEMS
+            - IRONING_BOARD
+            - IRONING
+            - BALCONY_OR_TERRACE
+            - INTERNET_ACCESS_LAN_CHARGES_APPLY
+            - INTERNET_ACCESS_LAN_COMPLIMENTARY
+            - INTERNET_ACCESS_WIFI_CHARGES_APPLY
+            - INTERNET_ACCESS_WIFI_COMPLIMENTARY
+            - MOSQUITO_NET
+            - SPARE_BEDDING
+            - INTERCONNECTING_ROOMS_AVAILABLE
+            - EXECUTIVE_LOUNGE_ACCESS
+            - SEATING_AREA
+            - POWER_OUTLETS_110V
+            - DISPENSER
+            - DAILY_NEWSPAPER
+            - DVD_CD_PLAYER
+            - JACUZZI
+            - BIDET
+            - ALARM_CLOCK
+            - SEWING_KIT
+            - MINI_BAR
+            - BLACKOUT_CURTAINS
+            - DINNER
+            - INHOUSE_MOVIES
+            - LUNCH
+            - TELEVISION_LCD_PLASMA_SCREEN
+            - SATELLITE_CABLE_TV
+            - JACUZZI_BATHTUB
+            - OTHER
+            - INTERNET
+    RoomLayoutV2:
+      type: object
+      properties:
+        roomCategory:
+          type: string
+          description: Type of room
+          example: BEDROOM
+          enum:
+          - BEDROOM
+          - LIVING_ROOM
+          - BATHROOM
+          - KITCHEN
+        arrangements:
+          type: array
+          description: List of bed arrangements for this room layout
+          items:
+            $ref: '#/components/schemas/RoomBedArrangementV2'
+    RoomAssetV2:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Direct link to the asset file
+          example: https://images.hotel.com/room1.jpg
+        isActive:
+          type: boolean
+          description: 'Indicates whether the asset is currently active/usable. Default: true'
+          example: true
+        isMain:
+          type: boolean
+          description: Marks if this is the main asset for the room
+          example: true
+        caption:
+          type: string
+          description: Caption of the room asset
+          example: GUEST_ROOM
+          enum:
+          - AIR_CONDITIONING
+          - BALCONY_TERRACE
+          - BATHROOM
+          - CHECK_IN_CHECK_OUT_KIOSK
+          - CONCIERGE_DESK
+          - DINING_AREA
+          - EXTRA_BEDS
+          - FAN
+          - FLOOR_PLAN
+          - GUEST_ROOM
+          - HEATING
+          - IN_ROOM_BUSINESS_CENTER
+          - IN_ROOM_DINING
+          - INTERIOR_ENTRANCE
+          - IRON_IRONING_BOARD
+          - KITCHEN
+          - KITCHENETTE
+          - LANAI
+          - LAUNDRY
+          - LIVING_ROOM
+          - MICROWAVE
+          - MINI_REFRIGERATOR
+          - MINIBAR
+          - OTHER_ROOM_PHOTO
+          - PRIVATE_POOL
+          - PRIVATE_SPA_TUB
+          - RECEPTION
+          - ROOM_AMENITIES
+          - ROOM_FEATURES
+          - ROOM_SERVICE_DINING
+          - ROOM_VIEW
+          - RYOKAN_DINING
+          - SHOWER
+          - TECH
+          - TELEVISION
+          - TERRACE_PATIO
+          - VIEW_FROM_ROOM
+        width:
+          type: integer
+          description: Width in pixels
+          format: int32
+          example: 1920
+        height:
+          type: integer
+          description: Height in pixels
+          format: int32
+          example: 1080
+        isWatermarked:
+          type: boolean
+          description: Marks if the asset contains a watermark
+          example: false
+        sort:
+          type: string
+          description: Ordering key for display priority
+          example: '1'
+    RoomBedArrangementV2:
+      type: object
+      properties:
+        beds:
+          type: array
+          description: List of beds in this arrangement
+          items:
+            $ref: '#/components/schemas/RoomBedV2'
+    RoomPoliciesV2:
+      type: object
+      properties:
+        smokingPolicy:
+          type: string
+          description: Defines the smoking policy applicable to the room
+          example: NON_SMOKING
+          enum:
+          - EITHER
+          - ELECTRIC_SMOKING_ONLY
+          - NON_SMOKING
+          - SMOKING
+        genderPolicy:
+          type: string
+          description: Specifies restrictions or allowances based on guest gender
+          example: BOTH
+          enum:
+          - BOTH
+          - FEMALE
+          - MALE
+        petPolicy:
+          type: string
+          description: Pet policy
+          example: PETS_NOT_ALLOWED
+          enum:
+          - PETS_ALLOWED
+          - PETS_NOT_ALLOWED
+          - SERVICE_ANIMALS_ALLOWED
+          - SMALL_PETS_ONLY
+        additionalPolicies:
+          type: string
+          description: Any additional room policies
+    PropertyAssetV2:
+      type: object
+      properties:
+        url:
+          type: string
+          description: Direct link to the asset file
+          example: https://images.hotel.com/photo1.jpg
+        isActive:
+          type: boolean
+          description: 'Indicates whether the asset is currently active/usable. Default: true'
+          example: true
+        isMain:
+          type: boolean
+          description: Marks if this is the main asset for the property
+          example: true
+        caption:
+          type: string
+          description: Caption of the property asset
+          example: HOTEL_EXTERIOR
+          enum:
+          - ACCESSIBLE_BATHROOM
+          - ACCESSIBLE_PARKING
+          - AERIAL_VIEW
+          - AEROBICS_FACILITY
+          - AIRPORT_SHUTTLE
+          - AQUA_CENTER
+          - ARCADE
+          - ARCHERY
+          - ATM_BANKING_ONSITE
+          - BALCONY_VIEW
+          - BALLROOM
+          - BANQUET_HALL
+          - BAR_CAFE_LOUNGE
+          - BAR_ONSITE
+          - BASKETBALL_COURT
+          - BATHROOM_AMENITIES
+          - BATHROOM_SHOWER
+          - BATHROOM_SINK
+          - BBQ_PICNIC_AREA
+          - BEACH
+          - BEACH_BAR
+          - BEACH_OCEAN_VIEW
+          - BICYCLING
+          - BILLIARDS
+          - BIRTHDAY_PARTY_AREA
+          - BOATING
+          - BOWLING
+          - BREAKFAST_AREA
+          - BREAKFAST_BUFFET
+          - BREAKFAST_MEAL
+          - BUFFET
+          - BUILDING_DESIGN
+          - BUSINESS_CENTER
+          - CAFE
+          - CAPSULE
+          - CASINO
+          - CASINO_SHUTTLE
+          - CHAMPAGNE_SERVICE
+          - CHAPEL
+          - CHILDREN_THEME_ROOM
+          - CHILDRENS_ACTIVITY
+          - CHILDRENS_AREA
+          - CHILDRENS_POOL
+          - CITY_SHUTTLE
+          - CITY_VIEW
+          - CITY_VIEW_FROM_PROPERTY
+          - CLEANLINESS_BADGE
+          - CLEANLINESS_STANDARDS
+          - COFFEE_AND_OR_COFFEE_MAKER
+          - COFFEE_SERVICE
+          - COFFEE_SHOP
+          - COMMON_SPACE
+          - COUPLES_DINING
+          - COURTYARD
+          - COURTYARD_VIEW
+          - CRUISE_TERMINAL_SHUTTLE
+          - DAY_CARE
+          - DEEP_SOAKING_BATHTUB
+          - DELICATESSEN
+          - DESERT_VIEW
+          - DESIGNER_STORE
+          - DINING
+          - DINING_ROOM
+          - DOCK
+          - ECOTOURS
+          - ELEVATOR
+          - EQUIPMENT_STORAGE
+          - EV_CHARGING_STATION
+          - EXERCISE_LAP_POOL
+          - EXECUTIVE_LOUNGE
+          - EXTERIOR_DETAIL
+          - FACIAL
+          - FAMILY_DINING
+          - FERRY_TERMINAL_SHUTTLE
+          - FIREPLACE
+          - FISHING
+          - FITNESS_FACILITY
+          - FITNESS_STUDIO
+          - FOOD_BEVERAGES
+          - FOOD_COURT
+          - FOUNTAIN
+          - FRONT_DESK_OR_SELF_CHECK_IN
+          - FRONT_OF_PROPERTY
+          - FRONT_OF_PROPERTY_NIGHT
+          - GAME_DRIVE
+          - GAME_ROOM
+          - GAME_VIEWING
+          - GARDEN
+          - GARDEN_VIEW
+          - GAZEBO
+          - GIFT_SHOPS
+          - GOLF
+          - GOLF_CART
+          - GOLF_VIEW
+          - GUEST_WHEELCHAIR
+          - GYM
+          - HAIR_SALON
+          - HALLWAY
+          - HANDHELD_SHOWERHEAD
+          - HANDRAILS_IN_HALLWAYS
+          - HANDRAILS_IN_STAIRWAYS
+          - HELICOPTER_PLANE_TOURS
+          - HIKING
+          - HILL_VIEW
+          - HORSEBACK_RIDING
+          - HOT_SPRINGS
+          - HOTEL_EXTERIOR
+          - HOTEL_INTERIOR
+          - HOTEL_SERVICES
+          - HUNTING
+          - ICE_SKATING
+          - IN_ROOM_FITNESS
+          - INDOOR_CHILDREN_PLAY_AREA
+          - INDOOR_GOLF_DRIVING_RANGE
+          - INDOOR_OUTDOOR_POOL
+          - INDOOR_POOL
+          - INDOOR_ROCK_CLIMBING_WALL
+          - INDOOR_SPA_TUB
+          - INDOOR_WEDDING
+          - INFINITY_POOL
+          - INTERIOR_DETAIL
+          - JAPANESE_GARDEN
+          - JETTED_TUB
+          - KARAOKE_ROOM
+          - KAYAKING
+          - LAKE
+          - LAKE_VIEW
+          - LAND_VIEW_FROM_PROPERTY
+          - LAUNDRY_ROOM
+          - LEISURE_RECREATION
+          - LIBRARY
+          - LOBBY
+          - LOBBY_LOUNGE
+          - LOBBY_SITTING_AREA
+          - LOCKERS
+          - LOUNGE
+          - MARINA
+          - MASSAGE
+          - MASSAGE_IN_ACCOMMODATION
+          - MEETING_FACILITY
+          - MINI_GOLF
+          - MOUNTAIN_VIEW
+          - MULTIFUNCTION_HALL
+          - NAIL_SALON
+          - NATURAL_POOL
+          - NEARBY_ATTRACTIONS
+          - NIGHTCLUB
+          - OTHER_HOTEL_PHOTO
+          - OUTDOOR_BANQUET_AREA
+          - OUTDOOR_CHILDREN_PLAY_AREA
+          - OUTDOOR_DINING
+          - OUTDOOR_POOL
+          - OUTDOOR_ROCK_CLIMBING
+          - OUTDOOR_SPA_TUB
+          - OUTDOOR_WEDDING_AREA
+          - PARK_VIEW
+          - PARKING
+          - PET_FRIENDLY
+          - PET_FRIENDLY_AMENITIES
+          - PILATES
+          - POINT_OF_INTEREST
+          - POOL_WATERFALL
+          - POOLSIDE_BAR
+          - PORCH
+          - PORTABLE_BATHTUB_SEAT
+          - PORTABLE_SHOWER_SEAT
+          - PRIMARY_IMAGE
+          - PRIVATE_KITCHEN
+          - PRIVATE_KITCHENETTE
+          - PRO_SHOP
+          - PROPERTY_AMENITY
+          - PROPERTY_ENTRANCE
+          - PROPERTY_GROUNDS
+          - PROPERTY_MAP
+          - PUBLIC_BATH
+          - RAFTING
+          - RAISED_TOILET_SEAT
+          - RECEPTION_HALL
+          - RESORT_VIEW
+          - RESTAURANT
+          - ROOFTOP
+          - ROOFTOP_POOL
+          - ROOFTOP_TERRACE
+          - ROOM_AMENITY
+          - ROPES_COURSE_TEAM_BUILDING
+          - ROWING
+          - RV_OR_TRUCK_PARKING
+          - SAFARI
+          - SAFE
+          - SAUNA
+          - SCOOTER_MOPED
+          - SEGWAY_TOURS
+          - SHARED_BATHROOM
+          - SHARED_KITCHEN
+          - SHARED_KITCHEN_FACILITIES
+          - SHOPPING_CENTER_SHUTTLE
+          - SHOPPING_MALL
+          - SKI_HILL
+          - SKIING
+          - SKYDIVING
+          - SLEDDING
+          - SNACK_BAR
+          - SNOW_AND_SKI_SPORTS
+          - SNOW_TUBING
+          - SNOWBOARDING
+          - SNOWMOBILING
+          - SNOWSHOEING
+          - SPA
+          - SPA_RECEPTION
+          - SPA_TREATMENT
+          - SPELUNKING_CAVE_EXPLORING
+          - SPORT_COURT
+          - SPORT_FACILITY
+          - SPORTS_BAR
+          - STAIRCASE
+          - STEAM_ROOM
+          - STREET_VIEW
+          - SUNDECK
+          - SURFING_BOOGIE_BOARDING
+          - SWIM_UP_BAR
+          - SWIMMING_POOL
+          - TASTING_ROOM
+          - TENNIS_COURT
+          - THEATER_SHOW
+          - THEME_PARK_SHUTTLE
+          - TRAIN_STATION_SHUTTLE
+          - TREATMENT_ROOM
+          - TURKISH_BATH
+          - VALLEY_VIEW
+          - VENDING_MACHINE
+          - VICHY_SHOWER
+          - VIEW_FROM_PROPERTY
+          - VIEW_FROM_ROOM
+          - VINEYARD
+          - VINEYARD_VIEW
+          - WARDROBE
+          - WATER_PARK
+          - WATER_VIEW
+          - WATERSLIDE
+          - WHEELCHAIR_ACCESSIBLE_VAN_PARKING
+          - WINERY
+          - YOGA
+          - YUKATA
+          - ZIPLINING
+        width:
+          type: integer
+          description: Width of the asset in pixels
+          format: int32
+          example: 1920
+        height:
+          type: integer
+          description: Height of the asset in pixels
+          format: int32
+          example: 1080
+        isWatermarked:
+          type: boolean
+          description: Marks if the asset contains a watermark
+          example: false
+        sort:
+          type: string
+          description: Ordering key for display priority
+          example: '1'
+    HotelRoomSize:
+      required:
+      - size
+      - unit
+      type: object
+      properties:
+        size:
+          type: number
+          description: Size of the room
+          format: double
+          example: 42
+        isSizeIncludingTerrace:
+          type: boolean
+        unit:
+          type: string
+          description: Unit of measurement for the room size
+          enum:
+          - SQUARE_METER
+          - SQUARE_FOOT
+          - UNKNOWN
+        description:
+          type: string
+      description: Room size
     HotelPaymentMethodInfo:
       type: object
       properties:
@@ -98,6 +721,653 @@ components:
             type: string
             description: List of cash currency information accepted by the hotel
             example: '["IDR","USD"]'
+    PropertySpokenLanguageV2:
+      type: object
+      properties:
+        language:
+          type: string
+          description: 'The language spoken at the property (ISO 639-1 two-letter code, UPPERCASE. Must match pattern: ^[A-Z]{2}$)'
+          example: EN
+        isPrimary:
+          type: boolean
+          description: Marks if this is the primary spoken language in the property
+          example: true
+    PropertyFacilitiesV2:
+      type: object
+      properties:
+        facilities:
+          type: array
+          description: List of property facilities
+          items:
+            $ref: '#/components/schemas/PropertyFacilityItemV2'
+    HotelContentV2:
+      required:
+      - providerPropertyId
+      type: object
+      properties:
+        providerPropertyId:
+          type: string
+          description: Unique property ID in provider system
+          example: H00123
+        status:
+          type: string
+          description: Property status from provider. Default value = ACTIVE
+          example: ACTIVE
+          enum:
+          - ACTIVE
+          - INACTIVE
+        propertyName:
+          allOf:
+          - $ref: '#/components/schemas/PropertyNameV2'
+          - description: Property name information
+        propertyLocation:
+          allOf:
+          - $ref: '#/components/schemas/PropertyLocationV2'
+          - description: Property location including address and coordinates
+        propertyContact:
+          allOf:
+          - $ref: '#/components/schemas/PropertyContactWrapperV2'
+          - description: Property contact information including websites, phones, faxes and emails
+        propertyBrand:
+          allOf:
+          - $ref: '#/components/schemas/PropertyBrandV2'
+          - description: Hotel brand information
+        propertyChain:
+          allOf:
+          - $ref: '#/components/schemas/PropertyChainV2'
+          - description: Hotel chain information
+        propertyCategorization:
+          allOf:
+          - $ref: '#/components/schemas/PropertyCategorizationV2'
+          - description: Property categorization (star rating, type, themes)
+        propertyFacilities:
+          allOf:
+          - $ref: '#/components/schemas/PropertyFacilitiesV2'
+          - description: Property facilities
+        propertySpokenLanguages:
+          type: array
+          description: Languages spoken at the property
+          items:
+            $ref: '#/components/schemas/PropertySpokenLanguageV2'
+        propertyReview:
+          allOf:
+          - $ref: '#/components/schemas/PropertyReviewV2'
+          - description: Property review/rating information
+        propertyAirport:
+          allOf:
+          - $ref: '#/components/schemas/PropertyAirportV2'
+          - description: Nearest airport information
+        propertyPaymentMethod:
+          allOf:
+          - $ref: '#/components/schemas/PropertyPaymentMethodV2'
+          - description: Accepted payment methods
+        propertyStatistics:
+          allOf:
+          - $ref: '#/components/schemas/PropertyStatisticsV2'
+          - description: Property statistics (year built, rooms, floors, etc.)
+        propertyCheckInOut:
+          allOf:
+          - $ref: '#/components/schemas/PropertyCheckInOutV2'
+          - description: Check-in and check-out policies and times
+        propertyDescription:
+          allOf:
+          - $ref: '#/components/schemas/PropertyDescriptionV2'
+          - description: Property descriptions by category
+        propertyPolicies:
+          allOf:
+          - $ref: '#/components/schemas/PropertyPoliciesV2'
+          - description: Property policies
+        propertyImages:
+          type: array
+          description: Property images. Minimum 25 photos from 5 categories recommended.
+          items:
+            $ref: '#/components/schemas/PropertyAssetV2'
+    PhoneContactV2:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: Country dialing code
+          example: '62'
+        phoneNumber:
+          type: string
+          description: Local phone number without the country code
+          example: 22-4211333
+    PropertyStatisticsV2:
+      type: object
+      properties:
+        builtYear:
+          type: integer
+          description: Year when the property was originally built
+          format: int32
+          example: 1995
+        lastRenovatedYear:
+          type: integer
+          description: Year of the most recent major renovation
+          format: int32
+          example: 2020
+        numRooms:
+          type: integer
+          description: Total number of guest rooms
+          format: int32
+          example: 250
+        numFloors:
+          type: integer
+          description: Total number of floors in the property
+          format: int32
+          example: 15
+        numBars:
+          type: integer
+          description: Number of bars available in the property
+          format: int32
+          example: 2
+        roomVoltage:
+          type: number
+          description: Standard electrical voltage in guest rooms (in volts)
+          format: float
+          example: 220
+    HotelProperties:
+      required:
+      - checkInTime
+      - checkOutTime
+      type: object
+      properties:
+        checkInTime:
+          type: string
+          description: Check-in time in 24-hour format (e.g., '14:00')
+          example: '14:00'
+        checkOutTime:
+          type: string
+          description: Check-out time in 24-hour format (e.g., '12:00')
+          example: '12:00'
+        numRooms:
+          type: integer
+          description: Number of rooms in the hotel
+          format: int32
+          example: 100
+        numFloors:
+          type: integer
+          description: Number of floors in the hotel
+          format: int32
+          example: 10
+        numRestaurants:
+          type: integer
+          description: Number of restaurants in the hotel
+          format: int32
+          example: 2
+        numBars:
+          type: integer
+          description: Number of bars in the hotel
+          format: int32
+          example: 1
+        roomVoltage:
+          type: integer
+          description: Room voltage in volts
+          format: int32
+          example: 220
+        roomServiceType:
+          type: string
+          description: Type of room service available at the hotel
+          example: AVAILABLE_24_HOURS
+          enum:
+          - AVAILABLE_24_HOURS
+          - AVAILABLE
+          - NOT_AVAILABLE
+        parkingType:
+          type: string
+          description: Type of parking available at the hotel
+          example: AVAILABLE
+          enum:
+          - AVAILABLE
+          - NOT_AVAILABLE
+        parkingFeeType:
+          type: string
+          description: Type of parking fee applicable at the hotel
+          example: FREE
+          enum:
+          - FREE
+          - CHARGE
+        latestCheckInTime:
+          type: string
+          description: Latest possible check-in time in 24-hour format (e.g., '23:00')
+          example: '23:00'
+        earliestCheckOutTime:
+          type: string
+          description: Earliest possible check-out time in 24-hour format (e.g., '06:00')
+          example: 06:00
+        isAvailableAirportTransfer:
+          type: boolean
+          description: Indicates if airport transfer is available
+          example: true
+        airportTransferFee:
+          type: integer
+          description: Fee for airport transfer in the local currency
+          format: int64
+          example: 50000
+        timeToAirport:
+          type: integer
+          description: Time to the nearest airport in minutes
+          format: int32
+          example: 30
+        breakfastCharge:
+          type: integer
+          description: Price for breakfast
+          format: int64
+          example: 20000
+        distanceToCityCenter:
+          type: integer
+          description: Distance to the city center in meters
+          format: int32
+          example: 5000
+        builtYear:
+          type: integer
+          description: Year the hotel was built
+          format: int32
+          example: 1990
+        lastRenovatedYear:
+          type: integer
+          description: Year the hotel was last renovated
+          format: int32
+          example: 2015
+    RoomContent:
+      required:
+      - beds
+      - description
+      - embeddedAssets
+      - roomFacility
+      - roomId
+      - size
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: "hotel room ID from provider.\n\nNOTE: roomId MUST be unique for every unique physical room type across all properties. \nIf roomId is not unique per room type across all properties, this will cause mapping error and potential booking dispute.\n\nMaximum character: 100\n"
+          example: '10001'
+        providerHotelId:
+          type: string
+        caption:
+          type: string
+          description: Room caption / room name in English
+          example: deluxe room
+        description:
+          type: string
+          description: Room description
+          example: DELUXE ROOM
+        size:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomSize'
+          - description: Room Size
+        beds:
+          allOf:
+          - $ref: '#/components/schemas/HotelBeds'
+          - description: Hotel Beds
+        roomFacility:
+          allOf:
+          - $ref: '#/components/schemas/HotelRoomFacility'
+          - description: Room Facility
+        embeddedAssets:
+          type: array
+          description: This element is for room images. For room images, minimum 4 photos per room, min size 800 x 600 pixels.
+          items:
+            $ref: '#/components/schemas/HotelRoomAssetEmbedded'
+        view:
+          type: string
+          description: Room views, e.g. "city view"
+          example: City view
+        smokingPreferences:
+          type: string
+          description: 'Whether smoking is allowed inside the room. Expected output:
+
+
+            "S" → Smoking
+
+
+            "NS" → Non-Smoking
+
+
+            "E" → Either
+
+            '
+          example: S
+          enum:
+          - S
+          - NS
+          - E
+    HotelRoomAssetEmbedded:
+      required:
+      - assetId
+      - height
+      - url
+      - width
+      type: object
+      properties:
+        assetId:
+          type: string
+          description: Unique identifier for the hotel room asset
+          example: asset123
+        isMain:
+          type: boolean
+          description: Indicates if this asset is the main asset for the hotel room
+          example: true
+        url:
+          type: string
+          description: URL of the hotel room asset
+          example: www.image.com/image?no=1
+        caption:
+          type: string
+          description: Caption of the hotel room asset
+          example: Room Image
+        width:
+          type: integer
+          description: Image width
+          format: int32
+          example: 250
+        height:
+          type: integer
+          description: Image height
+          format: int32
+          example: 400
+    FacilityFeeInfoV2:
+      type: object
+      properties:
+        isFree:
+          type: boolean
+          description: Indicates if facility is free of charge
+          example: true
+        currency:
+          type: string
+          description: Currency of the charged facility (ISO 4217)
+          example: USD
+        amount:
+          type: number
+          description: Fee amount
+          format: double
+          example: 10
+    HotelCreditCardInfo:
+      type: object
+      properties:
+        creditCardType:
+          type: string
+          description: Credit card type that is accepted as payment method in hotel
+          enum:
+          - VISA
+          - AMERICAN_EXPRESS
+          - BC_CARD
+          - MASTERCARD
+          - DISCOVER
+          - DINERS_CLUB
+          - CARTA_SI
+          - CARTE_BLEUE
+          - VISA_ELECTRON
+          - JAPAN_CREDIT_BUREAU
+          - MAESTRO
+          - CHINA_UNION_PAY
+          - UNION_PAY
+        creditCardName:
+          type: string
+          description: Credit card name that is accepted as payment method in hotel
+        mandatoryDisplayText:
+          type: string
+          description: Mandatory display text for credit card information, e.g. 'Credit card holder name must match the name on the reservation'
+    PropertyPaymentMethodV2:
+      type: object
+      properties:
+        rateTypes:
+          type: array
+          description: 'Type(s) of supported rates: PAY_NOW, PAY_LATER, PAY_AT_PROPERTY'
+          example:
+          - PAY_NOW
+          - PAY_AT_PROPERTY
+          items:
+            type: string
+            enum:
+            - PAY_NOW
+            - PAY_LATER
+            - PAY_AT_PROPERTY
+        acceptedPayment:
+          allOf:
+          - $ref: '#/components/schemas/AcceptedPaymentV2'
+          - description: Accepted payment methods at the property
+    AcceptedPaymentV2:
+      type: object
+      properties:
+        creditCards:
+          type: array
+          description: Credit card brands accepted at the property
+          example:
+          - VISA
+          - MASTERCARD
+          items:
+            type: string
+            description: Credit card brands accepted at the property
+            example: '["VISA","MASTERCARD"]'
+        debitCards:
+          type: array
+          description: Debit card brands accepted at the property
+          example:
+          - VISA_DEBIT
+          items:
+            type: string
+            description: Debit card brands accepted at the property
+            example: '["VISA_DEBIT"]'
+        currencies:
+          type: array
+          description: Currencies accepted for cash payment (ISO 4217)
+          example:
+          - USD
+          - IDR
+          items:
+            type: string
+            description: Currencies accepted for cash payment (ISO 4217)
+            example: '["USD","IDR"]'
+    PropertyLocationV2:
+      type: object
+      properties:
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressV2'
+          - description: Property address details
+        countryIso:
+          type: string
+          description: Country Code (ISO 3166-1 alpha-2)
+          example: ID
+        geoLocation:
+          allOf:
+          - $ref: '#/components/schemas/GeoLocationV2'
+          - description: Geographic coordinates of the property
+    GeoLocationV2:
+      type: object
+      properties:
+        latitude:
+          type: number
+          description: Latitude of the property location using WGS84 standard
+          format: double
+          example: -6.904276
+        longitude:
+          type: number
+          description: Longitude of the property location using WGS84 standard
+          format: double
+          example: 107.610581
+    PropertyNameV2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Official property name
+          example: Sample Hotel
+        formerName:
+          type: string
+          description: Previous name of the property
+          example: Old Sample Hotel
+    PropertyBrandV2:
+      type: object
+      properties:
+        brandId:
+          type: string
+          description: Unique identifier of the hotel brand from provider
+          example: BR001
+        brandName:
+          type: string
+          description: Name of the hotel brand from provider
+          example: Holiday Inn
+    PropertyCategorizationV2:
+      type: object
+      properties:
+        starRating:
+          type: number
+          description: 'Hotel star rating from provider. Valid range: 0 to 5 (inclusive).'
+          format: double
+          example: 4.5
+        propertyType:
+          type: string
+          description: Accommodation type of the property
+          example: HOTEL
+          enum:
+          - APARTMENT
+          - BED_AND_BREAKFAST
+          - BOAT
+          - BUNGALOW
+          - CABIN
+          - CAMPING
+          - CAPSULE_HOTEL
+          - CASTLE
+          - CHALET
+          - CONDOMINIUM
+          - CONDOTEL
+          - COTTAGE
+          - COUNTRY_HOUSE
+          - CRUISE
+          - FARM_STAY
+          - GLAMPING
+          - GUESTHOUSE
+          - HANOK
+          - HOLIDAY_PARK
+          - HOMESTAY
+          - HOSTAL
+          - HOSTEL
+          - HOTEL
+          - HOUSE
+          - HOUSE_BOAT
+          - INN
+          - LODGE
+          - MOBILE_HOME
+          - MONASTERY
+          - MOTEL
+          - PALACE
+          - PENSION
+          - POUSADA_BRAZILIAN
+          - POUSADA_PORTUGESE
+          - PROPERTY
+          - RANCH
+          - RECREATIONAL_VEHICLE_PARK
+          - RESORT
+          - RIAD
+          - RYOKAN
+          - SERVICE_APARTMENT
+          - SHARIA
+          - SKI_IN_SKI_OUT
+          - TINY_HOUSE
+          - TRADITIONAL_CHINESE_INN
+          - TREE_HOUSE
+          - VACATION_RENTAL
+          - VILLA
+        propertyThemes:
+          type: array
+          description: Thematic categorization of the property; multiple themes may apply
+          example:
+          - BUSINESS
+          - LUXURY
+          items:
+            type: string
+            enum:
+            - BEACHFRONT
+            - HOT_SPRING
+            - NATURE
+            - SUSTAINABLE
+            - WINERY
+            - CULTURAL
+            - HERITAGE
+            - HISTORIC
+            - ADULTS_ONLY
+            - AIRPORT
+            - BUSINESS
+            - FAMILY
+            - HONEYMOON
+            - LONG_STAY
+            - PET_FRIENDLY
+            - ROMANTIC
+            - BUDGET
+            - LUXURY
+            - ADVENTURE
+            - BOUTIQUE
+            - CASINO
+            - GOLF
+            - HIP
+            - RETREAT
+            - SHOPPING
+            - SKI
+            - SPA
+            - WELLNESS
+            - CITY
+    AddressV2:
+      type: object
+      properties:
+        line:
+          type: array
+          description: Address lines
+          example:
+          - 123 Example St
+          - RT 01/RW 02
+          items:
+            type: string
+            description: Address lines
+            example: '["123 Example St","RT 01/RW 02"]'
+        city:
+          type: string
+          description: City where the property is located
+          example: Jakarta
+        province:
+          type: string
+          description: Province where the property is located
+          example: DKI Jakarta
+        country:
+          type: string
+          description: Country name where the property is located
+          example: Indonesia
+        postalCode:
+          type: string
+          description: Postal/ZIP code of the property
+          example: '12345'
+    ImportHotelDataResponse:
+      required:
+      - hotels
+      type: object
+      properties:
+        from:
+          type: integer
+          description: Initial record number being retrieved.
+          format: int32
+          example: 1
+        to:
+          type: integer
+          description: Final record number being retrieved.
+          format: int32
+          example: 100
+        total:
+          type: integer
+          description: Total number of records available.
+          format: int32
+          example: 1000
+        hotels:
+          type: array
+          description: List of hotel content data
+          items:
+            $ref: '#/components/schemas/HotelContent'
+        errors:
+          type: array
+          description: List of errors encountered during data retrieval. Each error corresponds to a hotel that could not be retrieved.
+          items:
+            $ref: '#/components/schemas/ProviderErrorV2'
     ProviderHotel:
       required:
       - accommodationType
@@ -313,558 +1583,132 @@ components:
             enum:
             - PAY_NOW
             - PAY_AT_PROPERTY
-    RoomContent:
+    RoomContentV2:
       required:
-      - beds
-      - description
-      - embeddedAssets
-      - roomFacility
-      - roomId
-      - size
+      - providerPropertyId
+      - providerRoomId
       type: object
       properties:
-        roomId:
+        providerPropertyId:
           type: string
-          description: "hotel room ID from provider.\n\nNOTE: roomId MUST be unique for every unique physical room type across all properties. \nIf roomId is not unique per room type across all properties, this will cause mapping error and potential booking dispute.\n\nMaximum character: 100\n"
-          example: '10001'
-        providerHotelId:
+          description: Unique property ID in provider system
+          example: H00123
+        providerRoomId:
           type: string
-        caption:
+          description: Room ID in provider system. Must be unique for every unique physical room type across all properties.
+          example: R001
+        status:
           type: string
-          description: Room caption / room name in English
-          example: deluxe room
-        description:
-          type: string
-          description: Room description
-          example: DELUXE ROOM
-        size:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomSize'
-          - description: Room Size
-        beds:
-          allOf:
-          - $ref: '#/components/schemas/HotelBeds'
-          - description: Hotel Beds
-        roomFacility:
-          allOf:
-          - $ref: '#/components/schemas/HotelRoomFacility'
-          - description: Room Facility
-        embeddedAssets:
-          type: array
-          description: This element is for room images. For room images, minimum 4 photos per room, min size 800 x 600 pixels.
-          items:
-            $ref: '#/components/schemas/HotelRoomAssetEmbedded'
-        view:
-          type: string
-          description: Room views, e.g. "city view"
-          example: City view
-        smokingPreferences:
-          type: string
-          description: 'Whether smoking is allowed inside the room. Expected output:
-
-
-            "S" → Smoking
-
-
-            "NS" → Non-Smoking
-
-
-            "E" → Either
-
-            '
-          example: S
+          description: 'Room status: ACTIVE or INACTIVE. Default value = ACTIVE'
+          example: ACTIVE
           enum:
-          - S
-          - NS
-          - E
-    PropertyContactV2:
-      type: object
-      properties:
-        contactType:
+          - ACTIVE
+          - INACTIVE
+        roomName:
           type: string
-          description: 'Type of contact (valid values: FRONT_DESK, FRONT_OFFICE_MANAGER, RESERVATIONS)'
-          example: FRONT_DESK
-          enum:
-          - FRONT_DESK
-          - FRONT_OFFICE_MANAGER
-          - RESERVATIONS
-        phones:
-          type: array
-          description: Phone numbers for this contact
-          items:
-            $ref: '#/components/schemas/PhoneContactV2'
-        faxes:
-          type: array
-          description: Fax numbers for this contact
-          items:
-            $ref: '#/components/schemas/PhoneContactV2'
-        emails:
-          type: array
-          description: Email addresses for this contact
-          example:
-          - info@hotel.com
-          items:
-            type: string
-            description: Email addresses for this contact
-            example: '["info@hotel.com"]'
-    PropertyCategorizationV2:
-      type: object
-      properties:
-        starRating:
-          type: number
-          description: 'Hotel star rating from provider. Valid range: 0 to 5 (inclusive).'
-          format: double
-          example: 4.5
-        propertyType:
+          description: Basic room type name from the provider. Must contain only the basic room type. Do not include bed type, view, amenities, cancellation policy, or breakfast information in room name.
+          example: Deluxe Room
+        roomDescription:
           type: string
-          description: Accommodation type of the property
-          example: HOTEL
-          enum:
-          - APARTMENT
-          - BED_AND_BREAKFAST
-          - BOAT
-          - BUNGALOW
-          - CABIN
-          - CAMPING
-          - CAPSULE_HOTEL
-          - CASTLE
-          - CHALET
-          - CONDOMINIUM
-          - CONDOTEL
-          - COTTAGE
-          - COUNTRY_HOUSE
-          - CRUISE
-          - FARM_STAY
-          - GLAMPING
-          - GUESTHOUSE
-          - HANOK
-          - HOLIDAY_PARK
-          - HOMESTAY
-          - HOSTAL
-          - HOSTEL
-          - HOTEL
-          - HOUSE
-          - HOUSE_BOAT
-          - INN
-          - LODGE
-          - MOBILE_HOME
-          - MONASTERY
-          - MOTEL
-          - PALACE
-          - PENSION
-          - POUSADA_BRAZILIAN
-          - POUSADA_PORTUGESE
-          - PROPERTY
-          - RANCH
-          - RECREATIONAL_VEHICLE_PARK
-          - RESORT
-          - RIAD
-          - RYOKAN
-          - SERVICE_APARTMENT
-          - SHARIA
-          - SKI_IN_SKI_OUT
-          - TINY_HOUSE
-          - TRADITIONAL_CHINESE_INN
-          - TREE_HOUSE
-          - VACATION_RENTAL
-          - VILLA
-        propertyThemes:
-          type: array
-          description: Thematic categorization of the property; multiple themes may apply
-          example:
-          - BUSINESS
-          - LUXURY
-          items:
-            type: string
-            enum:
-            - BEACHFRONT
-            - HOT_SPRING
-            - NATURE
-            - SUSTAINABLE
-            - WINERY
-            - CULTURAL
-            - HERITAGE
-            - HISTORIC
-            - ADULTS_ONLY
-            - AIRPORT
-            - BUSINESS
-            - FAMILY
-            - HONEYMOON
-            - LONG_STAY
-            - PET_FRIENDLY
-            - ROMANTIC
-            - BUDGET
-            - LUXURY
-            - ADVENTURE
-            - BOUTIQUE
-            - CASINO
-            - GOLF
-            - HIP
-            - RETREAT
-            - SHOPPING
-            - SKI
-            - SPA
-            - WELLNESS
-            - CITY
-    HotelContent:
-      required:
-      - assets
-      - attribute
-      - hotel
-      type: object
-      properties:
-        hotel:
-          allOf:
-          - $ref: '#/components/schemas/ProviderHotel'
-          - description: Hotel information provided by the provider
-        attribute:
-          allOf:
-          - $ref: '#/components/schemas/HotelAttribute'
-          - description: 'Additional hotel attribute and instruction,
-
-              the fields are not mandatory except hotel code,
-
-              hotel description and hotel overview.
-
-              Provide other details if deemed necessary.
-
-              '
-        assets:
-          type: array
-          description: List of hotel assets provided by the provider. Minimum 25 hotel photos, from 5 categories.
-          items:
-            $ref: '#/components/schemas/HotelAsset'
-        rooms:
-          type: array
-          description: List of Hotel Rooms (Mandatory for Room Import)
-          items:
-            $ref: '#/components/schemas/RoomContent'
-    PropertyStatisticsV2:
-      type: object
-      properties:
-        builtYear:
-          type: integer
-          description: Year when the property was originally built
-          format: int32
-          example: 1995
-        lastRenovatedYear:
-          type: integer
-          description: Year of the most recent major renovation
-          format: int32
-          example: 2020
+          description: A textual description of the room. Can include amenities, features, or policies. Should not duplicate roomName.
         numRooms:
           type: integer
-          description: Total number of guest rooms
+          description: Number of identical rooms available under this room type
           format: int32
-          example: 250
-        numFloors:
-          type: integer
-          description: Total number of floors in the property
-          format: int32
-          example: 15
-        numBars:
-          type: integer
-          description: Number of bars available in the property
-          format: int32
-          example: 2
-        roomVoltage:
-          type: number
-          description: Standard electrical voltage in guest rooms (in volts)
-          format: float
-          example: 220
-    PropertyNameV2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Official property name
-          example: Sample Hotel
-        formerName:
-          type: string
-          description: Previous name of the property
-          example: Old Sample Hotel
-    GeoLocationV2:
-      type: object
-      properties:
-        latitude:
-          type: number
-          description: Latitude of the property location using WGS84 standard
-          format: double
-          example: -6.904276
-        longitude:
-          type: number
-          description: Longitude of the property location using WGS84 standard
-          format: double
-          example: 107.610581
-    PropertyFacilitiesV2:
-      type: object
-      properties:
-        facilities:
+          example: 5
+        roomLayouts:
           type: array
-          description: List of property facilities
+          description: Room layout and bed arrangement details
           items:
-            $ref: '#/components/schemas/PropertyFacilityItemV2'
-    PropertyReviewV2:
+            $ref: '#/components/schemas/RoomLayoutV2'
+        roomOccupancies:
+          allOf:
+          - $ref: '#/components/schemas/RoomOccupanciesV2'
+          - description: Room occupancy limits
+        roomSize:
+          allOf:
+          - $ref: '#/components/schemas/RoomSizeV2'
+          - description: Room size information
+        roomView:
+          allOf:
+          - $ref: '#/components/schemas/RoomViewV2'
+          - description: Room view information
+        roomLocationDetails:
+          type: string
+          description: Additional details about the room's location within the property
+          example: Ground floor, near the pool
+        roomPolicies:
+          allOf:
+          - $ref: '#/components/schemas/RoomPoliciesV2'
+          - description: Room-specific policies
+        roomFacilities:
+          type: array
+          description: List of room facilities
+          items:
+            $ref: '#/components/schemas/RoomFacilityItemV2'
+        roomImages:
+          type: array
+          description: Room images. Minimum 4 photos per room, minimum size 800x600 pixels recommended.
+          items:
+            $ref: '#/components/schemas/RoomAssetV2'
+    HotelDataV2:
+      required:
+      - property
+      - rooms
       type: object
       properties:
-        averageScore:
-          type: number
-          description: Average review score from provider or aggregated source
-          format: double
-          example: 8.5
-        numReviews:
-          type: integer
-          description: Total number of reviews counted for the score
-          format: int32
-          example: 1250
-    RoomBedV2:
+        property:
+          allOf:
+          - $ref: '#/components/schemas/HotelContentV2'
+          - description: Property content data
+        rooms:
+          type: array
+          description: List of rooms belonging to this property
+          items:
+            $ref: '#/components/schemas/RoomContentV2'
+    HotelBeds:
+      required:
+      - bedType
+      - numBeds
       type: object
       properties:
         numBeds:
           type: integer
-          description: Number of beds of this type
+          description: Number of beds in the room
           format: int32
           example: 2
         bedType:
           type: string
-          description: Type of bed
-          example: KING
+          description: Type of the bed
           enum:
-          - AIR_MATTRESS
-          - BUNK_BED
-          - CALIFORNIA_KING
-          - CAPSULE_BED
-          - FLOOR_BEDDING
-          - FULL_OR_DOUBLE
-          - FUTON
-          - HOLLYWOOD
-          - KING
-          - MATTRESS
-          - MURPHY
-          - ONDOL
-          - QUEEN
-          - ROUND
-          - SEMI_DOUBLE
           - SINGLE
-          - SOFA_BED
-          - SPACE_CAPSULE
-          - TATAMI
-          - TRUNDLE_BED
+          - DOUBLE
           - TWIN
-          - TWIN_LARGE
-          - WATER_BED
-    PropertyChainV2:
-      type: object
-      properties:
-        chainId:
+          - QUEEN
+          - KING
+          - ONE_SINGLE_BED
+          - ONE_DOUBLE_BED
+          - ONE_QUEEN_BED
+          - ONE_KING_BED
+          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
+          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
+          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
+          - TWO_SINGLE_BED
+          - TWO_DOUBLE_BED
+          - TWO_QUEEN_BED
+          - TWO_KING_BED
+          - TWO_DOUBLE_AND_TWO_SINGLE_BED
+          - THREE_SINGLE_BED
+          - THREE_DOUBLE_BED
+          - DOUBLE_SINGLE_AND_SOFA_BED
+          - CAPSULE_BED
+          - BUNK_BED
+          - UNKNOWN
+        description:
           type: string
-          description: Unique identifier of the hotel chain from provider
-          example: CH001
-        chainName:
-          type: string
-          description: Name of the hotel chain from provider
-          example: IHG
-    HotelRoomFacility:
-      type: object
-      properties:
-        facilities:
-          type: array
-          description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
-          example:
-          - WiFi
-          - Air Conditioning
-          - Mini Bar
-          items:
-            type: string
-            description: Lists all facilities applicable to the room type. Lists of the expected outputs can be found in the appendix.
-            example: '["WiFi","Air Conditioning","Mini Bar"]'
-            enum:
-            - BREAKFAST
-            - FREE_INTERNATIONAL_CALLS
-            - FREE_LOCAL_CALLS
-            - FREE_LONG_DISTANCE_CALLS
-            - FREE_WIFI
-            - HIGH_SPEED_INTERNET
-            - HOUSEKEEPING
-            - INTERNET_ACCESS
-            - INTERNET_SURCHARGE
-            - NON_SMOKING_ROOMS
-            - PHONE
-            - ROOM_SERVICE
-            - SMOKING_ROOMS
-            - TURNDOWN_SERVICE
-            - TWENTY_FOUR_HOUR_ROOM_SERVICE
-            - WIFI_SURCHARGE
-            - AIR_CONDITIONING
-            - AIR_CONDITIONING_SURCHARGE
-            - BALCONY_TERRACE
-            - BLACKOUT_DRAPES_CURTAINS
-            - CLOTHES_DRYER
-            - COFFEE_TEA_MAKER
-            - COMPLIMENTARY_BOTTLED_WATER
-            - CRIBS_SURCHARGE
-            - DESK
-            - DISHWASHER
-            - DRYER
-            - DVD_PLAYER
-            - ELECTRIC_KETTLE
-            - EXTRA_BEDS
-            - EXTRA_BEDS_AVAILABLE
-            - FAN
-            - FREE_CRIBS
-            - FREE_NEWSPAPER
-            - FUTON
-            - FUTON_SURCHARGE
-            - HEATING
-            - IN_HOUSE_MOVIES
-            - IN_ROOM_CLIMATE_CONTROL
-            - IN_ROOM_SAFE
-            - IN_ROOM_SAFE_SURCHARGE
-            - IN_ROOM_VIDEO_GAMES
-            - IRONING_BOARD_ON_REQUEST
-            - IRONING_FACILITIES
-            - KITCHEN
-            - LINENS_PROVIDED
-            - MICROWAVE
-            - MICROWAVE_ON_REQUEST
-            - MINIBAR
-            - OVEN
-            - PRIVATE_POOL
-            - REFRIGERATOR
-            - REFRIGERATOR_ON_REQUEST
-            - RICE_COOKER
-            - ROLLAWAY_OR_EXTRA_BEDS
-            - ROLLAWAY_OR_EXTRA_BEDS_SURCHARGE
-            - SEPARATE_DINING_AREA
-            - SLIPPERS
-            - SOFA_BED
-            - SOFA_BED_SIZE
-            - SOUNDPROOFED_ROOMS
-            - STOVETOP
-            - TELEVISION
-            - TOASTER
-            - TOWELS_OR_SHEETS_SURCHARGE
-            - WASHER_OR_DRYER
-            - WASHING_MACHINE
-            - BATHROBES
-            - BATHTUB
-            - DISABILITY_FRIENDLY_BATHROOM
-            - HAIR_DRYER
-            - HAIR_DRYER_ON_REQUEST
-            - HEATED_WATER
-            - HYDROMASSAGE_SHOWERHEAD
-            - INDOOR_PRIVATE_BATH
-            - OUTDOOR_BATHROOM
-            - OUTDOOR_SHOWER
-            - PARTIALLY_OPEN_BATHROOM
-            - PRIVATE_BATHROOM
-            - PRIVATE_BATHROOM_NOT_IN_ROOM
-            - RAINFALL_SHOWERHEAD
-            - SEPARATE_SHOWER_AND_TUB
-            - SHARED_BATHROOM
-            - SHOWER
-            - SHOWER_OR_TUB
-            - SPA_TUB
-            - TOILET_WITH_ELECTRONIC_BIDET
-            - TOILETRIES
-            - TOWELS_PROVIDED
-            - CHAMPAGNE_SERVICE
-            - COFFEE_OR_TEA_MAKER
-            - COOKWARE
-            - FREEZER
-            - ICE_MAKER
-            - KITCHEN_SURCHARGE
-            - KITCHENETTE
-            - KITCHENETTE_SURCHARGE
-            - MICROWAVE_SURCHARGE
-            - MINI_FRIDGE
-            - REFRIGERATOR_SURCHARGE
-            - WAFFLE_MAKER
-            - BABY_BATH
-            - BABY_MONITOR
-            - CHANGING_TABLE
-            - CRIBS_OR_INFANT_BEDS
-            - CRIBS_OR_INFANT_BEDS_SURCHARGE
-            - IN_ROOM_CHILDCARE_SURCHARGE
-            - BALCONY
-            - BALCONY_OR_PATIO
-            - CONNECTING_ROOMS
-            - DECK_OR_PATIO
-            - FIREPLACE
-            - INDOOR_HOT_SPRINGS
-            - LANAI
-            - OUTDOOR_HOT_SPRINGS
-            - OUTDOOR_PRIVATE_BATH
-            - PORCH_OR_LANAI
-            - SEPARATE_BEDROOM
-            - SEPARATE_LIVING_ROOM
-            - SHARED_ACCOMMODATIONS
-            - SHARED_KITCHEN
-            - TATAMI_FLOORS
-            - YARD
-            - HULU
-            - LIMITED_FREE_WIFI
-            - LIMITED_WIFI_SURCHARGE
-            - NETFLIX
-            - SMARTPHONE
-            - STREAMING_SERVICES
-            - TABLET
-            - TELEVISION_SURCHARGE
-            - VIDEO_GAMES
-            - HOUSEKEEPING_ON_REQUEST
-            - HOUSEKEEPING_SURCHARGE
-            - LIMITED_HOURS_ROOM_SERVICE
-            - NO_HOUSEKEEPING
-            - WHEELCHAIR_ACCESSIBLE
-            - BOTTLED_WATER
-            - TOILETRIES_WITH_SOAP_AND_SHAMPOO
-            - TOILETRIES_WITH_SOAP_SHAMPOO_AND_DENTAL_KIT
-            - TOILETRIES_WITH_MORE_THAN_4_ITEMS
-            - IRONING_BOARD
-            - IRONING
-            - BALCONY_OR_TERRACE
-            - INTERNET_ACCESS_LAN_CHARGES_APPLY
-            - INTERNET_ACCESS_LAN_COMPLIMENTARY
-            - INTERNET_ACCESS_WIFI_CHARGES_APPLY
-            - INTERNET_ACCESS_WIFI_COMPLIMENTARY
-            - MOSQUITO_NET
-            - SPARE_BEDDING
-            - INTERCONNECTING_ROOMS_AVAILABLE
-            - EXECUTIVE_LOUNGE_ACCESS
-            - SEATING_AREA
-            - POWER_OUTLETS_110V
-            - DISPENSER
-            - DAILY_NEWSPAPER
-            - DVD_CD_PLAYER
-            - JACUZZI
-            - BIDET
-            - ALARM_CLOCK
-            - SEWING_KIT
-            - MINI_BAR
-            - BLACKOUT_CURTAINS
-            - DINNER
-            - INHOUSE_MOVIES
-            - LUNCH
-            - TELEVISION_LCD_PLASMA_SCREEN
-            - SATELLITE_CABLE_TV
-            - JACUZZI_BATHTUB
-            - OTHER
-            - INTERNET
-    PropertyLocationV2:
-      type: object
-      properties:
-        address:
-          allOf:
-          - $ref: '#/components/schemas/AddressV2'
-          - description: Property address details
-        countryIso:
-          type: string
-          description: Country Code (ISO 3166-1 alpha-2)
-          example: ID
-        geoLocation:
-          allOf:
-          - $ref: '#/components/schemas/GeoLocationV2'
-          - description: Geographic coordinates of the property
+          description: Beds description
+          example: Single Beds
     HotelAttribute:
       required:
       - description
@@ -918,224 +1762,42 @@ components:
         customImportantNotice:
           type: string
           description: Custom important notice
-    PropertyPoliciesV2:
-      type: object
-      properties:
-        importantNotice:
-          type: string
-          description: Critical general notices for guests
-        facilityNotice:
-          type: string
-          description: Facility-specific notice
-        documentPolicy:
-          type: string
-          description: Required documents for check-in
-        depositPolicy:
-          type: string
-          description: Deposit requirements
-        mandatoryFeePolicy:
-          type: string
-          description: Mandatory fees must be paid to the property in order to check-in
-        optionalFeePolicy:
-          type: string
-          description: Optional/extra fees if customer chose to use the facility/service
-        genderPolicy:
-          type: string
-          description: 'Gender-related policy: FEMALE_ONLY_ACCOMMODATION, GENDER_SEPARATED_FACILITIES, MALE_ONLY_ACCOMMODATION, MIXED_GENDER_ACCOMMODATION'
-          enum:
-          - FEMALE_ONLY_ACCOMMODATION
-          - GENDER_SEPARATED_FACILITIES
-          - MALE_ONLY_ACCOMMODATION
-          - MIXED_GENDER_ACCOMMODATION
-        tourismTaxPolicy:
-          type: string
-          description: Tourism tax details
-        extraBreakfastPolicy:
-          type: string
-          description: Policy for extra breakfast
-        breakfastTimePolicy:
-          type: string
-          description: Time when the breakfast is served
-          example: 06:30-10:00
-        smokingPolicy:
-          type: string
-          description: Smoking policy
-          example: SMOKING_NOT_ALLOWED
-          enum:
-          - DESIGNATED_SMOKING_AREA
-          - ELECTRONIC_SMOKING_ONLY
-          - SMOKING_ALLOWED
-          - SMOKING_NOT_ALLOWED
-        petPolicy:
-          type: string
-          description: Pet policy
-          example: PETS_NOT_ALLOWED
-          enum:
-          - PETS_ALLOWED
-          - PETS_NOT_ALLOWED
-          - PETS_ALLOWED_WITH_MAXIMUM_WEIGHT
-          - SERVICE_ANIMALS_NOT_ALLOWED
-          - ONLY_DOGS_ALLOWED
-          - ONLY_DOGS_CATS_ALLOWED
-          - LIMITED_NUMBER_OF_PETS_IN_ROOM
-          - SERVICE_ANIMALS_EXEMPT
-          - ONLY_CATS_ALLOWED
-          - PET_ATTENDANCE_REQUIRED
-          - SERVICE_ANIMALS_ALLOWED
-          - PET_FEE_APPLIES
-          - SMALL_PETS_ONLY
-        airportTransferPolicy:
-          type: string
-          description: Rules for airport transfers
-        galaDinnerPolicy:
-          type: string
-          description: Gala dinner rules (New Year, etc)
-        additionalPolicies:
-          type: string
-          description: Any additional property policies
-    RoomPoliciesV2:
-      type: object
-      properties:
-        smokingPolicy:
-          type: string
-          description: Defines the smoking policy applicable to the room
-          example: NON_SMOKING
-          enum:
-          - EITHER
-          - ELECTRIC_SMOKING_ONLY
-          - NON_SMOKING
-          - SMOKING
-        genderPolicy:
-          type: string
-          description: Specifies restrictions or allowances based on guest gender
-          example: BOTH
-          enum:
-          - BOTH
-          - FEMALE
-          - MALE
-        petPolicy:
-          type: string
-          description: Pet policy
-          example: PETS_NOT_ALLOWED
-          enum:
-          - PETS_ALLOWED
-          - PETS_NOT_ALLOWED
-          - SERVICE_ANIMALS_ALLOWED
-          - SMALL_PETS_ONLY
-        additionalPolicies:
-          type: string
-          description: Any additional room policies
-    HotelProperties:
+    HotelContact:
       required:
-      - checkInTime
-      - checkOutTime
+      - email
+      - phone
       type: object
       properties:
-        checkInTime:
-          type: string
-          description: Check-in time in 24-hour format (e.g., '14:00')
-          example: '14:00'
-        checkOutTime:
-          type: string
-          description: Check-out time in 24-hour format (e.g., '12:00')
-          example: '12:00'
-        numRooms:
-          type: integer
-          description: Number of rooms in the hotel
-          format: int32
-          example: 100
-        numFloors:
-          type: integer
-          description: Number of floors in the hotel
-          format: int32
-          example: 10
-        numRestaurants:
-          type: integer
-          description: Number of restaurants in the hotel
-          format: int32
-          example: 2
-        numBars:
-          type: integer
-          description: Number of bars in the hotel
-          format: int32
-          example: 1
-        roomVoltage:
-          type: integer
-          description: Room voltage in volts
-          format: int32
-          example: 220
-        roomServiceType:
-          type: string
-          description: Type of room service available at the hotel
-          example: AVAILABLE_24_HOURS
-          enum:
-          - AVAILABLE_24_HOURS
-          - AVAILABLE
-          - NOT_AVAILABLE
-        parkingType:
-          type: string
-          description: Type of parking available at the hotel
-          example: AVAILABLE
-          enum:
-          - AVAILABLE
-          - NOT_AVAILABLE
-        parkingFeeType:
-          type: string
-          description: Type of parking fee applicable at the hotel
-          example: FREE
-          enum:
-          - FREE
-          - CHARGE
-        latestCheckInTime:
-          type: string
-          description: Latest possible check-in time in 24-hour format (e.g., '23:00')
-          example: '23:00'
-        earliestCheckOutTime:
-          type: string
-          description: Earliest possible check-out time in 24-hour format (e.g., '06:00')
-          example: 06:00
-        isAvailableAirportTransfer:
-          type: boolean
-          description: Indicates if airport transfer is available
-          example: true
-        airportTransferFee:
-          type: integer
-          description: Fee for airport transfer in the local currency
-          format: int64
-          example: 50000
-        timeToAirport:
-          type: integer
-          description: Time to the nearest airport in minutes
-          format: int32
-          example: 30
-        breakfastCharge:
-          type: integer
-          description: Price for breakfast
-          format: int64
-          example: 20000
-        distanceToCityCenter:
-          type: integer
-          description: Distance to the city center in meters
-          format: int32
-          example: 5000
-        builtYear:
-          type: integer
-          description: Year the hotel was built
-          format: int32
-          example: 1990
-        lastRenovatedYear:
-          type: integer
-          description: Year the hotel was last renovated
-          format: int32
-          example: 2015
-    RoomBedArrangementV2:
-      type: object
-      properties:
-        beds:
+        phone:
           type: array
-          description: List of beds in this arrangement
+          description: List of phone numbers for the hotel
+          example:
+          - '+6281234567890'
+          - '+6289876543210'
           items:
-            $ref: '#/components/schemas/RoomBedV2'
+            type: string
+            description: List of phone numbers for the hotel
+            example: '["+6281234567890","+6289876543210"]'
+        fax:
+          type: array
+          description: List of fax numbers for the hotel. If none exist, just put an empty list
+          example:
+          - '+6281234567890'
+          items:
+            type: string
+            description: List of fax numbers for the hotel. If none exist, just put an empty list
+            example: '["+6281234567890"]'
+        email:
+          type: array
+          description: List of email addresses for the hotel. If none exist, just put an empty list
+          example:
+          - hotel@traveloka.com
+          - hotel_operation@traveloka.com
+          items:
+            type: string
+            description: List of email addresses for the hotel. If none exist, just put an empty list
+            example: '["hotel@traveloka.com","hotel_operation@traveloka.com"]'
+      description: Hotel's contact information
     ImportHotelDataV2Response:
       required:
       - hotels
@@ -1168,41 +1830,6 @@ components:
           type: string
           description: Human-readable error message
           example: Hotel with ID H00123 was not found
-    PropertyDescriptionV2:
-      type: object
-      properties:
-        general:
-          type: string
-          description: General description of the property (overview)
-        location:
-          type: string
-          description: Description of the property's location
-        attractions:
-          type: string
-          description: Nearby attractions (tourist spots, shopping areas, etc)
-        renovations:
-          type: string
-          description: Information about recent or ongoing renovations
-        facilitiesOrAmenities:
-          type: string
-          description: Highlight property facilities/amenities
-        businessFacilitiesOrAmenities:
-          type: string
-          description: Highlight of business-related facilities or amenities
-        dining:
-          type: string
-          description: Dining options inside property
-        rooms:
-          type: string
-          description: Information about rooms
-    CurrencyValue:
-      type: object
-      properties:
-        currency:
-          type: string
-        amount:
-          type: integer
-          format: int64
     RoomFacilityItemV2:
       type: object
       properties:
@@ -1680,140 +2307,403 @@ components:
           allOf:
           - $ref: '#/components/schemas/FacilityFeeInfoV2'
           - description: Fee information for the room facility
-    PropertySpokenLanguageV2:
+    PropertyContactWrapperV2:
       type: object
       properties:
-        language:
-          type: string
-          description: 'The language spoken at the property (ISO 639-1 two-letter code, UPPERCASE. Must match pattern: ^[A-Z]{2}$)'
-          example: EN
-        isPrimary:
-          type: boolean
-          description: Marks if this is the primary spoken language in the property
-          example: true
-    HotelRoomAssetEmbedded:
+        websites:
+          type: array
+          description: Property official website(s)
+          example:
+          - https://www.hotel.com
+          items:
+            type: string
+            description: Property official website(s)
+            example: '["https://www.hotel.com"]'
+        contacts:
+          type: array
+          description: List of property contacts grouped by type
+          items:
+            $ref: '#/components/schemas/PropertyContactV2'
+    HotelAddress:
       required:
-      - assetId
-      - height
-      - url
-      - width
+      - city
+      - lines
+      - postalCode
       type: object
       properties:
-        assetId:
+        lines:
+          type: array
+          description: "    Hotel address details, must be in English.\n    Input can be in multiple lines.\n    For example:\n    \"lines\" : [\n      \"7 Robinshon Road\",\n      \"Singapore\"\n    ]\n"
+          items:
+            type: string
+            description: "    Hotel address details, must be in English.\n    Input can be in multiple lines.\n    For example:\n    \"lines\" : [\n      \"7 Robinshon Road\",\n      \"Singapore\"\n    ]\n"
+        city:
           type: string
-          description: Unique identifier for the hotel room asset
-          example: asset123
-        isMain:
-          type: boolean
-          description: Indicates if this asset is the main asset for the hotel room
-          example: true
-        url:
+          description: City of the hotel address
+        province:
           type: string
-          description: URL of the hotel room asset
-          example: www.image.com/image?no=1
-        caption:
+          description: Province of the hotel address
+        postalCode:
           type: string
-          description: Caption of the hotel room asset
-          example: Room Image
-        width:
-          type: integer
-          description: Image width
-          format: int32
-          example: 250
-        height:
-          type: integer
-          description: Image height
-          format: int32
-          example: 400
-    HotelAsset:
-      required:
-      - caption
-      - height
-      - id
-      - isMain
-      - url
-      - width
+          description: Postal code of the hotel address
+        country:
+          type: string
+          description: Country of the hotel address
+    PropertyContactV2:
       type: object
       properties:
-        id:
+        contactType:
           type: string
-          description: Asset ID. This ID should be unique for all assets that provider sent.
-          example: '10004'
-        providerHotelId:
-          type: string
-        type:
-          type: string
+          description: 'Type of contact (valid values: FRONT_DESK, FRONT_OFFICE_MANAGER, RESERVATIONS)'
+          example: FRONT_DESK
           enum:
-          - THUMBNAIL
-          - SMALL_PHOTO
-          - FULL_LANDSCAPE_PHOTO
-          - HIGH_RESOLUTION_PHOTO
-        category:
-          type: string
-          description: Asset category type. This is used to categorize the asset, such as 'room', 'amenity', 'exterior', etc.
-          example: ROOM
-          enum:
-          - EXTERIOR_BUILDING
-          - LOBBY
-          - SWIMMING_POOL
-          - ENTERTAINMENT_FACILITY
-          - SPORT_FACILITY
-          - HYGIENE_FACILITY
-          - BEDROOM
-          - BATHROOM
-          - FUNCTIONAL_HALL
-          - RESTAURANT
-          - BAR_CAFE_LOUNGE
-          - VIEW_ATTRACTIONS
-          - HOTEL_SERVICES
-          - COMMON_SPACE
-          - BALCONY_TERRACE
-          - BALLROOM
-          - SHOWER
-          - PRIVATE_POOL
-          - OTHERS
-        isMain:
-          type: boolean
-          description: Indicates if this asset is the main asset for the hotel.
-          example: true
-        watermarked:
-          type: boolean
-        url:
-          type: string
-          description: URL of the asset. This should be a valid URL pointing to the asset location.
-          example: https://example.com/assets/10004.jpg
-        caption:
-          type: string
-          description: Caption for the asset. This is a short description or title for the asset.
-          example: Deluxe Room with Sea View
-        width:
-          type: integer
-          description: Image width, min 800 x 600 pixels
-          format: int32
-        height:
-          type: integer
-          description: Image height, min 800 x 600 pixels
-          format: int32
-          example: 600
-        isActive:
-          type: boolean
-          description: To indicate the validity of asset / whether it has been removed.
-          example: true
-    HotelDataV2:
-      required:
-      - property
-      - rooms
+          - FRONT_DESK
+          - FRONT_OFFICE_MANAGER
+          - RESERVATIONS
+        phones:
+          type: array
+          description: Phone numbers for this contact
+          items:
+            $ref: '#/components/schemas/PhoneContactV2'
+        faxes:
+          type: array
+          description: Fax numbers for this contact
+          items:
+            $ref: '#/components/schemas/PhoneContactV2'
+        emails:
+          type: array
+          description: Email addresses for this contact
+          example:
+          - info@hotel.com
+          items:
+            type: string
+            description: Email addresses for this contact
+            example: '["info@hotel.com"]'
+    RoomBedV2:
       type: object
       properties:
-        property:
+        numBeds:
+          type: integer
+          description: Number of beds of this type
+          format: int32
+          example: 2
+        bedType:
+          type: string
+          description: Type of bed
+          example: KING
+          enum:
+          - AIR_MATTRESS
+          - BUNK_BED
+          - CALIFORNIA_KING
+          - CAPSULE_BED
+          - FLOOR_BEDDING
+          - FULL_OR_DOUBLE
+          - FUTON
+          - HOLLYWOOD
+          - KING
+          - MATTRESS
+          - MURPHY
+          - ONDOL
+          - QUEEN
+          - ROUND
+          - SEMI_DOUBLE
+          - SINGLE
+          - SOFA_BED
+          - SPACE_CAPSULE
+          - TATAMI
+          - TRUNDLE_BED
+          - TWIN
+          - TWIN_LARGE
+          - WATER_BED
+    PropertyAirportV2:
+      type: object
+      properties:
+        iataAirportCodes:
+          type: array
+          description: IATA codes of the nearest airport(s) from the property
+          example:
+          - CGK
+          - HLP
+          items:
+            type: string
+            description: IATA codes of the nearest airport(s) from the property
+            example: '["CGK","HLP"]'
+    HotelStyle:
+      required:
+      - hotelStyleTypes
+      type: object
+      properties:
+        hotelStyleTypes:
+          type: array
+          description: List of hotel style types
+          items:
+            type: string
+            description: List of hotel style types
+            enum:
+            - ADVENTURE_HOTELS
+            - BACKPACKER_HOTELS
+            - BUDGET_HOTELS
+            - CONFERENCE_HOTELS
+            - HIP_HOTELS
+            - HONEYMOON_HOTELS
+            - LUXURY_HOTELS
+            - SHOPPING_HOTELS
+            - SPA_HOTELS
+            - AIRPORT_HOTELS
+            - BOUTIQUE_HOTELS
+            - BUSINESS_HOTELS
+            - FAMILY_HOTELS
+            - GOLF_HOTELS
+            - HISTORIC_HOTELS
+            - LONG_STAY_HOTELS
+            - PET_FRIENDLY_HOTELS
+            - SINGLE_HOTELS
+            - RESORT_HOTELS
+            - OTHERS
+    PropertyPoliciesV2:
+      type: object
+      properties:
+        importantNotice:
+          type: string
+          description: Critical general notices for guests
+        facilityNotice:
+          type: string
+          description: Facility-specific notice
+        documentPolicy:
+          type: string
+          description: Required documents for check-in
+        depositPolicy:
+          type: string
+          description: Deposit requirements
+        mandatoryFeePolicy:
+          type: string
+          description: Mandatory fees must be paid to the property in order to check-in
+        optionalFeePolicy:
+          type: string
+          description: Optional/extra fees if customer chose to use the facility/service
+        genderPolicy:
+          type: string
+          description: 'Gender-related policy: FEMALE_ONLY_ACCOMMODATION, GENDER_SEPARATED_FACILITIES, MALE_ONLY_ACCOMMODATION, MIXED_GENDER_ACCOMMODATION'
+          enum:
+          - FEMALE_ONLY_ACCOMMODATION
+          - GENDER_SEPARATED_FACILITIES
+          - MALE_ONLY_ACCOMMODATION
+          - MIXED_GENDER_ACCOMMODATION
+        tourismTaxPolicy:
+          type: string
+          description: Tourism tax details
+        extraBreakfastPolicy:
+          type: string
+          description: Policy for extra breakfast
+        breakfastTimePolicy:
+          type: string
+          description: Time when the breakfast is served
+          example: 06:30-10:00
+        smokingPolicy:
+          type: string
+          description: Smoking policy
+          example: SMOKING_NOT_ALLOWED
+          enum:
+          - DESIGNATED_SMOKING_AREA
+          - ELECTRONIC_SMOKING_ONLY
+          - SMOKING_ALLOWED
+          - SMOKING_NOT_ALLOWED
+        petPolicy:
+          type: string
+          description: Pet policy
+          example: PETS_NOT_ALLOWED
+          enum:
+          - PETS_ALLOWED
+          - PETS_NOT_ALLOWED
+          - PETS_ALLOWED_WITH_MAXIMUM_WEIGHT
+          - SERVICE_ANIMALS_NOT_ALLOWED
+          - ONLY_DOGS_ALLOWED
+          - ONLY_DOGS_CATS_ALLOWED
+          - LIMITED_NUMBER_OF_PETS_IN_ROOM
+          - SERVICE_ANIMALS_EXEMPT
+          - ONLY_CATS_ALLOWED
+          - PET_ATTENDANCE_REQUIRED
+          - SERVICE_ANIMALS_ALLOWED
+          - PET_FEE_APPLIES
+          - SMALL_PETS_ONLY
+        airportTransferPolicy:
+          type: string
+          description: Rules for airport transfers
+        galaDinnerPolicy:
+          type: string
+          description: Gala dinner rules (New Year, etc)
+        additionalPolicies:
+          type: string
+          description: Any additional property policies
+    PropertyDescriptionV2:
+      type: object
+      properties:
+        general:
+          type: string
+          description: General description of the property (overview)
+        location:
+          type: string
+          description: Description of the property's location
+        attractions:
+          type: string
+          description: Nearby attractions (tourist spots, shopping areas, etc)
+        renovations:
+          type: string
+          description: Information about recent or ongoing renovations
+        facilitiesOrAmenities:
+          type: string
+          description: Highlight property facilities/amenities
+        businessFacilitiesOrAmenities:
+          type: string
+          description: Highlight of business-related facilities or amenities
+        dining:
+          type: string
+          description: Dining options inside property
+        rooms:
+          type: string
+          description: Information about rooms
+    PropertyCheckInOutV2:
+      type: object
+      properties:
+        checkInTime:
+          type: string
+          description: Standard check-in time
+          example: '14:00'
+        latestCheckInTime:
+          type: string
+          description: Latest possible check-in time if restricted
+          example: '23:00'
+        checkOutTime:
+          type: string
+          description: Standard check-out time
+          example: '12:00'
+        earliestCheckOutTime:
+          type: string
+          description: Earliest time guest can check-out
+          example: 06:00
+        checkIn24Hour:
+          type: boolean
+          description: Whether guest can check in 24/7
+          example: false
+        checkInInstructions:
+          type: string
+          description: Special check-in instructions
+          example: Please present valid ID at reception
+        minimumAgeCheckInPolicy:
+          type: string
+          description: Minimum age requirement for check-in
+          example: '18'
+        earlyCheckInPolicy:
+          type: string
+          description: Early check-in rules
+          example: Subject to availability, additional charge may apply
+        checkOutInstructions:
+          type: string
+          description: Instructions for check-out
+          example: Return key cards to reception
+        lateCheckOutPolicy:
+          type: string
+          description: Late check-out rules
+          example: Available upon request with additional charge
+        contactAccommodationBeforeArrivalPolicy:
+          type: string
+          description: Requirement to contact property in advance
+          example: Please inform arrival time 24 hours before check-in
+    RoomSizeV2:
+      type: object
+      properties:
+        size:
+          type: number
+          description: Size value of the room
+          format: double
+          example: 42
+        unitOfMeasurement:
+          type: string
+          description: Measurement unit of the room size
+          example: SQUARE_METER
+          enum:
+          - SQUARE_FOOT
+          - SQUARE_METER
+    PropertyChainV2:
+      type: object
+      properties:
+        chainId:
+          type: string
+          description: Unique identifier of the hotel chain from provider
+          example: CH001
+        chainName:
+          type: string
+          description: Name of the hotel chain from provider
+          example: IHG
+    RoomOccupanciesV2:
+      type: object
+      properties:
+        maxOccupancy:
+          type: integer
+          description: Total occupancy allowed. The maxOccupancy is NOT maxAdultOccupancy + maxChildOccupancy + maxInfantOccupancy.
+          format: int32
+          example: 3
+        maxAdultOccupancy:
+          type: integer
+          description: Maximum number of adults allowed
+          format: int32
+          example: 2
+        maxChildOccupancy:
+          type: integer
+          description: Maximum number of children allowed
+          format: int32
+          example: 1
+        maxInfantOccupancy:
+          type: integer
+          description: Maximum number of infants allowed
+          format: int32
+          example: 1
+        maxExtraBeds:
+          type: integer
+          description: Maximum number of extra beds allowed
+          format: int32
+          example: 1
+    HotelContent:
+      required:
+      - assets
+      - attribute
+      - hotel
+      type: object
+      properties:
+        hotel:
           allOf:
-          - $ref: '#/components/schemas/HotelContentV2'
-          - description: Property content data
+          - $ref: '#/components/schemas/ProviderHotel'
+          - description: Hotel information provided by the provider
+        attribute:
+          allOf:
+          - $ref: '#/components/schemas/HotelAttribute'
+          - description: 'Additional hotel attribute and instruction,
+
+              the fields are not mandatory except hotel code,
+
+              hotel description and hotel overview.
+
+              Provide other details if deemed necessary.
+
+              '
+        assets:
+          type: array
+          description: List of hotel assets provided by the provider. Minimum 25 hotel photos, from 5 categories.
+          items:
+            $ref: '#/components/schemas/HotelAsset'
         rooms:
           type: array
-          description: List of rooms belonging to this property
+          description: List of Hotel Rooms (Mandatory for Room Import)
           items:
-            $ref: '#/components/schemas/RoomContentV2'
+            $ref: '#/components/schemas/RoomContent'
+    CurrencyValue:
+      type: object
+      properties:
+        currency:
+          type: string
+        amount:
+          type: integer
+          format: int64
     ImportHotelDataRequest:
       type: object
       properties:
@@ -1933,320 +2823,66 @@ components:
           type: string
           description: Number of the last record to receive. If nothing is specified (to is null) or input is empty string, "100" will be used as default value.
           example: '100'
-    AcceptedPaymentV2:
+    RoomViewV2:
       type: object
       properties:
-        creditCards:
-          type: array
-          description: Credit card brands accepted at the property
-          example:
-          - VISA
-          - MASTERCARD
-          items:
-            type: string
-            description: Credit card brands accepted at the property
-            example: '["VISA","MASTERCARD"]'
-        debitCards:
-          type: array
-          description: Debit card brands accepted at the property
-          example:
-          - VISA_DEBIT
-          items:
-            type: string
-            description: Debit card brands accepted at the property
-            example: '["VISA_DEBIT"]'
-        currencies:
-          type: array
-          description: Currencies accepted for cash payment (ISO 4217)
-          example:
-          - USD
-          - IDR
-          items:
-            type: string
-            description: Currencies accepted for cash payment (ISO 4217)
-            example: '["USD","IDR"]'
-    PropertyAssetV2:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Direct link to the asset file
-          example: https://images.hotel.com/photo1.jpg
-        isActive:
+        hasWindow:
           type: boolean
-          description: 'Indicates whether the asset is currently active/usable. Default: true'
+          description: Indicates whether the room has a window
           example: true
-        isMain:
-          type: boolean
-          description: Marks if this is the main asset for the property
-          example: true
-        caption:
-          type: string
-          description: Caption of the property asset
-          example: HOTEL_EXTERIOR
-          enum:
-          - ACCESSIBLE_BATHROOM
-          - ACCESSIBLE_PARKING
-          - AERIAL_VIEW
-          - AEROBICS_FACILITY
-          - AIRPORT_SHUTTLE
-          - AQUA_CENTER
-          - ARCADE
-          - ARCHERY
-          - ATM_BANKING_ONSITE
-          - BALCONY_VIEW
-          - BALLROOM
-          - BANQUET_HALL
-          - BAR_CAFE_LOUNGE
-          - BAR_ONSITE
-          - BASKETBALL_COURT
-          - BATHROOM_AMENITIES
-          - BATHROOM_SHOWER
-          - BATHROOM_SINK
-          - BBQ_PICNIC_AREA
-          - BEACH
-          - BEACH_BAR
-          - BEACH_OCEAN_VIEW
-          - BICYCLING
-          - BILLIARDS
-          - BIRTHDAY_PARTY_AREA
-          - BOATING
-          - BOWLING
-          - BREAKFAST_AREA
-          - BREAKFAST_BUFFET
-          - BREAKFAST_MEAL
-          - BUFFET
-          - BUILDING_DESIGN
-          - BUSINESS_CENTER
-          - CAFE
-          - CAPSULE
-          - CASINO
-          - CASINO_SHUTTLE
-          - CHAMPAGNE_SERVICE
-          - CHAPEL
-          - CHILDREN_THEME_ROOM
-          - CHILDRENS_ACTIVITY
-          - CHILDRENS_AREA
-          - CHILDRENS_POOL
-          - CITY_SHUTTLE
+        roomViews:
+          type: array
+          description: View(s) from the room
+          example:
           - CITY_VIEW
-          - CITY_VIEW_FROM_PROPERTY
-          - CLEANLINESS_BADGE
-          - CLEANLINESS_STANDARDS
-          - COFFEE_AND_OR_COFFEE_MAKER
-          - COFFEE_SERVICE
-          - COFFEE_SHOP
-          - COMMON_SPACE
-          - COUPLES_DINING
-          - COURTYARD
-          - COURTYARD_VIEW
-          - CRUISE_TERMINAL_SHUTTLE
-          - DAY_CARE
-          - DEEP_SOAKING_BATHTUB
-          - DELICATESSEN
-          - DESERT_VIEW
-          - DESIGNER_STORE
-          - DINING
-          - DINING_ROOM
-          - DOCK
-          - ECOTOURS
-          - ELEVATOR
-          - EQUIPMENT_STORAGE
-          - EV_CHARGING_STATION
-          - EXERCISE_LAP_POOL
-          - EXECUTIVE_LOUNGE
-          - EXTERIOR_DETAIL
-          - FACIAL
-          - FAMILY_DINING
-          - FERRY_TERMINAL_SHUTTLE
-          - FIREPLACE
-          - FISHING
-          - FITNESS_FACILITY
-          - FITNESS_STUDIO
-          - FOOD_BEVERAGES
-          - FOOD_COURT
-          - FOUNTAIN
-          - FRONT_DESK_OR_SELF_CHECK_IN
-          - FRONT_OF_PROPERTY
-          - FRONT_OF_PROPERTY_NIGHT
-          - GAME_DRIVE
-          - GAME_ROOM
-          - GAME_VIEWING
-          - GARDEN
-          - GARDEN_VIEW
-          - GAZEBO
-          - GIFT_SHOPS
-          - GOLF
-          - GOLF_CART
-          - GOLF_VIEW
-          - GUEST_WHEELCHAIR
-          - GYM
-          - HAIR_SALON
-          - HALLWAY
-          - HANDHELD_SHOWERHEAD
-          - HANDRAILS_IN_HALLWAYS
-          - HANDRAILS_IN_STAIRWAYS
-          - HELICOPTER_PLANE_TOURS
-          - HIKING
-          - HILL_VIEW
-          - HORSEBACK_RIDING
-          - HOT_SPRINGS
-          - HOTEL_EXTERIOR
-          - HOTEL_INTERIOR
-          - HOTEL_SERVICES
-          - HUNTING
-          - ICE_SKATING
-          - IN_ROOM_FITNESS
-          - INDOOR_CHILDREN_PLAY_AREA
-          - INDOOR_GOLF_DRIVING_RANGE
-          - INDOOR_OUTDOOR_POOL
-          - INDOOR_POOL
-          - INDOOR_ROCK_CLIMBING_WALL
-          - INDOOR_SPA_TUB
-          - INDOOR_WEDDING
-          - INFINITY_POOL
-          - INTERIOR_DETAIL
-          - JAPANESE_GARDEN
-          - JETTED_TUB
-          - KARAOKE_ROOM
-          - KAYAKING
-          - LAKE
-          - LAKE_VIEW
-          - LAND_VIEW_FROM_PROPERTY
-          - LAUNDRY_ROOM
-          - LEISURE_RECREATION
-          - LIBRARY
-          - LOBBY
-          - LOBBY_LOUNGE
-          - LOBBY_SITTING_AREA
-          - LOCKERS
-          - LOUNGE
-          - MARINA
-          - MASSAGE
-          - MASSAGE_IN_ACCOMMODATION
-          - MEETING_FACILITY
-          - MINI_GOLF
-          - MOUNTAIN_VIEW
-          - MULTIFUNCTION_HALL
-          - NAIL_SALON
-          - NATURAL_POOL
-          - NEARBY_ATTRACTIONS
-          - NIGHTCLUB
-          - OTHER_HOTEL_PHOTO
-          - OUTDOOR_BANQUET_AREA
-          - OUTDOOR_CHILDREN_PLAY_AREA
-          - OUTDOOR_DINING
-          - OUTDOOR_POOL
-          - OUTDOOR_ROCK_CLIMBING
-          - OUTDOOR_SPA_TUB
-          - OUTDOOR_WEDDING_AREA
-          - PARK_VIEW
-          - PARKING
-          - PET_FRIENDLY
-          - PET_FRIENDLY_AMENITIES
-          - PILATES
-          - POINT_OF_INTEREST
-          - POOL_WATERFALL
-          - POOLSIDE_BAR
-          - PORCH
-          - PORTABLE_BATHTUB_SEAT
-          - PORTABLE_SHOWER_SEAT
-          - PRIMARY_IMAGE
-          - PRIVATE_KITCHEN
-          - PRIVATE_KITCHENETTE
-          - PRO_SHOP
-          - PROPERTY_AMENITY
-          - PROPERTY_ENTRANCE
-          - PROPERTY_GROUNDS
-          - PROPERTY_MAP
-          - PUBLIC_BATH
-          - RAFTING
-          - RAISED_TOILET_SEAT
-          - RECEPTION_HALL
-          - RESORT_VIEW
-          - RESTAURANT
-          - ROOFTOP
-          - ROOFTOP_POOL
-          - ROOFTOP_TERRACE
-          - ROOM_AMENITY
-          - ROPES_COURSE_TEAM_BUILDING
-          - ROWING
-          - RV_OR_TRUCK_PARKING
-          - SAFARI
-          - SAFE
-          - SAUNA
-          - SCOOTER_MOPED
-          - SEGWAY_TOURS
-          - SHARED_BATHROOM
-          - SHARED_KITCHEN
-          - SHARED_KITCHEN_FACILITIES
-          - SHOPPING_CENTER_SHUTTLE
-          - SHOPPING_MALL
-          - SKI_HILL
-          - SKIING
-          - SKYDIVING
-          - SLEDDING
-          - SNACK_BAR
-          - SNOW_AND_SKI_SPORTS
-          - SNOW_TUBING
-          - SNOWBOARDING
-          - SNOWMOBILING
-          - SNOWSHOEING
-          - SPA
-          - SPA_RECEPTION
-          - SPA_TREATMENT
-          - SPELUNKING_CAVE_EXPLORING
-          - SPORT_COURT
-          - SPORT_FACILITY
-          - SPORTS_BAR
-          - STAIRCASE
-          - STEAM_ROOM
-          - STREET_VIEW
-          - SUNDECK
-          - SURFING_BOOGIE_BOARDING
-          - SWIM_UP_BAR
-          - SWIMMING_POOL
-          - TASTING_ROOM
-          - TENNIS_COURT
-          - THEATER_SHOW
-          - THEME_PARK_SHUTTLE
-          - TRAIN_STATION_SHUTTLE
-          - TREATMENT_ROOM
-          - TURKISH_BATH
-          - VALLEY_VIEW
-          - VENDING_MACHINE
-          - VICHY_SHOWER
-          - VIEW_FROM_PROPERTY
-          - VIEW_FROM_ROOM
-          - VINEYARD
-          - VINEYARD_VIEW
-          - WARDROBE
-          - WATER_PARK
-          - WATER_VIEW
-          - WATERSLIDE
-          - WHEELCHAIR_ACCESSIBLE_VAN_PARKING
-          - WINERY
-          - YOGA
-          - YUKATA
-          - ZIPLINING
-        width:
-          type: integer
-          description: Width of the asset in pixels
-          format: int32
-          example: 1920
-        height:
-          type: integer
-          description: Height of the asset in pixels
-          format: int32
-          example: 1080
-        isWatermarked:
-          type: boolean
-          description: Marks if the asset contains a watermark
-          example: false
-        sort:
-          type: string
-          description: Ordering key for display priority
-          example: '1'
+          - POOL_VIEW
+          items:
+            type: string
+            enum:
+            - AIRPORT_VIEW
+            - AQUARIUM_VIEW
+            - BAY_VIEW
+            - BEACH_VIEW
+            - CANAL_VIEW
+            - CANYON_VIEW
+            - CITY_VIEW
+            - COUNTRYSIDE_VIEW
+            - COURTYARD_VIEW
+            - DESERT_VIEW
+            - FOREST_VIEW
+            - GARDEN_VIEW
+            - GOLF_VIEW
+            - GULF_VIEW
+            - HARBOR_VIEW
+            - HILL_VIEW
+            - LAGOON_VIEW
+            - LAKE_VIEW
+            - LANDMARK_VIEW
+            - MARINA_VIEW
+            - MOUNTAIN_VIEW
+            - NATURE_VIEW
+            - NIGHT_VIEW
+            - NO_SPECIAL_VIEW
+            - OCEAN_VIEW
+            - PANORAMA_VIEW
+            - PARK_VIEW
+            - PARTIAL_LAKE_VIEW
+            - PARTIAL_OCEAN_VIEW
+            - PARTIAL_SEA_VIEW
+            - PARTIAL_VIEW
+            - POOL_VIEW
+            - RESORT_VIEW
+            - RIVER_VIEW
+            - SEA_VIEW
+            - SLOPE_VIEW
+            - STREET_VIEW
+            - STRIP_VIEW
+            - TOWER_VIEW
+            - VALLEY_VIEW
+            - VINEYARD_VIEW
+            - VOLCANO_VIEW
+            - WATER_VIEW
+            - WATERFALL_VIEW
     PropertyFacilityItemV2:
       type: object
       properties:
@@ -3060,639 +3696,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/FacilityFeeInfoV2'
           - description: Fee information for the facility
-    HotelAddress:
-      required:
-      - city
-      - lines
-      - postalCode
-      type: object
-      properties:
-        lines:
-          type: array
-          description: "    Hotel address details, must be in English.\n    Input can be in multiple lines.\n    For example:\n    \"lines\" : [\n      \"7 Robinshon Road\",\n      \"Singapore\"\n    ]\n"
-          items:
-            type: string
-            description: "    Hotel address details, must be in English.\n    Input can be in multiple lines.\n    For example:\n    \"lines\" : [\n      \"7 Robinshon Road\",\n      \"Singapore\"\n    ]\n"
-        city:
-          type: string
-          description: City of the hotel address
-        province:
-          type: string
-          description: Province of the hotel address
-        postalCode:
-          type: string
-          description: Postal code of the hotel address
-        country:
-          type: string
-          description: Country of the hotel address
-    HotelContact:
-      required:
-      - email
-      - phone
-      type: object
-      properties:
-        phone:
-          type: array
-          description: List of phone numbers for the hotel
-          example:
-          - '+6281234567890'
-          - '+6289876543210'
-          items:
-            type: string
-            description: List of phone numbers for the hotel
-            example: '["+6281234567890","+6289876543210"]'
-        fax:
-          type: array
-          description: List of fax numbers for the hotel. If none exist, just put an empty list
-          example:
-          - '+6281234567890'
-          items:
-            type: string
-            description: List of fax numbers for the hotel. If none exist, just put an empty list
-            example: '["+6281234567890"]'
-        email:
-          type: array
-          description: List of email addresses for the hotel. If none exist, just put an empty list
-          example:
-          - hotel@traveloka.com
-          - hotel_operation@traveloka.com
-          items:
-            type: string
-            description: List of email addresses for the hotel. If none exist, just put an empty list
-            example: '["hotel@traveloka.com","hotel_operation@traveloka.com"]'
-      description: Hotel's contact information
-    RoomContentV2:
-      required:
-      - providerPropertyId
-      - providerRoomId
-      type: object
-      properties:
-        providerPropertyId:
-          type: string
-          description: Unique property ID in provider system
-          example: H00123
-        providerRoomId:
-          type: string
-          description: Room ID in provider system. Must be unique for every unique physical room type across all properties.
-          example: R001
-        status:
-          type: string
-          description: 'Room status: ACTIVE or INACTIVE. Default value = ACTIVE'
-          example: ACTIVE
-          enum:
-          - ACTIVE
-          - INACTIVE
-        roomName:
-          type: string
-          description: Basic room type name from the provider. Must contain only the basic room type. Do not include bed type, view, amenities, cancellation policy, or breakfast information in room name.
-          example: Deluxe Room
-        roomDescription:
-          type: string
-          description: A textual description of the room. Can include amenities, features, or policies. Should not duplicate roomName.
-        numRooms:
-          type: integer
-          description: Number of identical rooms available under this room type
-          format: int32
-          example: 5
-        roomLayouts:
-          type: array
-          description: Room layout and bed arrangement details
-          items:
-            $ref: '#/components/schemas/RoomLayoutV2'
-        roomOccupancies:
-          allOf:
-          - $ref: '#/components/schemas/RoomOccupanciesV2'
-          - description: Room occupancy limits
-        roomSize:
-          allOf:
-          - $ref: '#/components/schemas/RoomSizeV2'
-          - description: Room size information
-        roomView:
-          allOf:
-          - $ref: '#/components/schemas/RoomViewV2'
-          - description: Room view information
-        roomLocationDetails:
-          type: string
-          description: Additional details about the room's location within the property
-          example: Ground floor, near the pool
-        roomPolicies:
-          allOf:
-          - $ref: '#/components/schemas/RoomPoliciesV2'
-          - description: Room-specific policies
-        roomFacilities:
-          type: array
-          description: List of room facilities
-          items:
-            $ref: '#/components/schemas/RoomFacilityItemV2'
-        roomImages:
-          type: array
-          description: Room images. Minimum 4 photos per room, minimum size 800x600 pixels recommended.
-          items:
-            $ref: '#/components/schemas/RoomAssetV2'
-    RoomViewV2:
-      type: object
-      properties:
-        hasWindow:
-          type: boolean
-          description: Indicates whether the room has a window
-          example: true
-        roomViews:
-          type: array
-          description: View(s) from the room
-          example:
-          - CITY_VIEW
-          - POOL_VIEW
-          items:
-            type: string
-            enum:
-            - AIRPORT_VIEW
-            - AQUARIUM_VIEW
-            - BAY_VIEW
-            - BEACH_VIEW
-            - CANAL_VIEW
-            - CANYON_VIEW
-            - CITY_VIEW
-            - COUNTRYSIDE_VIEW
-            - COURTYARD_VIEW
-            - DESERT_VIEW
-            - FOREST_VIEW
-            - GARDEN_VIEW
-            - GOLF_VIEW
-            - GULF_VIEW
-            - HARBOR_VIEW
-            - HILL_VIEW
-            - LAGOON_VIEW
-            - LAKE_VIEW
-            - LANDMARK_VIEW
-            - MARINA_VIEW
-            - MOUNTAIN_VIEW
-            - NATURE_VIEW
-            - NIGHT_VIEW
-            - NO_SPECIAL_VIEW
-            - OCEAN_VIEW
-            - PANORAMA_VIEW
-            - PARK_VIEW
-            - PARTIAL_LAKE_VIEW
-            - PARTIAL_OCEAN_VIEW
-            - PARTIAL_SEA_VIEW
-            - PARTIAL_VIEW
-            - POOL_VIEW
-            - RESORT_VIEW
-            - RIVER_VIEW
-            - SEA_VIEW
-            - SLOPE_VIEW
-            - STREET_VIEW
-            - STRIP_VIEW
-            - TOWER_VIEW
-            - VALLEY_VIEW
-            - VINEYARD_VIEW
-            - VOLCANO_VIEW
-            - WATER_VIEW
-            - WATERFALL_VIEW
-    HotelRoomSize:
-      required:
-      - size
-      - unit
-      type: object
-      properties:
-        size:
-          type: number
-          description: Size of the room
-          format: double
-          example: 42
-        isSizeIncludingTerrace:
-          type: boolean
-        unit:
-          type: string
-          description: Unit of measurement for the room size
-          enum:
-          - SQUARE_METER
-          - SQUARE_FOOT
-          - UNKNOWN
-        description:
-          type: string
-      description: Room size
-    AddressV2:
-      type: object
-      properties:
-        line:
-          type: array
-          description: Address lines
-          example:
-          - 123 Example St
-          - RT 01/RW 02
-          items:
-            type: string
-            description: Address lines
-            example: '["123 Example St","RT 01/RW 02"]'
-        city:
-          type: string
-          description: City where the property is located
-          example: Jakarta
-        province:
-          type: string
-          description: Province where the property is located
-          example: DKI Jakarta
-        country:
-          type: string
-          description: Country name where the property is located
-          example: Indonesia
-        postalCode:
-          type: string
-          description: Postal/ZIP code of the property
-          example: '12345'
-    RoomOccupanciesV2:
-      type: object
-      properties:
-        maxOccupancy:
-          type: integer
-          description: Total occupancy allowed. The maxOccupancy is NOT maxAdultOccupancy + maxChildOccupancy + maxInfantOccupancy.
-          format: int32
-          example: 3
-        maxAdultOccupancy:
-          type: integer
-          description: Maximum number of adults allowed
-          format: int32
-          example: 2
-        maxChildOccupancy:
-          type: integer
-          description: Maximum number of children allowed
-          format: int32
-          example: 1
-        maxInfantOccupancy:
-          type: integer
-          description: Maximum number of infants allowed
-          format: int32
-          example: 1
-        maxExtraBeds:
-          type: integer
-          description: Maximum number of extra beds allowed
-          format: int32
-          example: 1
-    HotelStyle:
-      required:
-      - hotelStyleTypes
-      type: object
-      properties:
-        hotelStyleTypes:
-          type: array
-          description: List of hotel style types
-          items:
-            type: string
-            description: List of hotel style types
-            enum:
-            - ADVENTURE_HOTELS
-            - BACKPACKER_HOTELS
-            - BUDGET_HOTELS
-            - CONFERENCE_HOTELS
-            - HIP_HOTELS
-            - HONEYMOON_HOTELS
-            - LUXURY_HOTELS
-            - SHOPPING_HOTELS
-            - SPA_HOTELS
-            - AIRPORT_HOTELS
-            - BOUTIQUE_HOTELS
-            - BUSINESS_HOTELS
-            - FAMILY_HOTELS
-            - GOLF_HOTELS
-            - HISTORIC_HOTELS
-            - LONG_STAY_HOTELS
-            - PET_FRIENDLY_HOTELS
-            - SINGLE_HOTELS
-            - RESORT_HOTELS
-            - OTHERS
-    FacilityFeeInfoV2:
-      type: object
-      properties:
-        isFree:
-          type: boolean
-          description: Indicates if facility is free of charge
-          example: true
-        currency:
-          type: string
-          description: Currency of the charged facility (ISO 4217)
-          example: USD
-        amount:
-          type: number
-          description: Fee amount
-          format: double
-          example: 10
-    RoomLayoutV2:
-      type: object
-      properties:
-        roomCategory:
-          type: string
-          description: Type of room
-          example: BEDROOM
-          enum:
-          - BEDROOM
-          - LIVING_ROOM
-          - BATHROOM
-          - KITCHEN
-        arrangements:
-          type: array
-          description: List of bed arrangements for this room layout
-          items:
-            $ref: '#/components/schemas/RoomBedArrangementV2'
-    HotelContentV2:
-      required:
-      - providerPropertyId
-      type: object
-      properties:
-        providerPropertyId:
-          type: string
-          description: Unique property ID in provider system
-          example: H00123
-        status:
-          type: string
-          description: Property status from provider. Default value = ACTIVE
-          example: ACTIVE
-          enum:
-          - ACTIVE
-          - INACTIVE
-        propertyName:
-          allOf:
-          - $ref: '#/components/schemas/PropertyNameV2'
-          - description: Property name information
-        propertyLocation:
-          allOf:
-          - $ref: '#/components/schemas/PropertyLocationV2'
-          - description: Property location including address and coordinates
-        propertyContact:
-          allOf:
-          - $ref: '#/components/schemas/PropertyContactWrapperV2'
-          - description: Property contact information including websites, phones, faxes and emails
-        propertyBrand:
-          allOf:
-          - $ref: '#/components/schemas/PropertyBrandV2'
-          - description: Hotel brand information
-        propertyChain:
-          allOf:
-          - $ref: '#/components/schemas/PropertyChainV2'
-          - description: Hotel chain information
-        propertyCategorization:
-          allOf:
-          - $ref: '#/components/schemas/PropertyCategorizationV2'
-          - description: Property categorization (star rating, type, themes)
-        propertyFacilities:
-          allOf:
-          - $ref: '#/components/schemas/PropertyFacilitiesV2'
-          - description: Property facilities
-        propertySpokenLanguages:
-          type: array
-          description: Languages spoken at the property
-          items:
-            $ref: '#/components/schemas/PropertySpokenLanguageV2'
-        propertyReview:
-          allOf:
-          - $ref: '#/components/schemas/PropertyReviewV2'
-          - description: Property review/rating information
-        propertyAirport:
-          allOf:
-          - $ref: '#/components/schemas/PropertyAirportV2'
-          - description: Nearest airport information
-        propertyPaymentMethod:
-          allOf:
-          - $ref: '#/components/schemas/PropertyPaymentMethodV2'
-          - description: Accepted payment methods
-        propertyStatistics:
-          allOf:
-          - $ref: '#/components/schemas/PropertyStatisticsV2'
-          - description: Property statistics (year built, rooms, floors, etc.)
-        propertyCheckInOut:
-          allOf:
-          - $ref: '#/components/schemas/PropertyCheckInOutV2'
-          - description: Check-in and check-out policies and times
-        propertyDescription:
-          allOf:
-          - $ref: '#/components/schemas/PropertyDescriptionV2'
-          - description: Property descriptions by category
-        propertyPolicies:
-          allOf:
-          - $ref: '#/components/schemas/PropertyPoliciesV2'
-          - description: Property policies
-        propertyImages:
-          type: array
-          description: Property images. Minimum 25 photos from 5 categories recommended.
-          items:
-            $ref: '#/components/schemas/PropertyAssetV2'
-    PropertyAirportV2:
-      type: object
-      properties:
-        iataAirportCodes:
-          type: array
-          description: IATA codes of the nearest airport(s) from the property
-          example:
-          - CGK
-          - HLP
-          items:
-            type: string
-            description: IATA codes of the nearest airport(s) from the property
-            example: '["CGK","HLP"]'
-    PropertyContactWrapperV2:
-      type: object
-      properties:
-        websites:
-          type: array
-          description: Property official website(s)
-          example:
-          - https://www.hotel.com
-          items:
-            type: string
-            description: Property official website(s)
-            example: '["https://www.hotel.com"]'
-        contacts:
-          type: array
-          description: List of property contacts grouped by type
-          items:
-            $ref: '#/components/schemas/PropertyContactV2'
-    ImportHotelDataResponse:
-      required:
-      - hotels
-      type: object
-      properties:
-        from:
-          type: integer
-          description: Initial record number being retrieved.
-          format: int32
-          example: 1
-        to:
-          type: integer
-          description: Final record number being retrieved.
-          format: int32
-          example: 100
-        total:
-          type: integer
-          description: Total number of records available.
-          format: int32
-          example: 1000
-        hotels:
-          type: array
-          description: List of hotel content data
-          items:
-            $ref: '#/components/schemas/HotelContent'
-        errors:
-          type: array
-          description: List of errors encountered during data retrieval. Each error corresponds to a hotel that could not be retrieved.
-          items:
-            $ref: '#/components/schemas/ProviderErrorV2'
-    PropertyPaymentMethodV2:
-      type: object
-      properties:
-        rateTypes:
-          type: array
-          description: 'Type(s) of supported rates: PAY_NOW, PAY_LATER, PAY_AT_PROPERTY'
-          example:
-          - PAY_NOW
-          - PAY_AT_PROPERTY
-          items:
-            type: string
-            enum:
-            - PAY_NOW
-            - PAY_LATER
-            - PAY_AT_PROPERTY
-        acceptedPayment:
-          allOf:
-          - $ref: '#/components/schemas/AcceptedPaymentV2'
-          - description: Accepted payment methods at the property
-    RoomSizeV2:
-      type: object
-      properties:
-        size:
-          type: number
-          description: Size value of the room
-          format: double
-          example: 42
-        unitOfMeasurement:
-          type: string
-          description: Measurement unit of the room size
-          example: SQUARE_METER
-          enum:
-          - SQUARE_FOOT
-          - SQUARE_METER
-    HotelCreditCardInfo:
-      type: object
-      properties:
-        creditCardType:
-          type: string
-          description: Credit card type that is accepted as payment method in hotel
-          enum:
-          - VISA
-          - AMERICAN_EXPRESS
-          - BC_CARD
-          - MASTERCARD
-          - DISCOVER
-          - DINERS_CLUB
-          - CARTA_SI
-          - CARTE_BLEUE
-          - VISA_ELECTRON
-          - JAPAN_CREDIT_BUREAU
-          - MAESTRO
-          - CHINA_UNION_PAY
-          - UNION_PAY
-        creditCardName:
-          type: string
-          description: Credit card name that is accepted as payment method in hotel
-        mandatoryDisplayText:
-          type: string
-          description: Mandatory display text for credit card information, e.g. 'Credit card holder name must match the name on the reservation'
-    PhoneContactV2:
-      type: object
-      properties:
-        countryCode:
-          type: string
-          description: Country dialing code
-          example: '62'
-        phoneNumber:
-          type: string
-          description: Local phone number without the country code
-          example: 22-4211333
-    PropertyBrandV2:
-      type: object
-      properties:
-        brandId:
-          type: string
-          description: Unique identifier of the hotel brand from provider
-          example: BR001
-        brandName:
-          type: string
-          description: Name of the hotel brand from provider
-          example: Holiday Inn
-    RoomAssetV2:
-      type: object
-      properties:
-        url:
-          type: string
-          description: Direct link to the asset file
-          example: https://images.hotel.com/room1.jpg
-        isActive:
-          type: boolean
-          description: 'Indicates whether the asset is currently active/usable. Default: true'
-          example: true
-        isMain:
-          type: boolean
-          description: Marks if this is the main asset for the room
-          example: true
-        caption:
-          type: string
-          description: Caption of the room asset
-          example: GUEST_ROOM
-          enum:
-          - AIR_CONDITIONING
-          - BALCONY_TERRACE
-          - BATHROOM
-          - CHECK_IN_CHECK_OUT_KIOSK
-          - CONCIERGE_DESK
-          - DINING_AREA
-          - EXTRA_BEDS
-          - FAN
-          - FLOOR_PLAN
-          - GUEST_ROOM
-          - HEATING
-          - IN_ROOM_BUSINESS_CENTER
-          - IN_ROOM_DINING
-          - INTERIOR_ENTRANCE
-          - IRON_IRONING_BOARD
-          - KITCHEN
-          - KITCHENETTE
-          - LANAI
-          - LAUNDRY
-          - LIVING_ROOM
-          - MICROWAVE
-          - MINI_REFRIGERATOR
-          - MINIBAR
-          - OTHER_ROOM_PHOTO
-          - PRIVATE_POOL
-          - PRIVATE_SPA_TUB
-          - RECEPTION
-          - ROOM_AMENITIES
-          - ROOM_FEATURES
-          - ROOM_SERVICE_DINING
-          - ROOM_VIEW
-          - RYOKAN_DINING
-          - SHOWER
-          - TECH
-          - TELEVISION
-          - TERRACE_PATIO
-          - VIEW_FROM_ROOM
-        width:
-          type: integer
-          description: Width in pixels
-          format: int32
-          example: 1920
-        height:
-          type: integer
-          description: Height in pixels
-          format: int32
-          example: 1080
-        isWatermarked:
-          type: boolean
-          description: Marks if the asset contains a watermark
-          example: false
-        sort:
-          type: string
-          description: Ordering key for display priority
-          example: '1'
     ImportHotelDataV2Request:
       type: object
       properties:
@@ -3833,53 +3836,93 @@ components:
           type: string
           description: Number of the last record to receive. If nothing is specified (to is null) or input is empty string, "100" will be used as default value.
           example: '100'
-    PropertyCheckInOutV2:
+    PropertyReviewV2:
       type: object
       properties:
-        checkInTime:
+        averageScore:
+          type: number
+          description: Average review score from provider or aggregated source
+          format: double
+          example: 8.5
+        numReviews:
+          type: integer
+          description: Total number of reviews counted for the score
+          format: int32
+          example: 1250
+    HotelAsset:
+      required:
+      - caption
+      - height
+      - id
+      - isMain
+      - url
+      - width
+      type: object
+      properties:
+        id:
           type: string
-          description: Standard check-in time
-          example: '14:00'
-        latestCheckInTime:
+          description: Asset ID. This ID should be unique for all assets that provider sent.
+          example: '10004'
+        providerHotelId:
           type: string
-          description: Latest possible check-in time if restricted
-          example: '23:00'
-        checkOutTime:
+        type:
           type: string
-          description: Standard check-out time
-          example: '12:00'
-        earliestCheckOutTime:
+          enum:
+          - THUMBNAIL
+          - SMALL_PHOTO
+          - FULL_LANDSCAPE_PHOTO
+          - HIGH_RESOLUTION_PHOTO
+        category:
           type: string
-          description: Earliest time guest can check-out
-          example: 06:00
-        checkIn24Hour:
+          description: Asset category type. This is used to categorize the asset, such as 'room', 'amenity', 'exterior', etc.
+          example: ROOM
+          enum:
+          - EXTERIOR_BUILDING
+          - LOBBY
+          - SWIMMING_POOL
+          - ENTERTAINMENT_FACILITY
+          - SPORT_FACILITY
+          - HYGIENE_FACILITY
+          - BEDROOM
+          - BATHROOM
+          - FUNCTIONAL_HALL
+          - RESTAURANT
+          - BAR_CAFE_LOUNGE
+          - VIEW_ATTRACTIONS
+          - HOTEL_SERVICES
+          - COMMON_SPACE
+          - BALCONY_TERRACE
+          - BALLROOM
+          - SHOWER
+          - PRIVATE_POOL
+          - OTHERS
+        isMain:
           type: boolean
-          description: Whether guest can check in 24/7
-          example: false
-        checkInInstructions:
+          description: Indicates if this asset is the main asset for the hotel.
+          example: true
+        watermarked:
+          type: boolean
+        url:
           type: string
-          description: Special check-in instructions
-          example: Please present valid ID at reception
-        minimumAgeCheckInPolicy:
+          description: URL of the asset. This should be a valid URL pointing to the asset location.
+          example: https://example.com/assets/10004.jpg
+        caption:
           type: string
-          description: Minimum age requirement for check-in
-          example: '18'
-        earlyCheckInPolicy:
-          type: string
-          description: Early check-in rules
-          example: Subject to availability, additional charge may apply
-        checkOutInstructions:
-          type: string
-          description: Instructions for check-out
-          example: Return key cards to reception
-        lateCheckOutPolicy:
-          type: string
-          description: Late check-out rules
-          example: Available upon request with additional charge
-        contactAccommodationBeforeArrivalPolicy:
-          type: string
-          description: Requirement to contact property in advance
-          example: Please inform arrival time 24 hours before check-in
+          description: Caption for the asset. This is a short description or title for the asset.
+          example: Deluxe Room with Sea View
+        width:
+          type: integer
+          description: Image width, min 800 x 600 pixels
+          format: int32
+        height:
+          type: integer
+          description: Image height, min 800 x 600 pixels
+          format: int32
+          example: 600
+        isActive:
+          type: boolean
+          description: To indicate the validity of asset / whether it has been removed.
+          example: true
     HotelFacility:
       type: object
       properties:
@@ -4224,49 +4267,6 @@ components:
             - PRINTER
             - CRIBS
             - OTHER
-    HotelBeds:
-      required:
-      - bedType
-      - numBeds
-      type: object
-      properties:
-        numBeds:
-          type: integer
-          description: Number of beds in the room
-          format: int32
-          example: 2
-        bedType:
-          type: string
-          description: Type of the bed
-          enum:
-          - SINGLE
-          - DOUBLE
-          - TWIN
-          - QUEEN
-          - KING
-          - ONE_SINGLE_BED
-          - ONE_DOUBLE_BED
-          - ONE_QUEEN_BED
-          - ONE_KING_BED
-          - ONE_DOUBLE_BED_AND_ONE_SINGLE_BED
-          - ONE_DOUBLE_BED_AND_TWO_SINGLE_BED
-          - ONE_DOUBLE_BED_AND_FOUR_SINGLE_BED
-          - ONE_DOUBLE_BED_OR_TWO_SINGLE_BED
-          - TWO_SINGLE_BED
-          - TWO_DOUBLE_BED
-          - TWO_QUEEN_BED
-          - TWO_KING_BED
-          - TWO_DOUBLE_AND_TWO_SINGLE_BED
-          - THREE_SINGLE_BED
-          - THREE_DOUBLE_BED
-          - DOUBLE_SINGLE_AND_SOFA_BED
-          - CAPSULE_BED
-          - BUNK_BED
-          - UNKNOWN
-        description:
-          type: string
-          description: Beds description
-          example: Single Beds
   securitySchemes:
     basicAuth:
       type: http
