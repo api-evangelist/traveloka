@@ -1,7 +1,14 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- https://api.nuget.org/v3
+- https://crates.io/api/v1
 - https://integrations-api.siteminder.com/public/partners/all?lang=en
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 source: https://integrations-api.siteminder.com/public/partners/all?lang=en
 edges:
 - partner_name: SiteMinder
@@ -17,3 +24,96 @@ edges:
   detected: '2026-10-14'
   categories:
   - ota
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@traveloka/prop-types
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@traveloka/prop-types'
+      version: 0.1.4
+      released: '2025-12-08'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@traveloka/prop-types
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: '@traveloka/react-load'
+      version: 0.2.1-alpha.0
+      released: '2022-04-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@traveloka/react-load
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: '@traveloka/react-native-pace'
+      version: 1.0.1
+      released: '2022-04-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@traveloka/react-native-pace
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: '@traveloka/react-schema'
+      version: 3.9.0
+      released: '2026-05-04'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@traveloka/react-schema
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: '@traveloka/rps'
+      version: 1.2.1
+      released: '2022-04-07'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@traveloka/rps
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: marlint
+      version: 7.0.1
+      released: '2022-06-19'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/marlint
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: react-diode
+      version: 0.5.25
+      released: '2022-06-25'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/react-diode
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    - name: react-native-coachmark
+      version: 0.3.0
+      released: '2024-07-10'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/react-native-coachmark
+      repo_leg: github-org:traveloka
+      publisher_leg: email:traveloka.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
